@@ -28,7 +28,7 @@ nav > ul {
     margin-block: 0;
     height: 100%;
 }
-nav > ul > li {
+.header_list {
     color: #dfdfe2;
     margin: 0 0.2rem;
     padding: 0.2 rem;
@@ -44,7 +44,10 @@ main {
     padding-top: 50px;
 }
 section {
-    width: 90%;
+    width: 80%;
     margin: 0 auto 10px auto;
     max-width: 600px;
+}
+div {
+    padding: 10px 0 0 5px;
 }
