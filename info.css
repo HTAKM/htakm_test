@@ -3,14 +3,3 @@
     margin-left: auto;
     margin-right: auto;
 }
-.course_row p {
-    display: inline-block;
-}
-.course {
-    text-align: left;
-    width: 75%;
-}
-.grade {
-    text-align: right;
-    width: 25%;
-}

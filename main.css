@@ -1,7 +1,10 @@
 body {
     background: #d9a4f1;
     color: #1b1b32;
-    font-family: Agency FB;
+    font-family: sans-serif;
+}
+p {
+    text-size-adjust: auto;
 }
 header {
     width: 100%;
@@ -12,11 +15,12 @@ header {
     align-items: center;
     position: fixed;
     top: 0;
-    margin: 0 10px 0 10px;
+    margin: 0;
+    padding-left: 10px;
 }
 nav {
     width: 50%;
-    max-width: 300px;
+    max-width: 400px;
     height: 50px;
 }
 nav > ul {
@@ -41,14 +45,27 @@ li > a {
     text-decoration: none;
 }
 main {
-    padding-top: 50px;
+    padding-top: 60px;
     margin: 0 10px 0 10px;
 }
 section {
     width: 80%;
     margin: 0 auto 10px auto;
-    max-width: 600px;
+    max-width: 700px;
+    border: 2px solid purple;
+    border-radius: 10px; 
+    padding: 5px;
 }
 div {
     padding: 10px 0 0 5px;
+}
+table {
+    width: 100%;
+    text-align: left;
+}
+.table_head {
+    font-weight: bold;
+}
+tr:hover {
+    background-color: #d196ec;
 }
