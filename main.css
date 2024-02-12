@@ -43,6 +43,7 @@ nav > ul > li:hover {
 }
 li > a {
     text-decoration: none;
+    color: #1b1b32;
 }
 main {
     padding-top: 60px;
