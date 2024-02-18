@@ -32,6 +32,9 @@ nav > ul {
     margin-block: 0;
     height: 100%;
 }
+a {
+    color:#3a3a80;
+}
 .header_list {
     color: #dfdfe2;
     margin: 0 0.2rem;
@@ -41,7 +44,7 @@ nav > ul {
 nav > ul > li:hover {
     cursor: pointer;
 }
-li > a {
+.header_list > a {
     text-decoration: none;
     color: #1b1b32;
 }
@@ -69,4 +72,7 @@ table {
 }
 tr:hover {
     background-color: #d196ec;
+}
+.fa fa-youtube-play {
+    color: red;
 }
