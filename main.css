@@ -18,6 +18,9 @@ header {
     margin: 0;
     padding-left: 10px;
 }
+footer {
+    height: 10px;
+}
 nav {
     width: 50%;
     max-width: 400px;
