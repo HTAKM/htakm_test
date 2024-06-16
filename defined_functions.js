@@ -26,6 +26,9 @@ function add_rows(){
     document.getElementsByClassName('courses_given')[0].appendChild(temp);
 }
 function calculate_CGA(){
+    while(document.getElementById('result_of_cga').hasChildNodes()){
+        document.getElementById('result_of_cga').removeChild(document.getElementById('result_of_cga').firstChild);
+    };
     var number_of_rows = document.getElementsByClassName('coures_rows_given').length;
     var number_of_credits = 0;
     var number_of_grade_points = 0.0;
@@ -43,7 +46,9 @@ function calculate_CGA(){
             case F:
                 temp = 0.0; break;
             default:
-                document.getElementById('result_of_cga').innerHTML = '<p>Wrong Grade Input!</p>';
+                var temp1 = document.createElement('p');
+                temp1.appendChild(document.createTextNode("Wrong Grade Input!"));
+                document.getElementById('result_of_cga').appendChild(temp1);
                 return;
         }
         if(document.getElementById('inputGrade'+i+'').charAt(1) == '+'){
@@ -55,7 +60,15 @@ function calculate_CGA(){
         number_of_credits += document.getElementById('inputCredit'+i+'');
         number_of_grade_points += temp * document.getElementById('inputCredit'+i+'');
     }
-    var CGA = number_of_grade_points / number_of_credits;
+    if(number_of_credits>0){
+        var CGA = number_of_grade_points / number_of_credits;
+    }
+    else{
+        var temp1 = document.createElement('p');
+        temp1.appendChild(document.createTextNode("Credit is 0!"));
+        document.getElementById('result_of_cga').appendChild(temp1);
+        return; 
+    }
     document.getElementsById('result_of_cga').innerHTML = '<p>Result:</p>' +
         '<p>Number of credits: '+number_of_credits+'</p>' + 
         '<p>CGA: '+CGA+'</p>';   
