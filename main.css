@@ -83,14 +83,13 @@ tr:hover {
 }
 .course_rows_given {
     display: flex;
-    position: fixed;
 }
-.form_course {
+.form_course > input {
     width: 100px;
 }
-.form_credit {
+.form_credit > input {
     width: 20px;
 }
-.form_grade {
+.form_grade > input {
     width: 20px;
 }
