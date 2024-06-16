@@ -1,7 +1,7 @@
 function add_rows(){
-    var number_of_rows = $('#courses_given.course_rows_given').length+1;
+    var number_of_rows = document.getElementsByClassName('courses_given.course_rows_given').length+1;
     if(number_of_rows>1){
-        $("#course_given:last").append('<div class="course_rows_given">' +
+        document.getElementsByClassName('course_given').innerHTML += '<div class="course_rows_given">' +
             '   <div>' + 
             '       <input type="text" id="inputCourse'+number_of_rows+'">' + 
             '   </div>' +
@@ -11,16 +11,16 @@ function add_rows(){
             '   <div>' + 
             '       <input type="text" id=inputGrade'+number_of_rows+'" maxlength="2">' + 
             '   </div>' +
-            '</div>')
+            '</div>'
     }
 }
 function calculate_CGA(){
-    var number_of_rows = $('#courses_given.coures_rows_given').length;
+    var number_of_rows = document.getElementsByClassName('courses_given.coures_rows_given').length;
     var number_of_credits = 0;
     var number_of_grade_points = 0.0;
     var temp = 0.0;
     for(let i = 1; i <= number_of_rows; i++){
-        switch($('#courses_given.course_rows_given.inputGrade'+i+'').charAt()){
+        switch(document.getElementById('courses_given.course_rows_given.inputGrade'+i+'').charAt()){
             case A:
                 temp = 4.0; break;
             case B:
@@ -32,20 +32,20 @@ function calculate_CGA(){
             case F:
                 temp = 0.0; break;
             default:
-                $('#result_of_cga').innerHTML = '<p>Wrong Grade Input!</p>';
+                document.getElementById('result_of_cga').innerHTML = '<p>Wrong Grade Input!</p>';
                 return;
         }
-        if($('#courses_given.course_rows_given.inputGrade'+i+'').charAt(1) == '+'){
+        if(document.getElementById('courses_given.course_rows_given.inputGrade'+i+'').charAt(1) == '+'){
             temp += 0.3;
         }
-        else if($('#courses_given.course_rows_given.inputGrade'+i+'').charAt(1) == '-'){
+        else if(document.getElementById('courses_given.course_rows_given.inputGrade'+i+'').charAt(1) == '-'){
             temp -= 0.3;
         }
-        number_of_credits += $('#courses_given.course_rows_given.inputCredit'+i+'');
-        number_of_grade_points += temp * $('#courses_given.course_rows_given.inputCredit'+i+'');
+        number_of_credits += document.getElementById('courses_given.course_rows_given.inputCredit'+i+'');
+        number_of_grade_points += temp * document.getElementById('#courses_given.course_rows_given.inputCredit'+i+'');
     }
     var CGA = number_of_grade_points / number_of_credits;
-    $('result_of_cga').innerHTML = '<p>Result:</p>' +
+    document.getElementsByClassName('result_of_cga').innerHTML = '<p>Result:</p>' +
         '<p>Number of credits: '+number_of_credits+'</p>' + 
         '<p>CGA: '+CGA+'</p>';   
 }
