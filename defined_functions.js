@@ -19,18 +19,18 @@ function add_rows(){
 function delete_rows(){
     var number_of_rows = document.getElementsByClassName('course_rows_given').length;
     if(number_of_rows > 1){
-        document.getElementsByClassName('course_given')[0].removeChild(document.getElementsByClassName('course_given')[0].lastChild);
+        document.getElementsByClassName('courses_given')[0].removeChild(document.getElementsByClassName('course_given')[0].lastChild);
     }
 }
 function calculate_CGA(){
     while(document.getElementById('result_of_cga').hasChildNodes()){
         document.getElementById('result_of_cga').removeChild(document.getElementById('result_of_cga').firstChild);
     };
-    var number_of_rows = document.getElementsByClassName('coures_rows_given').length;
-    var number_of_credits = 0;
-    var number_of_grade_points = 0.0;
-    var temp = 0.0;
-    for(var i = 0; i < number_of_rows; i++){
+    let number_of_rows = document.getElementsByClassName('coures_rows_given').length;
+    let number_of_credits = 0;
+    let number_of_grade_points = 0.0;
+    let temp = 0.0;
+    for(let i = 0; i < number_of_rows; i++){
         var credits = document.getElementsByName('InputCredit')[i].value;
         var grade = document.getElementsByName('InputGrade')[i].value;
         switch(grade.charAt(0)){
@@ -57,14 +57,12 @@ function calculate_CGA(){
         number_of_credits += credits;
         number_of_grade_points += temp * credits;
     }
-    if(number_of_credits > 0){
-        var CGA = number_of_grade_points / number_of_credits;
-    }
-    else{
-        document.getElementsById('result_of_cga').innerHTML = '<p>Credit is 0!>/p>';
+    if(number_of_credits <= 0){
+        document.getElementById('result_of_cga').innerHTML = '<p>Credit is 0!>/p>';
         return; 
     }
-    document.getElementsById('result_of_cga').innerHTML = '<p>Result:</p>' +
+    let CGA = number_of_grade_points / number_of_credits;
+    document.getElementById('result_of_cga').innerHTML = '<p>Result:</p>' +
         '<p>Number of credits: '+number_of_credits+'</p>' + 
         '<p>CGA: '+CGA+'</p>';   
 }
