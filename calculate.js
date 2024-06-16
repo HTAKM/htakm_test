@@ -1,4 +1,4 @@
-$('#add_row_button').click(function(){
+document.getElementById('add_row_button').click(function(){
     var number_of_rows = $('#courses_given.course_rows_given').length+1;
     if(number_of_rows>1){
         $("#course_given:last").append('<div class="course_rows_given">' +
@@ -14,7 +14,7 @@ $('#add_row_button').click(function(){
             '</div><br>')
     }
 })
-$('#submit_for_cga').click(function(){
+document.getElementById('submit_for_cga').click(function(){
     var number_of_rows = $('#courses_given.coures_rows_given').length;
     var number_of_credits = 0;
     var number_of_grade_points = 0.0;
