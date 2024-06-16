@@ -1,6 +1,6 @@
 function add_rows(){
-    var number_of_rows = document.getElementsByClassName('courses_given.course_rows_given').length+1;
-    document.getElementsByClassName('courses_given').innerHTML += '<div class="course_rows_given">' +
+    var number_of_rows = document.getElemensById('courses_given.course_rows_given').length+1;
+    document.getElementById('courses_given').innerHTML += '<div class="course_rows_given">' +
         '   <div class="form_course">' + 
         '       <input type="text" id="inputCourse'+number_of_rows+'">' + 
         '   </div>' +
@@ -13,7 +13,7 @@ function add_rows(){
         '</div>';
 }
 function calculate_CGA(){
-    var number_of_rows = document.getElementsByClassName('courses_given.coures_rows_given').length;
+    var number_of_rows = document.getElementById('courses_given.coures_rows_given').length;
     var number_of_credits = 0;
     var number_of_grade_points = 0.0;
     var temp = 0.0;
@@ -43,7 +43,7 @@ function calculate_CGA(){
         number_of_grade_points += temp * document.getElementById('courses_given.course_rows_given.inputCredit'+i+'');
     }
     var CGA = number_of_grade_points / number_of_credits;
-    document.getElementsByClassName('result_of_cga').innerHTML = '<p>Result:</p>' +
+    document.getElementById('result_of_cga').innerHTML = '<p>Result:</p>' +
         '<p>Number of credits: '+number_of_credits+'</p>' + 
         '<p>CGA: '+CGA+'</p>';   
 }
