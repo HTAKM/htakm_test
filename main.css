@@ -81,7 +81,7 @@ tr:hover {
 .fa fa-youtube-play {
     color: red;
 }
-.course_rows_given {
+#course_rows_given {
     display: flex;
 }
 .form_course > input {
