@@ -1,7 +1,7 @@
 function add_rows(){
     var number_of_rows = document.getElementsByClassName('course_rows_given').length+1;
     var temp = document.createElement('div');
-    temp.class = "course_rows_given";
+    temp.setAttribute("class", "course_rows_given");
     var temp1 = document.createElement('div');
     temp1.class = "form_course";
     var input = document.createElement('input');
