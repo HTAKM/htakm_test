@@ -34,7 +34,7 @@ function calculate_CGA(){
     var number_of_grade_points = 0.0;
     var temp = 0.0;
     for(var i = 1; i <= number_of_rows; i++){
-        switch(document.getElementById('inputGrade'+i).charAt(0)){
+        switch(document.getElementById('inputGrade'+i).value.charAt(0)){
             case 'A':
                 temp = 4.0; break;
             case 'B':
@@ -49,14 +49,14 @@ function calculate_CGA(){
                 document.getElementsById('result_of_cga').innerHTML = '<p>Wrong Grade Input!</p>';
                 return;
         }
-        if(document.getElementById('inputGrade'+i+'').charAt(1) == '+'){
+        if(document.getElementById('inputGrade'+i).value.charAt(1) == '+'){
             temp += 0.3;
         }
-        else if(document.getElementById('inputGrade'+i+'').charAt(1) == '-'){
+        else if(document.getElementById('inputGrade'+i).value.charAt(1) == '-'){
             temp -= 0.3;
         }
-        number_of_credits += document.getElementById('inputCredit'+i+'');
-        number_of_grade_points += temp * document.getElementById('inputCredit'+i+'');
+        number_of_credits += document.getElementById('inputCredit'+i).value;
+        number_of_grade_points += temp * document.getElementById('inputCredit'+i).value;
     }
     if(number_of_credits>0){
         var CGA = number_of_grade_points / number_of_credits;

@@ -83,6 +83,7 @@ tr:hover {
 }
 .course_rows_given {
     display: flex;
+    margin: 0 0 0 0;
 }
 .form_course > input {
     width: 100px;
