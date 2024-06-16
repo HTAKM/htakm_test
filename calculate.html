@@ -22,19 +22,19 @@
             <section>
                 <p>CGA Calculator</p>
                 <p>Please input courses, number of credits and your grade</p>
-                <div class="courses_given">
+                <form  class="courses_given" method="get">
                     <div class="course_rows_given">
                         <div class="form_course">
-                            <input type="text" id="inputCourse1" placeholder="COMP 1021">
+                            <input type="text" name="inputCourse" placeholder="COMP 1021">
                         </div>
                         <div class="form_credit">
-                            <input type="number" id="inputCredit1" placeholder="3">
+                            <input type="number" name="inputCredit" placeholder="3">
                         </div>
                         <div class="form_grade">
-                            <input type="text" id="inputGrade1" placeholder="A+" maxlength="2">
+                            <input type="text" name="inputGrade" placeholder="A+" maxlength="2">
                         </div>
                     </div>
-                </div>
+                </form>
                 <button type="button" id="add_row_button" onclick="add_rows()">Add row</button>
                 <button type="submit" id="submit_for_cga" onclick="calculate_CGA()">Submit</button>
                 <noscript>Your website does not allow javescript!</noscript>
