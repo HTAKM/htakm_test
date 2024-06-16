@@ -1,6 +1,6 @@
 function add_rows(){
     var number_of_rows = document.getElementsByClassName('courses_given.course_rows_given').length+1;
-    document.getElementsByClassName('course_given').innerHTML += '<div class="course_rows_given">' +
+    document.getElementsByClassName('courses_given').innerHTML += '<div class="course_rows_given">' +
         '   <div class="form_course">' + 
         '       <input type="text" id="inputCourse'+number_of_rows+'">' + 
         '   </div>' +
