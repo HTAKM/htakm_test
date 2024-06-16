@@ -23,7 +23,7 @@ function add_rows(){
     input.id = "inputGrade" + number_of_rows;
     temp1.appendChild(input);
     temp.appendChild(temp1);
-    document.getElementsByClassName('courses_given').appendChild(temp);
+    document.getElementsByClassName('courses_given')[0].appendChild(temp);
 }
 function calculate_CGA(){
     var number_of_rows = document.getElementsByClassName('coures_rows_given').length;
