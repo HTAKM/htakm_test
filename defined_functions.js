@@ -1,16 +1,22 @@
 function add_rows(){
     var number_of_rows = document.getElementsByClassName('course_rows_given').length+1;
-    document.getElementsByClassName('course_given').innerHTML += '<div class="course_rows_given">' +
-        '   <div class="form_course">' + 
-        '       <input type="text" id="inputCourse'+number_of_rows+'">' + 
-        '   </div>' +
-        '   <div class="form_credit">' + 
-        '       <input type="number" id="inputCredit'+number_of_rows+'">' + 
-        '   </div>' +
-        '   <div class="form_grade">' + 
-        '       <input type="text" id=inputGrade'+number_of_rows+'" maxlength="2">' + 
-        '   </div>' +
-        '</div>';
+    var temp = document.createElement('div').setAttribute("class","course_rows_given");
+    var temp1 = document.createElement('div').setAttribute("class","form_course");
+    var input = document.createElement('input').setAttribute("type","text");
+    input.setAttribute("id","inputCourse"+number_of_rows);
+    temp1.appendChild(input);
+    temp.appendChild(temp1);
+    temp1 = document.createElement('div').setAttribute("class","form_credit");
+    input = document.createElement('input').setAttribute("type","number");
+    input.setAttribute("id","inputCredit"+number_of_rows);
+    temp1.appendChild(input);
+    temp.appendChild(temp1);
+    temp1 = document.createElement('div').setAttribute("class","form_grade");
+    input = document.createElement('input').setAttribute("type","text");
+    input.setAttribute("id","inputGrade"+number_of_rows);
+    temp1.appendChild(input);
+    temp.appendChild(temp1);
+    document.getElementsByClassName('courses_given').appendChild(temp);
 }
 function calculate_CGA(){
     var number_of_rows = document.getElementsByClassName('coures_rows_given').length;
