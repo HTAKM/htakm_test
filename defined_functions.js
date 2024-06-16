@@ -33,22 +33,20 @@ function calculate_CGA(){
     var number_of_credits = 0;
     var number_of_grade_points = 0.0;
     var temp = 0.0;
-    for(let i = 1; i <= number_of_rows; i++){
-        switch(document.getElementById('inputGrade'+i+'').charAt()){
-            case A:
+    for(var i = 1; i <= number_of_rows; i++){
+        switch(document.getElementById('inputGrade'+i).charAt(0)){
+            case 'A':
                 temp = 4.0; break;
-            case B:
+            case 'B':
                 temp = 3.0; break;
-            case C:
+            case 'C':
                 temp = 2.0; break;
-            case D:
+            case 'D':
                 temp = 1.0; break;
-            case F:
+            case 'F':
                 temp = 0.0; break;
             default:
-                var temp1 = document.createElement('p');
-                temp1.appendChild(document.createTextNode("Wrong Grade Input!"));
-                document.getElementById('result_of_cga').appendChild(temp1);
+                document.getElementsById('result_of_cga').innerHTML = '<p>Wrong Grade Input!</p>';
                 return;
         }
         if(document.getElementById('inputGrade'+i+'').charAt(1) == '+'){
