@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta attribute="value" charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HU-HTAKM</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="page_head">Main</h1>
+            <nav aria-labelledby="top">
+                <ul>
+                    <li class="header_list"><a href="https://htakm.github.io/htakm_test/">Main</a></li>
+                    <li class="header_list"><a href="https://htakm.github.io/htakm_test/info">Info</a></li>
+                    <li class="header_list"><a href="https://htakm.github.io/htakm_test/website">Link</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section>
+                <p>CGA Calculator</p>
+                <p>Please input courses, number of credits and your grade</p>
+                <div class="courses_given">
+                    <div class="course_rows_given">
+                        <div>
+                            <input type="text" id="inputCourse1" placeholder="COMP 1021">
+                        </div>
+                        <div>
+                            <input type="number" id="inputCredit1" placeholder="3">
+                        </div>
+                        <div>
+                            <input type="text" id="inputGrade1" placeholder="A+" maxlength="2">
+                        </div>
+                    </div><br>
+                </div>
+                <button type="button" id="add_row_button">Add row</button>
+                <button type="submit" id="submit_for_cga">Submit</button>
+                <noscript>Your website does not allow javescript!</noscript>
+                <div class="result_of_cga">
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
