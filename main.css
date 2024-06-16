@@ -81,3 +81,16 @@ tr:hover {
 .fa fa-youtube-play {
     color: red;
 }
+.course_rows_given {
+    display: flex;
+    position: fixed;
+}
+.form_course {
+    width: 100px;
+}
+.form_credit {
+    width: 20px;
+}
+.form_grade {
+    width: 20px;
+}
