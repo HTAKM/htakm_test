@@ -11,7 +11,7 @@ function add_rows(){
             '   <div>' + 
             '       <input type="text" id=inputGrade'+number_of_rows+'" maxlength="2">' + 
             '   </div>' +
-            '</div><br>')
+            '</div>')
     }
 }
 function calculate_CGA(){
