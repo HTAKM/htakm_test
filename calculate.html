@@ -25,17 +25,21 @@
                 <form  class="courses_given" method="get">
                     <div class="course_rows_given">
                         <div class="form_course">
-                            <input type="text" name="inputCourse" placeholder="COMP 1021">
+                            <label for="inputCourse1"></label>
+                            <input type="text" id="inputCourse1" name="inputCourse" placeholder="COMP 1021">
                         </div>
                         <div class="form_credit">
-                            <input type="number" name="inputCredit" placeholder="3">
+                            <label for="inputCredit1"></label>
+                            <input type="number" id="inputCredit1" name="inputCredit" placeholder="3">
                         </div>
                         <div class="form_grade">
-                            <input type="text" name="inputGrade" placeholder="A+" maxlength="2">
+                            <label for="inputGrade1"></label>
+                            <input type="text" id="inputGrade1" name="inputGrade" placeholder="A+" maxlength="2">
                         </div>
                     </div>
                 </form>
                 <button type="button" id="add_row_button" onclick="add_rows()">Add row</button>
+                <button type="button" id="delete_row_button" onclick="delete_rows()">Delete row</button>
                 <button type="submit" id="submit_for_cga" onclick="calculate_CGA()">Submit</button>
                 <noscript>Your website does not allow javescript!</noscript>
                 <div id="result_of_cga">

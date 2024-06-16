@@ -1,28 +1,26 @@
 function add_rows(){
-    var temp = document.createElement('div');
-    temp.setAttribute("class", "course_rows_given");
-    var temp1 = document.createElement('div');
-    temp1.setAttribute("class", "form_course");
-    var input = document.createElement('input');
-    input.setAttribute("type", "text");
-    input.setAttribute("name", "inputCourse");
-    temp1.appendChild(input);
-    temp.appendChild(temp1);
-    temp1 = document.createElement('div');
-    temp1.setAttribute("class", "form_credit");
-    input = document.createElement('input');
-    input.setAttribute("type", "number");
-    input.setAttribute("name", "inputCredit");
-    temp1.appendChild(input);
-    temp.appendChild(temp1);
-    temp1 = document.createElement('div');
-    temp1.setAttribute("class", "form_grade");
-    input = document.createElement('input');
-    input.setAttribute("type", "text");
-    input.setAttribute("name", "inputGrade");
-    temp1.appendChild(input);
-    temp.appendChild(temp1);
-    document.getElementsByClassName('courses_given')[0].appendChild(temp);
+    var number_of_rows = document.getElementsByClassName('course_rows_given').length+1;
+    document.getElementsByClassName('courses_given')[0].innerHTML += 
+        '<div class="course_rows_given">' + 
+        '    <div class="form_course">' +
+        '        <label for="inputCourse'+number_of_rows+'"></label>' +
+        '        <input type="text" id="inputCourse'+number_of_rows+'" name="inputCourse" placeholder="COMP 1021">' +
+        '    </div>' +
+        '    <div class="form_credit">' +
+        '        <label for="inputCredit'+number_of_rows+'"></label>' +
+        '        <input type="number" id="inputCredit'+number_of_rows+'" name="inputCredit" placeholder="3">' +
+        '    </div>' +
+        '    <div class="form_grade">' +
+        '        <label for="inputGrade'+number_of_rows+'"></label>' +
+        '        <input type="text" id="inputGrade'+number_of_rows+'" name="inputGrade" placeholder="A+" maxlength="2">' +
+        '    </div>' +
+        '</div>';
+}
+function delete_rows(){
+    var number_of_rows = document.getElementsByClassName('course_rows_given').length;
+    if(number_of_rows > 1){
+        document.getElementsByClassName('course_given')[0].removeChild(document.getElementsByClassName('course_given')[0].lastChild);
+    }
 }
 function calculate_CGA(){
     while(document.getElementById('result_of_cga').hasChildNodes()){
@@ -33,7 +31,9 @@ function calculate_CGA(){
     var number_of_grade_points = 0.0;
     var temp = 0.0;
     for(var i = 0; i < number_of_rows; i++){
-        switch(document.getElementsByName('inputGrade')[i].value.charAt(0)){
+        var credits = document.getElementsByName('InputCredit')[i].value;
+        var grade = document.getElementsByName('InputGrade')[i].value;
+        switch(grade.charAt(0)){
             case 'A':
                 temp = 4.0; break;
             case 'B':
@@ -48,22 +48,20 @@ function calculate_CGA(){
                 document.getElementById('result_of_cga').innerHTML = '<p>Wrong Grade Input!</p>';
                 return;
         }
-        if(document.getElementsByName('inputGrade')[i].value.charAt(1) == '+'){
+        if(grade.charAt(1) == '+'){
             temp += 0.3;
         }
-        else if(document.getElementsByName('inputGrade')[i].value.charAt(1) == '-'){
+        else if(grade.charAt(1) == '-'){
             temp -= 0.3;
         }
-        number_of_credits += document.getElementsByName('inputCredit')[i].value;
-        number_of_grade_points += temp * document.getElementsByName('inputCredit')[i].value;
+        number_of_credits += credits;
+        number_of_grade_points += temp * credits;
     }
     if(number_of_credits > 0){
         var CGA = number_of_grade_points / number_of_credits;
     }
     else{
-        var temp1 = document.createElement('p');
-        temp1.appendChild(document.createTextNode("Credit is 0!"));
-        document.getElementById('result_of_cga').appendChild(temp1);
+        document.getElementsById('result_of_cga').innerHTML = '<p>Credit is 0!>/p>';
         return; 
     }
     document.getElementsById('result_of_cga').innerHTML = '<p>Result:</p>' +
