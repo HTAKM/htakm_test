@@ -67,7 +67,7 @@ function calculate_CGA(){
         number_of_graded_credits += credits;
         number_of_grade_points += temp * credits;
     }
-    if(number_of_credits <= 0){
+    if(number_of_total_credits <= 0){
         document.getElementById('result_of_cga').innerHTML = '<p>Credit is 0!</p>';
         return; 
     }
