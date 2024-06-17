@@ -5,6 +5,7 @@ body {
 }
 p {
     text-size-adjust: auto;
+    -webkit-text-size-adjust: auto;
 }
 header {
     width: 100%;
@@ -66,7 +67,7 @@ section {
     padding: 5px;
 }
 div {
-    padding: 10px 0 0 5px;
+    padding: 0;
 }
 table {
     width: 100%;
@@ -81,9 +82,13 @@ tr:hover {
 .fa fa-youtube-play {
     color: red;
 }
+form {
+    margin: 0;
+}
 .course_rows_given {
     display: flex;
-    margin: 0 0 0 0;
+    margin: 0;
+    padding: 0;
 }
 .form_course > input {
     width: 100px;

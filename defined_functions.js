@@ -26,13 +26,13 @@ function calculate_CGA(){
     while(document.getElementById('result_of_cga').hasChildNodes()){
         document.getElementById('result_of_cga').removeChild(document.getElementById('result_of_cga').firstChild);
     };
-    let number_of_rows = document.getElementsByClassName('coures_rows_given').length;
+    let number_of_rows = document.getElementsByClassName('course_rows_given').length;
     let number_of_credits = 0;
     let number_of_grade_points = 0.0;
     let temp = 0.0;
     for(let i = 0; i < number_of_rows; i++){
-        var credits = document.getElementsByName('InputCredit')[i].value;
-        var grade = document.getElementsByName('InputGrade')[i].value;
+        var credits = document.getElementsByName('inputCredit')[i].value;
+        var grade = document.getElementsByName('inputGrade')[i].value;
         switch(grade.charAt(0)){
             case 'A':
                 temp = 4.0; break;
