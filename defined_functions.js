@@ -19,7 +19,7 @@ function add_rows(){
 function delete_rows(){
     var number_of_rows = document.getElementsByClassName('course_rows_given').length;
     if(number_of_rows > 1){
-        document.getElementsByClassName('courses_given')[0].removeChild(document.getElementsByClassName('course_given')[0].lastChild);
+        document.getElementsByClassName('courses_given')[0].removeChild(document.getElementsByClassName('courses_given')[0].lastChild);
     }
 }
 function calculate_CGA(){
@@ -58,7 +58,7 @@ function calculate_CGA(){
         number_of_grade_points += temp * credits;
     }
     if(number_of_credits <= 0){
-        document.getElementById('result_of_cga').innerHTML = '<p>Credit is 0!>/p>';
+        document.getElementById('result_of_cga').innerHTML = '<p>Credit is 0!</p>';
         return; 
     }
     let CGA = number_of_grade_points / number_of_credits;
