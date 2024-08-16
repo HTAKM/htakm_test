@@ -32,7 +32,7 @@ function calculate_CGA(){
     let number_of_grade_points = 0.0;
     let temp = 0.0;
     for(let i = 0; i < number_of_rows; i++){
-        var credits = document.getElementsByName('inputCredit')[i].value;
+        var credits = parseInt(document.getElementsByName('inputCredit')[i].value);
         var grade = document.getElementsByName('inputGrade')[i].value;
         switch(grade.charAt(0)){
             case 'A':
