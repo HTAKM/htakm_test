@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{huhtakm-template-article}
+\LoadClass{article}
+\RequirePackage{graphicx}
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{gensymb}
+\RequirePackage{extarrows}
+\RequirePackage{derivative}
+\RequirePackage{titlesec}
+\RequirePackage[a4paper,total={8in,11in}]{geometry}
+\theoremstyle{definition}
+    \newtheorem{defn}{Definition}[section]
+    \newtheorem{thm}[defn]{Theorem}
+    \newtheorem{lem}[defn]{Lemma}
+    \newtheorem{corollary}[defn]{Corollary}
+    \newtheorem{prop}[defn]{Proposition}
+    \newtheorem{conjecture}[defn]{Conjecture}
+    \newtheorem{remarks}[defn]{Remark}
+    \newtheorem{example}{Example}[section]
+    \newenvironment{proofing}[1][\proofname]{\begin{proof}[#1]$ $\par}{\qedhere\end{proof}}
+\setlength{\parindent}{0pt}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\norm}[1]{\lVert{#1}\rVert}
+\newcommand{\intinfty}{\int_{-\infty}^{\infty}}
+\newcommand{\intlu}[2]{\int_{#1}^{#2}}
