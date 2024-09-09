@@ -25,7 +25,7 @@
 }
 \date{
 	Last major change: May 31, 2024\\
-	Last small update (fixed typo): September 2, 2024
+	Last small update (fixed typo): September 9, 2024
 }
 \begin{document}
 \maketitle
@@ -175,7 +175,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{enumerate}
     \end{defn}
     \begin{rem}
-    	From this point afterwards, $\mathcal{F}$ represents the $\sigma$-field.
+    	From this point onwards, $\mathcal{F}$ represents the $\sigma$-field.
     \end{rem}
     \begin{eg}
         Smallest $\sigma$-field: $\mathcal{F}=\{\emptyset,\Omega\}$
@@ -188,7 +188,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         When $\Omega$ is infinite, the power set is too large a collection for probabilities to be assigned reasonably.
     \end{eg}
     \begin{rem}
-        These two formulae may be useful.
+        These two formulae will be very useful.
         \begin{align*}
             (a,b)&=\bigcup_{n=1}^{\infty}\left[a+\frac{1}{n},b-\frac{1}{n}\right] &             [a,b]&=\bigcap_{n=1}^{\infty}\left[a-\frac{1}{n},b+\frac{1}{n}\right]
         \end{align*}
@@ -283,7 +283,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \lim_{n\to\infty}\mu(A_{n})=\mu\left(\lim_{n\to\infty}A_{n}\right)=\mu(A)
     \end{equation*}
     \begin{rem} 
-    We have two types of set limit:
+    Given a sequence of sets $A_{n}$. We have two types of set limit:
         \begin{align*}
             \limsup_{n\to\infty}A_{n}&=\lim_{m\uparrow\infty}\sup_{n\geq m}A_{n}=\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}=\{\omega\in\Omega:\omega\in A_{n}\text{ for infinitely many }n\}\\
             \liminf_{n\to\infty}A_{n}&=\lim_{m\uparrow\infty}\inf_{n\geq m}A_{n}=\bigcup_{n=1}^{\infty}\bigcap_{n=m}^{\infty}A_{n}=\{\omega\in\Omega: \omega\in A_{n}\text{ for all but finitely many }n\}
@@ -291,7 +291,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         Apparently, $\liminf_{n\to\infty}A_{n}\subseteq\limsup_{n\to\infty}A_{n}$
     \end{rem}
     \begin{defn}
-        We say $A_{n}$ \textbf{converges} and $\lim_{n\to\infty}A_{n}$ exists if:
+        We say a sequence of events $A_{n}$ \textbf{converges} and $\lim_{n\to\infty}A_{n}$ exists if:
         \begin{equation*}
             \limsup_{n\to\infty}A_{n}=\liminf_{n\to\infty}A_{n}
         \end{equation*}
@@ -303,11 +303,11 @@ Please note that if some topics are not written properly or clearly, it may be m
     From the definition, we can get the following important lemma.
     \begin{lem}
     \label{Continuous probability}
-        If $A_{1},A_{2},\cdots$ is an increasing sequence of events ($A_{1}\subseteq A_{2}\subseteq\cdots$), then:
+        If $A_{1},A_{2},\cdots$ are an increasing sequence of events ($A_{1}\subseteq A_{2}\subseteq\cdots$), then:
         \begin{equation*}
             \prob(A)=\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
         \end{equation*}
-        Similarly, if $A_{1},A_{2},\cdots$ is a decreasing sequence of events ($A_{1}\supseteq A_{2}\supseteq\cdots)$, then:
+        Similarly, if $A_{1},A_{2},\cdots$ are a decreasing sequence of events ($A_{1}\supseteq A_{2}\supseteq\cdots)$, then:
         \begin{equation*}
             \prob(A)=\prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
         \end{equation*}
@@ -386,7 +386,7 @@ Please note that if some topics are not written properly or clearly, it may be m
 \section{Independence}
     In general, probability of a certain event is affected by the occurrence of other events. There are some exception.
     \begin{defn}
-        Events $A$ and $B$ are \textbf{independent} ($A\independent B$) if $\prob(A\cap B)=\prob(A)\prob(B)$.\\
+        Two events $A$ and $B$ are \textbf{independent} if $\prob(A\cap B)=\prob(A)\prob(B)$. It is denoted by $A\independent B$.\\
         More generally, a family of events $\{A_{i}:i\in I\}$ is \textbf{(mutually) independent} if for all subsets $J$ of $I$:
         \begin{equation*}
             \prob\left(\bigcap_{i\in J}A_{i}\right)=\prod_{i\in J}\prob(A_{i})
@@ -440,7 +440,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{enumerate}
     \end{proofing}
     \begin{rem}
-        If $A\independent B$ and $A\cap B=\emptyset$, then either $\prob(A)=0$ or $\prob(B)=0$.
+        If events $A$ and $B$ are independent and $A\cap B=\emptyset$, then either $\prob(A)=0$ or $\prob(B)=0$.
     \end{rem}
 
 \newpage
@@ -794,6 +794,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{rem}
         We can write $\prob\circ\vec{X}^{-1}(D)=\prob(\vec{X}\in D)=\prob(\{\omega\in\Omega:\vec{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\})$.
     \end{rem}
+    \newpage
     Of course, there is a distribution function corresponding to the random vector.
     \begin{defn}
         \textbf{Joint distribution function} (JCDF) $F_{\vec{X}}:\mathbb{R}^{2}\to [0,1]$ is defined as
@@ -822,8 +823,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{defn}
     Joint distribution function also has its probability mass function and probability density function too.
     \begin{defn}
-        Random variables $X$ and $Y$ on $(\Omega,\mathcal{F},\prob)$ are \textbf{jointly discrete} if the vector $(X,Y)$ takes values in some countable subset of $\mathbb{R}^{2}$ only.\\
-        \textbf{Joint (probability) mass function} (JPMF) $f:\mathbb{R}^{2}\to [0,1]$ is given by
+        Two random variables $X$ and $Y$ on $(\Omega,\mathcal{F},\prob)$ are \textbf{jointly discrete} if the vector $(X,Y)$ takes values in some countable subset of $\mathbb{R}^{2}$ only. The corresponding \textbf{joint (probability) mass function} (JPMF) $f:\mathbb{R}^{2}\to [0,1]$ is given by
         \begin{align*}
             f_{X,Y}(x,y)&=\prob((X,Y)=(x,y))=\prob\circ(X,Y)^{-1}(\{x,y\}) & F_{X,Y}(x,y)&=\sum_{u\leq x}\sum_{v\leq y}f(u,v) & x,y&\in\mathbb{R}
         \end{align*}
@@ -840,7 +840,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
     \end{rem}
     \begin{defn}
-        Random variables $X$ and $Y$ on $(\Omega,\mathcal{F},\prob)$ are \textbf{jointly continuous} if the \textbf{joint probability density function} (JPDF) $f:\mathbb{R}^{2}\to [0,\infty)$ of $(X,Y)$ can be expressed as
+        Two random variables $X$ and $Y$ on $(\Omega,\mathcal{F},\prob)$ are \textbf{jointly continuous} if the \textbf{joint probability density function} (JPDF) $f:\mathbb{R}^{2}\to [0,\infty)$ of $(X,Y)$ can be expressed as:
         \begin{align*}
             f_{X,Y}(x,y)&=\pdv*{F_{X,Y}(x,y)}{x,y} & F_{X,Y}(x,y)&=\intlu{-\infty}{x}\intlu{-\infty}{y}f_{X,Y}(u,v)\,du\,dv & x,y&\in\mathbb{R}
         \end{align*}
@@ -859,7 +859,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     	\end{equation*}
     \end{eg}
     \begin{rem}
-        Even though $X$ and $Y$ are both continuous random variables, it is not always true that $X$ and $Y$ are jointly continuous.
+        It is not generally true for two continuous random variables $X$ and $Y$ to be jointly continuous.
     \end{rem}
     \begin{eg}
         Let $X$ be uniformly distributed on $[0,1]$ ($f_{X}(x)=\mathbf{1}_{[0,1]}$). This means $f_{X}(x)=1$ when $x\in[0,1]$ and $0$ otherwise.\\
@@ -892,7 +892,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{align*}
     \end{defn}
     \begin{lem}
-        PMF $f_{X}:\mathbb{R}\to [0,1]$ of a random variable $X$ satisfies:
+        PMF $f_{X}:\mathbb{R}\to [0,1]$ of a discrete random variable $X$ satisfies:
         \begin{enumerate}
             \item The set of $x$ such that $f_{X}(x)\neq 0$ is countable.
             \item $\sum_{i}f_{X}(x_{i})=1$, where $x_{1},x_{2},\cdots$ are values of $x$ such that $f_{X}(x)\neq 0$.
@@ -907,8 +907,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{defn}
     Recall that events $A$ and $B$ are independent if the occurrence of $A$ does not change the probability of $B$ occurring.
     \begin{defn}
-        Discrete random variables $X$ and $Y$ are \textbf{independent} if the events $\{X=x\}$ and $\{Y=y\}$ are independent for all $x,y$.\\
-        Equivalently, $X$ and $Y$ are independent if
+        Discrete random variables $X$ and $Y$ are \textbf{independent} if the events $\{X=x\}$ and $\{Y=y\}$ are independent for all $x,y$. Equivalently, $X$ and $Y$ are independent if
         \begin{enumerate}
             \item $\prob((X,Y)\in A\times B)=\prob(X\in A)\prob(Y\in B)$ for all $A,B\in\mathcal{B}(\mathbb{R})$.
             \item $F_{X,Y}(x,y)=F_{X}(x)F_{Y}(y)$ for all $x,y\in\mathbb{R}$.
@@ -938,7 +937,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         Therefore, three definitions are equivalent.
     \end{proofing}
     \begin{rem}
-        More generally, let $X_{1},X_{2},\cdots,X_{n}:\Omega\to\mathbb{R}$ be random variables. They are \textbf{independent} if
+        More generally, let $X_{1},X_{2},\cdots,X_{n}:\Omega\to\mathbb{R}$ be discrete random variables. They are \textbf{independent} if
         \begin{enumerate}
             \item For all $A_{i}\in\mathcal{B}(\mathbb{R})$,
             \begin{equation*}
@@ -975,7 +974,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         $\sigma(X)\independent\sigma(Y)\iff X\independent Y$
     \end{rem}
     \begin{thm}
-        If $X\independent Y$ and $g,h:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ and $h(Y)$ are still random variables, then $g(X)\independent h(Y)$.
+        Given two random variables $X$ and $Y$. If $X\independent Y$ and we have two functions $g,h:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ and $h(Y)$ are still random variables, then $g(X)\independent h(Y)$.
     \end{thm}
     \begin{proofing}
         For all $A,B\in\mathcal{B}$,
@@ -1010,17 +1009,15 @@ Please note that if some topics are not written properly or clearly, it may be m
         \begin{equation*}
             f_{Y}(k)=\prob(Y=k)=\prob\left(\sum_{i=1}^{k}X_{i}=k\right)=\prob(\{\#\{i:X_{i}=1\}=k\})
         \end{equation*}
-        We denote $A=\{\#\{i:X_{i}=1\}=k\}=\bigcup_{\sigma}A_{\sigma}$ where $\sigma=(\sigma_{1},\sigma_{2},\cdots,\sigma_{n})$ can be any sequence satisfying $\#\{i:\sigma_{i}=1\}=k$ and $A_{\sigma}:=$ events that $(X_{1},X_{2},\cdots,X_{n})=(\sigma_{1},\sigma_{2},\cdots,\sigma_{n})$.\\
-        $A_{\sigma}$ are mutually exclusive. Hence $\prob(A)=\sum_{\sigma}\prob(A_{\sigma})$. There are totally $\binom{n}{k}$ different $\sigma$'s in the sum.\\
-        By independence, we have
+        We denote $A=\{\#\{i:X_{i}=1\}=k\}=\bigcup_{\sigma}A_{\sigma}$ where $\sigma=(\sigma_{1},\sigma_{2},\cdots,\sigma_{n})$ can be any sequence satisfying $\#\{i:\sigma_{i}=1\}=k$ and $A_{\sigma}:=$ events that $(X_{1},X_{2},\cdots,X_{n})=(\sigma_{1},\sigma_{2},\cdots,\sigma_{n})$. Events $A_{\sigma}$ are mutually exclusive. Hence $\prob(A)=\sum_{\sigma}\prob(A_{\sigma})$.\\
+        There are totally $\binom{n}{k}$ different $\sigma$'s in the sum. By independence, we have
         \begin{equation*}
             \prob(A_{\sigma})=\prob(X_{1}=\sigma_{1},X_{2}=\sigma_{2},\cdots,X_{n}=\sigma_{n})=\prob(X_{1}=\sigma_{1})\prob(X_{2}=\sigma_{2})\cdots\prob(X_{n}=\sigma_{n})=p^{k}(1-p)^{n-k}
         \end{equation*}
         Hence, $f_{Y}(k)=\prob(A)=\binom{n}{k}p^{k}(1-p)^{n-k}$.
     \end{eg}
     \begin{eg}(\textbf{Trinomial distribution})
-        Suppose we perform $n$ trials, each of which result in three outcomes $A$, $B$ and $C$, where $A$ occurs with probability $p$, $B$ with probability $q$, and $C$ with probability $1-p-q$.\\
-        Probability of $r$ $A$'s, $w$ $B$'s, and $n-r-w$ $C$'s is
+        Suppose we perform $n$ trials, each of which result in three outcomes $A$, $B$ and $C$, where $A$ occurs with probability $p$, $B$ with probability $q$, and $C$ with probability $1-p-q$. Probability of $r$ $A$'s, $w$ $B$'s, and $n-r-w$ $C$'s is
         \begin{equation*}
             \prob(\#A=r, \#B=w, \#C=n-r-w)=\frac{n!}{r!w!(n-r-w)!}p^{r}q^{w}(1-p-q)^{n-r-w}
         \end{equation*}
@@ -1040,8 +1037,6 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{rem}
         $W_{r}$ is the sum of $r$ independent geometric variables. 
     \end{rem}
-
-    \newpage
     \begin{eg}(\textbf{Poisson distribution}) $X\sim\Poisson(\lambda)$\\
         \textbf{Poisson variable} is a discrete random variable with Poisson PMF:
         \begin{align*}
@@ -1054,6 +1049,8 @@ Please note that if some topics are not written properly or clearly, it may be m
             \prob(X=k)&=\binom{n}{k}p^{k}(1-p)^{n-k}=\frac{n!}{(n-k)!k!}\left(\frac{\lambda}{n}\right)^{k}\left(1-\frac{\lambda}{n}\right)^{n-k}=\frac{\lambda^{k}}{k!}\left(\frac{n!}{n^{k}(n-k)!}\right)\frac{\left(1-\frac{\lambda}{n}\right)^{n}}{\left(1-\frac{\lambda}{n}\right)^{k}}\approx\frac{\lambda^{k}}{k!}(1)\left(\frac{e^{-\lambda}}{1}\right)=\frac{\lambda^{k}}{k!}e^{-\lambda}
         \end{align*}
     \end{eg}
+    \newpage
+    
     We have an interesting example concerning independence with Poisson distribution involved.
     \begin{eg}(\textbf{Poisson flips)}
         A coin is tossed once and head turns up with probability $p$.\\
@@ -1090,11 +1087,8 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
         whenever this sum is absolutely convergent. Otherwise, we say $\expect X$ does not exist.
     \end{defn}
-
-    \newpage
     \begin{eg}
-        Suppose a product is sold seasonally. Let $b$ be net profit for each sold unit, $\ell$ be net loss for each left unit, and $X$ be number of products ordered by customer.\\
-        If $y$ units are stocked, what is the expected profit $Q(y)$?
+        Suppose a product is sold seasonally. Let $b$ be net profit for each sold unit, $\ell$ be net loss for each left unit, and $X$ be number of products ordered by customer. If $y$ units are stocked, what is the expected profit $Q(y)$?
         \begin{equation*}
             Q(y)=\begin{cases}
                 bX-(y-X)\ell, &X\leq y\\
@@ -1102,9 +1096,11 @@ Please note that if some topics are not written properly or clearly, it may be m
             \end{cases}
         \end{equation*}
     \end{eg}
+    \newpage
+    
     \begin{lem}
         \label{Mass function expectation}
-        If $X$ has a PMF $f_{X}$ and $g:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ is still a random variable, then
+        If discrete random variable $X$ has a PMF $f_{X}$ and $g:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ is still a discrete random variable, then
         \begin{equation*}
             \expect(g(X))=\sum_{x}g(x)f_{X}(x)
         \end{equation*}
@@ -1119,9 +1115,8 @@ Please note that if some topics are not written properly or clearly, it may be m
             &=\sum_{y}yf_{Y}(y)=\expect Y=\expect g(X)
         \end{align*}
     \end{proofing}
-
     \begin{lem}
-        Let $(X,Y)$ be a random vector with JPMF $f_{X,Y}(x,y)$. Let $g:\mathbb{R}^{2}\to\mathbb{R}$ such that $g(X,Y)$ is a random variable. Then
+        Let $(X,Y)$ be a discrete random vector with JPMF $f_{X,Y}(x,y)$. Let $g:\mathbb{R}^{2}\to\mathbb{R}$ such that $g(X,Y)$ is a discrete random variable. Then
         \begin{equation*}
             \expect g(X,Y)=\sum_{x,y}g(x,y)f_{X,Y}(x,y)
         \end{equation*}
@@ -1137,11 +1132,14 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{proofing}
     The lemmas have provided a method to calculate the moments of a discrete distribution. Most of the time, we only care about the expectation and variance.
     \begin{defn}
-        Let $k\in\mathbb{N}_{+}$. The \textbf{$k$-th moment} $m_{k}$ of $X$ is defined to be $m_{k}=\expect(X^{k})$.\\
-        The \textbf{$k$-th central moment} $\alpha_{k}$ is $\alpha_{k}=\expect((X-\expect X)^{k})=\expect((X-m_{1})^{k})$.\\
-        \textbf{Mean} of $X$ is the $1$st moment $m_{1}=\expect(X)$ and is denoted by $\mu$.\\
-        \textbf{Variance} of $X$ is the $2$nd central moment $\alpha_{2}=\Var(X)=\expect((X-m_{1})^{2})=\expect(X^{2})-(\expect X)^{2}=\expect(X^{2})-\mu^{2}$.\\
-        \textbf{Standard deviation} of $X$ is defined as $\sqrt{\Var(X)}$ and is denoted by $\sigma$.
+        Let $k\in\mathbb{N}_{+}$. We have a special term for each of the following expectations:
+        \begin{enumerate}
+        	\item The \textbf{$k$-th moment} $m_{k}$ of $X$ is defined to be $m_{k}=\expect(X^{k})$.
+        	\item The \textbf{$k$-th central moment} $\alpha_{k}$ is $\alpha_{k}=\expect((X-\expect X)^{k})=\expect((X-m_{1})^{k})$.
+        	\item \textbf{Mean} of $X$ is the $1$st moment $m_{1}=\expect(X)$ and is denoted by $\mu$.
+        	\item \textbf{Variance} of $X$ is the $2$nd central moment $\alpha_{2}=\Var(X)=\expect((X-m_{1})^{2})=\expect(X^{2})-(\expect X)^{2}=\expect(X^{2})-\mu^{2}$.
+        	\item \textbf{Standard deviation} of $X$ is defined as $\sqrt{\Var(X)}$ and is denoted by $\sigma$.
+        \end{enumerate}
     \end{defn}
     \begin{rem}
         Not all random variables have $k$-th moments for all $k\in\mathbb{N}_{+}$.
@@ -1149,6 +1147,8 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{rem}
         We cannot use collection of moments to uniquely determine a distribution that has $k$-th moments for all $k\in\mathbb{N}$.
     \end{rem}
+    \newpage
+    
     We have the expectation and the variance of following distribution.
     \begin{eg}
         \begin{align*}
@@ -1200,7 +1200,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{align*}
     \end{eg}
     \begin{lem}
-        If $X$ and $Y$ are independent, then $\expect(XY)=\expect X\expect Y$.
+        If two discrete random variables $X$ and $Y$ are independent, then $\expect(XY)=\expect X\expect Y$.
     \end{lem}
     \begin{proofing}
         \begin{equation*}
@@ -1208,8 +1208,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
     \end{proofing}
     \begin{lem}
-        Given two random variables $X$ and $Y$. Let $g,h:\mathbb{R}\to\mathbb{R}$ such that $g(X),h(Y)$ are still random variables.\\
-        If $X\independent Y$ and $\expect(g(X)h(Y)),\expect g(X)$ and $\expect h(Y)$ exist, then $\expect(g(X)h(Y))=\expect g(X)\expect h(Y)$.
+        Given two discrete random variables $X$ and $Y$. Let $g,h:\mathbb{R}\to\mathbb{R}$ such that $g(X),h(Y)$ are still discrete random variables. If $X\independent Y$ and $\expect(g(X)h(Y)),\expect g(X)$ and $\expect h(Y)$ exist, then $\expect(g(X)h(Y))=\expect g(X)\expect h(Y)$.
     \end{lem}
     \begin{proofing}
         \begin{equation*}
@@ -1258,7 +1257,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{enumerate}
     \end{proofing}
     \begin{defn}
-        \textbf{Covariance} of $X$ and $Y$ is:
+        \textbf{Covariance} of two random variables $X$ and $Y$ is:
         \begin{equation*}
             \cov(X,Y)=\expect((X-\expect X)(Y-\expect Y))=\expect(XY)-\expect X\expect Y
         \end{equation*}
@@ -1269,7 +1268,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
     \end{rem}
     \begin{rem}
-        In general,
+        In general, for any random variables $X_{1},X_{2},\cdots,X_{n}$,
         \begin{equation*}
             \Var(X_{1}+X_{2}+\cdots+X_{n})=\sum_{i=1}^{n}\Var(X_{i})+2\sum_{i<j}(\expect(X_{i}X_{j})-\expect X_{i}\expect X_{j})=\sum_{i=1}^{n}\Var(X_{i})+2\sum_{i<j}\cov(X_{i},X_{j})
         \end{equation*}
@@ -1291,7 +1290,7 @@ Please note that if some topics are not written properly or clearly, it may be m
 \section{Conditional distribution of discrete random variables}
     In the first chapter, we have discussed the conditional probability $\prob(B|A)$. We can use this to define a distribution function.
     \begin{defn}
-        Suppose $X,Y:\Omega\to\mathbb{R}$ are two random variables. \textbf{Conditional distribution} of $Y$ given $X=x$ for any $x$ such that $\prob(X=x)>0$ is defined by
+        Suppose $X,Y:\Omega\to\mathbb{R}$ are two discrete random variables. \textbf{Conditional distribution} of $Y$ given $X=x$ for any $x$ such that $\prob(X=x)>0$ is defined by
         \begin{equation*}
             \prob(Y\in \cdot|X=x)
         \end{equation*}
@@ -1314,11 +1313,11 @@ Please note that if some topics are not written properly or clearly, it may be m
         For any $x\in\mathbb{R}$, the conditional PMF $f_{Y|X}(y|x)$ is a probability mass function in $y$.
     \end{rem}
     \begin{rem}
-        If $X\independent Y$, then $f_{Y|X}(y|x)=f_{Y}(y)$.
+        If $X$ and $Y$ are independent, then $f_{Y|X}(y|x)=f_{Y}(y)$.
     \end{rem}
     Conditional distributions still have properties of original distribution.
     \begin{lem}
-        Conditional distributions have following properties:
+        Given two discrete random variables $X$ and $Y$. Conditional distributions have following properties:
         \begin{enumerate}
             \item $F_{Y|X}(y|x)=\sum_{v\leq y}f_{Y|X}(v|x)$
             \item $f_{Y|X}(y|x)=F_{Y|X}(y|x)-F_{Y|X}(y^{-}|x)$
@@ -1337,7 +1336,7 @@ Please note that if some topics are not written properly or clearly, it may be m
 
     \newpage
     \begin{defn}
-        \textbf{Conditional expectation} $\psi$ of $Y$ given $X=x$ is defined by:
+        Given two discrete random variables $X$ and $Y$. \textbf{Conditional expectation} $\psi$ of $Y$ given $X=x$ for any $x$ is defined by:
         \begin{equation*}
             \psi(x)=\expect(Y|X=x)=\sum_{y}yf_{Y|X}(y|x)
         \end{equation*}
@@ -1396,7 +1395,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
     \end{rem}
     \begin{thm}(Law of total expectation)
-    Given two random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
+    Given two discrete random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
         \begin{equation*}
             \expect(\psi(X))=\expect(Y)
         \end{equation*}
@@ -1440,7 +1439,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{eg}
     The following theorem is the generalization of Law of total expectation.
     \begin{thm}
-        Given two random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
+        Given two discrete random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
         \begin{equation*}
             \expect(\psi(X)g(X))=\expect(Yg(X))
         \end{equation*}
@@ -1473,7 +1472,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
     \end{proofing}
     \begin{defn}
-        \textbf{Convolution} $f_{X+Y}$ ($f_{X}*f_{Y}$) of PMFs of two independent random variables $X$ and $Y$ is the PMF of $X+Y$:
+        \textbf{Convolution} $f_{X+Y}$ ($f_{X}*f_{Y}$) of PMFs of two independent discrete random variables $X$ and $Y$ is the PMF of $X+Y$:
         \begin{equation*}
             f_{X+Y}(z)=\prob(X+Y=z)=\sum_{x}f_{X}(x)f_{Y}(z-x)=\sum_{y}f_{X}(z-y)f_{Y}(y)
         \end{equation*}
@@ -1499,7 +1498,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{rem}
     \begin{lem}
         \label{properties of density function}
-        If random variable $X$ has a density function $f_{X}$, then
+        If continuous random variable $X$ has a density function $f_{X}$, then
         \begin{enumerate}
             \item $\intinfty f_{X}(x)\,dx=1$
             \item $\prob(X=x)=0$ for all $x\in\mathbb{R}$
@@ -1532,13 +1531,13 @@ Please note that if some topics are not written properly or clearly, it may be m
     \newpage
     We also recall the definition of independence. This definition also works for continuous random variables.
     \begin{defn}
-        Two random variables $X$ and $Y$ are called \textbf{independent} if for all $x,y\in\mathbb{R}$,
+        Two continuous random variables $X$ and $Y$ are called \textbf{independent} if for all $x,y\in\mathbb{R}$,
         \begin{equation*}
             F_{X,Y}(x,y)=F_{X}(x)F_{Y}(y)
         \end{equation*}
     \end{defn}
     \begin{thm}
-        Let $X$ and $Y$ be independent. Suppose $g(X)$ and $h(Y)$ are still random variables, then $g(X)$ and $h(Y)$ are independent.
+        Let two continuous random variables $X$ and $Y$ be independent. Suppose $g(X)$ and $h(Y)$ are still continuous random variables, then $g(X)$ and $h(Y)$ are independent.
     \end{thm}
 \section{Expectation of continuous random variables}
     In a continuous random variable $X$, the probability in every single point $x$ is $0$. Therefore, in order to make sense of the expectation of continuous random variable, we naturally give the following definition.
@@ -1555,7 +1554,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     We have a special properties in the continuous random variable.
     \begin{lem}(Tail sum formula)
         \label{expectation as integral of additive inverse of cdf}
-        If random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x<0$, and a CDF $F_{X}$, then
+        If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x<0$, and a CDF $F_{X}$, then
         \begin{equation*}
             \expect X=\intlu{0}{\infty}(1-F_{X}(x))\,dx
         \end{equation*}
@@ -1568,7 +1567,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     The following lemma is a formula I developed just for proving the next theorem.
     \begin{lem}
         \label{expectation as integral of cdf}
-        If random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x>0$, and a CDF $F_{X}$, then
+        If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x>0$, and a CDF $F_{X}$, then
         \begin{equation*}
             \expect X=\intlu{-\infty}{0}-F_{X}(x)\,dx
         \end{equation*}
@@ -1581,7 +1580,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     Similar to discrete random variable, we can ask what is $\expect g(X)$ for a function $g$.
     \begin{thm}
         \label{expectation of function of continuous random variable}
-        If $X$ and $g(X)$ are continuous random variable, then
+        If $X$ and $g(X)$ are continuous random variables, then
         \begin{equation*}
             \expect(g(X))=\intinfty g(x)f_{X}(x)\,dx
         \end{equation*}
@@ -1604,7 +1603,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{proofing}
     Similar to discrete random variables, this theorem also provided a method to calculate the moments of a continuous distribution.
     \begin{defn}
-        Given $k\in\mathbb{N}_{+}$ and a random variable $X$. The \textbf{$k$-th moment} is defined to be
+        Given $k\in\mathbb{N}_{+}$ and a continuous random variable $X$. The \textbf{$k$-th moment} is defined to be
         \begin{equation*}
             \expect X^{k}=\intinfty x^{k}f_{X}(x)\,dx
         \end{equation*}
@@ -1677,8 +1676,8 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{lem}
         The normal distribution has the following properties:
         \begin{enumerate}
-            \item Let $X\sim\N(0,1)$. If $Y=bX+a$ for some $a,b\in\mathbb{R}$ and $b\neq 0$, then $Y\sim\N(a,b^{2})$.
-            \item Let $X\sim\N(a,b^{2})$ for some $a,b\in\mathbb{R}$ and $b\neq 0$. If $Y=\frac{X-a}{b}$, then $Y\sim\N(0,1)$.
+            \item Let $X\sim\N(0,1)$. If a random variable $Y=bX+a$ for some $a,b\in\mathbb{R}$ and $b\neq 0$, then $Y\sim\N(a,b^{2})$.
+            \item Let $X\sim\N(a,b^{2})$ for some $a,b\in\mathbb{R}$ and $b\neq 0$. If a random variable $Y=\frac{X-a}{b}$, then $Y\sim\N(0,1)$.
             \item If $Y\sim\N(a,b^{2})$, then $\expect Y=a$ and $\Var(Y)=b^{2}$.
         \end{enumerate}
     \end{lem}
@@ -1713,7 +1712,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         Just apply Lemma \ref{properties of density function} and you would get the equation.
     \end{proofing}
     \begin{eg}(\textbf{Cauchy distribution}) $X\sim\Cauchy$\\
-        Random variable $X$ has a Cauchy distribution if:
+        Random variable $X$ has a Cauchy distribution if it has a PDF:
         \begin{equation*}
             f_{X}(x)=\frac{1}{\pi(1+x^{2})}
         \end{equation*}
@@ -1726,18 +1725,18 @@ Please note that if some topics are not written properly or clearly, it may be m
 \section{Joint distribution function of continuous random variables}
     Again, we recall the definition of joint distribution function.
     \begin{defn}
-        \textbf{Joint distribution function} (JCDF) of two random variables $X$ and $Y$ is the function $F:\mathbb{R}^{2}\to[0,1]$ such that:
+        \textbf{Joint distribution function} (JCDF) of two continuous  random variables $X$ and $Y$ is the function $F:\mathbb{R}^{2}\to[0,1]$ such that:
         \begin{equation*}
             F_{X,Y}(x,y)=\prob(X\leq x,Y\leq y)
         \end{equation*}
-        Random variables $X$ and $Y$ are \textbf{jointly continuous} if the have a \textbf{joint density function} (JPDF) $f:\mathbb{R}^{2}\to[0,\infty)$ such that:
+        Two continuous random variables $X$ and $Y$ are \textbf{jointly continuous} if the have a \textbf{joint density function} (JPDF) $f:\mathbb{R}^{2}\to[0,\infty)$ such that:
         \begin{align*}
             F_{X,Y}(x,y)&=\intlu{-\infty}{y}\intlu{-\infty}{x}f_{X,Y}(u,v)\,du\,dv & f_{X,Y}(x,y)&=\pdv*{F_{X,Y}(x,y)}{x,y} & \prob((X,Y)\in D)&=\iint_{D}f_{X,Y}(x,y)\,dx\,dy
         \end{align*}
     \end{defn}
     We also recall the definition of marginal distribution function.
     \begin{defn}
-        Given two random variables $X$ and $Y$. Marginal distribution function (Marginal PDF) of $X$ given $Y$ is
+        Given two continuous random variables $X$ and $Y$. Marginal distribution function (Marginal PDF) of $X$ given $Y$ is
         \begin{align*}
             F_{X}(x)&=\prob(X\leq x)=\intinfty\intlu{-\infty}{x}f_{X,Y}(u,v)\,du\,dv=\intlu{-\infty}{x}\intinfty f_{X,Y}(u,v)\,dv\,du\\
             f_{X}(x)&=\intinfty f_{X,Y}(x,u)\,dv
@@ -1745,7 +1744,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{defn}
     Similarly, we have the following extension of Theorem \ref{expectation of function of continuous random variable}. However, we are not going to prove it here.
     \begin{thm}
-        If $X$, $Y$ are jointly continuous random variables and $g(X,Y)$ is continuous random variable, then
+        If $X$ and $Y$ are jointly continuous random variables and $g(X,Y)$ is continuous random variable, then
         \begin{equation*}
             \expect(g(X,Y))=\intinfty\intinfty g(x,y)f_{X,Y}(x,y)\,dx\,dy
         \end{equation*}
@@ -1785,7 +1784,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{eg}
     Combining two normal distributions into a joint distribution can be really useful.
     \begin{eg}(\textbf{Standard bivariate normal distribution}) 
-        Two random variables $X$ and $Y$ are \textbf{standard bivariate normal} if they have JPDF:
+        Two continuous random variables $X$ and $Y$ are \textbf{standard bivariate normal} if they have JPDF:
         \begin{equation*}
             f_{X,Y}(x,y)=\frac{1}{2\pi\sqrt{1-\rho^{2}}}\exp\left(-\frac{x^{2}-2\rho xy+y^{2}}{2(1-\rho^{2})}\right)
         \end{equation*}
@@ -1815,7 +1814,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{align*}
     \end{rem}
     \begin{eg}(\textbf{Bivariate normal distribution})
-        Two random variables $X$ and $Y$ are \textbf{bivariate normal} with means $\mu_{X}$ and $\mu_{Y}$, variance $\sigma_{X}^{2}$ and $\sigma_{Y}^{2}$, and correlation coefficient $\rho$ if JPDF is given by
+        Two continuous random variables $X$ and $Y$ are \textbf{bivariate normal} with means $\mu_{X}$ and $\mu_{Y}$, variance $\sigma_{X}^{2}$ and $\sigma_{Y}^{2}$, and correlation coefficient $\rho$ if JPDF is given by
         \begin{equation*}
             f_{X,Y}(x,y)=\frac{1}{2\pi\sigma_{X}\sigma_{Y}\sqrt{1-\rho^{2}}}\exp\left(-\frac{1}{2(1-\rho^{2})}\left(\left(\frac{x-\mu_{X}}{\sigma_{X}}\right)^{2}-2\rho\left(\frac{x-\mu_{X}}{\sigma_{X}}\right)\left(\frac{y-\mu_{Y}}{\sigma_{Y}}\right)+\left(\frac{y-\mu_{Y}}{\sigma_{Y}}\right)^{2}\right)\right)
         \end{equation*}
@@ -1889,7 +1888,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{rem}
     \begin{eg}
         \label{j.p.d.f. to con.d.f. example}
-        Assume that two random variables $X$ and $Y$ have a JPDF:
+        Assume that two jointly continuous random variables $X$ and $Y$ have a JPDF:
         \begin{equation*}
             f_{X,Y}(x,y)=\begin{cases}
                 \frac{1}{x}, &0\leq y\leq x\leq 1\\
@@ -1909,8 +1908,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         Therefore, $(Y|X=x)\sim\U[0,x]$.
     \end{eg}
     \begin{eg}
-        We want to find $\prob(X^{2}+Y^{2}\leq 1)$ with two random variables $X$ and $Y$ having JPDF in Example \ref{j.p.d.f. to con.d.f. example}.\\
-        Let $Y\in A_{x}=\{y:|y|\leq\sqrt{1-x^{2}}\}$.
+        We want to find $\prob(X^{2}+Y^{2}\leq 1)$ with two jointly continuous random variables $X$ and $Y$ having JPDF in Example \ref{j.p.d.f. to con.d.f. example}. Let $Y\in A_{x}=\{y:|y|\leq\sqrt{1-x^{2}}\}$.
         \begin{align*}
             \prob(X^{2}+Y^{2}\leq 1|X=x)=\prob(|Y|\leq\sqrt{1-x^{2}}|X=x)&=\int_{A_{x}}f_{Y|X}(y|x)\,dy\\
             &=\int_{A_{x}\cap[0,1]}\frac{1}{x}\,dy\\
@@ -1977,18 +1975,18 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{eg}
     With conditional density function defined, we can now define conditional expectation.
     \begin{defn}
-        Given two random variables $X$ and $Y$ and an event $X=x$ for some $x\in\mathbb{R}$. \textbf{Conditional expectation} of $Y$ is defined by:
+        Given two continuous random variables $X$ and $Y$ and an event $X=x$ for some $x\in\mathbb{R}$. \textbf{Conditional expectation} of $Y$ is defined by:
         \begin{equation*}
             \psi(x)=\expect(Y|X=x)=\intinfty yf_{Y|X}(y|x)\,dy
         \end{equation*}
-        Given an random variable $X$. Conditional expectation of $Y$ is defined by:
+        Given a continuous random variable $X$. Conditional expectation of $Y$ is defined by:
         \begin{equation*}
             \psi(X)=\expect(Y|X)
         \end{equation*}
     \end{defn}
     Again we also have the same properties of conditional distribution.
     \begin{lem}(Law of total expectation) 
-        Conditional expectation $\psi(X)=\expect(Y|X)$ for random variables $X$ and $Y$ satisfies:
+        Conditional expectation $\psi(X)=\expect(Y|X)$ for continuous random variables $X$ and $Y$ satisfies:
         \begin{equation*}
             \expect Y=\expect(\psi(X))
         \end{equation*}
@@ -2003,7 +2001,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{align*}
     \end{proofing}
     \begin{lem}
-        Conditional expectation $\psi(X)=\expect(Y|X)$ for random variables $X$ and $Y$ satisfies:
+        Conditional expectation $\psi(X)=\expect(Y|X)$ for continuous random variables $X$ and $Y$ satisfies:
         \begin{equation*}
             \expect(Yg(X))=\expect(\psi(X)g(X))
         \end{equation*}
@@ -2115,7 +2113,7 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{eg}
     Similar to discrete random variables, we can find the distribution of $X+Y$ when $X$ and $Y$ are jointly continuous.
     \begin{thm}
-        If two random variables $X$ and $Y$ have JPDF $f_{X,Y}$, then $X+Y$ has a PDF
+        If two jointly continuous random variables $X$ and $Y$ have JPDF $f_{X,Y}$, then $X+Y$ has a PDF
         \begin{equation*}
             f_{X+Y}(z)=\intinfty f_{X,Y}(x,z-x)\,dx=\intinfty f_{X,Y}(z-y,y)\,dy
         \end{equation*}
@@ -2134,7 +2132,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{align*}
     \end{proofing}
     \begin{defn}
-        Given $X\independent Y$. \textbf{Convolution} $f_{X+Y}$ ($f_{X}*f_{Y}$) of PDFs of $X$ and $Y$ is the PDF of $X+Y$:
+        Given two independent continuous random variables $X$ and $Y$. \textbf{Convolution} $f_{X+Y}$ ($f_{X}*f_{Y}$) of PDFs of $X$ and $Y$ is the PDF of $X+Y$:
         \begin{equation*}
             f_{X+Y}(z)=\intinfty f_{X}(z-y)f_{Y}(y)\,dy=\intinfty f_{X}(x)f_{Y}(z-x)\,dx
         \end{equation*}
@@ -2222,10 +2220,15 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{enumerate}
     \end{sdefn}
     \begin{sdefn}
-        \textbf{Probability space} $(\Omega,\mathcal{F},\prob)$ is a triple comprising a sample space $\Omega$, a $\sigma$-field $\mathcal{F}$ of certain subsets of $\Omega$, and a probability measure $\prob$ on $(\Omega,\mathcal{F})$.
+        \textbf{Probability space} $(\Omega,\mathcal{F},\prob)$ is a triple comprising 
+        \begin{enumerate}
+        	\item a sample space $\Omega$
+        	\item a $\sigma$-field $\mathcal{F}$ of certain subsets of $\Omega$
+        	\item a probability measure $\prob$ on $(\Omega,\mathcal{F})$
+        \end{enumerate}
     \end{sdefn}
     \begin{sdefn}
-        We say $A_{n}$ \textbf{converges} and $\lim_{n\to\infty}A_{n}$ exists if
+        We say a sequence of events $A_{n}$ \textbf{converges} and $\lim_{n\to\infty}A_{n}$ exists if
         \begin{equation*}
             \limsup_{n\to\infty}A_{n}=\liminf_{n\to\infty}A_{n}
         \end{equation*}
@@ -2235,10 +2238,10 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{equation*}
     \end{sdefn}
     \begin{sdefn}
-        Event is \textbf{null} is $\prob(A)=0$.
+        Event $A$ is \textbf{null} if $\prob(A)=0$.
     \end{sdefn}
     \begin{sdefn}
-        Event is \textbf{almost surely} if $\prob(A)=1$.
+        Event $A$ is \textbf{almost surely} if $\prob(A)=1$.
     \end{sdefn}
     \begin{sdefn}
         Given $\prob(B)>0$. \textbf{Conditional probability} that $A$ occurs given that $B$ occurs is:
@@ -2360,7 +2363,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         If it is absolutely convergent.
     \end{sdefn}
     \begin{sdefn}
-        Given $k\in\mathbb{N}$ and a random variable $X$. \textbf{$k$-th moment} $m_{k}$ is defined to be:
+        Given $k\in\mathbb{N}_{+}$ and a random variable $X$. \textbf{$k$-th moment} $m_{k}$ is defined to be:
         \begin{equation*}
             \expect(X^{k})=\begin{cases}
                 \sum_{x}x^{k}f_{X}(x), &X\text{ is discrete}\\
@@ -4727,7 +4730,7 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
     \begin{align*}
         f(x)&=\frac{x^{\alpha-1}e^{-\beta x}\beta^{\alpha}}{\Gamma(\alpha)} & \expect X&=\frac{\alpha}{\beta} & \Var(X)&=\frac{\alpha}{\beta^{2}} & M_{X}(t)&=\left(1-\frac{t}{\beta}\right)^{-\alpha} & G_{X}(t)&=\left(1-\frac{it}{\beta}\right)^{-\alpha}
     \end{align*}
-    where $\Gamma(\alpha)$ is the gamma function. If $\alpha$ is a positive integers, $\Gamma(\alpha)=(\alpha-1)!$.
+    where $\Gamma(\alpha)$ is the gamma function. If $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.
 \end{eg}
 \begin{eg}(Chi-squared distribution) $Y\sim\chi^{2}(k)$\\
     Assume that $X_{1},X_{2},\cdots,X_{n}$ be independent random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $k$ if
