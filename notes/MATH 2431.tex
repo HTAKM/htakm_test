@@ -25,7 +25,7 @@
 }
 \date{
 	Last major change: May 31, 2024\\
-	Last small update (fixed typo): September 9, 2024
+	Last small update (fixed typo): September 14, 2024
 }
 \begin{document}
 \maketitle
@@ -539,6 +539,8 @@ Please note that if some topics are not written properly or clearly, it may be m
                 \Omega, &x\in[2,\infty)
             \end{cases}
         \end{align*}
+        If we choose $\mathcal{F}=\{\emptyset,\Omega\}$, then $X$ is not a random variable.\\
+        If we choose $\mathcal{F}=2^{\Omega}$, then $X$ is a random variable.
     \end{eg}
     Before we continue, it is best if we know about Borel set first.
     \begin{defn}
@@ -569,9 +571,6 @@ Please note that if some topics are not written properly or clearly, it may be m
             \end{equation*}
         \end{enumerate}
     \end{proofing}
-    \begin{eg}
-        If we choose $\mathcal{F}=\{\emptyset,\Omega\}$, $X$ is not a random variable.
-    \end{eg}
     \begin{rem}
         We can derive the probability of all $A\in\mathcal{B}$.
         \begin{align*}
@@ -872,7 +871,6 @@ Please note that if some topics are not written properly or clearly, it may be m
         Therefore, $X$ and $Y$ are not jointly continuous.
     \end{eg}
     
-\newpage
 \chapter{Discrete random variables}
 \section{Introduction of discrete random variables}
     Let's recall some of the definitions on discrete random variable in previous chapter.
@@ -1068,7 +1066,7 @@ Please note that if some topics are not written properly or clearly, it may be m
             &=\sum_{i\geq x}\binom{i}{x}p^{x}(1-p)^{i-x}\frac{\lambda^{i}}{i!}e^{-\lambda}\sum_{j\geq y}\binom{j}{y}p^{j-y}(1-p)^{y}\frac{\lambda^{j}}{j!}e^{-\lambda}\\
             &=\frac{(\lambda p)^{x}}{x!}e^{-\lambda}\left(\sum_{i\geq x}\frac{(\lambda(1-p))^{i-x}}{(i-x)!}\right)\frac{(\lambda(1-p))^{y}}{y!}e^{-\lambda}\left(\sum_{j\geq y}\frac{(\lambda p)^{j-y}}{(j-y)!}\right)\\
             &=\frac{(\lambda p)^{x}}{x!}e^{-\lambda+\lambda(1-p)}\frac{(\lambda(1-p))^{y}}{y!}e^{-\lambda+\lambda p}\\
-            &=\frac{(\lambda p)^{x}(\lambda(1-p))^{y}}{x!y!}e^{\lambda}=\prob(X=x,Y=y)
+            &=\frac{(\lambda p)^{x}(\lambda(1-p))^{y}}{x!y!}e^{-\lambda}=\prob(X=x,Y=y)
         \end{align*}
     \end{eg}
     
@@ -4726,18 +4724,18 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
 
 \chapter{Some other distributions}
 \begin{eg}(Gamma distribution) $X\sim\Gamma(\alpha,\beta)$\\
-    Random variables $X$ has a gamma distribution with parameter $\alpha$ and $\beta$ if
+    Random variables $X$ has a gamma distribution with parameters $\alpha$ and $\beta$ if
     \begin{align*}
         f(x)&=\frac{x^{\alpha-1}e^{-\beta x}\beta^{\alpha}}{\Gamma(\alpha)} & \expect X&=\frac{\alpha}{\beta} & \Var(X)&=\frac{\alpha}{\beta^{2}} & M_{X}(t)&=\left(1-\frac{t}{\beta}\right)^{-\alpha} & G_{X}(t)&=\left(1-\frac{it}{\beta}\right)^{-\alpha}
     \end{align*}
     where $\Gamma(\alpha)$ is the gamma function. If $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.
 \end{eg}
 \begin{eg}(Chi-squared distribution) $Y\sim\chi^{2}(k)$\\
-    Assume that $X_{1},X_{2},\cdots,X_{n}$ be independent random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $k$ if
+    Assume that $X_{1},X_{2},\cdots,X_{n}$ be independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $k$ if
     \begin{align*}
         f(x)&=\begin{cases}
-            \frac{x^{\frac{k}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{k}{2}}\Gamma\left(\frac{k}{2}\right)}, &x>0\\
-            0, &x\leq 0
+            \frac{x^{\frac{k}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{k}{2}}\Gamma\left(\frac{k}{2}\right)}, &x\geq 0\\
+            0, &x<0
         \end{cases} & \expect Y&=k & \Var(Y)&=2k & M_{Y}(t)&=(1-2t)^{-\frac{k}{2}} & G_{Y}(t)&=(1-2it)^{-\frac{k}{2}}
     \end{align*}
 \end{eg}

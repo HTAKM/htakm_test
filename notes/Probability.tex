@@ -26,7 +26,7 @@
 }
 \date{
 	Last major change: September 14, 2024\\
-	Last small update (fixed typo): September 14, 2024
+	Last small update (fixed typo): September 15, 2024
 }
 \begin{document}
 \maketitle
@@ -2271,6 +2271,9 @@ Similar to discrete random variables, we can find the distribution of $X+Y$ when
 \section{Examples of continuous random variables}
 Similar with discrete random variables, we have some useful parametric distributions.
 
+\begin{defn}
+	\textbf{Parametric distribution} of a continuous random variable is a distribution where the PDF depends on one or more parameters.
+\end{defn}
 \begin{eg}(\textbf{Uniform distribution}) $X\sim\U[a,b]$\\
 	Random variable $X$ is \textbf{uniform} on $[a,b]$ if CDF and PDF of $X$ is
 	\begin{align*}
@@ -3024,7 +3027,7 @@ We can consider the multivariable case.
 	\end{equation*}
 \end{sdefn}
 \begin{sdefn}
-	\textbf{Parametric distribution} of a discrete random variable is a distribution where the PMF depends on one or more parameters.
+	\textbf{Parametric distribution} of a random variable is a distribution where the PMF or PDF depends on one or more parameters.
 \end{sdefn}
 
 \newpage
@@ -5618,6 +5621,11 @@ Triangle inequality $\implies$ Reverse triangle inequality\\
 Markov's inequality $\implies$ Chebyshev's inequality\\
 H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance inequality
 
-
+\addcontentsline{toc}{chapter}{Change Log}
+\chapter*{Change Log}
+\begin{tabular}{cl}
+	\textbf{1.0} & Create the notes\\
+	\textbf{1.1} & Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"
+\end{tabular}
 
 \end{document}
