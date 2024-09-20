@@ -59,6 +59,8 @@ Please note that all proofs that may be combinatorial proofs are omitted.
 			$\mathbb{E}$ & Expectation\\
 			$\psi$ & Conditional expectation\\
 			$\mathbf{A},\mathbf{B},\mathbf{C},\cdots$ & Matrix\\
+			$\overline{X}$ & Sample mean of $X$\\
+			$S_{n-1}^{2}$ & Sample variance of $X$\\
 			$G_{X}$ & Probability generating function of $X$\\
 			$M_{X}$ & Moment generating function of $X$\\
 			$\phi$ & CF / PDF of $X\sim\N(0,1)$\\
@@ -233,7 +235,6 @@ We can immediately derive the following corollary.
 \newpage
 From here, we will provide some important combinatorial identities that could be very useful.
 \begin{thm}(\textbf{Pascal's Identity})
-	\label{Pascal's Identity (Theorem)}
 	Let $n$ and $k$ be integers with $0<k<n$. Then:
 	\begin{equation*}
 		\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}
@@ -247,7 +248,6 @@ From here, we will provide some important combinatorial identities that could be
 \end{proofing}
 We have the famous Binomial Theorem.
 \begin{thm}(\textbf{Binomial Theorem})
-	\label{Binomial Theorem}
 	Let $n$ be a non-negative integer. We have:
 	\begin{equation*}
 		(x+y)^{n}=\sum_{k=0}^{n}\binom{n}{k}x^{k}y^{n-k}
@@ -294,7 +294,6 @@ We have the famous Binomial Theorem.
 
 Using the Binomial Theorem, we can prove the following identity.
 \begin{thm}(\textbf{Vandermonde's Identity})
-	\label{Vandermonde's Identity (Theorem)}
 	Let $m,n,r\in\mathbb{Z}$ with $0\leq r\leq m$ and $0\leq r\leq n$. We have:
 	\begin{equation*}
 		\binom{m+n}{r}=\sum_{k=0}^{r}\binom{m}{r-k}\binom{n}{k}
@@ -539,7 +538,6 @@ We can combine measurable space and measure into a measure space.
 \end{defn}
 Using probability measure, we can use the axiom of probability to formalize probability.
 \begin{defn}(\textbf{Kolmogorov axioms of probability})
-	\label{Kolmogorov axioms}
 	Let $(\Omega,\mathcal{F},\prob)$ be a probability space, with sample space $\Omega$, $\sigma$-field $\mathcal{F}$, and probability measure $\prob$.
 	\begin{enumerate}
 		\item The probability of an event is a non-negative real number. For all $E\in\mathcal{F}$,
@@ -635,7 +633,7 @@ Similarly, we say a set function $\mu$  is continuous if for all $A_{n}$ with $A
 \end{defn}
 From the definition, we can get the following important lemma.
 \begin{lem}
-	\label{Continuous probability}
+	\label{Chapter 2 (Lemma) Continuous probability}
 	If $A_{1},A_{2},\cdots$ are an increasing sequence of events ($A_{1}\subseteq A_{2}\subseteq\cdots$), then:
 	\begin{equation*}
 		\prob(A)=\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
@@ -943,7 +941,7 @@ Sometimes, we are not interested in an experiment itself, but rather the consequ
 
 \newpage
 \begin{eg}
-	\label{Toss coin twice}
+	\label{Chapter 3 (Example) Toss coin twice}
 	A fair coin is tossed twice. $\Omega=\{HH,HT,TH,TT\}$. For all $\omega\in\Omega$, let $X(\omega)$ be the number of heads.
 	\begin{align*}
 		X(\omega)&=\begin{cases}
@@ -1040,7 +1038,7 @@ Every random variable has its own distribution function.
 	\end{equation*}
 \end{defn}
 \begin{eg}
-	From Example \ref{Toss coin twice},
+	From Example \ref{Chapter 3 (Example) Toss coin twice},
 	\begin{align*}
 		\prob(\omega)&=\frac{1}{4} & F_{X}(x)&=\prob(X\leq x)=\begin{cases}
 			0, &x<0\\
@@ -1060,7 +1058,7 @@ Every random variable has its own distribution function.
 \end{lem}
 \begin{proofing}
 	\begin{enumerate}
-		\item Let $B_{n}=\{\omega\in\Omega:X(\omega)\leq -n\}=\{X\leq -n\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Continuous probability},
+		\item Let $B_{n}=\{\omega\in\Omega:X(\omega)\leq -n\}=\{X\leq -n\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
 			\lim_{x\to -\infty}F_{X}(x)=\prob\left(\lim_{i\to\infty}B_{i}\right)=\prob(\emptyset)=0
 		\end{equation*}
@@ -1068,7 +1066,7 @@ Every random variable has its own distribution function.
 		\begin{equation*}
 			\lim_{x\to-\infty}F_{X}(x)=\lim_{x\to-\infty}\prob\circ X^{-1}((-\infty,x])=\lim_{n\to\infty}\prob\circ X^{-1}((-\infty,-n])=\prob\circ X^{-1}(\emptyset)=0
 		\end{equation*}
-		Let $C_{n}=\{\omega\in\Omega:X(\omega)\leq n\}=\{X\leq n\}$. Since $C_{1}\subseteq C_{2}\subseteq\cdots$, by Lemma \ref{Continuous probability},
+		Let $C_{n}=\{\omega\in\Omega:X(\omega)\leq n\}=\{X\leq n\}$. Since $C_{1}\subseteq C_{2}\subseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
 			\lim_{x\to\infty}F_{X}(x)=\prob\left(\lim_{i\to\infty}C_{i}\right)=\prob(\Omega)=1
 		\end{equation*}
@@ -1080,7 +1078,7 @@ Every random variable has its own distribution function.
 		\begin{equation*}
 			F_{X}(y)=\prob(A(y))=\prob(A(x))+\prob(A(x,y))=F_{X}(x)+\prob(x<X\leq y)\geq F_{X}(x)
 		\end{equation*}
-		\item Let $B_{n}=\{\omega\in\Omega:X(\omega)\leq x+\frac{1}{n}\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Continuous probability},
+		\item Let $B_{n}=\{\omega\in\Omega:X(\omega)\leq x+\frac{1}{n}\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
 			\lim_{h\downarrow 0}F_{X}(x+h)=\prob\left(\bigcap_{i=1}^{\infty}B_{i}\right)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob(\{\omega\in\Omega:X(\omega)\leq x\})=F_{X}(x)
 		\end{equation*}
@@ -1127,7 +1125,7 @@ We can classify some random variables into either discrete or continuous. This t
 	\end{equation*}
 \end{defn}
 \begin{lem}
-	\label{Relationship between pmf and cdf}
+	\label{Chapter 3 (Lemma) Relationship between pmf and cdf}
 	Relationship between PMF $f_{X}$ and CDF $F_{X}$ of a random variable $X$:
 	\begin{enumerate}
 		\item $F_{X}(x)=\sum_{i\leq x}f_{X}(i)$
@@ -1140,7 +1138,7 @@ We can classify some random variables into either discrete or continuous. This t
 		\begin{equation*}
 			F_{X}(x)=\prob(X\leq x)=\sum_{i=-\infty}^{x}\prob(X=i)=\sum_{i\leq x}f_{X}(i)
 		\end{equation*}
-		\item Let $B_{n}=\{x-\frac{1}{n}<X\leq x\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Continuous probability},
+		\item Let $B_{n}=\{x-\frac{1}{n}<X\leq x\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
 			F_{X}(x)-\lim_{y\uparrow x}F_{X}(y)=\prob\left(\bigcap_{i=1}^{\infty}B_{i}\right)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob\left(\left\{\lim_{n\to\infty}\left(x-\frac{1}{n}\right)<X\leq x\right\}\right)=\prob(X=x)
 		\end{equation*}
@@ -1442,7 +1440,7 @@ In real life, we also want to know about the expected final result given the pro
 	\end{equation*}
 \end{proofing}
 \begin{lem}
-	\label{Mass function expectation}
+	\label{Chapter 4 (Lemma) Mass function expectation}
 	If discrete random variable $X$ has a PMF $f_{X}$ and $g:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ is still a discrete random variable, then
 	\begin{equation*}
 		\expect g(X)=\sum_{x}g(x)f_{X}(x)
@@ -1591,7 +1589,7 @@ Conditional distributions still have properties of original distribution.
 			\sum_{v\leq y}f_{Y|X}(v|x)=\sum_{v\leq y}\prob(Y=v|X=x)=\prob(Y\leq y|X=x)=F_{Y|X}(y|x)
 		\end{equation*}
 		\item 
-		This is just Lemma \ref{Relationship between pmf and cdf}.
+		This is just Lemma \ref{Chapter 3 (Lemma) Relationship between pmf and cdf}.
 	\end{enumerate}
 \end{proofing}
 \begin{defn}
@@ -1662,7 +1660,7 @@ In fact, we can extend the definition of conditional expectation into $\sigma$-f
 	\end{equation*}
 \end{thm}
 \begin{proofing}
-	By Lemma \ref{Mass function expectation},
+	By Lemma \ref{Chapter 4 (Lemma) Mass function expectation},
 	\begin{equation*}
 		\expect(\psi(X))=\sum_{x}\psi(x)f_{X}(x)=\sum_{x,y}yf_{Y|X}(y|x)f_{X}(x)=\sum_{x,y}yf_{X,Y}(x,y)=\sum_{y}yf_{Y}(y)=\expect(Y)
 	\end{equation*}
@@ -1707,7 +1705,7 @@ The following theorem is the generalization of Law of total expectation.
 	for any function $g$ for which both expectations exist.
 \end{thm}
 \begin{proofing}
-	By Lemma \ref{Mass function expectation},
+	By Lemma \ref{Chapter 4 (Lemma) Mass function expectation},
 	\begin{equation*}
 		\expect(\psi(X)g(X))=\sum_{x}\psi(x)g(x)f_{X}(x)=\sum_{x,y}yf_{Y|X}(y|x)g(x)f_{X}(x)=\sum_{x,y}yf_{X,Y}(x,y)g(x)=\expect(Yg(X))
 	\end{equation*}
@@ -1937,7 +1935,7 @@ We have an interesting example concerning independence with Poisson distribution
 	\end{align*}
 \end{eg}
 
-There is an important example that has a wide range of applications in real life. However, we will not discuss this here. You can find the example in Appendix \ref{Simple random walk}.
+There is an important example that has a wide range of applications in real life. However, we will not discuss this here. You can find the example in Appendix \ref{Appendix A Simple random walk}.
 
 \chapter{Continuous random variables}
 \section{Introduction of continuous random variables}
@@ -1957,7 +1955,7 @@ Note that we have used the same letter $f$ for mass functions and density functi
 	Numerical value $f_{X}(x)$ is not a probability. However, we can consider $f_{X}(x)\,dx=\prob(x<X\leq x+dx)$ as element of probability.
 \end{rem}
 \begin{lem}
-	\label{properties of density function}
+	\label{Chapter 5 (Lemma) Properties of PDF}
 	If continuous random variable $X$ has a density function $f_{X}$, then
 	\begin{enumerate}
 		\item $\intinfty f_{X}(x)\,dx=1$
@@ -2013,7 +2011,7 @@ In a continuous random variable $X$, the probability in every single point $x$ i
 \end{rem}
 We have a special properties in the continuous random variable.
 \begin{lem}(Tail sum formula)
-	\label{expectation as integral of additive inverse of cdf}
+	\label{Chapter 5 (Lemma) Tail sum formula}
 	If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x<0$, and a CDF $F_{X}$, then
 	\begin{equation*}
 		\expect X=\intlu{0}{\infty}(1-F_{X}(x))\,dx
@@ -2026,7 +2024,7 @@ We have a special properties in the continuous random variable.
 \end{proofing}
 The following lemma is a formula I developed just for proving the next theorem.
 \begin{lem}
-	\label{expectation as integral of cdf}
+	\label{Chapter 5 (Lemma) Expectation as integral of CDF}
 	If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x>0$, and a CDF $F_{X}$, then
 	\begin{equation*}
 		\expect X=\intlu{-\infty}{0}-F_{X}(x)\,dx
@@ -2039,7 +2037,7 @@ The following lemma is a formula I developed just for proving the next theorem.
 \end{proofing}
 Similar to discrete random variable, we can ask what is $\expect g(X)$ for a function $g$.
 \begin{thm}
-	\label{expectation of function of continuous random variable}
+	\label{Chapter 5 (Theorem) Expectation of function of continuous random variable}
 	If $X$ and $g(X)$ are continuous random variables, then
 	\begin{equation*}
 		\expect(g(X))=\intinfty g(x)f_{X}(x)\,dx
@@ -2048,11 +2046,11 @@ Similar to discrete random variable, we can ask what is $\expect g(X)$ for a fun
 
 \newpage
 \begin{proofing}
-	We first consider that $g(x)\geq 0$ for all $x$. Let $Y=g(X)$ and $B=\{x:g(x)>y\}$. By Lemma \ref{expectation as integral of additive inverse of cdf},
+	We first consider that $g(x)\geq 0$ for all $x$. Let $Y=g(X)$ and $B=\{x:g(x)>y\}$. By Lemma \ref{Chapter 5 (Lemma) Tail sum formula},
 	\begin{equation*}
 		\expect(g(X))=\intlu{0}{\infty}\prob(g(X)>y)\,dy=\intlu{0}{\infty}\int_{B}f_{X}(x)\,dx\,dy=\intlu{0}{\infty}\intlu{0}{g(x)}f_{X}(x)\,dy\,dx=\intlu{0}{\infty}g(x)f_{X}(x)\,dx
 	\end{equation*}
-	We then consider that $g(x)\leq 0$ for all $x$. Let $Z=g(X)$ and $C=\{x:g(x)<z\}$. By Lemma \ref{expectation as integral of cdf},
+	We then consider that $g(x)\leq 0$ for all $x$. Let $Z=g(X)$ and $C=\{x:g(x)<z\}$. By Lemma \ref{Chapter 5 (Lemma) Expectation as integral of CDF},
 	\begin{equation*}
 		\expect(g(X))=\intlu{-\infty}{0}-F_{Z}(z)\,dz=\intlu{-\infty}{0}\int_{C}-f_{X}(x)\,dx\,dz=\intlu{-\infty}{0}\intlu{g(x)}{0}-f_{X}(x)\,dz\,dx=\intlu{-\infty}{0}g(x)f_{X}(x)\,dx
 	\end{equation*}
@@ -2098,7 +2096,7 @@ We also recall the definition of marginal distribution function.
 		f_{X}(x)&=\intinfty f_{X,Y}(x,u)\,dv
 	\end{align*}
 \end{defn}
-Similarly, we have the following extension of Theorem \ref{expectation of function of continuous random variable}. However, we are not going to prove it here.
+Similarly, we have the following extension of Theorem \ref{Chapter 5 (Theorem) Expectation of function of continuous random variable}. However, we are not going to prove it here.
 \begin{thm}
 	If $X$ and $Y$ are jointly continuous random variables and $g(X,Y)$ is continuous random variable, then
 	\begin{equation*}
@@ -2162,7 +2160,7 @@ Suppose the probability distribution function $f_{X}(x)>0$,
 
 \newpage
 \begin{eg}
-	\label{j.p.d.f. to con.d.f. example}
+	\label{Chapter 5 (Example) JPDF to conditional PDF example}
 	Assume that two jointly continuous random variables $X$ and $Y$ have a JPDF:
 	\begin{equation*}
 		f_{X,Y}(x,y)=\begin{cases}
@@ -2183,7 +2181,7 @@ Suppose the probability distribution function $f_{X}(x)>0$,
 	Therefore, $(Y|X=x)\sim\U[0,x]$.
 \end{eg}
 \begin{eg}
-	We want to find $\prob(X^{2}+Y^{2}\leq 1)$ with two jointly continuous random variables $X$ and $Y$ having JPDF in Example \ref{j.p.d.f. to con.d.f. example}. Let $Y\in A_{x}=\{y:|y|\leq\sqrt{1-x^{2}}\}$.
+	We want to find $\prob(X^{2}+Y^{2}\leq 1)$ with two jointly continuous random variables $X$ and $Y$ having JPDF in Example \ref{Chapter 5 (Example) JPDF to conditional PDF example}. Let $Y\in A_{x}=\{y:|y|\leq\sqrt{1-x^{2}}\}$.
 	\begin{align*}
 		\prob(X^{2}+Y^{2}\leq 1|X=x)=\prob(|Y|\leq\sqrt{1-x^{2}}|X=x)&=\int_{A_{x}}f_{Y|X}(y|x)\,dy\\
 		&=\int_{A_{x}\cap[0,1]}\frac{1}{x}\,dy\\
@@ -2394,6 +2392,7 @@ Similar with discrete random variables, we have some useful parametric distribut
 \end{proofing}
 These are some properties that are used frequently.
 \begin{lem}
+	\label{Chapter 5 (Lemma) Properties of Normal distribution}
 	The normal distribution has the following properties:
 	\begin{enumerate}
 		\item Let $X\sim\N(0,1)$. If a random variable $Y=bX+a$ for some $a,b\in\mathbb{R}$ and $b\neq 0$, then $Y\sim\N(a,b^{2})$.
@@ -2429,10 +2428,11 @@ These are some properties that are used frequently.
 	\end{equation*}
 \end{lem}
 \begin{proofing}
-	Just apply Lemma \ref{properties of density function} and you would get the equation.
+	Just apply Lemma \ref{Chapter 5 (Lemma) Properties of PDF} and you would get the equation.
 \end{proofing}
 This is a very important theorem, as it claims that the sum of normal distribution is still normal.
 \begin{thm}
+	\label{Chapter 5 (Theorem) Additivity of Normal Distribution}
 	If $X_{i}\sim\N(\mu_{i},\sigma_{i}^{2})$ for $i=1,2,\cdots,n$ and they are independent, then $\sum_{i=1}^{n}X_{i}\sim\N\left(\sum_{i=1}^{n}\mu_{i},\sum_{i=1}^{n}\sigma_{i}^{2}\right)$.
 \end{thm}
 \begin{proofing}
@@ -2580,7 +2580,7 @@ There are some remarks that may be important to know about.
 \begin{rem}
 	If $X\sim\N(0,1)$ and $Y\sim\N(0,1)$, then $\frac{X}{Y}\sim\Cauchy(0)$.
 \end{rem}
-\begin{eg}(\textbf{Gamma distribution)}$X\sim\Gamma(\alpha,\lambda)$\\
+\begin{eg}(\textbf{Gamma distribution)} $X\sim\Gamma(\alpha,\lambda)$\\
 	Random variable $X$ has a gamma distribution with parameters $\alpha$ and $\lambda$ if it has a PDF:
 	\begin{equation*}
 		f_{X}(x)=\begin{cases}
@@ -2600,12 +2600,12 @@ There are some remarks that may be important to know about.
 \begin{rem}
 	When $\alpha=1$, it is an exponential distribution.
 \end{rem}
-If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{k}{2}$ where $k$ is a parameter, we get the Chi-squared distribution.
-\begin{eg}(\textbf{Chi-squared distribution}) $Y\sim\chi^{2}(k)$\\
-	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $k$ if it has a PDF:
+If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{n}{2}$ where $n$ is a parameter, we get the Chi-squared distribution.
+\begin{eg}(\textbf{Chi-squared distribution}) $Y\sim\chi^{2}(n)$\\
+	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $n$ if it has a PDF:
 	\begin{equation*}
 		f_{Y}(x)=\begin{cases}
-			\frac{x^{\frac{k}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{k}{2}}\Gamma(\alpha)}, &x\geq 0\\
+			\frac{x^{\frac{n}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{n}{2}}\Gamma(\alpha)}, &x\geq 0\\
 			0, &x<0
 		\end{cases}
 	\end{equation*}
@@ -2617,6 +2617,38 @@ If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{k}{2}$ where $k$ is a p
 \begin{rem}
 	$\Gamma(\frac{1}{2})=\sqrt{\pi}$.
 \end{rem}
+\begin{lem}
+	\label{Chapter 5 (Lemma) Additivity of chi-squared distribution}
+	Given that $V\sim\chi^{2}(n_{1})$ and $W\sim\chi^{2}(n_{2})$. If $V$ and $W$ are independent, then $V+W\sim\chi^{2}(n_{1}+n_{2})$.
+\end{lem}
+\begin{proofing}
+	Let $V=X_{1}^{2}+X_{2}^{2}+\cdots+X_{n_{1}}^{2}$ and $W=Z_{1}^{2}+Z_{2}^{2}+\cdots+Z_{n_{2}}^{2}$, where $X_{i},Z_{j}\sim\N(0,1)$ for all $i,j$.
+	\begin{equation*}
+		V+W=X_{1}^{2}+X_{2}^{2}+\cdots+X_{n_{1}}^{2}+Z_{1}^{2}+Z_{2}^{2}+\cdots+Z_{n_{2}}^{2}\sim\chi^{2}(n_{1}+n_{2})
+	\end{equation*}
+\end{proofing}
+\newpage
+We may derive further from the chi-squared distribution.
+\begin{eg}(\textbf{Student's t-distribution}) $W\sim t(n)$\\
+	Given $Y\sim\chi^{2}(n)$ and $Z\sim\N(0,1)$. If $Y$ and $Z$ are independent, let
+	\begin{equation*}
+		W=\frac{Z}{\sqrt{\frac{Y}{n}}}
+	\end{equation*}
+	The random variable $W$ follows the $t$-distribution with $n$ degree of freedom and PDF:
+	\begin{equation*}
+		f(w)=\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\left(1+\frac{w^{2}}{n}\right)^{-\frac{n+1}{2}}
+	\end{equation*}
+	The expectation and variance are:
+	
+\end{eg}
+\begin{rem}
+	If $W\sim t(1)$, then from the PDF:
+	\begin{equation*}
+		f(w)=\frac{\Gamma(1)}{\sqrt{\pi}\Gamma\left(\frac{1}{2}\right)}(1+w^{2})^{-1}=\frac{1}{\pi(1+w^{2})}
+	\end{equation*}
+	This means that $W\sim\Cauchy(0)$.
+\end{rem}
+
 \begin{eg}(\textbf{Beta distribution}) $X\sim\Beta(a,b)$\\
 	Random variable $X$ has a beta distribution with parameters $a$ and $b$ if it has a PDF:
 	\begin{equation*}
@@ -2634,6 +2666,7 @@ If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{k}{2}$ where $k$ is a p
 		\expect{X}&=\frac{a}{a+b} & \Var(X)&=\frac{ab}{(a+b)^{2}(a+b+1)}
 	\end{align*}
 \end{eg}
+
 
 \newpage
 \section{Functions of continuous random variables}
@@ -3234,14 +3267,32 @@ For continuous random variables,
 	\end{align*}
 	where $\Gamma(\alpha)$ is the gamma function with $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$. If $\alpha$ is a positive integer, then $\Gamma(\alpha)=(\alpha-1)!$.
 \end{seg}
-\begin{seg}(Chi-squared distribution) $Y\sim\chi^{2}(k)$\\
-	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. Random variable $Y$ has a $\chi^{2}$-distribution with parameter $k$ if:
+\begin{seg}(Chi-squared distribution) $Y\sim\chi^{2}(n)$\\
+	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. Random variable $Y$ has a $\chi^{2}$-distribution with parameter $n$ if:
 	\begin{align*}
 		f_{Y}(x)&=\begin{cases}
 			0, &x<0\\
-			\frac{x^{\frac{k}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{k}{2}\Gamma(\frac{k}{2})}}, &x\geq 0
-		\end{cases} & \expect{Y}&=k & \Var(Y)&=2k
+			\frac{1}{2^{\frac{n}{2}}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0
+		\end{cases} & \expect{Y}&=n & \Var(Y)&=2n
 	\end{align*}
+\end{seg}
+\begin{seg}(Student's t-distribution) $W\sim t(n)$\\
+	Given $Y\sim\chi^{2}(n)$ and $Z\sim\N(0,1)$. If $Y$ and $Z$ are independent, let
+	\begin{equation*}
+		W=\frac{Z}{\sqrt{\frac{Y}{n}}}
+	\end{equation*}
+	The random variable $W$ follows the $t$-distribution with $n$ degree of freedom and:
+	\begin{align*}
+		f(w)&=\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\left(1+\frac{w^{2}}{n}\right)^{-\frac{n+1}{2}} & \expect{W}&=\begin{cases}
+			\text{Undefined}, &n\leq 1\\
+			0, &n>1\\
+		\end{cases} & \Var(W)&=\begin{cases}
+			\text{Undefined}, &n\leq 1\\
+			\infty, &1<n\leq 2\\
+			\frac{n}{n-2}, &n>2
+		\end{cases}
+	\end{align*}
+	where $\Gamma(\alpha)$ is the gamma function.
 \end{seg}
 \begin{seg}(Beta distribution) $X\sim\Beta(a,b)$\\
 	Random variable $X$ has a beta distribution with parameters $a$ and $b$ if:
@@ -3391,13 +3442,13 @@ We can now use the properties of expectations to deduce the properties of varian
 		\end{equation*}
 		\item When $X$ and $Y$ are uncorrelated,
 		\begin{align*}
-			\Var(X+Y)&=\expect((X+Y-\expect(X+Y))^{2})\\
-			&=\expect((X-\expect X)^{2}+2(XY-\expect X\expect Y)+(Y-\expect Y)^{2})\\
+			\Var(X+Y)=\expect((X+Y-\expect(X+Y))^{2})&=\expect((X-\expect X)^{2}+2(XY-\expect X\expect Y)+(Y-\expect Y)^{2})\\
 			&=\Var(X)+2(\expect(XY)-\expect(X)\expect(Y))+\Var(Y)\\
 			&=\Var(X)+\Var(Y)
 		\end{align*}
 	\end{enumerate}
 \end{proofing}
+\section{Sampling}
 In a lot of cases, we do not know the actual distribution of the population. We can only predict the distribution based on the samples we can get.
 \begin{defn}
 	Let $X_{1},X_{2},\cdots,X_{n}$ be independent and identically distributed random variables with CDF $F$, mean $\mu$ and variance $\sigma^{2}$. \textbf{Sample mean}, denoted by $\overline{X}$, is defined by:
@@ -3406,6 +3457,7 @@ In a lot of cases, we do not know the actual distribution of the population. We 
 	\end{equation*}
 \end{defn}
 \begin{thm}
+	\label{Chapter 6 (Theorem) Expectation and variance of sample mean}
 	Given a sample mean $\overline{X}$ defined above. We have $\expect{\overline{X}}=\mu$ and $\Var(\overline{X})=\frac{\sigma^{2}}{n}$.
 \end{thm}
 \begin{proofing}
@@ -3417,14 +3469,14 @@ In a lot of cases, we do not know the actual distribution of the population. We 
 \begin{defn}
 	Let $X_{1},X_{2},\cdots,X_{n}$ be independent and identically distributed random variables with CDF $F$, mean $\mu$ and variance $\sigma^{2}$. Let $\overline{X}$ be the sample mean. \textbf{Sample variance}, denoted by $S^{2}$, is defined by:
 	\begin{equation*}
-		S^{2}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})}{n-1}
+		S_{n-1}^{2}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{n-1}
 	\end{equation*}
 \end{defn}
 \begin{rem}
 	Notice that the denominator is $n-1$.
 \end{rem}
 \begin{thm}
-	Given a sample variance $S^{2}$ defined above. We have $\expect{S^{2}}=\sigma^{2}$.
+	Given a sample variance $S_{n-1}^{2}$ defined above. We have $\expect{S_{n-1}^{2}}=\sigma^{2}$.
 \end{thm}
 \begin{proofing}
 	\begin{align*}
@@ -3435,6 +3487,65 @@ In a lot of cases, we do not know the actual distribution of the population. We 
 		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2}{n(n-1)}\sum_{i=1}^{n}\sum_{j=1}^{n}\cov(X_{i},X_{j})\\
 		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2\sigma^{2}}{n-1}=\sigma^{2}
 	\end{align*}
+\end{proofing}
+What happens if the random variables are normal distributions?
+\begin{thm}
+	\label{Chapter 6 (Theorem) Sampling distribution with sample mean}
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
+	\begin{equation*}
+		\overline{X}\sim\N\left(\mu_{X},\frac{\sigma_{X}^{2}}{n}\right)
+	\end{equation*}
+\end{thm}
+\begin{proofing}
+	By Theorem \ref{Chapter 5 (Theorem) Additivity of Normal Distribution} and the properties of Normal distribution,
+	\begin{equation*}
+		X_{1}+X_{2}+\cdots+X_{n}\sim\N(n\mu_{X},n\sigma_{X}^{2})
+	\end{equation*}
+	By Lemma \ref{Chapter 5 (Lemma) Properties of Normal distribution}, we have:
+	\begin{equation*}
+		\overline{X}=\frac{1}{n}(X_{1}+X_{2}+\cdots+X_{n})\sim\N\left(\mu_{X},\frac{\sigma_{X}^{2}}{n}\right)
+	\end{equation*}
+\end{proofing}
+\begin{thm}
+	\label{Chapter 6 (Theorem) Sampling distribution with sample variance}
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{x}^{2})$. Then we have:
+	\begin{enumerate}
+		\item \begin{equation*}
+			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+		\end{equation*}
+		\item $\overline{X}$ and $S_{n-1}^{2}$ are independent.
+	\end{enumerate}
+\end{thm}
+\begin{proofing}
+	We may find that:
+	\begin{equation*}
+		\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{((X_{i}-\mu_{X})+(\mu_{X}-\overline{X}))^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\mu_{X})^{2}}{\sigma_{X}^{2}}-\frac{n(\overline{X}-\mu_{X})^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}-\left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}
+	\end{equation*}
+	We know that $\frac{X_{i}-\mu_{X}}{\sigma_{X}}\sim\N(0,1)$. By definition,
+	\begin{align*}
+		\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}&\sim\chi^{2}(n) & \left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}&\sim\chi^{2}(1)
+	\end{align*} 
+	Therefore, by Theorem \ref{Chapter 5 (Lemma) Additivity of chi-squared distribution}, we get:
+	\begin{equation*}
+		\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+	\end{equation*}
+	We will not prove the independence of sample mean and sample variance. However, please note that it only works for normal distribution.
+\end{proofing}
+\begin{thm}
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
+	\begin{equation*}
+		\frac{\overline{X}-\mu_{X}}{\frac{S_{n-1}}{\sqrt{n}}}\sim t(n-1)
+	\end{equation*}
+\end{thm}
+\begin{proofing}
+	By Theorem \ref{Chapter 6 (Theorem) Sampling distribution with sample mean} and \ref{Chapter 6 (Theorem) Sampling distribution with sample variance}, we let:
+	\begin{align*}
+		U&=\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\sim\N(0,1) & V&=\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+	\end{align*}
+	By definition of $t$-distribution, we have:
+	\begin{equation*}
+		\frac{\overline{X}-\mu_{X}}{\frac{S_{n-1}}{\sqrt{n}}}=\frac{U}{\sqrt{\frac{V}{n-1}}}\sim t(n-1)
+	\end{equation*}
 \end{proofing}
 \section{Introduction of generating functions}
 A sequence of number $a=\{a_{i}:i=0,1,2,\cdots\}$ may contain a lot of information. For example, values of PMF tells us the distribution of a discrete random variables.\\
@@ -3486,7 +3597,7 @@ Convolutions are common in probability theory, and generating functions can prov
 	\end{equation*}
 \end{proofing}
 \begin{eg}
-	\label{Two independent poisson PGF}
+	\label{Chapter 6 (Example) Two independent poisson PGF}
 	Suppose that $X\independent Y$. Let $X\sim\Poisson(\lambda)$ and $Y\sim\Poisson(\mu)$. What is the distribution of $Z=X+Y$?\\
 	Recall that $f_{Z}=f_{X}*f_{Y}$. We let $a_{n}=f_{X}(n)$ and $b_{n}=f_{Y}(n)$.
 	\begin{align*}
@@ -3562,7 +3673,7 @@ Here are some properties of power series involving radius of convergence. We wil
 \end{eg}
 In fact, when $s=1$, we can find the expectation of a distribution.
 \begin{eg}
-	\label{Expectation from PGF}
+	\label{Chapter 6 (Example) Expectation from PGF}
 	By having $s=1$,
 	\begin{equation*}
 		\left.\pdv*{G_{X}(s)}{s}\right|_{s=1}=\left.\pdv*{\sum_{i=0}^{\infty}f_{X}(i)s^{i}}{s}\right|_{s=1}=\left.\sum_{i=0}^{\infty}if_{X}(i)s^{i}\right|=\sum_{i=0}^{\infty}if_{X}(i)=\expect X
@@ -3595,7 +3706,7 @@ We already know that by computing the derivatives of $G$ at $s=0$, we can get th
 \end{thm}
 \begin{proofing}
 	\begin{enumerate}
-		\item This is proved in Example \ref{Expectation from PGF}.
+		\item This is proved in Example \ref{Chapter 6 (Example) Expectation from PGF}.
 		\item Let $s<1$.
 		\begin{equation*}
 			G^{(k)}(s)=\pdv*[order={k}]{\sum_{n}f_{X}(n)s^{n}}{s}=\sum_{n}n(n-1)\cdots(n-k+1)s^{n-k}f_{X}(n)=\expect(s^{X-k}X(X-1)\cdots(X-k+1))
@@ -3610,9 +3721,9 @@ We already know that by computing the derivatives of $G$ at $s=0$, we can get th
 		\end{equation*}
 	\end{enumerate}
 \end{proofing}
-From Example \ref{Two independent poisson PGF}, we can generalize it to study the sum of many other independent discrete random variables.
+From Example \ref{Chapter 6 (Example) Two independent poisson PGF}, we can generalize it to study the sum of many other independent discrete random variables.
 \begin{thm}
-	\label{Chapter 5 Theorem PGF Sum of random independent variables}
+	\label{Chapter 6 (Theorem) PGF for sum of random independent variables}
 	If $X\independent Y$, then $G_{X+Y}(s)=G_{X}(s)G_{Y}(s)$.
 \end{thm}
 \begin{proofing}
@@ -3675,7 +3786,7 @@ When JPMF exists, there obviously will be a joint PGF.
 	We know that if $X_{1}\independent X_{2}$, then $G_{X_{1}+X_{2}}(s)=\expect s^{X_{1}+X_{2}}=\expect s^{X_{1}}s^{X_{2}}=G_{X_{1}}(s)G_{X_{2}}(s)$. Converse may not be true.
 \end{rem}
 \section{Applications of generating functions}
-The following example involves simple random walk, which is discussed in Appendix \ref{Simple random walk}. Generating functions are particularly valuable when studying random walk. So far, we have only considered random variables $X$ taking finite values only. In this application, we encounter variables that can take the value $+\infty$. For such variables $X$, $G_{X}(s)$ converges so long as $\abs{s}<1$ and
+The following example involves simple random walk, which is discussed in Appendix \ref{Appendix A Simple random walk}. Generating functions are particularly valuable when studying random walk. So far, we have only considered random variables $X$ taking finite values only. In this application, we encounter variables that can take the value $+\infty$. For such variables $X$, $G_{X}(s)$ converges so long as $\abs{s}<1$ and
 \begin{equation*}
 	\lim_{s\uparrow 1}G_{X}(s)=\sum_{k}\prob(X=k)=1-\prob(X=\infty)
 \end{equation*}
@@ -3689,29 +3800,29 @@ The following example involves simple random walk, which is discussed in Appendi
 \newpage
 With this generalization, we can start discussing random walk.
 \begin{eg}(\textbf{Recurrence and transience of random walk})
-	\label{Simple random walk recurrence and transience}
-	Let $S_{n}$ the position of the particles after $n$ moves and $X_{i}$ be independent and identically distributed random variables mentioned in Appendix \ref{Simple random walk}. For $n\geq 0$,
+	\label{Chapter 6 (Example) Simple random walk recurrence and transience}
+	Let $Y_{n}$ the position of the particles after $n$ moves and $X_{i}$ be independent and identically distributed random variables mentioned in Appendix \ref{Appendix A Simple random walk}. For $n\geq 0$,
 	\begin{align*}
-		S_{n}&=\sum_{i=1}^{n}X_{i} & S_{0}&=0 & \prob(X_{i}=1)&=p & \prob(X_{i}=-1)&=q=1-p
+		Y_{n}&=\sum_{i=1}^{n}X_{i} & Y_{0}&=0 & \prob(X_{i}=1)&=p & \prob(X_{i}=-1)&=q=1-p
 	\end{align*}
 	Let $T_{0}$ be number of moves until the particle makes its first return to the origin.
 	\begin{equation*}
-		T_{0}=\min\{i\geq 1:S_{i}=0\}
+		T_{0}=\min\{i\geq 1:Y_{i}=0\}
 	\end{equation*}
 	Is $T_{0}$ a defective random variable? How do we calculate $\prob(T_{0}=\infty)$?\\
 	Let $p_{0}(n)$ be the probability of the particle return to the origin at $n$ moves and $P_{0}$ be the generating function of $p_{0}$.\\
 	Let $f_{0}(n)$ be the probability of the particle first return to the origin at $n$ moves and $F_{0}$ be the generating function of $f_{0}$.
 	\begin{align*}
-		p_{0}(n)&=\prob(S_{n}=0)=\begin{cases}
+		p_{0}(n)&=\prob(Y_{n}=0)=\begin{cases}
 			\binom{n}{\frac{n}{2}}p^{\frac{n}{2}}q^{\frac{n}{2}}, &n\text{ is even}\\
 			0, &n\text{ is odd}
 		\end{cases} & P_{0}(s)&=\lim_{N\uparrow\infty}\sum_{n=0}^{N}p_{0}(n)s^{n}\\
-		f_{0}(n)&=\prob(S_{1}\neq 0,S_{2}\neq 0,\cdots,S_{n-1}\neq 0,S_{n}=0)=\prob(T_{0}=n) & F_{0}(s)&=\lim_{N\uparrow\infty}\sum_{n=1}^{N}f_{0}(n)s^{n}
+		f_{0}(n)&=\prob(Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{n-1}\neq 0,Y_{n}=0)=\prob(T_{0}=n) & F_{0}(s)&=\lim_{N\uparrow\infty}\sum_{n=1}^{N}f_{0}(n)s^{n}
 	\end{align*}
 \end{eg}
 \begin{thm}
-	\label{Chapter 5 Theorem Simple random walk particle return generating function}
-	From the definitions in Example \ref{Simple random walk recurrence and transience}, we have
+	\label{Chapter 6 (Theorem) Simple random walk particle return generating function}
+	From the definitions in Example \ref{Chapter 6 (Example) Simple random walk recurrence and transience}, we have
 	\begin{enumerate}
 		\item $P_{0}(s)=1+P_{0}(s)F_{0}(s)$
 		\item $P_{0}(s)=(1-4pqs^{2})^{-\frac{1}{2}}$
@@ -3720,21 +3831,21 @@ With this generalization, we can start discussing random walk.
 \end{thm}
 \begin{proofing}
 	\begin{enumerate}
-		\item Let $A_{n}=\{S_{n}=0\}$ and $B_{k}=\{S_{1}\neq 0,S_{2}\neq 0,\cdots,S_{k-1}\neq 0,S_{k}=0\}$. $p_{0}(n)=\prob(A_{n})$ and $f_{0}(k)=\prob(B_{k})$.\\
+		\item Let $A_{n}=\{Y_{n}=0\}$ and $B_{k}=\{Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{k-1}\neq 0,Y_{k}=0\}$. $p_{0}(n)=\prob(A_{n})$ and $f_{0}(k)=\prob(B_{k})$.\\
 		By using Law of total probability, 
 		\begin{align*}
 			\prob(A_{n})&=\sum_{i=1}^{n}\prob(A_{n}|B_{i})\prob(B_{i})\\
-			p_{0}(n)&=\sum_{i=1}^{n}\prob(S_{n}=0|S_{1}\neq 0,S_{2}\neq 0,\cdots,S_{i-1}\neq 0,S_{i}=0)f_{0}(i)\\
-			\tag{Markov property in Lemma \ref{Simple random walk properties}}
-			&=\sum_{i=1}^{n}\prob(S_{n}=0|S_{i}=0)f_{0}(i)\\
-			\tag{Temporarily homogeneous property in Lemma \ref{Simple random walk properties}}
-			&=\sum_{i=1}^{n}\prob(S_{n-i}=0)f_{0}(i)\\
+			p_{0}(n)&=\sum_{i=1}^{n}\prob(Y_{n}=0|Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{i-1}\neq 0,Y_{i}=0)f_{0}(i)\\
+			\tag{Markov property in Lemma \ref{Appendix A (Lemma) Simple random walk properties}}
+			&=\sum_{i=1}^{n}\prob(Y_{n}=0|Y_{i}=0)f_{0}(i)\\
+			\tag{Temporarily homogeneous property in Lemma \ref{Appendix A (Lemma) Simple random walk properties}}
+			&=\sum_{i=1}^{n}\prob(Y_{n-i}=0)f_{0}(i)\\
 			&=\sum_{i=1}^{n}p_{0}(n-k)f_{0}(i)\\
 			p_{0}(0)&=1\\
 			P_{0}(s)=\sum_{k=0}^{\infty}p_{0}(k)s^{k}=1+\sum_{k=1}^{\infty}p_{0}(k)s^{k}&=1+\sum_{k=1}^{\infty}\sum_{i=1}^{k}p_{0}(k-i)f_{0}(i)s^{k}=1+\sum_{i=1}^{\infty}\sum_{k=i}^{\infty}p_{0}(k-i)s^{k-i}f_{0}(i)s^{i}=1+P_{0}(s)F_{0}(s)
 		\end{align*}
 		\item \textit{If you want to understand the proof, search "Central binomial coefficient" in Wikipedia}\\
-		We know that $S_{n}=0$ if $n$ is even. Therefore,
+		We know that $Y_{n}=0$ if $n$ is even. Therefore,
 		\begin{equation*}
 			\tag{$\binom{\frac{-1}{2}}{i}$ is a generalized binomial coefficient}
 			P_{0}(s)=\lim_{N\uparrow\infty}\sum_{n=0}^{N}p_{0}(n)s^{n}=\lim_{N\uparrow\infty}\sum_{i=0}^{N}\binom{2i}{i}p^{i}q^{i}s^{2i}=\lim_{N\uparrow\infty}\sum_{i=1}^{N}(-1)^{i}4^{i}\binom{\frac{-1}{2}}{i}p^{i}q^{i}s^{2i}=\frac{1}{\sqrt{1-4pqs^{2}}}
@@ -3757,7 +3868,7 @@ From this theorem, we can get the following corollary.
 	\end{equation*}
 \end{cor}
 \begin{proofing}
-	By using Theorem \ref{Chapter 5 Theorem Simple random walk particle return generating function}, since $p+q=1$,
+	By using Theorem \ref{Chapter 6 (Theorem) Simple random walk particle return generating function}, since $p+q=1$,
 	\begin{equation*}
 		F_{0}(1)=1-(1-4pq)^{\frac{1}{2}}=1-(p^{2}-2pq+q^{2})^{\frac{1}{2}}=1-\abs{p-q}
 	\end{equation*}
@@ -3769,7 +3880,7 @@ From this theorem, we can get the following corollary.
 	If $p\neq q$, then $\prob(T_{0}=\infty)\neq 0$ and so the random walk is transient.
 \end{rem}
 \begin{eg}
-	We use the Example \ref{Simple random walk recurrence and transience} again. How do we calculate $\expect T_{0}$ if $p=q=\frac{1}{2}$?
+	We use the Example \ref{Chapter 6 (Example) Simple random walk recurrence and transience} again. How do we calculate $\expect T_{0}$ if $p=q=\frac{1}{2}$?
 	\begin{align*}
 		F_{0}(s)&=1-\sqrt{1-s^{2}} & F_{0}'(s)&=\frac{s}{\sqrt{1-s^{2}}} & \expect T_{0}&=\lim_{s\uparrow 1}F_{0}'(s)=\infty
 	\end{align*}
@@ -3797,7 +3908,7 @@ Many scientists have been interested in reproduction in a population. Accurate m
 
 \newpage
 \begin{thm}
-	\label{Chapter 5 Theorem Galton-Watson process PGF n-fold iterate properties}
+	\label{Chapter 6 (Theorem) Galton-Watson process PGF n-fold iterate properties}
 	Let $G_{n}(s)=\expect s^{Z_{n}}$ and $G(s)=G_{1}(s)=\expect s^{Z_{1}}=\expect s^{X_{i}^{(m)}}$ for all $i$ and $m$. Then
 	\begin{equation*}
 		G_{n}(s)=G(G(\cdots(G(s))\cdots))=G(G_{n-1}(s))=G_{n-1}(G(s))
@@ -3830,7 +3941,7 @@ The moments of $Z_{n}$ can be computed easier.
 	\end{align*}
 \end{lem}
 \begin{proofing}
-	Using Theorem \ref{Chapter 5 Theorem Galton-Watson process PGF n-fold iterate properties}, we can get
+	Using Theorem \ref{Chapter 6 (Theorem) Galton-Watson process PGF n-fold iterate properties}, we can get
 	\begin{align*}
 		\expect Z_{2}&=G_{2}'(1)=G'(G(1))G'(1)=G'(1)\mu=\mu^{2}\\
 		\expect Z_{n}&=G_{n}'(1)=G'(G_{n-1}(1))G_{n-1}'(1)=G'(1)\mu^{n-1}=\mu^{n}\\
@@ -4009,7 +4120,7 @@ We can easier get the following lemma.
 			M^{(k)}(0)=\left.\pdv*[order={k}]{\int e^{tx}\,dF_{X}(x)}{t}\right|_{t=0}=\left.\int x^{k}e^{tx}\,dF_{X}(x)\right|_{t=0}=\int x^{k}\,dF_{X}(x)=\expect X^{k}
 		\end{equation*}
 		\item Just using (1) and Taylor's Theorem and you get the answer.
-		\item This is just Theorem \ref{Chapter 5 Theorem PGF Sum of random independent variables}.
+		\item This is just Theorem \ref{Chapter 6 (Theorem) PGF for sum of random independent variables}.
 	\end{enumerate}
 \end{proofing}
 \begin{rem}
@@ -4114,7 +4225,7 @@ Again and again, we have a joint characteristic function.
 \end{defn}
 We have another way to prove that two random variables are independent.
 \begin{thm}
-	\label{Chapter 5 Theorem Independent via CF}
+	\label{Chapter 6 (Theorem) Independence via CF}
 	Two random variables $X,Y$ are independent if and only if for all $s$ and $t$,
 	\begin{equation*}
 		\phi_{X,Y}(s,t)=\phi_{X}(s)\phi_{Y}(t)
@@ -4125,7 +4236,7 @@ We have another way to prove that two random variables are independent.
 	\begin{equation*}
 		\phi_{X,Y}(s,t)=\expect(e^{i(sX+tY)})=\expect(e^{isX})\expect(e^{itY})=\phi_{X}(s)\phi_{Y}(t)
 	\end{equation*}
-	Currently, it is not suffice to prove the inverse. We will need to use a theorem later. (Example \ref{Chapter 5 Example Proof of Theorem 5.27})
+	Currently, it is not suffice to prove the inverse. We will need to use a theorem later. (Example \ref{Chapter 6 (Example) Proof of Independence via CF})
 \end{proofing}
 \begin{eg}
 	Let $X\sim\Bern(p)$. We have
@@ -4215,8 +4326,8 @@ There are two major ways that characteristic functions are useful. One of them i
 	We can say $\overline{F}_{X}$ represents the average of limit going from two directions.
 \end{rem}
 \begin{eg}
-	\label{Chapter 5 Example Proof of Theorem 5.27}
-	With the Inversion Theorem, we can now prove Theorem \ref{Chapter 5 Theorem Independent via CF}.\\
+	\label{Chapter 6 (Example) Proof of Independence via CF}
+	With the Inversion Theorem, we can now prove Theorem \ref{Chapter 6 (Theorem) Independence via CF}.\\
 	Given two random variables $X,Y$. We want to first extend the Fourier Inverse Transform into multivariable case.\\
 	If $\phi_{X,Y}(s,t)=\phi_{X}(s)\phi_{Y}(t)$, then for any $a\leq b$ and $c\leq d$,
 	\begin{align*}
@@ -4272,7 +4383,6 @@ We can modify a bit on the definition to say each distribution function in the s
 \end{rem}
 With the definition, sequence of characteristic functions can be used to determine whether the sequence of cumulative distribution function converges.
 \begin{thm}(\textbf{L\'evy continuity theorem})
-	\label{Chapter 5 Theorem Levy continuity theorem}
 	Suppose that $F_{1},F_{2},\cdots$ is a sequence of CDF with CF $\phi_{1},\phi_{2},\cdots$, then
 	\begin{enumerate}
 		\item If $F_{n}\to F$ for some CDF $F$ with CF $\phi$, then $\phi_{n}\to\phi$ pointwise.
@@ -4298,7 +4408,7 @@ We have a more general definition of convergence.
 	We can see that $F_{n}\xrightarrow{v}G$ if $n\to\infty$ and $G$ is not a CDF.
 \end{eg}
 \begin{rem}
-	In Theorem \ref{Chapter 5 Theorem Levy continuity theorem} (2), the statement that $\phi$ is continuous at $O$ can be replaced by any of the following statements:
+	In L\'evy Continuity Theorem (2), the statement that $\phi$ is continuous at $O$ can be replaced by any of the following statements:
 	\begin{enumerate}
 		\item $\phi(t)$ is a continuous function of $t$
 		\item $\phi(t)$ is a CF of some CDF
@@ -4320,9 +4430,9 @@ We have a more general definition of convergence.
 \section{Two limit theorems}
 In this section, we introduce two fundamental theorems in probability theory, the Law of Large Numbers and the Central Limit Theorem.
 \begin{thm}(\textbf{Weak Law of Large Numbers} [WLLN])
-	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables. Assume that $\expect\abs{X_{1}}<\infty$ and $\expect X_{1}=\mu$. Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables. Assume that $\expect\abs{X_{1}}<\infty$ and $\expect X_{1}=\mu$. We have:
 	\begin{equation*}
-		\frac{1}{n}S_{n}\xrightarrow{D}\mu
+		\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{D}\mu
 	\end{equation*}
 \end{thm}
 \begin{proofing}
@@ -4332,22 +4442,22 @@ In this section, we introduce two fundamental theorems in probability theory, th
 	\end{equation*}
 	For any $t\in\mathbb{R}$, let $\phi_{X_{1}}(s)=\expect(e^{isX_{1}})$.
 	\begin{align*}
-		\phi_{n}(t)=\expect\left(\exp\left(\frac{it}{n}S_{n}\right)\right)=\expect\left(\prod_{i=1}^{n}\exp\left(\frac{itX_{i}}{n}\right)\right)=\left(\expect\left(\exp\left(\frac{itX_{1}}{n}\right)\right)\right)^{n}=\left(\phi_{X_{1}}\left(\frac{t}{n}\right)\right)^{n}&=\left(1+\frac{it}{n}\expect X_{1}+o\left(\frac{t}{n}\right)\right)^{n}\\
+		\phi_{n}(t)=\expect\left(\exp\left(\frac{it}{n}\sum_{i=1}^{n}X_{i}\right)\right)=\expect\left(\prod_{i=1}^{n}\exp\left(\frac{itX_{i}}{n}\right)\right)=\left(\expect\left(\exp\left(\frac{itX_{1}}{n}\right)\right)\right)^{n}=\left(\phi_{X_{1}}\left(\frac{t}{n}\right)\right)^{n}&=\left(1+\frac{it}{n}\expect X_{1}+o\left(\frac{t}{n}\right)\right)^{n}\\
 		&=\left(1+\frac{i\mu t}{n}+o\left(\frac{t}{n}\right)\right)^{n}\\
 		&\to e^{i\mu t}
 	\end{align*}
-	By L\'evy continuity theorem, we get that $\frac{1}{n}S_{n}\xrightarrow{D}\mu$.
+	By L\'evy continuity theorem, we get that $\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{D}\mu$.
 \end{proofing}
 \begin{thm}(\textbf{Central Limit Theorem} [CLT])
-	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect\abs{X_{1}}^{2}<\infty$ and $\expect X_{1}=\mu$, $\Var(X_{1})=\sigma^{2}$, $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect\abs{X_{1}}^{2}<\infty$ and $\expect X_{1}=\mu$, $\Var(X_{1})=\sigma^{2}$. Then
 	\begin{equation*}
-		\frac{1}{\sigma}\sqrt{n}\left(\frac{1}{n}S_{n}-\mu\right)=\frac{S_{n}-n\mu}{\sqrt{n}\sigma}\xrightarrow{D}\N(0,1)
+		\frac{1}{\sigma}\sqrt{n}\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}-\mu\right)=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\xrightarrow{D}\N(0,1)
 	\end{equation*}
 \end{thm}
 \begin{proofing}
 	Let $Y_{i}=\frac{X_{i}-\mu}{\sigma}$. We have $\expect Y_{i}=0$ and $\Var(Y_{i})=1$.
 	\begin{align*}
-		\frac{S_{n}-n\mu}{\sqrt{n}\sigma}&=\sum_{i=1}^{n}\frac{1}{\sqrt{n}}\frac{X_{i}-\mu}{\sigma}=\sum_{i=1}^{n}\frac{Y_{i}}{\sqrt{n}}\\
+		\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}&=\sum_{i=1}^{n}\frac{1}{\sqrt{n}}\frac{X_{i}-\mu}{\sigma}=\sum_{i=1}^{n}\frac{Y_{i}}{\sqrt{n}}\\
 		\phi_{n}(t)&=\expect\left(\exp\left(it\sum_{\ell-1}^{n}\frac{Y_{\ell}}{\sqrt{n}}\right)\right)\\
 		&=\left(\expect\left(\exp\left(\frac{itY_{1}}{\sqrt{n}}\right)\right)\right)^{n}\\
 		&=\left(\phi_{Y_{1}}\left(\frac{t}{\sqrt{n}}\right)\right)^{n}\\
@@ -4356,8 +4466,9 @@ In this section, we introduce two fundamental theorems in probability theory, th
 		&=\left(1-\frac{t^{2}}{2n}+o\left(\frac{t^{2}}{n}\right)\right)^{n}\\
 		&\to e^{-\frac{1}{2}t^{2}}
 	\end{align*}
-	By L\'evy continuity theorem, $\frac{S_{n}-n\mu}{\sqrt{n}\sigma}\xrightarrow{D}\N(0,1)$.
+	By L\'evy continuity theorem, $\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\xrightarrow{D}\N(0,1)$.
 \end{proofing}
+\newpage
 Central Limit Theorem can be generalized in several directions, one of which concerns about independent random variables instead of i.i.d. random variables.
 \begin{thm}
 	Let $X_{1},X_{2},\cdots$ be independent random variables satisfying $\expect X_{i}=0$, $\Var(X_{i})=\sigma_{i}^{2}$, $\expect\abs{X_{i}}^{3}<\infty$ and such that
@@ -4371,7 +4482,7 @@ Central Limit Theorem can be generalized in several directions, one of which con
 	\end{equation*}
 \end{thm}
 \begin{rem}
-	The condition (*) means that none of the random variables $X_{i}$ can be significant in the sum $S_{n}$.
+	The condition (*) means that none of the random variables $X_{i}$ can be significant in the sum.
 	\begin{equation*}
 		\frac{1}{(\sigma(n))^{3}}\sum_{i=1}^{n}\abs{X_{i}}^{3}\lesssim\frac{1}{\sigma(n)}\max_{i=1,2,\cdots,n}\abs{X_{i}}\left(\frac{1}{(\sigma(n))^{2}}\right)\sum_{i=1}^{n}(X_{i})^{2}\approx\frac{1}{\sigma(n)}\max_{i=1,2,\cdots,n}\abs{X_{i}}\to 0
 	\end{equation*}
@@ -4409,6 +4520,12 @@ This theorem is a special case of Central Limit Theorem. It is more about the su
 	\end{align*}
 	Therefore, as $n\to\infty$, $\frac{X-np}{\sqrt{np(1-p)}}\xrightarrow{D}N(0,1)$ and the theorem is proven.
 \end{proofing}
+\begin{rem}
+	For better consideration, we may let $X_{1},X_{2},\cdots,X_{n}$ be random sample of a population $X\sim\Bern(p)$. We can modify the above theorem into:
+	\begin{equation*}
+		\prob\left(a<\frac{\overline{X}-p}{\sqrt{\frac{p(1-p)}{n}}}\leq b\right)\to\Phi(b)-\Phi(a)
+	\end{equation*}
+\end{rem}
 
 \chapter{Convergence of random variables}
 We have mentioned the convergence in distribution in Chapter $5$. However, this is not the only important type of convergence mode of random variables. In this chapter, we will introduce some other convergence modes.
@@ -4498,7 +4615,7 @@ Following inequality needs H\"older inequality (In Appendix $C$) in order to be 
 \end{lem}
 We also need to know how we can obtain almost sure convergence.
 \begin{lem}
-	\label{Chapter 7 Lemma Obtaining almost sure convergence}
+	\label{Chapter 7 (Lemma) Obtaining almost sure convergence}
 	Let
 	\begin{align*}
 		A_{n}(\varepsilon)&=\{\omega\in\Omega:\abs{X_{n}(\omega)-X(\omega)}>\varepsilon\} & B_{m}(\varepsilon)&=\bigcup_{n=m}^{\infty}A_{n}(\varepsilon)
@@ -4535,7 +4652,7 @@ We also need to know how we can obtain almost sure convergence.
 	\end{enumerate}
 \end{proofing}
 \begin{lem}
-	\label{Chapter 7 Lemma Non-relationship between almost surely convergence and mean}
+	\label{Chapter 7 (Lemma) Non-relationship between almost surely convergence and mean}
 	There exist sequences that
 	\begin{enumerate}
 		\item converge almost surely but not in mean
@@ -4551,7 +4668,7 @@ We also need to know how we can obtain almost sure convergence.
 				0, &\text{Probability }=1-n^{-2}
 			\end{cases}
 		\end{equation*}
-		By applying Lemma \ref{Chapter 7 Lemma Obtaining almost sure convergence}, for some $\varepsilon>0$.
+		By applying Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, for some $\varepsilon>0$.
 		\begin{align*}
 			\prob(\abs{X_{n}(\omega)-X(\omega)}>\varepsilon)&=\frac{1}{n^{2}} & \sum_{n=1}^{\infty}\prob(\abs{X_{n}(\omega)-X(\omega)}>\varepsilon)&<\infty
 		\end{align*}
@@ -4571,7 +4688,7 @@ We also need to know how we can obtain almost sure convergence.
 		\begin{equation*}
 			\expect\abs{X_{n}-X}=1\left(\frac{1}{n}\right)=\frac{1}{n}\to 0
 		\end{equation*}
-		However, by applying Lemma \ref{Chapter 7 Lemma Obtaining almost sure convergence}, if $\varepsilon\in(0,1)$, for all $n$
+		However, by applying Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, if $\varepsilon\in(0,1)$, for all $n$
 		\begin{align*}
 			\prob(B_{m}(\varepsilon))&=1-\lim_{r\to\infty}\prob(X_{n}=0\text{ for all }n\text{ such that }m\leq n\leq r)\\
 			&=1-\lim_{r\to\infty}\prod_{i=m}^{r}\frac{i-1}{i}\\
@@ -4582,7 +4699,7 @@ We also need to know how we can obtain almost sure convergence.
 \end{proofing}
 We can now deduce the following implications. Roughly speaking, convergence in distribution is the weakest among all convergence modes, since it only cares about the distribution of $X_{n}$.
 \begin{thm}
-	\label{Chapter 7 Theorem implications of different convergence modes}
+	\label{Chapter 7 (Theorem) implications of different convergence modes}
 	The following implications hold:
 	\begin{enumerate}
 		\item \begin{enumerate}
@@ -4598,7 +4715,7 @@ We can now deduce the following implications. Roughly speaking, convergence in d
 \begin{proofing}
 	\begin{enumerate}
 		\item \begin{enumerate}
-			\item From Lemma \ref{Chapter 7 Lemma Obtaining almost sure convergence}, for all $\varepsilon>0$,
+			\item From Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, for all $\varepsilon>0$,
 			\begin{equation*}
 				\prob(A_{m}(\varepsilon))\leq\prob\left(\bigcup_{n=m}^{\infty}A_{n}(\varepsilon)\right)=\prob(B_{m}(\varepsilon))\to 0
 			\end{equation*}
@@ -4674,7 +4791,7 @@ We can now deduce the following implications. Roughly speaking, convergence in d
 			\expect\abs{X_{n}-X}^{s}&=n^{s}\left(n^{-\left(\frac{r+s}{2}\right)}\right)=n^{\frac{s-r}{2}}\to 0 & \expect\abs{X_{n}-X}^{r}&=n^{r}\left(n^{-\left(\frac{r+s}{2}\right)}\right)=n^{\frac{r-s}{2}}\to\infty
 		\end{align*}
 		Therefore, if $r\geq s\geq 1$, $(X_{n}\xrightarrow{s}X)\centernot\implies(X_{n}\xrightarrow{r}X)$.\\
-		We have proven that $(X_{n}\xrightarrow{\text{a.s.}}X)\centernot\implies(X_{n}\xrightarrow{r}X)$ and $(X_{n}\xrightarrow{r}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$ in Lemma \ref{Chapter 7 Lemma Non-relationship between almost surely convergence and mean}.
+		We have proven that $(X_{n}\xrightarrow{\text{a.s.}}X)\centernot\implies(X_{n}\xrightarrow{r}X)$ and $(X_{n}\xrightarrow{r}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$ in Lemma \ref{Chapter 7 (Lemma) Non-relationship between almost surely convergence and mean}.
 	\end{enumerate}
 \end{proofing}
 We can easily obtain this lemma.
@@ -4685,7 +4802,7 @@ We can easily obtain this lemma.
 	\end{enumerate}
 \end{lem}
 \begin{proofing}
-	Just use the Theorem \ref{Chapter 7 Theorem implications of different convergence modes} with $r=1$ and you get the answer.
+	Just use the Theorem \ref{Chapter 7 (Theorem) implications of different convergence modes} with $r=1$ and you get the answer.
 \end{proofing}
 Some of the implications does not hold in general but they hold if we apply some restrictions.
 \begin{thm}(Partial converse statements)
@@ -4740,28 +4857,28 @@ Note that any sequence $\{X_{n}\}$ which satisfies $X_{n}\xrightarrow{\prob}X$ n
 	\begin{equation*}
 		\sum_{i>\varepsilon^{-1}}\prob(\abs{X_{n_{i}}-X}>\varepsilon)\leq\sum_{i>\varepsilon^{-1}}\prob(\abs{X_{n_{i}}-X}>i^{-1})\leq\sum_{i}i^{-2}<\infty
 	\end{equation*}
-	By Lemma \ref{Chapter 7 Lemma Obtaining almost sure convergence}, we get the $X_{n_{i}}\xrightarrow{\text{a.s.}}X$ as $i\to\infty$
+	By Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, we get the $X_{n_{i}}\xrightarrow{\text{a.s.}}X$ as $i\to\infty$
 \end{proofing}
 
 \newpage
 \section{Other versions of Weak Law of Large Numbers}
 We can revisit and introduce some other versions of weak law of large numbers and their applications.
 \begin{thm}($L^{2}$-WLLN) 
-	Let $X_{1},X_{2},\cdots,X_{n}$ be uncorrelated random variables with $\expect X_{i}=\mu$, $\Var(X_{i})\leq c<\infty$ for all $i$. Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots,X_{n}$ be uncorrelated random variables with $\expect X_{i}=\mu$, $\Var(X_{i})\leq c<\infty$ for all $i$. We have:
 	\begin{equation*}
-		\frac{S_{n}}{n}\xrightarrow{2}\mu
+		\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{2}\mu
 	\end{equation*}
 \end{thm}
 \begin{proofing}
 	\begin{equation*}
-		\expect\left(\frac{S_{n}}{n}-\mu\right)^{2}=\frac{\expect(S_{n}-\expect S_{n})^{2}}{n^{2}}=\frac{1}{n^{2}}\Var(S_{n})=\frac{1}{n^{2}}\sum_{i=1}^{n}\Var(X_{i})\leq\frac{c}{n}\to 0
+		\expect\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}-\mu\right)^{2}=\frac{1}{n^{2}}\expect\left(\sum_{i=1}^{n}X_{i}-\expect \left(\sum_{i=1}^{n}X_{i}\right)\right)^{2}=\frac{1}{n^{2}}\Var\left(\sum_{i=1}^{n}X_{i}\right)=\frac{1}{n^{2}}\sum_{i=1}^{n}\Var(X_{i})\leq\frac{c}{n}\to 0
 	\end{equation*}
-	Therefore, $\frac{S_{n}}{n}\xrightarrow{2}\mu$.
+	Therefore, $\frac{1}{n}\sum_{i=1}^{n}\xrightarrow{2}\mu$.
 \end{proofing}
 \begin{rem}
 	From this theorem, we can immediately find that
 	\begin{equation*}
-		\left(\frac{S_{n}}{n}\xrightarrow{2}\mu\right)\implies\left(\frac{S_{n}}{n}\xrightarrow{\prob}\mu\right)
+		\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{2}\mu\right)\implies\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{\prob}\mu\right)
 	\end{equation*}
 \end{rem}
 \begin{rem}
@@ -4780,40 +4897,40 @@ There are wide range of applications for just Weak Law of Large Numbers.
 	\end{equation*}
 \end{eg}
 \begin{rem}
-	Let $x\in[0,1]$. To better approach this question, we can let $X_{1,x},X_{2,x},\cdots,X_{n,x}\sim\Bern(x)$ be i.i.d. random variables. Let $S_{n,x}=\sum_{i=1}^{n}X_{i,x}\sim\Bin(n,x)$.
+	Let $x\in[0,1]$. To better approach this question, we can let $X_{1,x},X_{2,x},\cdots,X_{n,x}\sim\Bern(x)$ be i.i.d. random variables. Let $Y_{n,x}=\sum_{i=1}^{n}X_{i,x}\sim\Bin(n,x)$.
 	\begin{align*}
-		\prob(S_{n,x}=m)&=\binom{n}{m}x^{m}(1-x)^{n-m}\\
-		f_{n}(x)&=\sum_{m=0}^{n}\prob(S_{n,x}=m)f\left(\frac{m}{n}\right)=\expect\left(f\left(\frac{S_{n,x}}{n}\right)\right)
+		\prob(Y_{n,x}=m)&=\binom{n}{m}x^{m}(1-x)^{n-m}\\
+		f_{n}(x)&=\sum_{m=0}^{n}\prob(Y_{n,x}=m)f\left(\frac{m}{n}\right)=\expect\left(f\left(\frac{Y_{n,x}}{n}\right)\right)
 	\end{align*}
-	We know that by WLLN, $\frac{S_{n,x}}{n}\xrightarrow{\prob}x$
+	We know that by WLLN, $\frac{Y_{n,x}}{n}\xrightarrow{\prob}x$
 \end{rem}
-\begin{rem}(Continuous mapping theorem)
+\begin{thm}(\textbf{Continuous mapping theorem})
 	Let $f$ be an uniformly continuous function. For all $\varepsilon>0$, there exists $\delta_{\varepsilon}$ such that
 	\begin{equation*}
-		\text{if}\quad\abs{\frac{S_{n,x}}{n}-x}\leq\delta_{\varepsilon}\quad\text{then}\quad\abs{f\left(\frac{S_{n,x}}{n}\right)-f(x)}\leq\varepsilon
+		\text{if}\quad\abs{\frac{Y_{n,x}}{n}-x}\leq\delta_{\varepsilon}\quad\text{then}\quad\abs{f\left(\frac{Y_{n,x}}{n}\right)-f(x)}\leq\varepsilon
 	\end{equation*}
 	We can obtain by converse,
 	\begin{equation*}
-		\prob\left(\omega\in\Omega:\abs{f\left(\frac{S_{n,x}(\omega)}{n}\right)-f(x)}>\varepsilon\right)\leq\prob\left(\omega\in\Omega:\abs{\frac{S_{n,x}(\omega)}{n}-x}>\delta_{\varepsilon}\right)\to 0
+		\prob\left(\omega\in\Omega:\abs{f\left(\frac{Y_{n,x}(\omega)}{n}\right)-f(x)}>\varepsilon\right)\leq\prob\left(\omega\in\Omega:\abs{\frac{Y_{n,x}(\omega)}{n}-x}>\delta_{\varepsilon}\right)\to 0
 	\end{equation*}
-	From this, we can find that $f\left(\frac{S_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$.\\
+	From this, we can find that $f\left(\frac{Y_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$.\\
 	\textit{Note that for non-uniformly continuous function, it is a bit more complicated. It is best if you do some searching on that.}
-\end{rem}
+\end{thm}
 \newpage
 \begin{eg}
-	By obtaining that $f\left(\frac{S_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$, since there exists a number $M$ such that $\norm{f}_{\infty}\leq M$ (due to $f$ being continuous at $[0,1]$),
+	By obtaining that $f\left(\frac{Y_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$, since there exists a number $M$ such that $\norm{f}_{\infty}\leq M$ (due to $f$ being continuous at $[0,1]$),
 	\begin{align*}
-		\abs{\expect\left(f\left(\frac{S_{n,x}}{n}\right)\right)-f(x)}\leq\expect\abs{f\left(\frac{S_{n,x}}{n}\right)-f(x)}&=\expect\left(\abs{f\left(\frac{S_{n,x}}{n}\right)-f(x)}\mathbf{1}_{\abs{\frac{S_{n,x}}{n}-x}\leq\delta_{\varepsilon}}\right)+\expect\left(\abs{f\left(\frac{S_{n,x}}{n}\right)-f(x)}\mathbf{1}_{\abs{\frac{S_{n,x}}{n}-x}>\delta_{\varepsilon}}\right)\\
-		&\leq\varepsilon+2M\prob\left(\abs{\frac{S_{n,x}}{n}-x}>\delta_{\varepsilon}\right)
+		\abs{\expect\left(f\left(\frac{Y_{n,x}}{n}\right)\right)-f(x)}\leq\expect\abs{f\left(\frac{Y_{n,x}}{n}\right)-f(x)}&=\expect\left(\abs{f\left(\frac{Y_{n,x}}{n}\right)-f(x)}\mathbf{1}_{\abs{\frac{Y_{n,x}}{n}-x}\leq\delta_{\varepsilon}}\right)+\expect\left(\abs{f\left(\frac{Y_{n,x}}{n}\right)-f(x)}\mathbf{1}_{\abs{\frac{Y_{n,x}}{n}-x}>\delta_{\varepsilon}}\right)\\
+		&\leq\varepsilon+2M\prob\left(\abs{\frac{Y_{n,x}}{n}-x}>\delta_{\varepsilon}\right)
 	\end{align*}
 	\begin{align*}
-		\sup_{x\in[0,1]}\abs{\expect\left(f\left(\frac{S_{n,x}}{n}\right)\right)-f(x)}&=\varepsilon+2M\sup_{x\in [0,1]}\left(\prob\left(\abs{\frac{S_{n,x}-nx}{n}}>\delta_{\varepsilon}\right)\right)\\
+		\sup_{x\in[0,1]}\abs{\expect\left(f\left(\frac{Y_{n,x}}{n}\right)\right)-f(x)}&=\varepsilon+2M\sup_{x\in [0,1]}\left(\prob\left(\abs{\frac{Y_{n,x}-nx}{n}}>\delta_{\varepsilon}\right)\right)\\
 		\tag{Markov's inequality and Lyapunov's inequality}
-		&\leq\varepsilon+2M\sup_{x\in[0,1]}\left(\frac{\expect\abs{S_{n,x}-nx}^{2}}{n^{2}\delta_{\varepsilon}^{2}}\right)\\
-		\tag{$\expect S_{n,x}=nx$}
-		&\leq\varepsilon+2M\sup_{x\in[0,1]}\left(\frac{\Var(S_{n,x})}{n^{2}\delta_{\varepsilon}^{2}}\right)=\varepsilon+2M\sup_{x\in[0,1]}\left(\frac{x(1-x)}{n\delta_{\varepsilon}^{2}}\right)\\
+		&\leq\varepsilon+2M\sup_{x\in[0,1]}\left(\frac{\expect\abs{Y_{n,x}-nx}^{2}}{n^{2}\delta_{\varepsilon}^{2}}\right)\\
+		\tag{$\expect Y_{n,x}=nx$}
+		&\leq\varepsilon+2M\sup_{x\in[0,1]}\left(\frac{\Var(Y_{n,x})}{n^{2}\delta_{\varepsilon}^{2}}\right)=\varepsilon+2M\sup_{x\in[0,1]}\left(\frac{x(1-x)}{n\delta_{\varepsilon}^{2}}\right)\\
 		&\leq\varepsilon+\frac{M}{2n\delta_{\varepsilon}^{2}}\\
-		\limsup_{n\to\infty}\sup_{x\in[0,1]}\abs{\expect\left(f\left(\frac{S_{n,x}}{n}\right)\right)-f(x)}&\leq\varepsilon\to 0
+		\limsup_{n\to\infty}\sup_{x\in[0,1]}\abs{\expect\left(f\left(\frac{Y_{n,x}}{n}\right)\right)-f(x)}&\leq\varepsilon\to 0
 	\end{align*}
 	Therefore, we can find that $\sup_{x\in[0,1]}\abs{f_{n}(x)-f(x)}\to 0$ as $n\to\infty$.
 \end{eg}
@@ -4827,30 +4944,30 @@ There are wide range of applications for just Weak Law of Large Numbers.
 		\mu_{n}(\mathcal{H}_{\varepsilon\sqrt{n}})&=\prob(\dist(X,\mathcal{H})\leq\varepsilon\sqrt{n})\\
 		&=\prob\left(\frac{\abs{\left<X,(1,\cdots,1)\right>}}{\norm{(1,\cdots,1)}_{2}}\leq\varepsilon\sqrt{n}\right)\\
 		&=\prob\left(\abs{\frac{\sum_{i=1}^{n}X_{i}}{n}}\leq\varepsilon\right)\\
-		&=\prob\left(\abs{\frac{S_{n}}{n}-\expect X_{1}}\leq\varepsilon\right)\\
+		&=\prob\left(\abs{\frac{\sum_{i=1}^{n}X_{i}}{n}-\expect X_{1}}\leq\varepsilon\right)\\
 		\tag{WLLN}
 		&\to 1
 	\end{align*}
 \end{eg}
 We do not necessarily need to stick to a given sequence of random variables $X_{1},X_{2},\cdots$ in Law of Large Numbers.
 \begin{thm}(WLLN for triangular array)
-	Let $\{X_{n,j}\}_{1\leq j\leq n<\infty}$ be a triangular array. Let $S_{n}=\sum_{i=1}^{n}X_{n,i}$, $\mu_{n}=\expect S_{n}$ and $\sigma_{n}^{2}=\Var(S_{n})$. Suppose that for some sequences $b_{n}$,
+	Let $\{X_{n,j}\}_{1\leq j\leq n<\infty}$ be a triangular array. Let $Y_{n}=\sum_{i=1}^{n}X_{n,i}$, $\mu_{n}=\expect Y_{n}$ and $\sigma_{n}^{2}=\Var(Y_{n})$. Suppose that for some sequences $b_{n}$,
 	\begin{equation*}
-		\frac{\sigma_{n}^{2}}{b_{n}^{2}}=\expect\left(\frac{S_{n}-\mu_{n}}{b_{n}}\right)^{2}\to 0
+		\frac{\sigma_{n}^{2}}{b_{n}^{2}}=\expect\left(\frac{Y_{n}-\mu_{n}}{b_{n}}\right)^{2}\to 0
 	\end{equation*}
 	Then we have
 	\begin{equation*}
-		\frac{S_{n}-\mu_{n}}{b_{n}}\xrightarrow{\prob}0
+		\frac{Y_{n}-\mu_{n}}{b_{n}}\xrightarrow{\prob}0
 	\end{equation*}
 \end{thm}
 \begin{proofing}
 	\begin{equation*}
-		\expect\left(\frac{S_{n}-\mu_{n}}{b_{n}}\right)^{2}=\frac{\Var(S_{n})}{b_{n}^{2}}\to 0
+		\expect\left(\frac{Y_{n}-\mu_{n}}{b_{n}}\right)^{2}=\frac{\Var(Y_{n})}{b_{n}^{2}}\to 0
 	\end{equation*}
-	Therefore, $\frac{S_{n}-\mu_{n}}{b_{n}}\xrightarrow{2}0$ and thus $\frac{S_{n}-\mu_{n}}{b_{n}}\xrightarrow{\prob}0$.
+	Therefore, $\frac{Y_{n}-\mu_{n}}{b_{n}}\xrightarrow{2}0$ and thus $\frac{Y_{n}-\mu_{n}}{b_{n}}\xrightarrow{\prob}0$.
 \end{proofing}
 \begin{rem}
-	We should choose $b_{n}$ that no larger than $\expect S_{n}$ if possible.
+	We should choose $b_{n}$ that no larger than $\expect Y_{n}$ if possible.
 \end{rem}
 \begin{eg}(Coupon collector's problem) 
 	Let $X_{1},X_{2},\cdots$ be i.i.d. uniform random variables on $\{1,2,\cdots,n\}$.\\
@@ -5007,9 +5124,9 @@ We have a theorem that have conditions quite similar to Law of Large Numbers. Ho
 	\begin{equation*}
 		\prob(\abs{X_{n}}\geq n\text{ i.o.})=1
 	\end{equation*}
-	Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
 	\begin{equation*}
-		\prob\left(\lim_{n\to\infty}\frac{S_{n}}{n}\text{ exists in }(-\infty,\infty)\right)=0
+		\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists in }(-\infty,\infty)\right)=0
 	\end{equation*}
 \end{thm}
 \begin{proofing}
@@ -5017,12 +5134,12 @@ We have a theorem that have conditions quite similar to Law of Large Numbers. Ho
 		\expect\abs{X_{1}}=\int_{0}^{\infty}\prob(\abs{X_{1}}>t)\,dt\leq\sum_{n=0}^{\infty}\prob(\abs{X_{1}}>n)
 	\end{equation*}
 	Since $\{\abs{X_{n}}>n\}$ is a collection of independent events, by BCII, $\prob(\abs{X_{n}}>n\text{ i.o.})=1$.\\
-	For the second statement, let $C=\{\omega\in\Omega:\lim_{n\to\infty}\frac{S_{n}(\omega)}{n}\text{ exists in }\mathbb{R}\}$.\\
+	For the second statement, let $C=\{\omega\in\Omega:\lim_{n\to\infty}\frac{Y_{n}(\omega)}{n}\text{ exists in }\mathbb{R}\}$.\\
 	Assume that $\omega\in C$, then
 	\begin{equation*}
-		\frac{S_{n}(\omega)}{n}-\frac{S_{n+1}(\omega)}{n+1}=\frac{S_{n}(\omega)}{n(n+1)}-\frac{X_{n+1}(\omega)}{n+1}
+		\frac{Y_{n}(\omega)}{n}-\frac{Y_{n+1}(\omega)}{n+1}=\frac{Y_{n}(\omega)}{n(n+1)}-\frac{X_{n+1}(\omega)}{n+1}
 	\end{equation*}
-	Since $\frac{S_{n}}{n}$ converges, $\frac{S_{n}(\omega)}{n}-\frac{S_{n+1}(\omega)}{n+1}\to 0$ and $\frac{S_{n}(\omega)}{n(n+1)}\to 0$. We get that $\frac{X_{n+1}(\omega)}{n+1}\to 0$.\\
+	Since $\frac{Y_{n}}{n}$ converges, $\frac{Y_{n}(\omega)}{n}-\frac{Y_{n+1}(\omega)}{n+1}\to 0$ and $\frac{Y_{n}(\omega)}{n(n+1)}\to 0$. We get that $\frac{X_{n+1}(\omega)}{n+1}\to 0$.\\
 	However, that means $\abs{X_{n+1}}<n+1$ for an arbitrary large $n$. Therefore, $\omega\not\in\{\abs{X_{n}}\geq n\text{ i.o.}\}$.\\
 	From that, we get that $\prob(C)=0$ since $\prob(\abs{X_{n}}\geq n\text{ i.o.})=1$.
 \end{proofing}
@@ -5035,37 +5152,37 @@ The next result extends BCII.
 	\end{equation*}
 \end{thm}
 \begin{proofing}
-	Let $X_{n}=\mathbf{1}_{A_{n}}$, $S_{n}=\sum_{i=1}^{n}X_{i}$ and $\expect S_{n}=\sum_{m=1}^{n}\prob(A_{m})$.\\
+	Let $X_{n}=\mathbf{1}_{A_{n}}$, $Y_{n}=\sum_{i=1}^{n}X_{i}$ and $\expect Y_{n}=\sum_{m=1}^{n}\prob(A_{m})$.\\
 	Notice that pairwise independence is already enough for $\cov(X_{i},X_{j})=0$ for all $i\neq j$.\\
 	Using Markov's inequality, for any $\varepsilon>0$, we get as $n\to\infty$
 	\begin{align*}
-		\prob\left(\abs{\frac{S_{n}-\expect S_{n}}{\expect S_{n}}}>\varepsilon\right)&\leq\frac{\expect(S_{n}-\expect S_{n})^{2}}{\varepsilon^{2}(\expect S_{n})^{2}}=\frac{\Var(S_{n})}{\varepsilon^{2}(\expect S_{n})^{2}}=\sum_{m=1}^{n}\frac{\Var(\mathbf{1}_{A_{m}})}{\varepsilon^{2}(\expect S_{n})^{2}}=\sum_{m=1}^{n}\frac{\expect\mathbf{1}_{A_{m}}}{\varepsilon^{2}(\expect S_{n})^{2}}=\frac{1}{\varepsilon^{2}\expect S_{n}}\to 0
+		\prob\left(\abs{\frac{Y_{n}-\expect Y_{n}}{\expect Y_{n}}}>\varepsilon\right)&\leq\frac{\expect(Y_{n}-\expect Y_{n})^{2}}{\varepsilon^{2}(\expect Y_{n})^{2}}=\frac{\Var(Y_{n})}{\varepsilon^{2}(\expect Y_{n})^{2}}=\sum_{m=1}^{n}\frac{\Var(\mathbf{1}_{A_{m}})}{\varepsilon^{2}(\expect Y_{n})^{2}}=\sum_{m=1}^{n}\frac{\expect\mathbf{1}_{A_{m}}}{\varepsilon^{2}(\expect Y_{n})^{2}}=\frac{1}{\varepsilon^{2}\expect Y_{n}}\to 0
 	\end{align*}
-	Therefore, we get that $\frac{S_{n}-\expect S_{n}}{\expect S_{n}}\xrightarrow{\prob}0$.\\
-	Now, we can choose a desirable subsequence to prove almost surely convergence. Let $n_{k}=\inf\{n:\expect S_{n}\geq k^{2}\}$.\\
-	We can get that $\expect S_{n_{k}}\geq k^{2}$ and $\expect S_{n_{k}}=\expect S_{n_{k}-1}+\expect\mathbf{1}_{A_{n_{k}}}<k^{2}+1$. Again by Markov's inequality,
+	Therefore, we get that $\frac{Y_{n}-\expect Y_{n}}{\expect Y_{n}}\xrightarrow{\prob}0$.\\
+	Now, we can choose a desirable subsequence to prove almost surely convergence. Let $n_{k}=\inf\{n:\expect Y_{n}\geq k^{2}\}$.\\
+	We can get that $\expect Y_{n_{k}}\geq k^{2}$ and $\expect Y_{n_{k}}=\expect Y_{n_{k}-1}+\expect\mathbf{1}_{A_{n_{k}}}<k^{2}+1$. Again by Markov's inequality,
 	\begin{equation*}
-		\sum_{k=1}^{\infty}\prob\left(\abs{\frac{S_{n_{k}}-\expect S_{n_{k}}}{\expect S_{n_{k}}}}>\varepsilon\right)\leq\sum_{k=1}^{\infty}\frac{1}{\varepsilon^{2}\expect S_{n_{k}}}\leq\sum_{k=1}^{\infty}\frac{1}{\varepsilon^{2}(k^{2}+1)}<\infty
+		\sum_{k=1}^{\infty}\prob\left(\abs{\frac{Y_{n_{k}}-\expect Y_{n_{k}}}{\expect Y_{n_{k}}}}>\varepsilon\right)\leq\sum_{k=1}^{\infty}\frac{1}{\varepsilon^{2}\expect Y_{n_{k}}}\leq\sum_{k=1}^{\infty}\frac{1}{\varepsilon^{2}(k^{2}+1)}<\infty
 	\end{equation*}
 	By BCI, we have that as $k\to\infty$,
 	\begin{align*}
-		\frac{S_{n_{k}}}{\expect S_{n_{k}}}&\xrightarrow{\text{a.s.}}1 & \prob\left(\frac{S_{n_{k}}}{\expect S_{n_{k}}}\to 1\text{ as }k\to\infty\right)=1
+		\frac{Y_{n_{k}}}{\expect Y_{n_{k}}}&\xrightarrow{\text{a.s.}}1 & \prob\left(\frac{Y_{n_{k}}}{\expect Y_{n_{k}}}\to 1\text{ as }k\to\infty\right)=1
 	\end{align*}
-	Let $C=\{\omega\in\Omega:\frac{S_{n_{k}}(\omega)}{\expect S_{n_{k}}}\to 1\text{ as }k\to\infty\}$. For $\omega\in C$, for all $n_{k}\leq n<n_{k+1}$, we have $S_{n_{k}}(\omega)\leq S_{n}(\omega)\leq S_{n_{k+1}}(\omega)$.
+	Let $C=\{\omega\in\Omega:\frac{Y_{n_{k}}(\omega)}{\expect Y_{n_{k}}}\to 1\text{ as }k\to\infty\}$. For $\omega\in C$, for all $n_{k}\leq n<n_{k+1}$, we have $Y_{n_{k}}(\omega)\leq Y_{n}(\omega)\leq Y_{n_{k+1}}(\omega)$.
 	\begin{equation*}
-		\frac{S_{n_{k}}(\omega)}{\expect S_{n_{k}+1}}\leq\frac{S_{n}(\omega)}{\expect S_{n}}\leq\frac{S_{n_{k}+1}(\omega)}{\expect S_{n_{k}}}
+		\frac{Y_{n_{k}}(\omega)}{\expect Y_{n_{k}+1}}\leq\frac{Y_{n}(\omega)}{\expect Y_{n}}\leq\frac{Y_{n_{k}+1}(\omega)}{\expect Y_{n_{k}}}
 	\end{equation*}
-	Since $\frac{S_{n_{k}}(\omega)}{\expect S_{n_{k}+1}}=\frac{S_{n_{k}}(\omega)}{\expect S_{n_{k}}}\left(\frac{\expect S_{n_{k}}}{\expect S_{n_{k}+1}}\right)\to 1$ and $\frac{S_{n_{k}+1}(\omega)}{\expect S_{n_{k}+1}}=\frac{S_{n_{k}+1}(\omega)}{\expect S_{n_{k}+1}}\left(\frac{\expect S_{n_{k}+1}}{\expect S_{n_{k}}}\right)\to 1$, we get that for any $\omega\in C$,
+	Since $\frac{Y_{n_{k}}(\omega)}{\expect Y_{n_{k}+1}}=\frac{Y_{n_{k}}(\omega)}{\expect Y_{n_{k}}}\left(\frac{\expect Y_{n_{k}}}{\expect Y_{n_{k}+1}}\right)\to 1$ and $\frac{Y_{n_{k}+1}(\omega)}{\expect Y_{n_{k}+1}}=\frac{Y_{n_{k}+1}(\omega)}{\expect Y_{n_{k}+1}}\left(\frac{\expect Y_{n_{k}+1}}{\expect Y_{n_{k}}}\right)\to 1$, we get that for any $\omega\in C$,
 	\begin{equation*}
-		\frac{S_{n}(\omega)}{\expect S_{n}}\to 1
+		\frac{Y_{n}(\omega)}{\expect Y_{n}}\to 1
 	\end{equation*}
 	Therefore, we have
 	\begin{equation*}
-		\prob\left(\frac{S_{n}}{\expect S_{n}}\to 1\right)\geq\prob\left(\frac{S_{n_{k}}}{\expect S_{n_{k}}}\to 1\text{ as }k\to\infty\right)=1
+		\prob\left(\frac{Y_{n}}{\expect Y_{n}}\to 1\right)\geq\prob\left(\frac{Y_{n_{k}}}{\expect Y_{n_{k}}}\to 1\text{ as }k\to\infty\right)=1
 	\end{equation*}
 	As a result, we get that
 	\begin{equation*}
-		\frac{S_{n}}{\expect S_{n}}\xrightarrow{\text{a.s.}}1
+		\frac{Y_{n}}{\expect Y_{n}}\xrightarrow{\text{a.s.}}1
 	\end{equation*}
 \end{proofing}
 If the events $A_{1}, A_{2},\cdots$ in the Borel-Cantelli Lemmas are independent, then $\prob(A)$ is either $0$ or $1$ depending on whether $\sum\prob(A_{n})$ converges. The following is a simple version.
@@ -5122,31 +5239,31 @@ We continue to explore more into tail events.
 		\prob(Y=k)=1
 	\end{equation*}
 \end{thm}
-Again let $X_{1},X_{2},\cdots$ be i.i.d. random variables and let $S_{n}=\sum_{i=1}^{n}X_{i}$.\\
+Again let $X_{1},X_{2},\cdots$ be i.i.d. random variables and let $Y_{n}=\sum_{i=1}^{n}X_{i}$.\\
 Recall that if $\expect\abs{X_{1}}<\infty$,
 \begin{equation*}
-	\prob\left(\lim_{n\to\infty}\frac{S_{n}}{n}=\expect X_{1}\right)=1
+	\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}=\expect X_{1}\right)=1
 \end{equation*}
 If $\expect\abs{X_{1}}=\infty$,
 \begin{equation*}
-	\prob\left(\lim_{n\to\infty}\frac{S_{n}}{n}\text{ exists}\right)=0
+	\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists}\right)=0
 \end{equation*}
 Using tail function, the random variables are not necessarily identically distributed.
 \begin{thm}
-	Let $X_{1},X_{2},\cdots$ be independent random variables. Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots$ be independent random variables. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
 	\begin{equation*}
-		\prob\left(\lim_{n\to\infty}\frac{S_{n}}{n}\text{ exists}\right)=0\text{ or }1
+		\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists}\right)=0\text{ or }1
 	\end{equation*}
 \end{thm}
 \begin{proofing}
-	Let $Z_{1}=\limsup_{n\to\infty}\frac{S_{n}}{n}$ and $Z_{2}=\liminf_{n\to\infty}\frac{S_{n}}{n}$. We claim that both $Z_{1}$ and $Z_{2}$ are tail functions of $X_{i}$'s. For any $k$,
+	Let $Z_{1}=\limsup_{n\to\infty}\frac{Y_{n}}{n}$ and $Z_{2}=\liminf_{n\to\infty}\frac{Y_{n}}{n}$. We claim that both $Z_{1}$ and $Z_{2}$ are tail functions of $X_{i}$'s. For any $k$,
 	\begin{align*}
 		Z_{1}(\omega)&=\limsup_{n\to\infty}\left(\frac{1}{n}\sum_{i=1}^{k}X_{i}(\omega)+\frac{1}{n}\sum_{i=k+1}^{n}X_{i}(\omega)\right) & Z_{2}(\omega)&=\liminf_{n\to\infty}\left(\frac{1}{n}\sum_{i=1}^{k}X_{i}(\omega)+\frac{1}{n}\sum_{i=k+1}^{n}X_{i}(\omega)\right)
 	\end{align*}
 	Therefore, both $Z_{1}$ and $Z_{2}$ do not depend on any finite collection of $X_{i}$. We say that $\{Z_{1}=Z_{2}\}$ is a tail event.\\
 	Therefore, by Kolmogorov's zero-one law.
 	\begin{equation*}
-		\prob\left(\lim_{n\to\infty}\frac{S_{n}}{n}\text{ exists}\right)=\prob(Z_{1}=Z_{2})=0\text{ or }1
+		\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists}\right)=\prob(Z_{1}=Z_{2})=0\text{ or }1
 	\end{equation*}
 \end{proofing}
 \begin{eg}(Random power series)
@@ -5192,65 +5309,65 @@ Using tail function, the random variables are not necessarily identically distri
 \end{eg}
 
 \section{Strong Law of Large Numbers}
-We recall the Weak Law of Large Numbers. Let $X_{1},X_{2},\cdots$ be a sequence of i.i.d. random variables with $\expect(X_{1})=\mu$. Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then as $n\to\infty$,
+We recall the Weak Law of Large Numbers. Let $X_{1},X_{2},\cdots$ be a sequence of i.i.d. random variables with $\expect(X_{1})=\mu$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then as $n\to\infty$,
 \begin{align*}
-	\frac{S_{n}}{n}&\xrightarrow{D}\mu & \frac{S_{n}}{n}&\xrightarrow{\prob}\mu
+	\frac{Y_{n}}{n}&\xrightarrow{D}\mu & \frac{Y_{n}}{n}&\xrightarrow{\prob}\mu
 \end{align*}
 By name, WLLN indeed has a stronger version. It is called Strong Law of Large Numbers. We prove one of the versions of SLLN.
 \begin{thm}(\textbf{Strong Law of Large Numbers} [SLLN])
-	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=\mu$ and $\expect\abs{X_{1}}<\infty$. Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=\mu$ and $\expect\abs{X_{1}}<\infty$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
 	\begin{equation*}
-		\frac{S_{n}}{n}\xrightarrow{\text{a.s.}}\mu
+		\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}\mu
 	\end{equation*}
 \end{thm}
 Note that the proof for SLLN is very complicated, and we will not prove it here. Instead, we will prove a different version of SLLN.
 \newpage
 \begin{thm}(SLLN with $\expect X_{i}^{4}<\infty$)
-	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=0$ and $\expect(X_{1}^{4})<\infty$. Let $S_{n}=\sum_{i=1}^{n}X_{i}$, then
+	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=0$ and $\expect(X_{1}^{4})<\infty$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$, then
 	\begin{equation*}
-		\frac{S_{n}}{n}\xrightarrow{\text{a.s.}}0
+		\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}0
 	\end{equation*}
 \end{thm}
 \begin{proofing}
 	\begin{equation*}
-		\expect S_{n}^{4}=\expect\left(\sum_{i=1}^{n}X_{i}\right)^{4}=\sum_{i,j,k,\ell=1}^{n}\expect X_{i}X_{j}X_{k}X_{\ell}
+		\expect Y_{n}^{4}=\expect\left(\sum_{i=1}^{n}X_{i}\right)^{4}=\sum_{i,j,k,\ell=1}^{n}\expect X_{i}X_{j}X_{k}X_{\ell}
 	\end{equation*}
 	The expectation is non-zero if there are $2$ pairs of the random variables with same value.
 	\begin{equation*}
-		\expect S_{n}^{4}=3\sum_{i\neq j}\expect X_{i}^{2}\expect X_{j}^{2}+\sum_{i}\expect X_{i}^{4}=O(n^{2})
+		\expect Y_{n}^{4}=3\sum_{i\neq j}\expect X_{i}^{2}\expect X_{j}^{2}+\sum_{i}\expect X_{i}^{4}=O(n^{2})
 	\end{equation*}
 	\begin{equation*}
-		\prob\left(\abs{\frac{S_{n}}{n}}\geq\varepsilon\right)\leq\frac{\expect S_{n}^{4}}{(n\varepsilon)^{4}}=O\left(\frac{1}{n^{2}}\right)
+		\prob\left(\abs{\frac{Y_{n}}{n}}\geq\varepsilon\right)\leq\frac{\expect Y_{n}^{4}}{(n\varepsilon)^{4}}=O\left(\frac{1}{n^{2}}\right)
 	\end{equation*}
 	Therefore, we get that for all $\varepsilon>0$
 	\begin{equation*}
-		\sum_{n=1}^{\infty}\prob\left(\abs{\frac{S_{n}}{n}}>\varepsilon\right)<\infty
+		\sum_{n=1}^{\infty}\prob\left(\abs{\frac{Y_{n}}{n}}>\varepsilon\right)<\infty
 	\end{equation*}
-	Therefore, $\frac{S_{n}}{n}\xrightarrow{\text{a.s.}}0$.
+	Therefore, $\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}0$.
 \end{proofing}
-\begin{thm}(SLLN with $\expect X_{1}^{2}<\infty$) Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}^{2}<\infty$ and $\expect X_{i}=\mu$. Let $S_{n}=\sum_{i=1}^{n}X_{i}$. Then
+\begin{thm}(SLLN with $\expect X_{1}^{2}<\infty$) Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}^{2}<\infty$ and $\expect X_{i}=\mu$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
 	\begin{align*}
-		\frac{S_{n}}{n}&\xrightarrow{2}\mu & \frac{S_{n}}{n}&\xrightarrow{\text{a.s.}}\mu
+		\frac{Y_{n}}{n}&\xrightarrow{2}\mu & \frac{Y_{n}}{n}&\xrightarrow{\text{a.s.}}\mu
 	\end{align*}
 \end{thm}
 \begin{proofing}
 	We first show convergence in mean square. Since $\expect X_{1}^{2}<\infty$, as $n\to\infty$,
 	\begin{equation*}
-		\expect\left(\frac{S_{n}}{n}-\mu\right)^{2}=\frac{\expect(S_{n}-n\mu)^{2}}{n^{2}}=\frac{\Var(S_{n})}{n^{2}}=\frac{\Var(X_{1})}{n}\to 0
+		\expect\left(\frac{Y_{n}}{n}-\mu\right)^{2}=\frac{\expect(Y_{n}-n\mu)^{2}}{n^{2}}=\frac{\Var(Y_{n})}{n^{2}}=\frac{\Var(X_{1})}{n}\to 0
 	\end{equation*}
-	For the almost sure convergence, we know that convergence in probability implies the existence of almost sure convergence of some subsequence of $\frac{S_{n}}{n}$ to $\mu$. We write $n_{i}=i^{2}$. By using Markov's inequality, for all $\varepsilon>0$,
+	For the almost sure convergence, we know that convergence in probability implies the existence of almost sure convergence of some subsequence of $\frac{Y_{n}}{n}$ to $\mu$. We write $n_{i}=i^{2}$. By using Markov's inequality, for all $\varepsilon>0$,
 	\begin{equation*}
-		\sum_{i}\prob\left(\frac{\abs{S_{i^{2}}-i^{2}\mu}}{i^{2}}>\varepsilon\right)\leq\sum_{i}\frac{\expect\abs{S_{i^{2}}-i^{2}\mu}^{2}}{i^{4}\varepsilon^{2}}=\sum_{i}\frac{\Var(S_{i^{2}})}{i^{4}\varepsilon^{2}}=\sum_{i}\frac{\Var(X_{1})}{i^{2}\varepsilon^{2}}<\infty
+		\sum_{i}\prob\left(\frac{\abs{Y_{i^{2}}-i^{2}\mu}}{i^{2}}>\varepsilon\right)\leq\sum_{i}\frac{\expect\abs{Y_{i^{2}}-i^{2}\mu}^{2}}{i^{4}\varepsilon^{2}}=\sum_{i}\frac{\Var(Y_{i^{2}})}{i^{4}\varepsilon^{2}}=\sum_{i}\frac{\Var(X_{1})}{i^{2}\varepsilon^{2}}<\infty
 	\end{equation*}
-	Therefore, we get that $\frac{S_{i^{2}}}{i^{2}}\xrightarrow{\text{a.s.}}\mu$. However, we need to fill the gaps.\\
-	We suppose the $X_{i}$ are non-negative. We have $S_{i^{2}}\leq S_{n}\leq S_{(i+1)^{2}}$ if $i^{2}\leq n\leq (i+1)^{2}$.\\
+	Therefore, we get that $\frac{Y_{i^{2}}}{i^{2}}\xrightarrow{\text{a.s.}}\mu$. However, we need to fill the gaps.\\
+	We suppose the $X_{i}$ are non-negative. We have $Y_{i^{2}}\leq Y_{n}\leq Y_{(i+1)^{2}}$ if $i^{2}\leq n\leq (i+1)^{2}$.\\
 	We can get that
 	\begin{equation*}
-		\frac{S_{i^{2}}}{(i+1)^{2}}\leq\frac{S_{n}}{n}\leq\frac{S_{(i+1)^{2}}}{i^{2}}
+		\frac{Y_{i^{2}}}{(i+1)^{2}}\leq\frac{Y_{n}}{n}\leq\frac{Y_{(i+1)^{2}}}{i^{2}}
 	\end{equation*}
-	Since we get that $\frac{S_{i^{2}}}{i^{2}}\xrightarrow{\text{a.s.}}\mu$, by having $\frac{i^{2}}{(i+1)^{2}}\to 1$ as $i\to\infty$, we get that whenever $X_{i}$ are non-negative, as $n\to\infty$
+	Since we get that $\frac{Y_{i^{2}}}{i^{2}}\xrightarrow{\text{a.s.}}\mu$, by having $\frac{i^{2}}{(i+1)^{2}}\to 1$ as $i\to\infty$, we get that whenever $X_{i}$ are non-negative, as $n\to\infty$
 	\begin{equation*}
-		\frac{S_{n}}{n}\xrightarrow{\text{a.s.}}\mu
+		\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}\mu
 	\end{equation*}
 	For general $X_{i}$, we can write $X_{n}=X_{n}^{+}-X_{n}^{-}$ where
 	\begin{align*}
@@ -5260,9 +5377,9 @@ Note that the proof for SLLN is very complicated, and we will not prove it here.
 	Furthermore, $X_{n}^{+}\leq\abs{X_{n}}$ and $X_{n}^{-}\leq\abs{X_{n}}$. Therefore, $\expect(X_{n}^{+})^{2}<\infty$ and $\expect(X_{n}^{-})^{2}<\infty$.
 	By previous conclusion for non-negative random variables, we get as $n\to\infty$,
 	\begin{equation*}
-		\frac{S_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}X_{i}^{+}-\sum_{i=1}^{n}X_{i}^{-}\right)\xrightarrow{\text{a.s.}}\expect X_{1}^{+}-\expect X_{1}^{-}=\expect X_{1}
+		\frac{Y_{n}}{n}=\frac{1}{n}\left(\sum_{i=1}^{n}X_{i}^{+}-\sum_{i=1}^{n}X_{i}^{-}\right)\xrightarrow{\text{a.s.}}\expect X_{1}^{+}-\expect X_{1}^{-}=\expect X_{1}
 	\end{equation*}
-	Therefore, $\frac{S_{n}}{n}\xrightarrow{\text{a.s.}}\mu$.
+	Therefore, $\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}\mu$.
 \end{proofing}
 \newpage
 Why do we need SLLN? There are a lot of applications that specifically need SLLN.
@@ -5297,7 +5414,7 @@ Why do we need SLLN? There are a lot of applications that specifically need SLLN
 	For this claim, it is not necessary that $X_{N_{m}}\xrightarrow{\text{a.s}}X_{\infty}$ or $X_{N_{m}}\xrightarrow{\prob}X_{\infty}$.
 \end{rem}
 \begin{eg}
-	Recall the example that we use in Theorem \ref{Chapter 7 Theorem implications of different convergence modes} to prove $(X_{n}\xrightarrow{\prob}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$. Let $\Omega=[0,1]$. Let
+	Recall the example that we use in Theorem \ref{Chapter 7 (Theorem) implications of different convergence modes} to prove $(X_{n}\xrightarrow{\prob}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$. Let $\Omega=[0,1]$. Let
 	\begin{equation*}
 		Y_{m,k}=\mathbf{1}_{I_{m,k}}=\begin{cases}
 			1, &\omega\in\left[\frac{k-1}{m},\frac{k}{m}\right]\\
@@ -5356,52 +5473,52 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 \renewcommand{\thechapter}{\Alph{chapter}}
 
 \chapter{Random walk}
-\label{Simple random walk}
+\label{Appendix A Simple random walk}
 \begin{eg}(\textbf{Simple random walk})
 	Consider a particle moving on the real line. Every step it moves to the right by $1$ with probability $p$, and to the left by $1$ with probability $q=1-p$.\\
-	Let $S_{n}$ be the position of the particles after $n$ moves and let $S_{0}=a$. Then:
+	Let $Y_{n}$ be the position of the particles after $n$ moves and let $Y_{0}=a$. Then:
 	\begin{equation*}
-		S_{n}=a+\sum_{i=1}^{n}X_{i}
+		Y_{n}=a+\sum_{i=1}^{n}X_{i}
 	\end{equation*}
 	where $X_{1},X_{2},\cdots$ is a sequence of independently random variables taking $1$ with probability $p$ and $-1$ with probability $q$.\\
 	Random walk is \textbf{symmetric} if $p=q=\frac{1}{2}$.
 \end{eg}
 \begin{lem}
-	\label{Simple random walk properties}
+	\label{Appendix A (Lemma) Simple random walk properties}
 	Simple random walk has the following properties:
 	\begin{enumerate}
-		\item It is \textbf{spatially homogeneous}: $\prob(S_{n}=j|S_{0}=a)=\prob(S_{n}=j+b|S_{0}=a+b)$.
-		\item It is \textbf{temporarily homogeneous}: $\prob(S_{n}=j|S_{0}=a)=\prob(S_{m+n}=j|S_{m}=a)$.
-		\item It has \textbf{Markov property}: $\prob(S_{m+n}=j|S_{0},S_{1},\cdots,S_{m})=\prob(S_{m+n}=j|S_{m})$, $n\geq 0$.
+		\item It is \textbf{spatially homogeneous}: $\prob(Y_{n}=j|Y_{0}=a)=\prob(Y_{n}=j+b|Y_{0}=a+b)$.
+		\item It is \textbf{temporarily homogeneous}: $\prob(Y_{n}=j|Y_{0}=a)=\prob(Y_{m+n}=j|Y_{m}=a)$.
+		\item It has \textbf{Markov property}: $\prob(Y_{m+n}=j|Y_{0},Y_{1},\cdots,Y_{m})=\prob(Y_{m+n}=j|Y_{m})$, $n\geq 0$.
 	\end{enumerate}
 \end{lem}
 \begin{proofing}
 	\begin{enumerate}
-		\item $\prob(S_{n}=j|S_{0}=a)=\prob(\sum_{i=1}^{n}X_{i}=j-a)=\prob(S_{n}=j+b|S_{0}=a+b$
+		\item $\prob(Y_{n}=j|Y_{0}=a)=\prob(\sum_{i=1}^{n}X_{i}=j-a)=\prob(Y_{n}=j+b|Y_{0}=a+b$
 		\item 
 		\begin{equation*}
-			\prob(S_{n}=j|S_{0}=a)=\prob\left(\sum_{i=1}^{n}X_{i}=j-a\right)=\prob\left(\sum_{i=m+1}^{m+n}X_{i}=j-a\right)=\prob(S_{m+n}=j|S_{m}=a)
+			\prob(Y_{n}=j|Y_{0}=a)=\prob\left(\sum_{i=1}^{n}X_{i}=j-a\right)=\prob\left(\sum_{i=m+1}^{m+n}X_{i}=j-a\right)=\prob(Y_{m+n}=j|Y_{m}=a)
 		\end{equation*}
-		\item If we know $S_{m}$, then distribution of $S_{m+n}$ depends only on $X_{m+1},X_{m+2},\cdots,X_{m+n}$ and $S_{0},S_{1},\cdots,S_{m-1}$ does not influence the dependency.
+		\item If we know $Y_{m}$, then distribution of $Y_{m+n}$ depends only on $X_{m+1},X_{m+2},\cdots,X_{m+n}$ and $Y_{0},Y_{1},\cdots,Y_{m-1}$ does not influence the dependency.
 	\end{enumerate}
 \end{proofing}
 \begin{eg}(Probability via sample path counting)
 	Let \textbf{sample path} $\vec{s}=(s_{0},s_{1},\cdots,s_{n})$ (outcome/realization of the random walk), with $s_{0}=a$ and $s_{i+1}-s_{i}=\pm 1$.
 	\begin{align*}
-		\prob((S_{0},S_{1},\cdots,S_{n})=(s_{0},s_{1},\cdots,s_{n}))&=p^{r}q^{\ell} & r&=\#\{i:s_{i+1}-s_{i}=1\} & \ell&=\#\{i:s_{i+1}-s_{i}=-1\}
+		\prob((Y_{0},Y_{1},\cdots,Y_{n})=(s_{0},s_{1},\cdots,s_{n}))&=p^{r}q^{\ell} & r&=\#\{i:s_{i+1}-s_{i}=1\} & \ell&=\#\{i:s_{i+1}-s_{i}=-1\}
 	\end{align*}
 \end{eg}
 \begin{eg}
 	Let $M_{n}^{r}(a,b)$ be number of paths $(s_{0},s_{1},\cdots,s_{n})$ with $s_{0}=a$, $s_{n}=b$ and having $r$ rightward steps.
 	\begin{equation*}
-		\prob(S_{n}=b)=\sum_{r} M_{n}^{r}(a,b)p^{r}q^{n-r}
+		\prob(Y_{n}=b)=\sum_{r} M_{n}^{r}(a,b)p^{r}q^{n-r}
 	\end{equation*}
 	By equations $r+\ell=n$ and $r-\ell=b-a$, $r=\frac{1}{2}(n+b-a)$ and $\ell=(n-b+a)$.\\
 	If $\frac{1}{2}(n+b-a)\in\{0,1,\cdots,n\}$,
 	\begin{equation*}
-		\prob(S_{n}=b)=\binom{n}{\frac{1}{2}(n+b-a)}p^{\frac{1}{2}(n+b-a)}q^{\frac{1}{2}(n-b+a)}
+		\prob(Y_{n}=b)=\binom{n}{\frac{1}{2}(n+b-a)}p^{\frac{1}{2}(n+b-a)}q^{\frac{1}{2}(n-b+a)}
 	\end{equation*}
-	Otherwise, $\prob(S_{n}=b)=0$.
+	Otherwise, $\prob(Y_{n}=b)=0$.
 \end{eg}
 \begin{thm}(Reflection principle)
 	Let $N_{n}(a,b)$ be number of possible paths from $(0,a)$ to $(n,b)$ and let $N_{n}^{0}(a,b)$ be number of such paths which contains some point $(k,0)$ on the $x$-axis. If $a,b>0$, then:
@@ -5415,7 +5532,7 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 	This operation gives a one-to-one correspondence between the collections of such paths.
 \end{proofing}
 \begin{lem}
-	\label{Number of paths calculation}
+	\label{Appendix A (Lemma) Number of paths calculation}
 	\begin{equation*}
 		N_{n}(a,b)=\binom{n}{\frac{1}{2}(n+b-a)}
 	\end{equation*}
@@ -5430,9 +5547,9 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 \end{proofing}
 \begin{eg}
 	We want to find the probability that the walk does not revisit its starting point in the first $n$ steps.\\
-	Without loss of generality, we assume $S_{0}=0$ so that $S_{1},S_{2},\cdots,S_{n}\neq 0$ if and only if $S_{1}S_{2}\cdots S_{n}\neq 0$.\\
-	Event $S_{1}S_{2}\cdots S_{n}\neq 0$ occurs if and only if the path of the walk does not visit the $x$-axis in the time interval $[1,n]$.\\
-	If $b>0$, first step must be $(1,1)$, so, by Lemma \ref{Number of paths calculation} and Reflection principle, number of such path is:
+	Without loss of generality, we assume $Y_{0}=0$ so that $Y_{1},Y_{2},\cdots,Y_{n}\neq 0$ if and only if $Y_{1}Y_{2}\cdots Y_{n}\neq 0$.\\
+	Event $Y_{1}Y_{2}\cdots Y_{n}\neq 0$ occurs if and only if the path of the walk does not visit the $x$-axis in the time interval $[1,n]$.\\
+	If $b>0$, first step must be $(1,1)$, so, by Lemma \ref{Appendix A (Lemma) Number of paths calculation} and Reflection principle, number of such path is:
 	\begin{align*}
 		N_{n-1}(1,b)-N_{n-1}^{0}(1,b)&=N_{n-1}(1,b)-N_{n-1}(-1,b)\\
 		&=\binom{n-1}{\frac{1}{2}(n+b-2)}-\binom{n-1}{\frac{1}{2}(n+b)}\\
@@ -5441,27 +5558,27 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 	\end{align*}
 	There are $\frac{1}{2}(n+b)$ rightward steps and $\frac{1}{2}(n-b)$ leftward steps. Therefore,
 	\begin{equation*}
-		\prob(S_{1}S_{2}\cdots S_{n}\neq 0,S_{n}=b)=\frac{b}{n}N_{n}(0,b)p^{\frac{1}{2}(n+b)}q^{\frac{1}{2}(n-b)}=\frac{b}{n}\prob(S_{n}=b).
+		\prob(Y_{1}Y_{2}\cdots Y_{n}\neq 0,Y_{n}=b)=\frac{b}{n}N_{n}(0,b)p^{\frac{1}{2}(n+b)}q^{\frac{1}{2}(n-b)}=\frac{b}{n}\prob(Y_{n}=b).
 	\end{equation*}
 \end{eg}
 \begin{eg}
-	Let $M_{n}=\max\{S_{i}:0\leq i\leq n\}$ be the maximum value attained by random walk up to time $n$. Suppose that $S_{0}=0$ so that $M_{n}\geq 0$. We have $M_{n}\geq S_{n}$.
+	Let $M_{n}=\max\{Y_{i}:0\leq i\leq n\}$ be the maximum value attained by random walk up to time $n$. Suppose that $Y_{0}=0$ so that $M_{n}\geq 0$. We have $M_{n}\geq Y_{n}$.
 \end{eg}
 \begin{thm}
-	Suppose that $S_{0}=0$. Then, for $r\geq 1$,
+	Suppose that $Y_{0}=0$. Then, for $r\geq 1$,
 	\begin{equation*}
-		\prob(M_{n}\geq r,S_{n}=b)=\begin{cases}
-			\prob(S_{n}=b), &\text{if }b\geq r\\
-			\left(\frac{q}{p}\right)^{r-b}\prob(S_{n}=2r-b), &\text{if }b<r
+		\prob(M_{n}\geq r,Y_{n}=b)=\begin{cases}
+			\prob(Y_{n}=b), &\text{if }b\geq r\\
+			\left(\frac{q}{p}\right)^{r-b}\prob(Y_{n}=2r-b), &\text{if }b<r
 		\end{cases}
 	\end{equation*}
 	It follows that, for $r\geq 1$,
 	\begin{equation*}
-		\prob(M_{n}\geq r)=\prob(S_{n}\geq r)+\sum_{b=-\infty}^{r-1}\left(\frac{q}{p}\right)^{r-b}\prob(S_{n}=2r-b)=\prob(S_{n}=r)+\sum_{c=r+1}^{\infty}\left(1+\left(\frac{q}{p}\right)^{c-r}\right)\prob(S_{n}=c)
+		\prob(M_{n}\geq r)=\prob(Y_{n}\geq r)+\sum_{b=-\infty}^{r-1}\left(\frac{q}{p}\right)^{r-b}\prob(Y_{n}=2r-b)=\prob(Y_{n}=r)+\sum_{c=r+1}^{\infty}\left(1+\left(\frac{q}{p}\right)^{c-r}\right)\prob(Y_{n}=c)
 	\end{equation*}
 	For symmetric case when $p=q=\frac{1}{2}$,
 	\begin{equation*}
-		\prob(M_{n}\geq r)=2\prob(S_{n}\geq r+1)+\prob(S_{n}=r)
+		\prob(M_{n}\geq r)=2\prob(Y_{n}\geq r+1)+\prob(Y_{n}=r)
 	\end{equation*}
 \end{thm}
 
@@ -5472,7 +5589,7 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 	We reflect the segment of path with $i_{\pi}\leq x\leq n$ in the line $y=r$ to obtain path $\pi'$ joining $(0,0)$ to $(n,2r-b)$.\\
 	We have $N_{n}^{r}(0,b)=N_{n}(0,2r-b)$.
 	\begin{equation*}
-		\prob(M_{n}\geq r,S_{n}=b)=N_{n}^{r}(0,b)p^{\frac{1}{2}(n+b)}q^{\frac{1}{2}(n-b)}=\left(\frac{q}{p}\right)^{r-b}N_{n}(0,2r-b)p^{\frac{1}{2}(n+2r-b)}q^{\frac{1}{2}(n-2r+b)}=\left(\frac{q}{p}\right)^{r-b}\prob(S_{n}=2r-b)
+		\prob(M_{n}\geq r,Y_{n}=b)=N_{n}^{r}(0,b)p^{\frac{1}{2}(n+b)}q^{\frac{1}{2}(n-b)}=\left(\frac{q}{p}\right)^{r-b}N_{n}(0,2r-b)p^{\frac{1}{2}(n+2r-b)}q^{\frac{1}{2}(n-2r+b)}=\left(\frac{q}{p}\right)^{r-b}\prob(Y_{n}=2r-b)
 	\end{equation*}
 \end{proofing}
 \chapter{Terminologies in other fields of mathematics}
@@ -5625,7 +5742,12 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
 \chapter*{Change Log}
 \begin{tabular}{cl}
 	\textbf{1.0} & Create the notes\\
-	\textbf{1.1} & Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"
+	\textbf{1.1} & Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"\\
+	\textbf{1.2} & Add the Student's t-distribution and the properties of chi-squared distribution\\
+	& Add theorems that relate sample mean and sample variance with distributions\\
+	& Create a new Chapter 6.2 "Sampling"\\
+	& Add a remark in De Moivre-Laplace Limit Theorem\\
+	& Fixed some typos
 \end{tabular}
 
 \end{document}
