@@ -1,4 +1,5 @@
 \documentclass{huhtakm-template-book}
+\usepackage{enumitem}
 \newcommand{\independent}{\perp\!\!\!\perp}
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\expect}{\mathbb{E}}
@@ -19,14 +20,17 @@
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
 \setlength{\parindent}{0pt}
-\title{Probability}
+\title{
+	\Huge Probability\\
+	\small Version 1.3
+}
 \author{
 	HU-HTAKM\\
-	Website: \url{https://htakm.github.io/htakm_test/}
+	\small Website: \url{https://htakm.github.io/htakm_test/}
 }
 \date{
 	Last major change: September 14, 2024\\
-	Last small update (fixed typo): September 15, 2024
+	Last small update (fixed typo): September 21, 2024
 }
 \begin{document}
 \maketitle
@@ -3449,34 +3453,35 @@ We can now use the properties of expectations to deduce the properties of varian
 	\end{enumerate}
 \end{proofing}
 \section{Sampling}
-In a lot of cases, we do not know the actual distribution of the population. We can only predict the distribution based on the samples we can get.
+In a lot of cases, we do not know the actual distribution of the population. We can only predict the distribution based on the samples we can get. This section is more close to statistics than probability, so we will not talk a lot about this.
 \begin{defn}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be independent and identically distributed random variables with CDF $F$, mean $\mu$ and variance $\sigma^{2}$. \textbf{Sample mean}, denoted by $\overline{X}$, is defined by:
-	\begin{equation*}
-		\overline{X}=\frac{1}{n}\sum_{k=1}^{n}X_{k}
-	\end{equation*}
-\end{defn}
-\begin{thm}
-	\label{Chapter 6 (Theorem) Expectation and variance of sample mean}
-	Given a sample mean $\overline{X}$ defined above. We have $\expect{\overline{X}}=\mu$ and $\Var(\overline{X})=\frac{\sigma^{2}}{n}$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{\overline{X}}&=\expect\left(\sum_{\frac{1}{n}\sum_{k=1}^{n}X_{k}}\right)=\frac{1}{n}\sum_{k=1}^{n}\expect{X_{k}}=\frac{1}{n}\sum_{k=1}^{n}\mu=\mu\\
-		\Var(\overline{X})&=\frac{1}{n^{2}}\sum_{k=1}^{n}\Var(X_{k})=\frac{n\sigma^{2}}{n^{2}}=\frac{\sigma^{2}}{n}
-	\end{align*}
-\end{proofing}
-\begin{defn}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be independent and identically distributed random variables with CDF $F$, mean $\mu$ and variance $\sigma^{2}$. Let $\overline{X}$ be the sample mean. \textbf{Sample variance}, denoted by $S^{2}$, is defined by:
-	\begin{equation*}
-		S_{n-1}^{2}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{n-1}
-	\end{equation*}
+	A set of random variables $\{X_{1},X_{2},\cdots,X_{n}\}$ are called \textbf{random sample} of a random variable $X$ with PMF or PDF $f_{X}(x)$ and CDF $F_{X}(x)$ if they are independent and identically distributed (i.i.d.).
+	\begin{enumerate}
+		\item \textbf{Sample mean} of $X$, denoted by $\overline{X}$, is defined by:
+		\begin{equation*}
+			\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}
+		\end{equation*}
+		\item \textbf{Sample variance} of $X$, denoted by $S_{n-1}^{2}$, is defined by:
+		\begin{equation*}
+			S_{n-1}^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}
+		\end{equation*}
+	\end{enumerate}
 \end{defn}
 \begin{rem}
 	Notice that the denominator is $n-1$.
 \end{rem}
 \begin{thm}
-	Given a sample variance $S_{n-1}^{2}$ defined above. We have $\expect{S_{n-1}^{2}}=\sigma^{2}$.
+	\label{Chapter 6 (Theorem) Expectation and variance of sample mean}
+	Given a sample mean $\overline{X}$ of a random variable $X$. We have $\expect{\overline{X}}=\mu$ and $\Var(\overline{X})=\frac{\sigma^{2}}{n}$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{\overline{X}}&=\expect\left(\frac{1}{n}\sum_{k=1}^{n}X_{k}\right)=\frac{1}{n}\sum_{k=1}^{n}\expect{X_{k}}=\frac{1}{n}\sum_{k=1}^{n}\mu=\mu\\
+		\Var(\overline{X})&=\frac{1}{n^{2}}\sum_{k=1}^{n}\Var(X_{k})=\frac{n\sigma^{2}}{n^{2}}=\frac{1}{n}\sigma^{2}
+	\end{align*}
+\end{proofing}
+\begin{thm}
+	Given a sample variance $S_{n-1}^{2}$ of a random variable $X$. We have $\expect{S_{n-1}^{2}}=\sigma^{2}$.
 \end{thm}
 \begin{proofing}
 	\begin{align*}
@@ -3573,8 +3578,6 @@ A concise way of storing this information is to wrap up the numbers together in 
 		\lim_{N\uparrow\infty}\sum_{i=0}^{N}\pdv*{a_{n}(x)}{x}&=\lim_{N\uparrow\infty}\cos{Nx}\quad \text{does not exist}
 	\end{align*}
 \end{eg}
-
-\newpage
 Convolutions are common in probability theory, and generating functions can provide a tool for studying them.
 \begin{defn}
 	Let $a=\{a_{i}:i\geq 0\}$ and $b=\{b_{i}:i\geq 0\}$ be two sequence of real numbers. \textbf{Convolution} $c=a*b=\{c_{i}:i\geq 0\}$ of $\{a_{i}\}$ and $\{b_{i}\}$ is defined by
@@ -3585,12 +3588,14 @@ Convolutions are common in probability theory, and generating functions can prov
 \begin{eg}
 	If $a_{n}=f_{X}(n)$ and $b_{n}=f_{Y}(n)$, then $c_{n}=f_{X+Y}(n)$.
 \end{eg}
-\begin{cla}
+
+\newpage
+\begin{lem}
 	If sequences $a$ and $b$ have generating functions $G_{a}(s)$ and $G_{b}(s)$ respectively, then
 	\begin{equation*}
 		G_{c}(s)=G_{a}(s)G_{b}(s)
 	\end{equation*}
-\end{cla}
+\end{lem}
 \begin{proofing}
 	\begin{equation*}
 		G_{c}(s)=\sum_{n=0}^{\infty}c_{n}s^{n}=\sum_{n=0}^{\infty}\sum_{i=0}^{n}a_{i}b_{n-i}s^{i}s^{n-i}=\sum_{i=0}^{\infty}a_{i}s^{i}\sum_{n=i}^{\infty}b_{n-i}s^{n-i}=\sum_{i=0}^{\infty}a_{i}s^{i}\sum_{j=0}^{\infty}b_{j}s^{j}=G_{a}(s)G_{b}(s)
@@ -3681,7 +3686,7 @@ In fact, when $s=1$, we can find the expectation of a distribution.
 \end{eg}
 There is an important theorem regarding $s=1$. Again, we are not going to prove it.
 \begin{thm}(\textbf{Abel's Theorem})
-	Suppose that $a_{n}\geq 0$ for all $n$. If $a$ has a generating function $G_{a}(s)$ and radius of convergence $R=1$, then if $\sum_{n=0}^{\infty}$ converges in $\mathbb{R}\cup\{\infty\}$, we have
+	Suppose that $a_{n}\geq 0$ for all $n$. If $a$ has a generating function $G_{a}(s)$ and radius of convergence $R=1$, then if $\sum_{n=0}^{\infty}a_{n}$ converges in $\mathbb{R}\cup\{\infty\}$, we have
 	\begin{equation*}
 		\lim_{s\uparrow 1}G_{a}(s)=\sum_{n=0}^{\infty}a_{n}\lim_{s\uparrow 1}s^{n}=\sum_{n=0}^{\infty}a_{n}
 	\end{equation*}
@@ -5120,21 +5125,17 @@ We can use Borel-Cantelli Lemmas to prove a theorem that is pretty similar.
 \end{proofing}
 We have a theorem that have conditions quite similar to Law of Large Numbers. However, notice that $\expect\abs{X_{1}}=\infty$ here.
 \begin{thm}
-	If $X_{1},X_{2},\cdots$ are i.i.d. random variables with $\expect\abs{X_{i}}=\infty$. Then
-	\begin{equation*}
-		\prob(\abs{X_{n}}\geq n\text{ i.o.})=1
-	\end{equation*}
-	Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
-	\begin{equation*}
-		\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists in }(-\infty,\infty)\right)=0
-	\end{equation*}
+	If $X_{1},X_{2},\cdots$ are i.i.d. random variables with $\expect\abs{X_{i}}=\infty$, then
+	\begin{align*}
+		\prob(\abs{X_{n}}\geq n\text{ i.o.})&=1 & \prob\left(\lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}\text{ exists in }(-\infty,\infty)\right)&=0
+	\end{align*}
 \end{thm}
 \begin{proofing}
 	\begin{equation*}
 		\expect\abs{X_{1}}=\int_{0}^{\infty}\prob(\abs{X_{1}}>t)\,dt\leq\sum_{n=0}^{\infty}\prob(\abs{X_{1}}>n)
 	\end{equation*}
 	Since $\{\abs{X_{n}}>n\}$ is a collection of independent events, by BCII, $\prob(\abs{X_{n}}>n\text{ i.o.})=1$.\\
-	For the second statement, let $C=\{\omega\in\Omega:\lim_{n\to\infty}\frac{Y_{n}(\omega)}{n}\text{ exists in }\mathbb{R}\}$.\\
+	For the second statement, let $Y_{n}=\sum_{i=1}^{n}X_{i}$ and $C=\{\omega\in\Omega:\lim_{n\to\infty}\frac{1}{n}Y_{n}(\omega)\text{ exists in }\mathbb{R}\}$.\\
 	Assume that $\omega\in C$, then
 	\begin{equation*}
 		\frac{Y_{n}(\omega)}{n}-\frac{Y_{n+1}(\omega)}{n+1}=\frac{Y_{n}(\omega)}{n(n+1)}-\frac{X_{n+1}(\omega)}{n+1}
@@ -5242,28 +5243,28 @@ We continue to explore more into tail events.
 Again let $X_{1},X_{2},\cdots$ be i.i.d. random variables and let $Y_{n}=\sum_{i=1}^{n}X_{i}$.\\
 Recall that if $\expect\abs{X_{1}}<\infty$,
 \begin{equation*}
-	\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}=\expect X_{1}\right)=1
+	\prob\left(\lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}=\expect X_{1}\right)=1
 \end{equation*}
 If $\expect\abs{X_{1}}=\infty$,
 \begin{equation*}
-	\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists}\right)=0
+	\prob\left(\lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}\text{ exists}\right)=0
 \end{equation*}
 Using tail function, the random variables are not necessarily identically distributed.
 \begin{thm}
-	Let $X_{1},X_{2},\cdots$ be independent random variables. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots$ be independent random variables. We have:
 	\begin{equation*}
-		\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists}\right)=0\text{ or }1
+		\prob\left(\lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}\text{ exists}\right)=0\text{ or }1
 	\end{equation*}
 \end{thm}
 \begin{proofing}
-	Let $Z_{1}=\limsup_{n\to\infty}\frac{Y_{n}}{n}$ and $Z_{2}=\liminf_{n\to\infty}\frac{Y_{n}}{n}$. We claim that both $Z_{1}$ and $Z_{2}$ are tail functions of $X_{i}$'s. For any $k$,
+	Let $Z_{1}=\limsup_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}$ and $Z_{2}=\liminf_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}$. We claim that both $Z_{1}$ and $Z_{2}$ are tail functions of $X_{i}$'s. For any $k$,
 	\begin{align*}
 		Z_{1}(\omega)&=\limsup_{n\to\infty}\left(\frac{1}{n}\sum_{i=1}^{k}X_{i}(\omega)+\frac{1}{n}\sum_{i=k+1}^{n}X_{i}(\omega)\right) & Z_{2}(\omega)&=\liminf_{n\to\infty}\left(\frac{1}{n}\sum_{i=1}^{k}X_{i}(\omega)+\frac{1}{n}\sum_{i=k+1}^{n}X_{i}(\omega)\right)
 	\end{align*}
 	Therefore, both $Z_{1}$ and $Z_{2}$ do not depend on any finite collection of $X_{i}$. We say that $\{Z_{1}=Z_{2}\}$ is a tail event.\\
 	Therefore, by Kolmogorov's zero-one law.
 	\begin{equation*}
-		\prob\left(\lim_{n\to\infty}\frac{Y_{n}}{n}\text{ exists}\right)=\prob(Z_{1}=Z_{2})=0\text{ or }1
+		\prob\left(\lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^{n}X_{i}\text{ exists}\right)=\prob(Z_{1}=Z_{2})=0\text{ or }1
 	\end{equation*}
 \end{proofing}
 \begin{eg}(Random power series)
@@ -5309,49 +5310,48 @@ Using tail function, the random variables are not necessarily identically distri
 \end{eg}
 
 \section{Strong Law of Large Numbers}
-We recall the Weak Law of Large Numbers. Let $X_{1},X_{2},\cdots$ be a sequence of i.i.d. random variables with $\expect(X_{1})=\mu$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then as $n\to\infty$,
+We recall the Weak Law of Large Numbers. Let $X_{1},X_{2},\cdots$ be a sequence of i.i.d. random variables with $\expect(X_{1})=\mu$. As $n\to\infty$,
 \begin{align*}
-	\frac{Y_{n}}{n}&\xrightarrow{D}\mu & \frac{Y_{n}}{n}&\xrightarrow{\prob}\mu
+	\frac{1}{n}\sum_{i=1}^{n}X_{i}&\xrightarrow{D}\mu & \frac{1}{n}\sum_{i=1}^{n}X_{i}&\xrightarrow{\prob}\mu
 \end{align*}
 By name, WLLN indeed has a stronger version. It is called Strong Law of Large Numbers. We prove one of the versions of SLLN.
 \begin{thm}(\textbf{Strong Law of Large Numbers} [SLLN])
-	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=\mu$ and $\expect\abs{X_{1}}<\infty$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
+	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=\mu$ and $\expect\abs{X_{1}}<\infty$. We have:
 	\begin{equation*}
-		\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}\mu
+		\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{\text{a.s.}}\mu
 	\end{equation*}
 \end{thm}
 Note that the proof for SLLN is very complicated, and we will not prove it here. Instead, we will prove a different version of SLLN.
 \newpage
 \begin{thm}(SLLN with $\expect X_{i}^{4}<\infty$)
-	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=0$ and $\expect(X_{1}^{4})<\infty$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$, then
+	Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}=0$ and $\expect(X_{1}^{4})<\infty$. We have:
 	\begin{equation*}
-		\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}0
+		\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{\text{a.s.}}0
 	\end{equation*}
 \end{thm}
 \begin{proofing}
 	\begin{equation*}
-		\expect Y_{n}^{4}=\expect\left(\sum_{i=1}^{n}X_{i}\right)^{4}=\sum_{i,j,k,\ell=1}^{n}\expect X_{i}X_{j}X_{k}X_{\ell}
+		\expect\left(\sum_{i=1}^{n}X_{i}\right)^{4}=\sum_{i,j,k,\ell=1}^{n}\expect X_{i}X_{j}X_{k}X_{\ell}
 	\end{equation*}
 	The expectation is non-zero if there are $2$ pairs of the random variables with same value.
-	\begin{equation*}
-		\expect Y_{n}^{4}=3\sum_{i\neq j}\expect X_{i}^{2}\expect X_{j}^{2}+\sum_{i}\expect X_{i}^{4}=O(n^{2})
-	\end{equation*}
-	\begin{equation*}
-		\prob\left(\abs{\frac{Y_{n}}{n}}\geq\varepsilon\right)\leq\frac{\expect Y_{n}^{4}}{(n\varepsilon)^{4}}=O\left(\frac{1}{n^{2}}\right)
-	\end{equation*}
+	\begin{align*}
+		\expect Y_{n}^{4}&=3\sum_{i\neq j}\expect X_{i}^{2}\expect X_{j}^{2}+\sum_{i}\expect X_{i}^{4}=O(n^{2})\\
+		\tag{Markov's inequality}
+		\prob\left(\abs{\frac{1}{n}\sum_{i=1}^{n}X_{i}}\geq\varepsilon\right)&\leq\frac{1}{(n\varepsilon)^{4}}\expect\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}\right)^{4}=O\left(\frac{1}{n^{2}}\right)
+	\end{align*}
 	Therefore, we get that for all $\varepsilon>0$
 	\begin{equation*}
-		\sum_{n=1}^{\infty}\prob\left(\abs{\frac{Y_{n}}{n}}>\varepsilon\right)<\infty
+		\sum_{n=1}^{\infty}\prob\left(\abs{\frac{1}{n}\sum_{i=1}^{n}X_{i}}>\varepsilon\right)<\infty
 	\end{equation*}
-	Therefore, $\frac{Y_{n}}{n}\xrightarrow{\text{a.s.}}0$.
+	Therefore, $\frac{1}{n}\sum_{i=1}^{n}X_{i}\xrightarrow{\text{a.s.}}0$.
 \end{proofing}
-\begin{thm}(SLLN with $\expect X_{1}^{2}<\infty$) Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}^{2}<\infty$ and $\expect X_{i}=\mu$. Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. Then
+\begin{thm}(SLLN with $\expect X_{1}^{2}<\infty$) Let $X_{1},X_{2},\cdots$ be i.i.d. random variables with $\expect X_{1}^{2}<\infty$ and $\expect X_{i}=\mu$. We have:
 	\begin{align*}
-		\frac{Y_{n}}{n}&\xrightarrow{2}\mu & \frac{Y_{n}}{n}&\xrightarrow{\text{a.s.}}\mu
+		\frac{1}{n}\sum_{i=1}^{n}X_{i}&\xrightarrow{2}\mu & \frac{1}{n}\sum_{i=1}^{n}X_{i}&\xrightarrow{\text{a.s.}}\mu
 	\end{align*}
 \end{thm}
 \begin{proofing}
-	We first show convergence in mean square. Since $\expect X_{1}^{2}<\infty$, as $n\to\infty$,
+	Let $Y_{n}=\sum_{i=1}^{n}X_{i}$. We first show convergence in mean square. Since $\expect X_{1}^{2}<\infty$, as $n\to\infty$,
 	\begin{equation*}
 		\expect\left(\frac{Y_{n}}{n}-\mu\right)^{2}=\frac{\expect(Y_{n}-n\mu)^{2}}{n^{2}}=\frac{\Var(Y_{n})}{n^{2}}=\frac{\Var(X_{1})}{n}\to 0
 	\end{equation*}
@@ -5667,10 +5667,37 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 	\end{equation*}
 \end{defn}
 \begin{defn}
-	Functions $f$ and $g$ are \textbf{asymptotic equivalent} ($f\sim g$) if and only if
-	\begin{equation*}
-		\lim_{x\to\infty}\frac{f(x)}{g(x)}=1
-	\end{equation*}
+	Let $f$ and $g$ be real-valued functions.
+	\begin{enumerate}
+		\item We write $f(x)=O(g(x))$ if and only if:
+		\begin{equation*}
+			\limsup_{x\to\infty}\frac{f(x)}{g(x)}<\infty
+		\end{equation*}
+		It is called \textbf{big O notation}.
+		\item We write $f(x)=o(g(x))$ if and only if:
+		\begin{equation*}
+			\lim_{x\to\infty}\frac{f(x)}{g(x)}=0
+		\end{equation*}
+		It is called \textbf{small o notation}.
+		\item We write $f(x)=\Omega(g(x))$ if and only if:
+		\begin{equation*}
+			\liminf_{x\to\infty}\frac{f(x)}{g(x)}>0
+		\end{equation*}
+		It is called \textbf{big Omega notation}.
+		\item We write $f(x)=\omega(g(x))$ if and only if:
+		\begin{equation*}
+			\lim_{x\to\infty}\frac{f(x)}{g(x)}=\infty
+		\end{equation*}
+		It is called \textbf{small omega notation}.
+		\item Functions $f$ and $g$ are \textbf{asymptotic equivalent} ($f\sim g$) if and only if
+		\begin{equation*}
+			\lim_{x\to\infty}\frac{f(x)}{g(x)}=1
+		\end{equation*}
+		\item If $f(x)=O(g(x))$ and $g(x)=O(f(x))$, then we write:
+		\begin{equation*}
+			f(x)\asymp g(x)
+		\end{equation*}
+	\end{enumerate}
 \end{defn}
 \chapter{Some useful inequalities}
 \begin{thm}(Triangle inequality)
@@ -5740,14 +5767,22 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
 
 \addcontentsline{toc}{chapter}{Change Log}
 \chapter*{Change Log}
-\begin{tabular}{cl}
-	\textbf{1.0} & Create the notes\\
-	\textbf{1.1} & Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"\\
-	\textbf{1.2} & Add the Student's t-distribution and the properties of chi-squared distribution\\
-	& Add theorems that relate sample mean and sample variance with distributions\\
-	& Create a new Chapter 6.2 "Sampling"\\
-	& Add a remark in De Moivre-Laplace Limit Theorem\\
-	& Fixed some typos
-\end{tabular}
+\begin{description}[style=nextline]
+	\item[1.0]
+	Create the notes\\
+	\item[1.1]
+	Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"\\
+	\item[1.2]
+	 Add the Student's t-distribution and the properties of chi-squared distribution\\
+	Add theorems that relate sample mean and sample variance with distributions\\
+	Create a new Chapter 6.2 "Sampling"\\
+	Add a remark in De Moivre-Laplace Limit Theorem\\
+	Fix some typos\\
+	\item[1.3]
+	Modify the wording of some theorems\\
+	Add the definition of random sample and combine it with sample mean and sample variance\\
+	Add the definitions related to asymptotic notations\\
+	Change how Change Log is produced
+\end{description}
 
 \end{document}
