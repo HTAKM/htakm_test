@@ -22,7 +22,7 @@
 \setlength{\parindent}{0pt}
 \title{
 	\Huge Probability\\
-	\small Version 1.3
+	\small Version 1.4
 }
 \author{
 	HU-HTAKM\\
@@ -30,7 +30,7 @@
 }
 \date{
 	Last major change: September 14, 2024\\
-	Last small update (fixed typo): September 21, 2024
+	Last small update: September 30, 2024
 }
 \begin{document}
 \maketitle
@@ -62,7 +62,9 @@ Please note that all proofs that may be combinatorial proofs are omitted.
 			$\mathbf{1}_{A}$ & Indicator function\\
 			$\mathbb{E}$ & Expectation\\
 			$\psi$ & Conditional expectation\\
+			$\mathbf{u},\mathbf{v},\mathbf{w},\cdots$ & Vector\\
 			$\mathbf{A},\mathbf{B},\mathbf{C},\cdots$ & Matrix\\
+			$\mathbf{X}$ & Random vector\\
 			$\overline{X}$ & Sample mean of $X$\\
 			$S_{n-1}^{2}$ & Sample variance of $X$\\
 			$G_{X}$ & Probability generating function of $X$\\
@@ -1175,12 +1177,12 @@ This is problematic when random variable $X$ is continuous because using PMF wil
 \section{JCDF of random variables}
 How do we deal with cases when there are more than one random variables?
 \begin{defn}
-	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\vec{X}=(X_{1},X_{2}):\Omega\to\mathbb{R}^{2}$ with properties
+	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\mathbf{X}=(X_{1},X_{2}):\Omega\to\mathbb{R}^{2}$ with properties
 	\begin{equation*}
-		\vec{X}^{-1}(D)=\{\omega\in\Omega:\vec{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\}\in\mathcal{F}
+		\mathbf{X}^{-1}(D)=\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\}\in\mathcal{F}
 	\end{equation*}
 	for all $D\in\mathcal{B}(\mathbb{R}^{2})$.\\
-	We can also say $\vec{X}=(X_{1},X_{2})$ is a random vector if both $X_{1},X_{2}:\Omega\to\mathbb{R}$ are random variables. That means:
+	We can also say $\mathbf{X}=(X_{1},X_{2})$ is a random vector if both $X_{1},X_{2}:\Omega\to\mathbb{R}$ are random variables. That means:
 	\begin{equation*}
 		X_{a}^{-1}(B)\in\mathcal{F}
 	\end{equation*}
@@ -1190,9 +1192,9 @@ How do we deal with cases when there are more than one random variables?
 	Both definitions of random vectors are equivalent.
 \end{cla}
 \begin{proofing}
-	By first definition, $\vec{X}^{-1}(A_{1}\times A_{2})\in\mathcal{F}$. If we choose $A_{2}=\mathbb{R}$,
+	By first definition, $\mathbf{X}^{-1}(A_{1}\times A_{2})\in\mathcal{F}$. If we choose $A_{2}=\mathbb{R}$,
 	\begin{align*}
-		\vec{X}^{-1}(A_{1}\times \mathbb{R})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times\mathbb{R}\}\\
+		\mathbf{X}^{-1}(A_{1}\times \mathbb{R})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times\mathbb{R}\}\\
 		&=\{\omega\in\Omega:X_{1}(\omega)\in A_{1}\}\cap\{\omega\in\Omega:X_{2}(\omega)\in\mathbb{R}\}\\
 		&=X_{1}^{-1}(A_{1})
 	\end{align*}
@@ -1200,7 +1202,7 @@ How do we deal with cases when there are more than one random variables?
 	Therefore, we can obtain the second definition from the first definition.\\
 	By second definition, $X_{1}$ and $X_{2}$ are random variables. Therefore,
 	\begin{align*}
-		\vec{X}^{-1}(A_{1}\times A_{2})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times A_{2}\}\\
+		\mathbf{X}^{-1}(A_{1}\times A_{2})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times A_{2}\}\\
 		&=\{\omega\in\Omega:X_{1}(\omega)\in A_{1}\}\cap\{\omega\in\Omega:X_{2}(\omega)\in A_{2}\}\\
 		&=X_{1}^{-1}(A_{1})\cap X_{2}^{-1}(A_{2})\in\mathcal{F}
 	\end{align*}
@@ -1208,13 +1210,13 @@ How do we deal with cases when there are more than one random variables?
 	Therefore, two definitions are equivalent.
 \end{proofing}
 \begin{rem}
-	We can write $\prob\circ\vec{X}^{-1}(D)=\prob(\vec{X}\in D)=\prob(\{\omega\in\Omega:\vec{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\})$.
+	We can write $\prob\circ\mathbf{X}^{-1}(D)=\prob(\mathbf{X}\in D)=\prob(\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\})$.
 \end{rem}
 Of course, there is a distribution function corresponding to the random vector.
 \begin{defn}
-	\textbf{Joint distribution function} (JCDF) $F_{\vec{X}}:\mathbb{R}^{2}\to [0,1]$ is defined as
+	\textbf{Joint distribution function} (JCDF) $F_{\mathbf{X}}:\mathbb{R}^{2}\to [0,1]$ is defined as
 	\begin{equation*}
-		F_{\vec{X}}(x_{1},x_{2})=F_{X_{1},X_{2}}(x_{1},x_{2})=\prob\circ\vec{X}^{-1}((-\infty,x_{1}]\times(-\infty,x_{2}])=\prob(X_{1}\leq x_{1},X_{2}\leq x_{2})
+		F_{\mathbf{X}}(x_{1},x_{2})=F_{X_{1},X_{2}}(x_{1},x_{2})=\prob\circ\mathbf{X}^{-1}((-\infty,x_{1}]\times(-\infty,x_{2}])=\prob(X_{1}\leq x_{1},X_{2}\leq x_{2})
 	\end{equation*}
 \end{defn}
 \begin{rem}
@@ -2557,7 +2559,7 @@ There are some remarks that may be important to know about.
 			0, &xy\leq 0
 		\end{cases}
 	\end{equation*}
-	As you can see, this is not a bivariant normal distribution.\\
+	As you can see, this is not a bivariate normal distribution.\\
 	However, if you look at their marginal PDF,
 	\begin{align*}
 		f_{X}(x)&=\intlu{0}{\infty}\frac{1}{\pi}e^{-\frac{1}{2}(x^{2}+y^{2})}\,dy=\frac{1}{2\pi}\intinfty e^{-\frac{1}{2}(x^{2}+y^{2})}\,dy=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^{2}} & x&>0\\
@@ -2571,6 +2573,20 @@ There are some remarks that may be important to know about.
 \end{rem}
 
 \newpage
+More generally, we could create a multivariate normal distribution from more than two random variables.
+\begin{eg}(\textbf{Multivariate normal distrubution}) $\mathbf{X}\sim\N_{p}(\boldsymbol{\mu},\mathbf{\Sigma})$\\
+	Random vector $\mathbf{X}$ with dimension $p$ is $p$-dimensional normal with $p\times 1$ mean vector $\boldsymbol{\mu}$ and $p\times p$ variance-covariance matrix $\mathbf{\Sigma}$ if we have:
+	\begin{equation*}
+		f(\mathbf{x})=(2\pi)^{-\frac{p}{2}}\abs{\mathbf{\Sigma}}^{-\frac{1}{2}}e^{-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{T}\mathbf{\Sigma}(\mathbf{x}-\boldsymbol{\mu})}
+	\end{equation*}
+\end{eg}
+\begin{rem}
+	The elements $a_{ij}$ in $i$-th row and $j$-th column of variance-covariance matrix $\mathbf{\Sigma}$ is obtained by:
+	\begin{equation*}
+		a_{ij}=\cov(X_{i},X_{j})
+	\end{equation*} 
+	We will talk about how to calculate the covariance in the next chapter.
+\end{rem}
 \begin{eg}(\textbf{Cauchy distribution}) $X\sim\Cauchy(\theta)$\\
 	Random variable $X$ has a Cauchy distribution if it has a PDF:
 	\begin{equation*}
@@ -2588,7 +2604,7 @@ There are some remarks that may be important to know about.
 	Random variable $X$ has a gamma distribution with parameters $\alpha$ and $\lambda$ if it has a PDF:
 	\begin{equation*}
 		f_{X}(x)=\begin{cases}
-			\frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)}, &x\geq 0\\
+			\frac{1}{\Gamma(\alpha)}\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}, &x\geq 0\\
 			0, &x<0
 		\end{cases}
 	\end{equation*}
@@ -2604,12 +2620,11 @@ There are some remarks that may be important to know about.
 \begin{rem}
 	When $\alpha=1$, it is an exponential distribution.
 \end{rem}
-If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{n}{2}$ where $n$ is a parameter, we get the Chi-squared distribution.
 \begin{eg}(\textbf{Chi-squared distribution}) $Y\sim\chi^{2}(n)$\\
 	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $n$ if it has a PDF:
 	\begin{equation*}
 		f_{Y}(x)=\begin{cases}
-			\frac{x^{\frac{n}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{n}{2}}\Gamma(\alpha)}, &x\geq 0\\
+			\frac{1}{\Gamma(\frac{n}{2})}2^{-\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0\\
 			0, &x<0
 		\end{cases}
 	\end{equation*}
@@ -2621,6 +2636,24 @@ If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{n}{2}$ where $n$ is a p
 \begin{rem}
 	$\Gamma(\frac{1}{2})=\sqrt{\pi}$.
 \end{rem}
+
+\newpage
+\begin{lem}
+	Random variable $\chi^{2}(n)$ is equivalent to $\Gamma(\frac{n}{2},\frac{1}{2})$.
+\end{lem}
+\begin{proofing}
+	Let $X\sim\Gamma(\frac{n}{2},\frac{1}{2})$. Substituting $\alpha=\frac{n}{2}$ and $\lambda=\frac{1}{2}$ into PDF of $X$, we have:
+	\begin{equation*}
+		f_{X}(x)=\begin{cases}
+			\frac{1}{2\Gamma(\frac{n}{2})}e^{-\frac{x}{2}}\left(\frac{x}{2}\right)^{\frac{n}{2}-1}, &x\geq 0\\
+			0, &x<0
+		\end{cases}=\begin{cases}
+		\frac{1}{\Gamma(\frac{n}{2})}2^{\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0\\
+		0, &x<0
+		\end{cases}
+	\end{equation*}
+	Therefore, $X\sim\chi^{2}(n)$.
+\end{proofing}
 \begin{lem}
 	\label{Chapter 5 (Lemma) Additivity of chi-squared distribution}
 	Given that $V\sim\chi^{2}(n_{1})$ and $W\sim\chi^{2}(n_{2})$. If $V$ and $W$ are independent, then $V+W\sim\chi^{2}(n_{1}+n_{2})$.
@@ -2631,7 +2664,6 @@ If we substitute $\lambda=\frac{1}{2}$ and $\alpha=\frac{n}{2}$ where $n$ is a p
 		V+W=X_{1}^{2}+X_{2}^{2}+\cdots+X_{n_{1}}^{2}+Z_{1}^{2}+Z_{2}^{2}+\cdots+Z_{n_{2}}^{2}\sim\chi^{2}(n_{1}+n_{2})
 	\end{equation*}
 \end{proofing}
-\newpage
 We may derive further from the chi-squared distribution.
 \begin{eg}(\textbf{Student's t-distribution}) $W\sim t(n)$\\
 	Given $Y\sim\chi^{2}(n)$ and $Z\sim\N(0,1)$. If $Y$ and $Z$ are independent, let
@@ -2643,7 +2675,16 @@ We may derive further from the chi-squared distribution.
 		f(w)=\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\left(1+\frac{w^{2}}{n}\right)^{-\frac{n+1}{2}}
 	\end{equation*}
 	The expectation and variance are:
-	
+	\begin{align*}
+		\expect{W}&=\begin{cases}
+			0, &n>1\\
+			\text{Undefined}, &n\leq 0
+		\end{cases} & \Var(W)&=\begin{cases}
+			\frac{n}{n-2}, &n>2\\
+			\infty, &2<n\leq 4\\
+			\text{Undefined}, &\text{Otherwise}
+		\end{cases}
+	\end{align*}
 \end{eg}
 \begin{rem}
 	If $W\sim t(1)$, then from the PDF:
@@ -2953,12 +2994,12 @@ We can consider the multivariable case.
 
 \newpage
 \begin{sdefn}
-	Let $X_{i}:\Omega\to\mathbb{R}$ for all $1\leq i\leq n$ be random variables. \textbf{Random vector} $\vec{X}=(X_{1},X_{2},\cdots,X_{n}):\Omega\to\mathbb{R}^{n}$ with properties:
+	Let $X_{i}:\Omega\to\mathbb{R}$ for all $1\leq i\leq n$ be random variables. \textbf{Random vector} $\mathbf{X}=(X_{1},X_{2},\cdots,X_{n}):\Omega\to\mathbb{R}^{n}$ with properties:
 	\begin{equation*}
-		\vec{X}^{-1}(D)=\{\omega\in\Omega:\vec{X}(\omega)=(X_{1}(\omega),X_{2}(\omega),\cdots,X_{n}(\omega))\in D\}\in\mathcal{F}
+		\mathbf{X}^{-1}(D)=\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega),\cdots,X_{n}(\omega))\in D\}\in\mathcal{F}
 	\end{equation*}
 	for all $D\in\mathcal{B}(\mathbb{R}^{n})$.\\
-	We can also say $\vec{X}$ is a random vector if
+	We can also say $\mathbf{X}$ is a random vector if
 	\begin{equation*}
 		X_{i}^{-1}(B)\in\mathcal{F}
 	\end{equation*}
@@ -3255,18 +3296,26 @@ For continuous random variables,
 		f_{X,Y}(x,y)=\frac{1}{2\pi\sqrt{1-\rho^{2}}}\exp\left(-\frac{x^{2}-2\rho xy+y^{2}}{2(1-\rho^{2})}\right)
 	\end{equation*}
 \end{seg}
+\begin{seg}(Multivariate normal distrubution) $\mathbf{X}\sim\N_{p}(\boldsymbol{\mu},\mathbf{\Sigma})$\\
+	Random vector $\mathbf{X}$ with dimension $p$ is $p$-dimensional normal with $p\times 1$ mean vector $\boldsymbol{\mu}$ and $p\times p$ variance-covariance matrix $\mathbf{\Sigma}$ if we have:
+	\begin{equation*}
+		f(\mathbf{x})=(2\pi)^{-\frac{p}{2}}\abs{\mathbf{\Sigma}}^{-\frac{1}{2}}e^{-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{T}\mathbf{\Sigma}(\mathbf{x}-\boldsymbol{\mu})}
+	\end{equation*}
+\end{seg}
 \begin{seg}(Cauchy distribution) $X\sim\Cauchy(\theta)$\\
 	Random variable $X$ has a Cauchy distribution with parameter $\theta$ if:
 	\begin{align*}
 		f_{X}(x)&=\frac{1}{\pi(1+(x-\theta)^{2})} & \expect|X|&=\intinfty\frac{|x|}{\pi(1+(x-\theta)^{2})}\,dx=\infty
 	\end{align*}
 \end{seg}
+
+\newpage
 \begin{seg}(Gamma distribution) $X\sim\Gamma(\alpha,\lambda)$\\
 	Random variable $X$ has a gamma distribution with parameters $\alpha$ and $\lambda$ if:
 	\begin{align*}
 		f_{X}(x)&=\begin{cases}
 			0, &x<0\\
-			\frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)}, &x\geq 0
+			\frac{1}{\Gamma(\alpha)}\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}, &x\geq 0
 		\end{cases} & \Gamma(\alpha)&=\intlu{0}{\infty}e^{-y}y^{\alpha-1}\,dy & \expect{X}&=\frac{\alpha}{\lambda} & \Var(X)&=\frac{\alpha}{\lambda^{2}}
 	\end{align*}
 	where $\Gamma(\alpha)$ is the gamma function with $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$. If $\alpha$ is a positive integer, then $\Gamma(\alpha)=(\alpha-1)!$.
@@ -3276,7 +3325,7 @@ For continuous random variables,
 	\begin{align*}
 		f_{Y}(x)&=\begin{cases}
 			0, &x<0\\
-			\frac{1}{2^{\frac{n}{2}}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0
+			\frac{1}{\Gamma(\frac{n}{2})}2^{-\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0
 		\end{cases} & \expect{Y}&=n & \Var(Y)&=2n
 	\end{align*}
 \end{seg}
@@ -3513,7 +3562,7 @@ What happens if the random variables are normal distributions?
 \end{proofing}
 \begin{thm}
 	\label{Chapter 6 (Theorem) Sampling distribution with sample variance}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{x}^{2})$. Then we have:
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. Then we have:
 	\begin{enumerate}
 		\item \begin{equation*}
 			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
@@ -3522,19 +3571,22 @@ What happens if the random variables are normal distributions?
 	\end{enumerate}
 \end{thm}
 \begin{proofing}
-	We may find that:
-	\begin{equation*}
-		\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{((X_{i}-\mu_{X})+(\mu_{X}-\overline{X}))^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\mu_{X})^{2}}{\sigma_{X}^{2}}-\frac{n(\overline{X}-\mu_{X})^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}-\left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}
-	\end{equation*}
-	We know that $\frac{X_{i}-\mu_{X}}{\sigma_{X}}\sim\N(0,1)$. By definition,
-	\begin{align*}
-		\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}&\sim\chi^{2}(n) & \left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}&\sim\chi^{2}(1)
-	\end{align*} 
-	Therefore, by Theorem \ref{Chapter 5 (Lemma) Additivity of chi-squared distribution}, we get:
-	\begin{equation*}
-		\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
-	\end{equation*}
-	We will not prove the independence of sample mean and sample variance. However, please note that it only works for normal distribution.
+	\begin{enumerate}
+		\item We may find that:
+		\begin{align*}
+			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{\sigma_{X}^{2}}&=\sum_{i=1}^{n}\frac{((X_{i}-\mu_{X})+(\mu_{X}-\overline{X}))^{2}}{\sigma_{X}^{2}}\\
+			&=\sum_{i=1}^{n}\frac{(X_{i}-\mu_{X})^{2}}{\sigma_{X}^{2}}-\frac{n(\overline{X}-\mu_{X})^{2}}{\sigma_{X}^{2}}\\
+			&=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}-\left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}
+		\end{align*}
+		We know that $\frac{X_{i}-\mu_{X}}{\sigma_{X}}\sim\N(0,1)$. By definition,
+		\begin{align*}
+			\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}&\sim\chi^{2}(n) & \left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}&\sim\chi^{2}(1)
+		\end{align*} 
+		Therefore, by Theorem \ref{Chapter 5 (Lemma) Additivity of chi-squared distribution}, we get:
+		\begin{equation*}
+			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+		\end{equation*}
+	\end{enumerate}
 \end{proofing}
 \begin{thm}
 	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
@@ -4811,6 +4863,7 @@ We can easily obtain this lemma.
 \end{proofing}
 Some of the implications does not hold in general but they hold if we apply some restrictions.
 \begin{thm}(Partial converse statements)
+	\label{Chapter 7 (Theorem) Partial converse statements}
 	The following implications hold:
 	\begin{enumerate}
 		\item If $X_{n}\xrightarrow{D}c$, where $c$ is a constant, then $X_{n}\xrightarrow{\prob}c$.
@@ -4866,6 +4919,97 @@ Note that any sequence $\{X_{n}\}$ which satisfies $X_{n}\xrightarrow{\prob}X$ n
 \end{proofing}
 
 \newpage
+In all above cases, we only deal with one random variable. What can we do if it involves two or more random variables? We first try to deal with cases when one converges to a constant.
+\begin{thm}(\textbf{Slutsky's Theorem})
+	If $X_{n}\xrightarrow{D}X$ and $Y_{n}\xrightarrow{\prob}c$, for a constant $c$, then:
+	\begin{enumerate}
+		\item $X_{n}+Y_{n}\xrightarrow{D}X+c$
+		\item $X_{n}Y_{n}\xrightarrow{D}Xc$
+		\item $\frac{X_{n}}{Y_{n}}\xrightarrow{D}\frac{X}{c}$ if $c\neq 0$.
+	\end{enumerate}
+\end{thm}
+\begin{proofing}
+	\begin{enumerate}
+		\item Suppose that $c>0$ and pick $\delta$ such that $0<\delta<c$. We can find $N$ such that $\prob(\abs{Y_{n}-c}>\delta)<\delta$ for $n\geq N$. For all $x$, we have:
+		\begin{align*}
+			\prob(X_{n}+Y_{n}\leq x)&\leq\prob(X_{n}+Y_{n}\leq x,\abs{Y_{n}-c}\leq\delta)+\prob(\abs{Y_{n}-c}>\delta)\leq\prob(X_{n}\leq x-c+\delta)+\delta\\
+			\prob(X_{n}+Y_{n}>x)&\leq\prob(X_{n}+Y_{n}>x,\abs{Y_{n}-c}\leq\delta)+\delta\leq\prob(X_{n}>x-c-\delta)+\delta
+		\end{align*}
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c>0$.\\
+		We can use the similar argument to prove that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c<0$.\\
+		Suppose that $c=0$. We may define an arbitrary small $\delta>0$ and a number $N$ such that $\prob(\abs{Y_{n}}>\delta)<\delta$ for $n\geq N$. For all $x$, we have:
+		\begin{align*}
+			\prob(X_{n}+Y_{n}\leq x)&\leq\prob(X_{n}+Y_{n}\leq x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(X_{n}\leq x+\delta)+\delta\\
+			\prob(X_{n}+Y_{n}>x)&\leq\prob(X_{n}+Y_{n}\leq x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(X_{n}\leq x-\delta)+\delta
+		\end{align*}
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c=0$.\\
+		Therefore, $X_{n}+Y_{n}\xrightarrow{D}X+c$.
+		\item Suppose that $c>0$ and pick $\delta$ such that $0<\delta<c$. We can find $N$ such that $\prob(\abs{Y_{n}-c}>\delta)<\delta$ for $n\geq N$.\\
+		For all $x$, we have:
+		\begin{align*}
+			\prob(X_{n}Y_{n}\leq x)&\leq\prob(X_{n}Y_{n}\leq x,\abs{Y_{n}-c}\leq\delta)+\prob(\abs{Y_{n}-c}>\delta)\leq\prob\left(X_{n}\leq \frac{x}{c-\delta}\right)+\delta\\
+			\prob(X_{n}Y_{n}>x)&\leq\prob(X_{n}Y_{n}>x,\abs{Y_{n}-c}\leq\delta)+\delta\leq\prob\left(X_{n}>\frac{x}{c+\delta}\right)+\delta
+		\end{align*}
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}Y_{n}\leq x)\to\prob(Xc\leq x)$ when $c>0$.\\
+		We can use the similar argument to prove that $\prob(X_{n}Y_{n}\leq x)\to\prob(Xc\leq x)$ when $c<0$.\\
+		Suppose that $c=0$. We many choose an arbitrary small number $\delta>0$ and a number $N$ such that $\prob(\abs{Y_{n}}>\delta)<\delta$ for $n\geq N$. For all $x$, we have:
+		\begin{align*}
+			\prob(X_{n}Y_{n}\leq x)&\leq\prob(X_{n}Y_{n}\leq x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(-\delta X_{n}\leq x)+\delta\\
+			\prob(X_{n}Y_{n}> x)&\leq\prob(X_{n}Y_{n}>x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(\delta X_{n}>x)+\delta
+		\end{align*}
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}Y_{n}\leq x)\to\prob(0\leq x)$ when $c=0$.\\
+		Therefore, $X_{n}Y_{n}\xrightarrow{D}Xc$.
+		\item It suffices to prove that $Y_{n}^{-1}\xrightarrow{\prob}c^{-1}$ if $Y_{n}\xrightarrow{\prob}c$, or equivalently by Theorem \ref{Chapter 7 (Theorem) Partial converse statements}, $Y_{n}\xrightarrow{D}c$.\\
+		If $Y_{n}\xrightarrow{D}c$, then $\prob(Y_{n}\leq x)\to\prob(c\leq x)$ as $n\to\infty$ for all $x$. When $x\geq 0$, as $n\to\infty$,
+		\begin{equation*}
+			\prob\left(\frac{1}{Y_{n}}\leq x\right)=\prob(Y_{n}<0)+\prob\left(Y_{n}\geq\frac{1}{x}\right)\to\prob(c<0)+\prob\left(c\geq\frac{1}{x}\right)=\prob\left(\frac{1}{c}\leq x\right)
+		\end{equation*}
+		When $x<0$, as $n\to\infty$,
+		\begin{equation*}
+			\prob\left(\frac{1}{Y_{n}}\leq x\right)=\prob\left(\frac{1}{x}\leq Y_{n}<0\right)\to\prob\left(\frac{1}{x}\leq c<0\right)=\prob\left(\frac{1}{c}\leq x\right)
+		\end{equation*}
+		Therefore, $\frac{1}{Y_{n}}\xrightarrow{D}\frac{1}{c}$ and thus $\frac{1}{Y_{n}}\xrightarrow{\prob}\frac{1}{c}$.\\
+		By using (2), $\frac{X_{n}}{Y_{n}}\xrightarrow{D}\frac{X}{c}$. \end{enumerate}
+\end{proofing}
+
+\newpage
+\begin{thm}(\textbf{Continuous mapping theorem})
+	Given a sequence of random variables $\{X_{n}\}$ and a random variable $X$. Let $f$ be a function has the set of discontinuity points $D_{f}$ such that $\prob(X\in D_{f})=0$. We have:
+	\begin{enumerate}
+		\item If $X_{n}\xrightarrow{D}X$, then $f(X_{n})\xrightarrow{D}f(X)$.
+		\item If $X_{n}\xrightarrow{\prob}X$, then $f(X_{n})\xrightarrow{\prob}f(X)$.
+		\item If $X_{n}\xrightarrow{\text{a.s.}}X$, then $f(X_{n})\xrightarrow{\text{a.s.}}f(X)$.
+	\end{enumerate}
+\end{thm}
+\begin{proofing}
+	\begin{enumerate}
+		\item \textit{Current knowledge in this notes does not suffice to prove (1). Search Weak convergence of measures in Wikipedia to start.}
+		\item We fix an arbitrary $\varepsilon>0$. For any $\delta>0$, we consider a set $B_{\delta}$ defined as:
+		\begin{equation*}
+			B_{\delta}=\{x:x\not\in D_{f}\text{ and there exists }y\text{ such that }\abs{x-y}<\delta\text{ and }\abs{f(x)-f(y)}>\varepsilon\}
+		\end{equation*}
+		Suppose that $\abs{f(X)-f(X_{n})}>\varepsilon$. This means either $\abs{X-X_{n}}\geq\delta$, $X\in D_{f}$ or $X\in B_{\delta}$. Therefore,
+		\begin{equation*}
+			\prob(\abs{f(X_{n})-f(X)}>\varepsilon)\leq\prob(\abs{X_{n}-X}\geq\delta)+\prob(X\in D_{f})+\prob(X\in B_{\delta})
+		\end{equation*}
+		Since $X_{n}\xrightarrow{\prob}X$, $\prob(\abs{X_{n}-X}>\delta)\to 0$ as $n\to\infty$. As $\delta\downarrow 0$, $B_{\delta}$ reduces to an empty set. By assumption, $\prob(X\in D_{f})=0$.\\
+		Therefore, as $n\to\infty$ and $\delta\downarrow 0$,
+		\begin{equation*}
+			\prob(\abs{f(X_{n})-f(X)}>\varepsilon)\to 0
+		\end{equation*}
+		We generalize to all $\varepsilon>0$, we get $f(X_{n})\xrightarrow{\prob}f(X)$.
+		\item By definition of limit,
+		\begin{align*}
+			\prob(\{\omega\in\Omega:f(X_{n}(\omega))\to f(X(\omega))\text{ as }n\to\infty\})&\geq\prob(\{\omega\in\Omega:f(X_{n})\to f(X)\text{ as }n\to\infty\text{ and }X\not\in D_{f}\})\\
+			&\geq\prob(\{\omega\in\Omega:X_{n}(\omega)\to X(\omega)\text{ as }n\to\infty\text{ and }X\not\in D_{f}\})
+		\end{align*}
+		Since $\prob(X\in D_{f})=0$ by assumption, since $X_{n}\xrightarrow{\text{a.s.}}X$,
+		\begin{equation*}
+			\prob(\{\omega\in\Omega:X_{n}\to X\text{ as }n\to\infty\text{ and }X\not\in D_{f}\})=\prob(\{\omega\in\Omega:X_{n}(\omega)\to X(\omega)\text{ as }n\to\infty\})=1
+		\end{equation*}
+		Therefore, $\prob(\{\omega\in\Omega:f(X_{n}(\omega))\to f(X(\omega))\text{ as }n\to\infty\})=1$ and thus $f(X_{n})\xrightarrow{\text{a.s.}}f(X)$.
+	\end{enumerate}
+\end{proofing}
 \section{Other versions of Weak Law of Large Numbers}
 We can revisit and introduce some other versions of weak law of large numbers and their applications.
 \begin{thm}($L^{2}$-WLLN) 
@@ -4889,6 +5033,8 @@ We can revisit and introduce some other versions of weak law of large numbers an
 \begin{rem}
 	Note that in the i.i.d. case, we do not require the existence of variance.
 \end{rem}
+
+\newpage
 There are wide range of applications for just Weak Law of Large Numbers.
 \begin{eg}(Bernstein approximation)
 	Let $f$ be continuous on $[0,1]$ and let
@@ -4907,21 +5053,9 @@ There are wide range of applications for just Weak Law of Large Numbers.
 		\prob(Y_{n,x}=m)&=\binom{n}{m}x^{m}(1-x)^{n-m}\\
 		f_{n}(x)&=\sum_{m=0}^{n}\prob(Y_{n,x}=m)f\left(\frac{m}{n}\right)=\expect\left(f\left(\frac{Y_{n,x}}{n}\right)\right)
 	\end{align*}
-	We know that by WLLN, $\frac{Y_{n,x}}{n}\xrightarrow{\prob}x$
+	We know that by WLLN, $\frac{Y_{n,x}}{n}\xrightarrow{\prob}x$.\\
+	By continuous mapping theorem, $f\left(\frac{Y_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$.
 \end{rem}
-\begin{thm}(\textbf{Continuous mapping theorem})
-	Let $f$ be an uniformly continuous function. For all $\varepsilon>0$, there exists $\delta_{\varepsilon}$ such that
-	\begin{equation*}
-		\text{if}\quad\abs{\frac{Y_{n,x}}{n}-x}\leq\delta_{\varepsilon}\quad\text{then}\quad\abs{f\left(\frac{Y_{n,x}}{n}\right)-f(x)}\leq\varepsilon
-	\end{equation*}
-	We can obtain by converse,
-	\begin{equation*}
-		\prob\left(\omega\in\Omega:\abs{f\left(\frac{Y_{n,x}(\omega)}{n}\right)-f(x)}>\varepsilon\right)\leq\prob\left(\omega\in\Omega:\abs{\frac{Y_{n,x}(\omega)}{n}-x}>\delta_{\varepsilon}\right)\to 0
-	\end{equation*}
-	From this, we can find that $f\left(\frac{Y_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$.\\
-	\textit{Note that for non-uniformly continuous function, it is a bit more complicated. It is best if you do some searching on that.}
-\end{thm}
-\newpage
 \begin{eg}
 	By obtaining that $f\left(\frac{Y_{n,x}}{n}\right)\xrightarrow{\prob}f(x)$, since there exists a number $M$ such that $\norm{f}_{\infty}\leq M$ (due to $f$ being continuous at $[0,1]$),
 	\begin{align*}
@@ -4939,6 +5073,8 @@ There are wide range of applications for just Weak Law of Large Numbers.
 	\end{align*}
 	Therefore, we can find that $\sup_{x\in[0,1]}\abs{f_{n}(x)-f(x)}\to 0$ as $n\to\infty$.
 \end{eg}
+
+\newpage
 \begin{eg}(Borel's geometric concentration)
 	Let $\mu_{n}$ be the uniform probability measure on the $n$-dimensional cube $[-1,1]^{n}$. Let $\mathcal{H}$ be a hyperplane that is orthogonal to a principal diagonal of $[-1,1]$ ($\mathcal{H}=(1,\cdots,1)^{\perp}$).\\
 	Let $\mathcal{H}_{r}=\{x\in[-1,1]^{n}:\dist(x:\mathcal{H})\leq r\}$.\\
@@ -4974,6 +5110,8 @@ We do not necessarily need to stick to a given sequence of random variables $X_{
 \begin{rem}
 	We should choose $b_{n}$ that no larger than $\expect Y_{n}$ if possible.
 \end{rem}
+
+\newpage
 \begin{eg}(Coupon collector's problem) 
 	Let $X_{1},X_{2},\cdots$ be i.i.d. uniform random variables on $\{1,2,\cdots,n\}$.\\
 	Let $\tau_{k}^{n}=\inf\{m:\abs{\{X_{1},X_{2},\cdots,X_{m}\}}=k\}$ be the waiting time for picking $k$ distinct types.\\
@@ -5503,7 +5641,7 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 	\end{enumerate}
 \end{proofing}
 \begin{eg}(Probability via sample path counting)
-	Let \textbf{sample path} $\vec{s}=(s_{0},s_{1},\cdots,s_{n})$ (outcome/realization of the random walk), with $s_{0}=a$ and $s_{i+1}-s_{i}=\pm 1$.
+	Let \textbf{sample path} $\mathbf{s}=(s_{0},s_{1},\cdots,s_{n})$ (outcome/realization of the random walk), with $s_{0}=a$ and $s_{i+1}-s_{i}=\pm 1$.
 	\begin{align*}
 		\prob((Y_{0},Y_{1},\cdots,Y_{n})=(s_{0},s_{1},\cdots,s_{n}))&=p^{r}q^{\ell} & r&=\#\{i:s_{i+1}-s_{i}=1\} & \ell&=\#\{i:s_{i+1}-s_{i}=-1\}
 	\end{align*}
@@ -5773,7 +5911,7 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
 	\item[1.1]
 	Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"\\
 	\item[1.2]
-	 Add the Student's t-distribution and the properties of chi-squared distribution\\
+	Add the Student's t-distribution and the properties of chi-squared distribution\\
 	Add theorems that relate sample mean and sample variance with distributions\\
 	Create a new Chapter 6.2 "Sampling"\\
 	Add a remark in De Moivre-Laplace Limit Theorem\\
@@ -5782,7 +5920,11 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
 	Modify the wording of some theorems\\
 	Add the definition of random sample and combine it with sample mean and sample variance\\
 	Add the definitions related to asymptotic notations\\
-	Change how Change Log is produced
+	Change how Change Log is produced\\
+	\item[1.4] Add a Lemma linking Gamma distribution and Chi-squared distribution\\
+	Add Slutsky's Theorem\\
+	Add multivariate normal distribution\\
+	Modify the appearance of random vectors
 \end{description}
 
 \end{document}

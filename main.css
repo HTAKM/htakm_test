@@ -43,7 +43,6 @@ a {
     color:#6969bb;
 }
 .header_list {
-    color: #dfdfe2;
     margin: 0 0.2rem;
     padding: 0.2 rem;
     display: block;
@@ -53,6 +52,7 @@ nav > ul > li:hover {
     cursor: pointer;
 }
 .header_list > a {
+    font-size: 15px;
     text-decoration: none;
     color: #1b1b32;
 }
