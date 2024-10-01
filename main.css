@@ -101,3 +101,6 @@ form {
 .form_grade > input {
     width: 30px;
 }
+img {
+    width: 100%;
+}
