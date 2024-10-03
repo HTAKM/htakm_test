@@ -102,5 +102,6 @@ form {
     width: 30px;
 }
 img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 400px;
 }
