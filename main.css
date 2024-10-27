@@ -56,6 +56,9 @@ nav > ul > li:hover {
     text-decoration: none;
     color: #1b1b32;
 }
+.header_list > a:hover {
+    background-color: #ca6fee;
+}
 main {
     padding-top: 60px;
     margin: 0 10px 0 10px;
@@ -74,6 +77,9 @@ div {
 table {
     width: 100%;
     text-align: left;
+}
+.table_title {
+    background-color: #d196ec;
 }
 .table_head > th {
     font-weight: bold;
