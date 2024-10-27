@@ -1,0 +1,80 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{huhtakm-template-book-v2}
+\LoadClass{book}
+\RequirePackage[a4paper,total={6.9in,10.5in}]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{derivative}
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{gensymb}
+\RequirePackage{mathrsfs}
+\RequirePackage{xcolor}
+\RequirePackage{extarrows}
+\RequirePackage{titlesec}
+\RequirePackage{mdframed}
+\RequirePackage{hyperref}
+\RequirePackage{centernot}
+\RequirePackage{subcaption}
+\mdfsetup{%
+    innerleftmargin = 5pt,
+    innerrightmargin = 5pt
+}
+\theoremstyle{definition}
+    \newtheorem{definition}{Definition}[chapter]
+    \newenvironment{defn}[0]
+    	{\begin{definition}\begin{mdframed}[backgroundcolor=yellow!20]}
+    	{\end{mdframed}\end{definition}}
+    \newtheorem{theorem}[definition]{Theorem}
+    \newenvironment{thm}[0]
+    	{\begin{theorem}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{theorem}}
+    \newtheorem{lemma}[definition]{Lemma}
+    \newenvironment{lem}[0]
+    	{\begin{lemma}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{lemma}}
+    \newtheorem{corollary}[definition]{Corollary}
+    \newenvironment{cor}[0]
+    	{\begin{corollary}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{corollary}}
+    \newtheorem{proposition}[definition]{Proposition}
+    \newenvironment{prop}[0]
+    	{\begin{proposition}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{proposition}}
+    \newtheorem{conjecture}[definition]{Conjecture}
+    \newenvironment{conj}[0]
+    	{\begin{conjecture}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{conjecture}}
+    \newtheorem{example}{Example}[chapter]
+    \newenvironment{eg}[0]
+    	{\begin{example}\begin{mdframed}[backgroundcolor=green!5]}
+    	{\end{mdframed}\end{example}}
+    \newtheorem{remarks}{Remark}[definition]
+    \newenvironment{rem}[0]
+    	{\begin{remarks}\begin{mdframed}[backgroundcolor=yellow!10]}
+    	{\end{mdframed}\end{remarks}}
+    \newtheorem{claim}{Claim}[definition]
+    \newenvironment{cla}[0]
+    	{\begin{claim}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{claim}}
+    \newenvironment{proofing}[1][\proofname]
+    	{\begin{proof}[#1]$ $\par}
+    	{\qedhere\end{proof}}
+    \newtheorem{sdefinition}{Definition}
+    \newenvironment{sdefn}[0]
+    	{\begin{sdefinition}\begin{mdframed}[backgroundcolor=yellow!20]}
+    	{\end{mdframed}\end{sdefinition}}
+    \newtheorem{sproperty}{Property}
+    \newenvironment{sthm}[0]
+    	{\begin{sproperty}\begin{mdframed}[backgroundcolor=black!10]}
+    	{\end{mdframed}\end{sproperty}}
+    \newtheorem{sexample}{Example}
+    \newenvironment{seg}[0]
+    	{\begin{sexample}\begin{mdframed}[backgroundcolor=green!5]}
+    	{\end{mdframed}\end{sexample}}
+\setlength{\parindent}{0pt}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\norm}[1]{\lVert{#1}\rVert}
+\newcommand{\intinfty}{\int_{-\infty}^{\infty}}
+\newcommand{\intlu}[2]{\int_{#1}^{#2}}
+\newcommand{\named}[1]{(\textbf{#1})}
