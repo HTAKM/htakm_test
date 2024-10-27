@@ -876,13 +876,13 @@ Methods of moments estimation is one of the most popular methods in statistics t
 			\theta_{k}=g_{k}(\mu_{1}',\mu_{2}',\cdots,\mu_{k}',\cdots)
 		\end{cases}
 	\end{equation*}
-	then the \textbf{method of moments estimator} (MME), denoted by $(\tilde{\theta}_{1},\tilde{\theta}_{2},\cdots,\tilde{\theta}_{k})$, of $(\theta_{1},\theta_{2},\cdots,\theta_{k})$ is:
+	then the \textbf{method of moments estimator} (MME), denoted by $(\widetilde{\theta}_{1},\widetilde{\theta}_{2},\cdots,\widetilde{\theta}_{k})$, of $(\theta_{1},\theta_{2},\cdots,\theta_{k})$ is:
 	\begin{equation*}
 		\begin{cases}
-			\tilde{\theta}_{1}=g_{1}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)\\
-			\tilde{\theta}_{2}=g_{2}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)\\
+			\widetilde{\theta}_{1}=g_{1}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)\\
+			\widetilde{\theta}_{2}=g_{2}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)\\
 			\vdots\\
-			\tilde{\theta}_{k}=g_{k}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)
+			\widetilde{\theta}_{k}=g_{k}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)
 		\end{cases}
 	\end{equation*}
 \end{defn}
@@ -905,7 +905,7 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	\end{equation*}
 	Therefore, the MME of $\sigma^{2}$ is:
 	\begin{equation*}
-		\tilde{\sigma}^{2}=\overline{X^{2}}-100
+		\widetilde{\sigma}^{2}=\overline{X^{2}}-100
 	\end{equation*}
 \end{eg}
 \begin{eg}
@@ -920,8 +920,8 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	Therefore, the MME of $\mu$ and $\sigma^{2}$ are:
 	\begin{equation*}
 		\begin{cases}
-			\tilde{\mu}=\overline{X}\\
-			\tilde{\sigma}^{2}=\overline{X^{2}}-(\overline{X})^{2}=\frac{1}{n}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}
+			\widetilde{\mu}=\overline{X}\\
+			\widetilde{\sigma}^{2}=\overline{X^{2}}-(\overline{X})^{2}=\frac{1}{n}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}
 		\end{cases}
 	\end{equation*}
 \end{eg}
@@ -952,26 +952,26 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	Therefore, the MME of $\alpha$ and $\beta$ is:
 	\begin{equation*}
 		\begin{cases}
-			\tilde{\alpha}=\frac{3423^{2}}{\overline{X^{2}}-3423^{2}}\\
-			\tilde{\beta}=\frac{3423}{\overline{X^{2}}-3423^{2}}
+			\widetilde{\alpha}=\frac{3423^{2}}{\overline{X^{2}}-3423^{2}}\\
+			\widetilde{\beta}=\frac{3423}{\overline{X^{2}}-3423^{2}}
 		\end{cases}
 	\end{equation*}
 \end{eg}
 \begin{lem}\named{Invariance property of MME}
-	If $\tilde{\theta}_{i}$ is the MME for $\theta_{i}$ for $i=1,\cdots,k$, then $h(\tilde{\theta}_{1},\cdots,\tilde{\theta}_{k})$ is the MME for $h(\theta_{1},\cdots,\theta_{k})$, where $h$ is a known function.
+	If $\widetilde{\theta}_{i}$ is the MME for $\theta_{i}$ for $i=1,\cdots,k$, then $h(\widetilde{\theta}_{1},\cdots,\widetilde{\theta}_{k})$ is the MME for $h(\theta_{1},\cdots,\theta_{k})$, where $h$ is a known function.
 \end{lem}
 \begin{thm}
 	\label{Chapter 2 (Thoerem) Sequence of MME is asympt. normal}
-	A sequence of MME $\{\tilde{\theta}_{n}\in\mathbb{R}^{k}\}$ is consistent and asymptotically unbiased for $\theta$. It is also asymptotically normally distributed. More precisely, under certain assumption like $\E\abs{X}^{2k}<\infty$, as $n\to\infty$, we have:
+	A sequence of MME $\{\widetilde{\theta}_{n}\in\mathbb{R}^{k}\}$ is consistent and asymptotically unbiased for $\theta$. It is also asymptotically normally distributed. More precisely, under certain assumption like $\E\abs{X}^{2k}<\infty$, as $n\to\infty$, we have:
 	\begin{equation*}
-		\sqrt{n}(\tilde{\theta}_{n}-\theta)\to\N_{k}(\mathbf{0},\mathbf{GHG}^{T})
+		\sqrt{n}(\widetilde{\theta}_{n}-\theta)\to\N_{k}(\mathbf{0},\mathbf{GHG}^{T})
 	\end{equation*}
 	where $\mathbf{G}$ is a $k\times k$ matrix with $\pdv{g_{i}}{\mu_{j}'}$ as its $(i,j)$-th entry and $\mathbf{H}$ is a $k\times k$ matrix with $\mu_{i+j}'-\mu_{i}'\mu_{j}'$ as its $(i,j)$-th entry, for $i=1,\cdots,k$ and $j=1,\cdots,k$.
 \end{thm}
 \begin{rem}
 	In the theorem, "consistent" means convergence in probability. For any $\varepsilon>0$, as $n\to\infty$,
 	\begin{equation*}
-		\prob(|\tilde{\theta}_{n}-\theta|>\varepsilon)\to 0
+		\prob(|\widetilde{\theta}_{n}-\theta|>\varepsilon)\to 0
 	\end{equation*}
 \end{rem}
 
@@ -979,9 +979,9 @@ Methods of moments estimation is one of the most popular methods in statistics t
 \begin{rem}
 	Also in the theorem, "asymptotically unbiased" means that we have:
 	\begin{equation*}
-		\lim_{n\to\infty}\E(\tilde{\theta}_{n})=\theta
+		\lim_{n\to\infty}\E(\widetilde{\theta}_{n})=\theta
 	\end{equation*}
-	Note that $\E(\tilde{\theta}_{n})\neq\theta$ for some $n$.
+	Note that $\E(\widetilde{\theta}_{n})\neq\theta$ for some $n$.
 \end{rem}
 \begin{eg}
 	Consider a random sample of size $n$ from a random variable $X$ with $\E\abs{X}^{4}<\infty$. We take:
@@ -1037,7 +1037,7 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	\end{equation*}
 	Using Theorem \ref{Chapter 2 (Thoerem) Sequence of MME is asympt. normal}, denote:
 	\begin{equation*}
-		\tilde{\theta}_{n}=\begin{pmatrix}
+		\widetilde{\theta}_{n}=\begin{pmatrix}
 			\overline{X}_{n}\\ S_{n}^{2}
 		\end{pmatrix}
 	\end{equation*}
