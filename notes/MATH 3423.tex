@@ -396,12 +396,11 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 	\begin{equation*}
 		0.95=\prob\left(-z_{0.025}\leq\frac{\overline{X}-p}{\sqrt{\frac{p(1-p)}{n}}}\leq z_{0.025}\right)=\prob\left((\overline{X}-p)^{2}\leq z_{0.025}^{2}\frac{p(1-p)}{n}\right)
 	\end{equation*} 
-	Solving the inequality, we would find an interval that estimates the parameter $p$. However, this is highly inconvenient. We may use another method.\\
-	Let use replace $\sqrt{\frac{p(1-p)}{n}}$ with $\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}$. We can do this because:
+	Solving the inequality, we would find an interval that estimates the parameter $p$. However, this is highly inconvenient. We may use another method. Let us replace $\sqrt{\frac{p(1-p)}{n}}$ with $\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}$. As $n\to\infty$,
 	\begin{equation*}
-		\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}=\sqrt{\frac{p(1-p)}{n}}\sqrt{\frac{p(1-p)}{\overline{X}(1-\overline{X})}}
+		\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\sqrt{\frac{\overline{X}(1-\overline{X})}{p(1-p)}}\to\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}
 	\end{equation*}
-	By Slutsky's Theorem, $\sqrt{\frac{p(1-p)}{\overline{X}(1-\overline{X})}}\to 1$ since $\overline{X}\to p$ by WLLN. Therefore, $\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\to\N(0,1)$. We have:
+	since by Slutsky's Theorem, $\sqrt{\frac{p(1-p)}{\overline{X}(1-\overline{X})}}\to 1$ since $\overline{X}\to p$ by WLLN, as $n\to\infty$. We have:
 	\begin{equation*}
 		0.95=\prob\left(-z_{0.025}\leq\frac{\overline{X}-p}{\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}}\leq z_{0.025}\right)=\prob\left(\overline{X}-z_{0.025}\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\leq p\leq\overline{X}+z_{0.025}\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\right)
 	\end{equation*} 
@@ -610,7 +609,25 @@ We may extend the Delta method to multivariate cases.
 \end{thm}
 
 \section{Commonly used distribution}
-We have discussed about the normal distribution before.
+Let us recall some useful distributions.
+\begin{eg}\named{Uniform distribution} $X\sim\U[a,b]$\\
+	Random variable $X$ is uniform if given $a<b$, it has a PDF:
+	\begin{align*}
+		f_{X}(x)&=\begin{cases}
+			\frac{1}{b-a}, &x\in[a,b]\\
+			0, &\text{Otherwise}
+		\end{cases} & \E(X)&=\frac{a+b}{2} & \Var(X)&=\frac{(b-a)^{2}}{12}
+	\end{align*}
+\end{eg}
+\begin{eg}\named{Exponential distribution} $X\sim\Exp(\lambda)$\\
+	Random variable $X$ is exponential with parameter $\lambda$ if it has a PDF:
+	\begin{align*}
+		f_{X}(x)&=\begin{cases}
+			\lambda e^{-\lambda x}, &x\geq 0\\
+			0, &x<0
+		\end{cases} & \E(X)&=\frac{1}{\lambda} & \Var(X)&=\frac{1}{\lambda^{2}}
+	\end{align*}
+\end{eg}
 \begin{eg}\named{Normal distribution / Gaussian distribution} $X\sim\N(\mu,\sigma^{2})$\\
 	Random variable $X$ is normal if it has two parameters $\mu$ and $\sigma^{2}$, and its PDF and CDF is:
 	\begin{align*}
