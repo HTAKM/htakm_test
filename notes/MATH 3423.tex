@@ -1194,7 +1194,7 @@ The idea is that for each realization of $\mathbf{x}$, we want to estimate a val
 	\begin{equation*}
 		L(\theta)=\frac{1}{\theta^{n}}\mathbf{1}_{0\leq x_{(1)}\leq\cdots\leq x_{(n)}\leq\theta}
 	\end{equation*}
-	where $x_{(i)}$ represents the $i$-th smallest data for $i=1,\cdots,n$. Therefore, the MME is:
+	where $x_{(i)}$ represents the $i$-th smallest data for $i=1,\cdots,n$. Therefore, the MLE is:
 	\begin{equation*}
 		\hat{\theta}=x_{(n)}
 	\end{equation*}
@@ -1233,7 +1233,7 @@ The idea is that for each realization of $\mathbf{x}$, we want to estimate a val
 	for $i=1,\cdots,k$ and $j=1,\cdots,k$.
 \end{thm}
 \begin{rem}
-	In the theorem, "asymptotically efficient" means that the limiting variance is the smallest possible.
+	In the theorem, "asymptotically efficient" means that the limiting variance is the smallest possible. \textit{If you want to know why reciprocal of Fisher Information is the lowest possible variance of any unbiased estimator, search Cram\'er-Rao bound.}
 \end{rem}
 Notice that we have used a special matrix called "Fisher Information Matrix". What is Fisher Information?
 \begin{defn}
