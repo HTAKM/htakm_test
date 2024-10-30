@@ -353,7 +353,7 @@ We also have a more strict convergence.
 \end{rem}
 
 \section{Limit Theorems}
-Using the last two theorems, the next two theorems are very useful in both statistics and probability theory but giving us approximate distribution of an average without a lot of distributional assumption.
+Using the last two theorems, the next two theorems are very useful in both statistics and probability theory by giving us approximate distribution of an average without a lot of distributional assumption.
 \begin{thm}\named{Weak Law of Large Numbers (WLLN)}
 	Let $\{X_{n}\}$ be a sequence of i.i.d. random variables. Let $\E(X_{i})=\mu$ for all $i=1,2,\cdots$. Define by $\overline{X}$ the sample mean of the random variables. Then as $n\to\infty$
 	\begin{equation*}
@@ -367,7 +367,7 @@ Using the last two theorems, the next two theorems are very useful in both stati
 	\end{equation*}
 \end{thm}
 \begin{rem}
-	This is just an abuse of notations. You should just know that both have the same distribution.
+	This is just an abuse of notations.
 \end{rem}
 
 \newpage
@@ -398,9 +398,9 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 	\end{equation*} 
 	Solving the inequality, we would find an interval that estimates the parameter $p$. However, this is highly inconvenient. We may use another method. Let us replace $\sqrt{\frac{p(1-p)}{n}}$ with $\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}$. As $n\to\infty$,
 	\begin{equation*}
-		\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\sqrt{\frac{\overline{X}(1-\overline{X})}{p(1-p)}}\to\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}
+		\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}=\sqrt{\frac{p(1-p)}{n}}\sqrt{\frac{p(1-p)}{\overline{X}(1-\overline{X})}}\to\sqrt{\frac{p(1-p)}{n}}
 	\end{equation*}
-	since by Slutsky's Theorem, $\sqrt{\frac{p(1-p)}{\overline{X}(1-\overline{X})}}\to 1$ since $\overline{X}\to p$ by WLLN, as $n\to\infty$. We have:
+	since by Slutsky's Theorem, $\sqrt{\frac{p(1-p)}{\overline{X}(1-\overline{X})}}\to 1$ as $\overline{X}\to p$ by WLLN. We have:
 	\begin{equation*}
 		0.95=\prob\left(-z_{0.025}\leq\frac{\overline{X}-p}{\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}}\leq z_{0.025}\right)=\prob\left(\overline{X}-z_{0.025}\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\leq p\leq\overline{X}+z_{0.025}\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}\right)
 	\end{equation*} 
@@ -643,8 +643,8 @@ We have some more distribution that is associated with normal distribution.
 	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent and $X_{i}\sim\N(0,1)$ for $i=1,\cdots,n$. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. Random variable $Y$ has a $\chi^{2}$-distribution with $n$ degree of freedom if:
 	\begin{align*}
 		f_{Y}(x)&=\begin{cases}
-			0, &x<0\\
-			\frac{1}{\Gamma(\frac{n}{2})}2^{-\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0
+			\frac{1}{\Gamma(\frac{n}{2})}2^{-\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x>0\\
+			0, \text{Otherwise}
 		\end{cases} & \E{Y}&=n & \Var(Y)&=2n
 	\end{align*}
 \end{eg} 
