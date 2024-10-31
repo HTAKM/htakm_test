@@ -6,27 +6,38 @@
 \DeclareMathOperator{\cov}{cov}
 \DeclareMathOperator{\Bern}{Bern}
 \DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Geom}{Geom}
 \DeclareMathOperator{\Poisson}{Poisson}
 \DeclareMathOperator{\Exp}{Exp}
 \DeclareMathOperator{\N}{N}
 \DeclareMathOperator{\Cauchy}{Cauchy}
 \DeclareMathOperator{\NBin}{NBin}
 \DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\Gam}{Gamma}
+\DeclareMathOperator{\Bet}{Beta}
 \setlength{\parindent}{0pt}
 \title{
-	\Huge MATH 3423
+	\Huge MATH 3423: Statistical Inference
 }
 \author{
 	HU-HTAKM\\
 	\small Website: \url{https://htakm.github.io/htakm_test/}
 }
 \date{
-	Last major change: October 26, 2024\\
-	Last small update: October 27, 2024
+	Last major change: October 31, 2024\\
+	Last small update: October 31, 2024
 }
 \begin{document}
 \maketitle
-This is MATH 3423 lecture note made by me. Note that some of the notations are slightly different with what is used in the course for better clarity.
+This is MATH 3423 lecture note made by me. Note that some of the notations are slightly different with what is used in the course for better clarity. For example:\\
+\begin{tabular}{||c|c|c||}
+	\hline
+	Name & My notation & Ycw's notation\\
+	\hline
+	Transpose & $A^{T}$ &  $A'$\\
+	Fisher Information & $\mathcal{I}_{X}(\theta)$ & $I_{X}(\theta)$\\
+	\hline
+\end{tabular}
 \tableofcontents
 \chapter{Preliminary}
 Statistical inference is a statistical process which investigates how to use the information from the data to make an inference about the distribution of the random variable of our interest. In MATH 3423, we will focus on two core concepts of statistical inference: point estimation and hypothesis testing.
@@ -282,7 +293,7 @@ It would be useful if we have a function that could generate all moments.
 	\begin{equation*}
 		M_{X}(t)=\frac{e^{bt}-e^{at}}{(b-a)t}
 	\end{equation*}
-	If $X\sim\Gamma(\alpha,\beta)$, then for $t<\beta$:
+	If $X\sim\Gam(\alpha,\beta)$, then for $t<\beta$:
 	\begin{equation*}
 		M_{X}(t)=\left(\frac{\beta}{\beta-t}\right)^{\alpha}
 	\end{equation*}
@@ -295,7 +306,7 @@ This means that by knowing the MGF of a particular random variable $X$, we can k
 \begin{eg}
 	Assume that $X_{1},\cdots,X_{n}$ are independent and $X_{i}\sim\Bin(m_{i},p)$ for all $i=1,\cdots,n$. Then we have:
 	\begin{equation*}
-		M_{X_{1}+\cdots,X_{n}}(t)=\prod_{i=1}^{n}M_{X_{i}}(t)=\prod_{i=1}^{n}(pe^{t}+1-p)^{m_{i}}=(pe^{t}+1-p)^{\sum_{i=1}^{n}m_{i}}
+		M_{X_{1}+\cdots+X_{n}}(t)=\prod_{i=1}^{n}M_{X_{i}}(t)=\prod_{i=1}^{n}(pe^{t}+1-p)^{m_{i}}=(pe^{t}+1-p)^{\sum_{i=1}^{n}m_{i}}
 	\end{equation*}
 	Therefore, we have $X_{1}+\cdots+X_{n}\sim\Bin(\sum_{i=1}^{n}m_{i},p)$.
 \end{eg}
@@ -313,7 +324,7 @@ This means that by knowing the MGF of a particular random variable $X$, we can k
 	\begin{enumerate}
 		\item If $X_{i}\sim\NBin(r_{i},p)$, then $X_{1}+\cdots+X_{n}\sim\NBin(\sum_{i=1}^{n}r_{i},p)$.
 		\item If $X_{i}\sim\N(\mu_{i},\sigma_{i}^{2})$, then $X_{1}+\cdots+X_{n}\sim\N(\sum_{i=1}^{n}\mu_{i},\sum_{i=1}^{n}\sigma_{i}^{2})$.
-		\item If $X_{i}\sim\Gamma(\alpha_{i},\beta)$, then $X_{1}+\cdots+X_{n}\sim\Gamma(\sum_{i=1}^{n}\alpha_{i},\beta)$.
+		\item If $X_{i}\sim\Gam(\alpha_{i},\beta)$, then $X_{1}+\cdots+X_{n}\sim\Gam(\sum_{i=1}^{n}\alpha_{i},\beta)$.
 	\end{enumerate}
 \end{eg}
 \begin{rem}
@@ -556,6 +567,30 @@ However, we usually deal with more than 1 variables. Before we extend the theore
 		\mathbf{AX}\sim\N_{q}(\mathbf{A}\boldsymbol{\mu},\mathbf{A\Sigma A}^{T})
 	\end{equation*}
 \end{lem}
+\begin{eg}
+	Using this lemma, one can isolate some of the random variables that made up the random vector $\mathbf{X}=(X_{1}\ \cdots\ X_{p})^{T}\sim\N_{p}(\boldsymbol{\mu}_{1},\mathbf{\Sigma}_{1})$. For example, setting $(p-1)\times p$ matrix $\mathbf{A}$ as:
+	\begin{equation*}
+		\mathbf{A}=\begin{pmatrix}
+			0 & 1 & 0 & \hdots & 0\\
+			\vdots & \ddots & \ddots & \ddots & \vdots\\
+			\vdots & & \ddots & \ddots & 0\\
+			0 & \hdots & \hdots & 0 & 1
+		\end{pmatrix}=\begin{pmatrix}\begin{array}{c|c}
+			0 & \\
+			\vdots & \mathbf{I}_{(p-1)\times(p-1)}\\
+			0 &
+		\end{array}\end{pmatrix}
+	\end{equation*}
+	We may find that:
+	\begin{equation*}
+		\mathbf{AX}=\begin{pmatrix}
+		X_{2}\\
+		\vdots\\
+		X_{p}
+		\end{pmatrix}\sim\N_{p-1}(\boldsymbol{\mu}_{2},\mathbf{\Sigma}_{2})
+	\end{equation*}
+	where $\boldsymbol{\mu}_{2}$ is the mean vector of $(X_{2}\ \cdots\ X_{p})^{T}$ and $\mathbf{\Sigma}_{2}$ is the variance-covariance matrix of $(X_{2}\ \cdots\ X_{p})^{T}$.
+\end{eg}
 \begin{lem}
 	\label{Chapter 1 (Lemma) Independence iff uncorrelated and bivariate}
 	If we have:
@@ -583,6 +618,8 @@ However, we usually deal with more than 1 variables. Before we extend the theore
 \begin{rem}
 	Two random variables are uncorrelated does not mean they are independent. It is only true if they are bivariate normal.
 \end{rem}
+
+\newpage
 We may extend the CLT to multivariate case.
 \begin{thm}\named{Multivariate Central Limit Theorem}
 	Let $\{\mathbf{X}_{n}=(X_{n1}\ \cdots\ X_{nk})^{T}\in\mathbb{R}^{k}\}$ be a sequence of i.i.d. random vectors with variance-covariance matrix $\mathbf{\Sigma}$. We assume that $\E(X_{ij}^{2})<\infty$ for $i=1,2,\cdots$ and $j=1,\cdots,k$. Define by $\mathbf{\overline{X}}$ the sample mean of the random vectors. Then as $n\to\infty$,
@@ -590,8 +627,6 @@ We may extend the CLT to multivariate case.
 		\sqrt{n}(\mathbf{\overline{X}}-\boldsymbol{\mu})\xrightarrow{D}\N_{k}(\mathbf{0},\mathbf{\Sigma})
 	\end{equation*}
 \end{thm}
-
-\newpage
 We may extend the Delta method to multivariate cases.
 \begin{thm}\named{Multivariate 1st-order Delta Method}
 	Let $\{\mathbf{X}_{n}\in\mathbb{R}^{k}\}$ be a sequence of random vectors such that for constant vector $\mathbf{a}\in\mathbb{R}^{k}$, as $n\to\infty$,
@@ -610,6 +645,38 @@ We may extend the Delta method to multivariate cases.
 
 \section{Commonly used distribution}
 Let us recall some useful distributions.
+\begin{eg}\named{Binomial distribution} $X\sim\Bin(n,p)$\\
+	Random variable $X$ is a Binomial random variable with parameters $n\in\mathbb{N}$ and $p\in[0,1]$ if it has a PMF for $x=0,\cdots,n$:
+	\begin{align*}
+		p_{X}(x)&=\binom{n}{x}p^{x}(1-p)^{n-x} & \E(X)&=np & \Var(X)&=np(1-p)
+	\end{align*}
+\end{eg}
+\begin{eg}\named{Geometric distribution} $X\sim\Geom(p)$\\
+	Random variable $X$ is geometric with parameter $p\in[0,1]$ if it has a PMF for $x=1,2,\cdots$:
+	\begin{align*}
+		p_{X}(x)&=p(1-p)^{x-1} & \E(X)&=\frac{1}{p} & \Var(X)&=\frac{1-p}{p^{2}}
+	\end{align*}
+\end{eg}
+\begin{eg}\named{Poisson distribution} $X\sim\Poisson(\lambda)$\\
+	Random variable $X$ is a Poisson random variable with parameter $\lambda$ if it has a PMF for $x=0,1,\cdots$:
+	\begin{align*}
+		p_{X}(x)&=\frac{\lambda^{x}}{x!}e^{-\lambda} & \E(X)&=\lambda & \Var(X)&=\lambda
+	\end{align*}
+\end{eg}
+\begin{eg}\named{Negative Binomial distribution} $X\sim\NBin(r,p)$\\
+	Assume that $X_{1},\cdots,X_{r}$ are independent and $X_{i}\sim\Geom(p)$ for $i=1,\cdots,r$. Let $Y=\sum_{i=1}^{n}X_{i}$. Random variable $Y$ is negative Binomial with parameters $r>0$ and $p\in[0,1]$ if for $x>r$:
+	\begin{align*}
+		p_{X}(x)&=\binom{x-1}{r-1}(1-p)^{x-r}p^{r} & \E(X)&=\frac{r}{p} & \Var(X)&=\frac{r(1-p)}{p^{2}}
+	\end{align*}
+\end{eg}
+\begin{eg}\named{Cauchy distribution} $X\sim\Cauchy(\theta)$\\
+	Random variable $X$ is a Cauchy random variable with parameter $\theta$ if it has a PDF:
+	\begin{align*}
+		f_{X}(x)&=\frac{1}{\pi(1+(x-\theta)^{2})} & \E(X)&\text{ DNE} & \Var(X)&\text{ DNE}
+	\end{align*}
+\end{eg}
+
+\newpage
 \begin{eg}\named{Uniform distribution} $X\sim\U[a,b]$\\
 	Random variable $X$ is uniform if given $a<b$, it has a PDF:
 	\begin{align*}
@@ -638,7 +705,43 @@ Let us recall some useful distributions.
 		f_{X}(x)&=\phi(x)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^{2}}{2}\right) & F_{X}(x)&=\Phi(x)=\intlu{-\infty}{x}\phi(u)\,du & \E(X)&=0 & \Var(X)&=1
 	\end{align*}
 \end{eg}
-We have some more distribution that is associated with normal distribution.
+\begin{eg}\named{Gamma distribution} $X\sim\Gam(\alpha,\beta)$\\
+	Random variable $X$ is a gamma random variable with parameters $\alpha>0$ and $\beta>0$ if its PDF is:
+	\begin{align*}
+		f_{X}(x)&=\begin{cases}
+			\frac{1}{\Gamma(\alpha)}\beta^{\alpha}x^{\alpha-1}e^{-\beta x}, &x\geq 0\\
+			0, &\text{Otherwise}
+		\end{cases} & \E(X)&=\frac{\alpha}{\beta} & \Var(X)&=\frac{\alpha}{\beta^{2}}
+	\end{align*}
+\end{eg}
+\begin{rem}
+	Gamma function $\Gamma(z)$ has the following properties:
+	\begin{enumerate}
+		\item If $z$ is a positive integer, then $\Gamma(z)=(z-1)!$.
+		\item For all $z$, $\Gamma(z+1)=z\Gamma(z)$.
+		\item If $\Re(z)>0$, then $\Gamma(z)=\int_{0}^{\infty}t^{z-1}e^{-t}\,dt$.
+		\item $\Gamma(\frac{1}{2})=\sqrt{\pi}$.
+	\end{enumerate}
+\end{rem}
+\begin{eg}\named{Beta distribution} $X\sim\Bet(\alpha,\beta)$\\
+	Random variable $X$ is a beta random variable with parameters $\alpha>0$ and $\beta>0$ if its PDF is: 
+	\begin{align*}
+		f_{X}(x)&=\begin{cases}
+			\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}, &x\in(0,1)\\
+			0, &\text{Otherwise}
+		\end{cases} & \E(X)&=\frac{\alpha}{\alpha+\beta} & \Var(X)&=\frac{\alpha\beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}
+	\end{align*}
+\end{eg}
+\begin{rem}
+	Beta function $B(z_{1},z_{2})$ has the following properties:
+	\begin{enumerate}
+		\item $B(z_{1},z_{2})=\frac{\Gamma(z_{1})\Gamma(z_{2})}{\Gamma(z_{1}+z_{2})}$
+		\item $B(z_{1},z_{2})=\int_{0}^{1}t^{z_{1}-1}(1-t)^{z_{2}-1}\,dt$
+	\end{enumerate}
+\end{rem}
+
+\newpage
+We have some more distributions that is associated with normal distribution. For example, Chi-squared distribution, which is a special case of gamma distribution.
 \begin{eg}\named{Chi-squared distribution} $Y\sim\chi^{2}(n)$\\
 	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent and $X_{i}\sim\N(0,1)$ for $i=1,\cdots,n$. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. Random variable $Y$ has a $\chi^{2}$-distribution with $n$ degree of freedom if:
 	\begin{align*}
@@ -669,6 +772,13 @@ We have some more distribution that is associated with normal distribution.
 		M_{Y}(t)=\left(\frac{\frac{1}{2}}{\frac{1}{2}-t}\right)^{\frac{r}{2}}=(1-2t)^{-\frac{r}{2}}
 	\end{equation*}
 \end{eg}
+\begin{eg}
+	Given that $Y\sim\chi^{2}(r)$. How do we find $\E(Y)$ without using the MGF of $Y$?\\
+	By definition, we may let $Y=\sum_{i=1}^{r}X_{i}^{2}$, where $X_{i}\sim\N(0,1)$. Therefore,
+	\begin{equation*}
+		\E(Y)=\sum_{i=1}^{r}\E(X_{i}^{2})=\sum_{i=1}^{r}\left.\odv*[order={2}]{}{t}e^{\frac{1}{2}t^{2}}\right|_{t=0}=\left.r(1+t^{2})e^{\frac{1}{2}t^{2}}\right|_{t=0}=r
+	\end{equation*}
+\end{eg}
 \begin{thm}
 	Given a set of random variables $\{X_{1},\cdots,X_{k}\}$. Let $Y=\sum_{i=1}^{k}X_{i}$ and $X_{i}\sim\chi^{2}(r_{i})$ for all $i=1,\cdots,k$. If they are independent, then $Y\sim\chi^{2}(r_{1}+\cdots+r_{k})$.
 \end{thm}
@@ -679,6 +789,8 @@ We have some more distribution that is associated with normal distribution.
 		Z_{1}+Z_{2}=X_{11}^{2}+\cdots+X_{1n_{1}}^{2}+X_{21}^{2}+\cdots+X_{2n_{2}}^{2}\sim\chi^{2}(n_{1}+n_{2})
 	\end{equation*}
 \end{proofing}
+
+\newpage
 \begin{thm}
 	\label{Chapter 1 (Theorem) Normal and chi-squared distribution related to sample mean and variance}
 	If $\{X_{1},\cdots,X_{n}\}$ is a random sample of size $n>1$ of a random variable $X\sim\N(\mu,\sigma^{2})$, then we have:
@@ -731,7 +843,6 @@ We have some more distribution that is associated with normal distribution.
 		\end{equation*}
 		Therefore, we can find that $\cov(\mathbf{X^{*}},\overline{X})=0$. By Lemma \ref{Chapter 1 (Lemma) Independence iff uncorrelated and bivariate}, $\overline{X}$ and $\mathbf{X^{*}}$ are independent.\\
 		Since $S_{n}^{2}$ is a function of $\mathbf{X^{*}}$, we can conclude that $\overline{X}$ and $S_{n-1}^{2}$ are independent.
-		\newpage
 		\item We have:
 		\begin{equation*}
 			\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}=\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\mu+\mu-\overline{X})^{2}=\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\mu)^{2}-\frac{n(\overline{X}-\mu)^{2}}{\sigma^{2}}=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu}{\sigma}\right)-\left(\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}\right)^{2}
@@ -792,8 +903,6 @@ The t-distribution has the following properties.
 		\frac{\sqrt{n}(\overline{X}-\mu)}{S_{n-1}}=\frac{\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}}{\sqrt{\frac{1}{n-1}\left(\frac{(n-1)S_{n-1}^{2}}{\sigma^{2}}\right)}}\sim t(n-1)
 	\end{equation*}
 \end{proofing}
-
-\newpage
 \begin{eg}
 	Assume that we want to find the $95\%$ confidence interval of $\mu$ without knowing the population variance $\sigma^{2}$. Then we can find:
 	\begin{align*}
@@ -809,6 +918,8 @@ The t-distribution has the following properties.
 		\left(\overline{X}-z_{0.025}\frac{S_{n-1}}{\sqrt{n}},\overline{X}+z_{0.025}\frac{S_{n-1}}{\sqrt{n}}\right)
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}\named{F distribution} $F\sim F(r_{1},r_{2})$\\
 	Assume that $X$ and $Y$ are independent random variables with $X\sim\chi^{2}(r_{1})$ and $Y\sim\chi^{2}(r_{2})$. Let:
 	\begin{equation*}
@@ -855,6 +966,8 @@ The t-distribution has the following properties.
 		We find that $\frac{1}{F_{\alpha}(r_{1},r_{2})}=F_{1-\alpha}(r_{2},r_{1})$
 	\end{enumerate}
 \end{proofing}
+
+\newpage
 \begin{eg}
 	Assume that we try to compare two populations. Let $X_{1}\sim\N(\mu_{1},\sigma_{1}^{2})$ represents the random variable of the first population and $X_{2}\sim\N(\mu_{2},\sigma_{2}^{2})$ represents the random variable of the second population. We want to find an interval guess of their ratio of variance $\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$.\\
 	Let $\{X_{11},\cdots,X_{1n}\}$ be a random sample of size $n$ from $X_{1}$ and $\{X_{21},\cdots,X_{2m}\}$ be a random sample of size $m$ from $X_{2}$. We can find that:
@@ -956,7 +1069,7 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	\end{equation*}
 \end{eg}
 \begin{eg}
-	Consider a random sample of size $n$ from $X\sim\Gamma(\alpha,\beta)$. Assume that we know that $\E(X)=3423$. We have $k=2$, $(\theta_{1},\theta_{2})=(\alpha,\beta)$. We can write them in terms of moments:
+	Consider a random sample of size $n$ from $X\sim\Gam(\alpha,\beta)$. Assume that we know that $\E(X)=3423$. We have $k=2$, $(\theta_{1},\theta_{2})=(\alpha,\beta)$. We can write them in terms of moments:
 	\begin{equation*}
 		\begin{cases}
 			3423=\frac{\alpha}{\beta}\\
@@ -1190,7 +1303,7 @@ The idea is that for each realization of $\mathbf{x}$, we want to estimate a val
 	Remember, when we estimate a parameter, we must use the data we have obtained.
 \end{rem}
 \begin{eg}
-	Consider a random sample of size $n$ from $U[0,\theta]$, where $\theta\in(0,\infty)$ is unknown. The likelihood function is:
+	Consider a random sample of size $n$ from $\U[0,\theta]$, where $\theta\in(0,\infty)$ is unknown. The likelihood function is:
 	\begin{equation*}
 		L(\theta)=\frac{1}{\theta^{n}}\mathbf{1}_{0\leq x_{(1)}\leq\cdots\leq x_{(n)}\leq\theta}
 	\end{equation*}
@@ -1368,7 +1481,7 @@ By applying the same result to a random sample of size $n$, we can obtain the fo
 \newpage
 Note that a statistic or an estimator can be considered as a function for data condensation because we condense a random sample into a lower-dimensional quantity.
 \begin{lem}
-	Suppose th $\mathbf{X}$ is a random vector. Under the regularity conditions, for any statistic $T(\mathbf{X})$ for $\theta$, we have:
+	Suppose that $\mathbf{X}$ is a random vector. Under the regularity conditions, for any statistic $T(\mathbf{X})$ for $\theta$, we have:
 	\begin{equation*}
 		\mathcal{I}_{T(\mathbf{X})}(\theta)\leq\mathcal{I}_{\mathbf{X}}(\theta)
 	\end{equation*}
@@ -1376,21 +1489,21 @@ Note that a statistic or an estimator can be considered as a function for data c
 \begin{rem}
 	The Fisher Information of $T(\mathbf{X})$ is defined by:
 	\begin{equation*}
-		\mathcal{I}_{T(\mathbf{X})}=\E\left[\odv*{}{\theta}\ln{f_{T(\mathbf{X})}(T(\mathbf{X})|\theta)}\right]^{2}
+		\mathcal{I}_{T(\mathbf{X})}(\theta)=\E\left[\odv*{}{\theta}\ln{f_{T(\mathbf{X})}(T(\mathbf{X})|\theta)}\right]^{2}
 	\end{equation*}
 \end{rem}
 We may prove Theorem \ref{Chapter 2 (Thoerem) Sequence of MLE is asympt. normal} in one-parameter case:
 \begin{thm}
 	Consider a random sample $\{X_{1},\cdots,X_{n}\}$ of size $n$ from a parametric distribution with a PDF $f_{X}$. Then under the regularity and some other conditions, for $\theta\in\mathbb{R}$, a sequence of MLE $\{\hat{\theta}_{n}\in\mathbb{R}\}$ allows,
 	\begin{equation*}
-		\sqrt{n}(\hat{\theta}_{n}-\theta)\to\N(0,\frac{1}{\mathcal{I}_{X}(\theta)})
+		\sqrt{n}(\hat{\theta}_{n}-\theta)\to\N\left(0,\frac{1}{\mathcal{I}_{X}(\theta)}\right)
 	\end{equation*}
 \end{thm}
 \begin{proofing}
 	Since the MLE $\hat{\theta}_{n}$ is the solution to $l'(\theta)=0$, we can apply a Taylor expansion of $l'(\hat{\theta}_{n})$ at $\theta$ to find that:
 	\begin{align*}
-		0&=l'(\theta)+l''(\theta)(\hat{\theta}_{n}-\theta)+o((\hat{\theta}_{n}-\theta)^{2})\\
-		\sqrt{n}(\hat{\theta}_{n}-\theta)&=\frac{\frac{1}{\sqrt{n}}l'(\theta)}{-\frac{1}{n}l''(\theta)}-o((\hat{\theta}_{n}-\theta)^{2})
+		0&=l'(\theta)+l''(\theta)(\hat{\theta}_{n}-\theta)+o((\hat{\theta}_{n}-\theta))\\
+		\sqrt{n}(\hat{\theta}_{n}-\theta)&=\frac{\frac{1}{\sqrt{n}}l'(\theta)}{-\frac{1}{n}l''(\theta)}-o((\hat{\theta}_{n}-\theta))
 	\end{align*}
 	We first consider the numerator. Note that $\odv*{}{\theta}\ln{f_{X}(X_{1}|\theta)},\cdots,\odv*{}{\theta}\ln{f_{X}(X_{1}|\theta)}$ are i.i.d.. By CLT, we have:
 	\begin{equation*}
@@ -1406,7 +1519,7 @@ We may prove Theorem \ref{Chapter 2 (Thoerem) Sequence of MLE is asympt. normal}
 	\end{equation*}
 	Consequently, we have:
 	\begin{equation*}
-		\sqrt{n}(\hat{\theta}_{n}-\theta)=\frac{\frac{1}{\sqrt{n}}l'(\theta)}{-\frac{1}{n}l''(\theta)}-o((\hat{\theta}_{n}-\theta)^{2})\to\N\left(0,\frac{1}{\mathcal{I}_{X}(\theta)}\right)
+		\sqrt{n}(\hat{\theta}_{n}-\theta)=\frac{\frac{1}{\sqrt{n}}l'(\theta)}{-\frac{1}{n}l''(\theta)}-o((\hat{\theta}_{n}-\theta))\to\N\left(0,\frac{1}{\mathcal{I}_{X}(\theta)}\right)
 	\end{equation*}
 \end{proofing}
 \begin{rem}
@@ -1445,7 +1558,7 @@ We may prove Theorem \ref{Chapter 2 (Thoerem) Sequence of MLE is asympt. normal}
 	Using this algorithm, we can obtain or approximate the MLE of $\theta$.
 \end{eg}
 \begin{eg}
-	Consider a random sample of size $n$ from $X\sim\Gamma(\alpha,\beta)$, where $\beta=3423$ and $\alpha$ is unknown. The PDF is defined by:
+	Consider a random sample of size $n$ from $X\sim\Gam(\alpha,\beta)$, where $\beta=3423$ and $\alpha$ is unknown. The PDF is defined by:
 	\begin{equation*}
 		f_{X}(x|\theta)=\begin{cases}
 			\frac{3423^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-3423x}, &x>0\\
