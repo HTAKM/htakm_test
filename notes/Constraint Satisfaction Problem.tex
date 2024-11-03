@@ -1,0 +1,426 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsthm, amsmath, amssymb, gensymb}
+\usepackage{titlesec}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage[margin=1in]{geometry}
+\theoremstyle{definition}
+	\newtheorem{definition}{Definition}[section]
+	\newtheorem{example}{Example}[definition]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\setlength{\parindent}{0pt}
+\title{
+	\Huge Constraint Satisfaction Problem
+}
+\author{
+	HU-HTAKM\\
+	\small Website: \url{https://htakm.github.io/htakm_test/}
+}
+\begin{document}
+\maketitle
+\section{Introduction to Constraint Satisfaction Problem}
+\begin{definition}
+	A \textbf{constraint satisfaction problem} is defined as:
+	\begin{enumerate}
+		\item $X_{1},X_{2},\cdots,X_{n}$: A set of variables
+		\item $D_{1},D_{2},\cdots,D_{n}$: A set of their corresponding domain of values ($X_{i}\in D_{i}$)
+		\item $C_{1},C_{2},\cdots,C_{m}$: A set of constraints
+	\end{enumerate}
+	and the goal is to find a solution that satisfies all the constraints.
+\end{definition}
+\begin{example}
+	\label{Map colouring problem}
+	We consider a map colouring problem. Any two adjacent regions must not be painted with the same colour.
+	\begin{figure}[h]
+		\begin{subfigure}[h]{0.6\textwidth}
+			\begin{description}[style=nextline]
+				\item[Variables:] $X_{1},\cdots,X_{10}$
+				\item[Domain:] $D_{i}=\{\text{Red},\text{Green},\text{Yellow},\text{Brown}\}$ for $i=1,\cdots,10$
+				\item[Constraint:] $X_{1}\neq X_{2}$, $X_{1}\neq X_{4}$, $X_{1}\neq X_{6}$, $X_{2}\neq X_{3}$, $X_{2}\neq X_{4}$, $\cdots$
+				\item[Goal:] Assign a colour to all the variables that satisfy all the constraints.
+			\end{description}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.39\textwidth}
+			\includegraphics[width=\textwidth]{CSP coloring numbered.png}
+		\end{subfigure}
+	\end{figure}
+\end{example}
+\begin{example}
+	\label{Cryptarithmetic puzzle}
+	We consider a simple cryptarithmetic puzzle. It should not have a leading zero.
+	\begin{figure}[h]
+		\begin{subfigure}[h]{0.69\textwidth}
+			\begin{description}[style=nextline]
+				\item[Variables:] $G,B,A,M,S,L,E,C_{1},C_{2},C_{3},C_{4}$
+				\item[Domain:] $D_{X}=\{0,1,\cdots,9\}$ for $X=G,\cdots,E$, $D_{C_{i}}=\{0,1\}$
+				\item[Constraint:] $\text{Alldiff}(G,B,A,M,S,L,E)$, $B\neq 0$, $G\neq 0$\\
+				$E+L=S+10C_{1}$, $S+L+C_{1}=E+10C_{2}$\\
+				$2A+C_{2}=M+10C_{3}$, $2B+C_{3}=A+10C_{4}$, $G=C_{4}$
+				\item[Goal:] Assign a number to all variables that satisfy all the constraints.
+			\end{description}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{Crypt game.png}
+		\end{subfigure}
+	\end{figure}
+\end{example}
+
+\newpage
+There are varieties of CSP Constraints. These involves:
+\begin{enumerate}
+	\item \textbf{Unary constraint}: Involves only a single variable. E.g. $B\neq 0$
+	\item \textbf{Binary constraint}: Involves pairs of variables. E.g. $X_{1}\neq X_{2}$
+	\item \textbf{High-order constraints}: Involves $3$ or more variables. E.g. $E+L=S+10C_{1}$
+\end{enumerate}
+We can use a constraint graph to represent all the binary constraints and high-order constraints.
+\begin{enumerate}
+	\item If the CSP only consists of binary constraints, arcs connecting nodes with variable are enough to represent constraints.
+	\item If the CSP also consists of high-order constraints, we use square nodes to represent the constraints and connect them with the involved nodes with variable using arcs.
+\end{enumerate}
+\begin{example}
+	Using the map colouring problem in Example \ref{Map colouring problem}, we have the following constraint graph:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width = 0.5\textwidth]{CSP coloring constraint graph.png}
+	\end{figure}
+\end{example}
+\begin{example}
+	Using the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}, we have the following constraint graph:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width = 0.5\textwidth]{Crypt game constraint graph.png}
+	\end{figure}
+\end{example}
+
+\newpage
+\section{Solving the Constraint Satisfaction Problem using Search}
+Using constraint graph, we can format the search formulation of CSPs.
+\begin{description}
+	\item[State space:] Each state defined by the values assigned to the variables
+	\item[Initial state:] Empty assignment: $\{\}$
+	\item[Successor function:] Assign a value to an unassigned variable
+	\item[Goal test:] Current assignment is complete and satisfies all constraint
+\end{description}
+We can try Depth-first search (DFS) to solve this problem.
+\begin{example}
+	We use the map colouring problem in Example \ref{Map colouring problem}. There are $10$ variables.
+	\begin{figure}[h]
+		\begin{subfigure}[h]{0.5\textwidth}
+			\begin{description}[style=nextline]
+				\item[Number of values:] $d=4$
+				\item[Number of unassigned variables at Level $i$:] $n=11-i$
+				\item[Branch factor from Level $i$ to Level $i+1$:]
+					Branch factor $b=dn=4(11-i)$
+				\item[Number of nodes at Level $i$:]
+					$4^{i-1}11(11-1)\cdots(11-i+1)=\frac{4^{i-1}11!}{(11-i)!}$
+				\item[Height of the tree:]
+					Each arc down assign a variable. Height $h=11$
+			\end{description}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.49\textwidth}
+			\includegraphics[width=\textwidth]{Search tree.png}
+		\end{subfigure}
+	\end{figure}
+\end{example}
+As you can see, it is highly inefficient. We can find some issues regarding the search.
+\begin{enumerate}
+	\item Variables assignments are communicate.\\
+	E.g. $\{X_{1}=\text{Red}, X_{2}=\text{Green}\}$ same as $\{X_{2}=\text{Green}, X_{1}=\text{Red}\}$\\
+	Modification: Consider assignments to a single variable at each node.\\
+	Branching factor: $b=d$ \quad Number of nodes at Level $i$: $d^{i=1}$ 
+	\item Each variable can be assigned with any value\\
+	E.g. $\{X_{1}=\text{Red}, X_{2}=\text{Red}\}$\\
+	Modification: Consider only values which do not conflict with previous assignments.
+\end{enumerate}
+After these two modification, we have a new type of search called \textbf{backtracking search}.
+\begin{definition}
+	\textbf{Backtracking search} is a searching algorithm that involves trying different options and undoing then if they lead to a dead end. The idea is that:
+	\begin{enumerate}
+		\item One variable at a time
+		\item Check constraints as you go
+		\item Backtrack when a variable has no legal values left to assign.
+	\end{enumerate}
+\end{definition}
+
+\newpage
+\begin{algorithm}
+\caption{Backtracking algorithm}
+RECURSIVE-BACKTRACKING(assignment, csp)
+\begin{algorithmic}
+	\Require{assignment, csp}
+	\Ensure{solution or failure}
+	\If{assignment is complete}
+		\State{\Return{assignment}}
+	\EndIf
+	\State{var $\gets$ SELECT-UNASSIGNED-VARIABLE(VARIABLE[csp], assignment, csp)}
+	\For{each value in ORDER-DOMAIN-VALUES(var, assignment, csp)}
+		\If{value is consistent with assignment given CONSTRAINT[csp]}
+			\State{add \{var = value\} to assignment}
+			\State{result $\gets$ RECURSIVE-BACKTRACKING(assignment, csp)}
+			\If{result $\neq$ failure}
+				\State{\Return{result}}
+			\EndIf
+			\State{remove \{var = value\} from assignment}
+		\EndIf
+	\EndFor
+	\State{\Return failure}
+\end{algorithmic}
+	\textbf{First Call: }RECURSIVE-BACKTRACKING(\{\}, csp)
+\end{algorithm}
+The above backtracking algorithm has the following steps:
+\begin{enumerate}
+	\item Use a method to select unassigned variable. (SELECT-UNASSIGNED-VARIABLE($\cdots$))
+	\item Use a method to select value. (ORDER-DOMAIN-VALUES($\cdots$))
+	\item Check if the variable assigned with the value is consistent with the constraints.
+	\item Assign the variable with the value and perform the algorithm again.
+	\item If a solution exists with that assignment, we return the assignment. If not, we assign the variable with the next value.
+	\item Return failure if there are no available values.
+\end{enumerate}
+However, how do we determine which variable or value we should select first?
+
+\newpage
+\section{Ordering}
+How do we choose a variable? We may choose the one with the least remaining legal values.
+\begin{definition}
+	\textbf{Minimum Remaining Values} (MRV) is an ordering method of choosing a variable by choosing the variable with the fewest legal values left in its domain.
+\end{definition}
+ We can use a tie-breaking strategy. E.g. The first variable is chosen first.
+\begin{example}
+	\label{MRV}
+	We use the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}.
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $\{1\}$ & $\{1,2,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	By MRV, we can choose $G$ since it has the minimum remaining values. We can assign the only value in the domain $1$ to $G$.
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}[h]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{Crypt game.png}
+		\end{subfigure}
+		$\Longrightarrow$
+		\begin{subfigure}[h]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{Crypt game MRV.png}
+		\end{subfigure}
+	\end{figure}
+\end{example}
+Why do we do this? If the most constrained variable is left unassigned, we may easily lead to backtracking later on as the number of remaining legal values decreases in the domain of the variable.
+
+How do we choose a value for a variable? We may choose the one that can be assigned to the fewest variables.
+\begin{definition}
+	\textbf{Least Constraining Value} (LCV) is an ordering method of choosing a value by choosing the value that rules out the fewest values in the remaining variables.
+\end{definition}
+We can use a tie-breaking strategy. E.g. The smallest value is chosen first.
+\begin{example}
+	\label{LCV}
+	We again use the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}. Consider the case when we have already assigned $G=1$, $A=4$, $S=8$. 
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ & $\{2,\cdots,9\}$ & $4$ & $\{0,2,\cdots,9\}$ & $8$ & $\{0,2,\cdots,9\}$ & $\{0,2,\cdots,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	We want to assign a value for $M$, which one should we choose? By LCV, since $0$ removes the least number of values of the domains, we assign $0$ to $M$.
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}[h]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{Crypt game LCV before.png}
+		\end{subfigure}
+		$\Longrightarrow$
+		\begin{subfigure}[h]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{Crypt game LCV after.png}
+		\end{subfigure}
+	\end{figure}
+\end{example}
+Why do we do this? This allows for more freedom of assignments to the other unassigned variables and potentially lead to fewer backtracking.\\
+Usually, we use both MRV and LCV at the same time.
+
+\newpage
+\section{Filtering}
+Do you notice that in our Example \ref{LCV}, we still assign a bad value to $M$? This is because we only check whether it violates the constraint \textbf{after} we have assigned the value to the variable. Therefore, we can assign a variable with better value by keeping track of the domains for unassigned variables and cross bad options.
+\begin{definition}
+	\textbf{Forward checking} is a filtering method of checking the domain of unassigned variables by crossing off values that violate constraints after adding an existing assignment. 
+\end{definition}
+\begin{example}
+	\label{Forward checking}
+	We use the cryptarithmetic puzzle in Example \ref{MRV}. Originally, the domain is listed as follows:
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $\{1\}$ & $\{1,2,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	We list out the constraints:
+	\begin{equation*}
+		\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E+10C_{2}\\
+			2A+C_{2}=M+10C_{3}\\
+			2B+C_{3}=A+10C_{4}\\
+			G=C_{4}
+		\end{cases}
+	\end{equation*}
+	After assigning $G=1$. The constraints become:
+	\begin{equation*}
+		\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E+10C_{2}\\
+			2A+C_{2}=M+10C_{3}\\
+			2B+C_{3}=A+10C_{4}\\
+			1=C_{4}
+		\end{cases}\implies\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E+10C_{2}\\
+			2A+C_{2}=M+10C_{3}\\
+			2B+C_{3}=A+10\\
+		\end{cases}
+	\end{equation*}
+	We can now update the domain of the values using the constraints.
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ & $\{5,6,7,8,9\}$ & $\{0,2,\cdots,9\}$ & $\{0,2,\cdots,9\}$ & $\{0,2,\cdots,9\}$ & $\{0,2,\cdots,9\}$ & $\{0,2,\cdots,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}
+\end{example}
+By forward checking, we have reduced the size of the domain. Can we do better? Can we detect the failure even sooner, possibly involve those unassigned variables that do not have direct constraint with the last assignment?
+\begin{definition}
+	\textbf{Constraint Propagation} is a filtering method which involves reason further from constraint to constraint among unassigned variables.
+\end{definition}
+How do we use this method? We can use arc consistency to propagate constraint information among unassigned variables.
+\begin{definition}
+	An arc $X\to Y$ is \textbf{consistent} if for every $x\in X$ there is some $y\in Y$ which could be assigned without violating a constraint.
+\end{definition}
+
+\newpage
+\begin{example}
+	We continue the Example \ref{Forward checking}. Assume that we have assigned $M=2$. After forward checking, the domain is listed as follows:
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ & $\{5,6,7,8,9\}$ & $\{1,6\}$ & $2$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	We list all the constraints.
+	\begin{equation*}
+		\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E+10C_{2}\\
+			2A+C_{2}=2+10C_{3}\\
+			2B+C_{3}=A+10\\
+		\end{cases}\implies\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E\\
+			2A=2+10C_{3}\\
+			2B+C_{3}=A+10
+		\end{cases}
+	\end{equation*}
+	We can use the arc consistency to check the values by looking at constraint $4$. Start with $B\to A$.
+	\begin{enumerate}
+		\item If $B=5$, then $A$ can be assigned with $1$. However, this violates constraint $3$ since $C_{3}=1$ by constraint $4$. Therefore, $A$ cannot be assigned with anything. 
+		\item If $B=8$, then $A$ can be assigned with $6$. However, this violates constraint $3$ since $C_{3}=0$ by constraint $4$. Therefore, $A$ cannot be assigned with anything.
+		\item If $B=6,7,9$, then $A$ cannot be assigned with anything. 
+	\end{enumerate}
+	From this, we can update the domain as below:
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ &  & $\{1,6\}$ & $2$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	However, this means that $B$ cannot be assigned with anything. Therefore, we cannot assign $M=2$.
+\end{example}
+
+\newpage
+\begin{example}
+	Continuing the last example. What if we assign $M=8$ instead? After forward checking, the domain is listed as follows:
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ & $\{5,6,7,9\}$ & $\{4,9\}$ & $8$ & $\{0,2,\cdots,7,9\}$ & $\{0,2,\cdots,7,9\}$ & $\{0,2,\cdots,7,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	We list all the constraints.
+	\begin{equation*}
+		\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E+10C_{2}\\
+			2A+C_{2}=8+10C_{3}\\
+			2B+C_{3}=A+10\\
+		\end{cases}\implies\begin{cases}
+			E+L=S+10C_{1}\\
+			S+L+C_{1}=E\\
+			2A=8+10C_{3}\\
+			2B+C_{3}=A+10
+		\end{cases}
+	\end{equation*}
+	We can use the arc consistency to check the values by looking at constraint $4$. Start with $B\to A$.
+	\begin{enumerate}
+		\item If $B=7$, then $A$ can be assigned with $4$.
+		\item If $B=5,6,9$, then $A$ cannot be assigned with anything. 
+	\end{enumerate}
+	From this, we can update the domain as below:
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ & $\{7\}$ & $\{4,9\}$ & $8$ & $\{0,2,\cdots,7,9\}$ & $\{0,2,\cdots,7,9\}$ & $\{0,2,\cdots,7,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}\\
+	Now we check $A\to B$.
+	\begin{enumerate}
+		\item If $A=4$, then $B$ can be assigned with $7$.
+		\item If $A=9$, then $B$ cannot be assigned with anything.
+	\end{enumerate}
+	From this, we can update the domain as below:
+	\begin{figure}[h]
+		\centering
+		\begin{tabular}{|c||c|c|c|c|c|c|c|}
+			\hline
+			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
+			\hline
+			Domain & $1$ & $\{7\}$ & $\{4\}$ & $8$ & $\{0,2,\cdots,7,9\}$ & $\{0,2,\cdots,7,9\}$ & $\{0,2,\cdots,7,9\}$\\
+			\hline
+		\end{tabular}
+	\end{figure}
+\end{example}
+Note that after you have changed the domain of a variable, you need to check the arcs connected to that variable again.
+\end{document}
