@@ -35,17 +35,17 @@
 \end{definition}
 \begin{example}
 	\label{Map colouring problem}
-	We consider a map colouring problem. Any two adjacent regions must not be painted with the same colour.
+	We consider map colouring. Any two adjacent regions must not be painted with the same colour.
 	\begin{figure}[h]
-		\begin{subfigure}[h]{0.6\textwidth}
+		\begin{subfigure}[h]{0.64\textwidth}
 			\begin{description}[style=nextline]
 				\item[Variables:] $X_{1},\cdots,X_{10}$
 				\item[Domain:] $D_{i}=\{\text{Red},\text{Green},\text{Yellow},\text{Brown}\}$ for $i=1,\cdots,10$
 				\item[Constraint:] $X_{1}\neq X_{2}$, $X_{1}\neq X_{4}$, $X_{1}\neq X_{6}$, $X_{2}\neq X_{3}$, $X_{2}\neq X_{4}$, $\cdots$
-				\item[Goal:] Assign a colour to all the variables that satisfy all the constraints.
+				\item[Goal:] Assign a colour to all variables that satisfy all constraints.
 			\end{description}
 		\end{subfigure}
-		\begin{subfigure}[h]{0.39\textwidth}
+		\begin{subfigure}[h]{0.35\textwidth}
 			\includegraphics[width=\textwidth]{CSP coloring numbered.png}
 		\end{subfigure}
 	\end{figure}
@@ -56,12 +56,13 @@
 	\begin{figure}[h]
 		\begin{subfigure}[h]{0.69\textwidth}
 			\begin{description}[style=nextline]
-				\item[Variables:] $G,B,A,M,S,L,E,C_{1},C_{2},C_{3},C_{4}$
+				\item[Variables:] $G,B,A,M,S,L,E$
 				\item[Domain:] $D_{X}=\{0,1,\cdots,9\}$ for $X=G,\cdots,E$, $D_{C_{i}}=\{0,1\}$
 				\item[Constraint:] $\text{Alldiff}(G,B,A,M,S,L,E)$, $B\neq 0$, $G\neq 0$\\
 				$E+L=S+10C_{1}$, $S+L+C_{1}=E+10C_{2}$\\
-				$2A+C_{2}=M+10C_{3}$, $2B+C_{3}=A+10C_{4}$, $G=C_{4}$
-				\item[Goal:] Assign a number to all variables that satisfy all the constraints.
+				$2A+C_{2}=M+10C_{3}$, $2B+C_{3}=A+10C_{4}$, $G=C_{4}$,\\
+				where $C_{1},C_{2},C_{3},C_{4}\in\{0,1\}$
+				\item[Goal:] Assign a number to all variables that satisfy all constraints.
 			\end{description}
 		\end{subfigure}
 		\begin{subfigure}[h]{0.3\textwidth}
@@ -192,25 +193,25 @@ How do we choose a variable? We may choose the one with the least remaining lega
  We can use a tie-breaking strategy. E.g. The first variable is chosen first.
 \begin{example}
 	\label{MRV}
-	We use the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}.
-	\begin{figure}[h]
+	We use the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}. We have the initial possible values.
+	\begin{figure}[h!]
 		\centering
 		\begin{tabular}{|c||c|c|c|c|c|c|c|}
 			\hline
 			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
 			\hline
-			Domain & $\{1\}$ & $\{1,2,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$ & $\{0,1,\cdots,9\}$\\
+			Possible values & $\{1\}$ & $\{1,\cdots,9\}$ & $\{0,\cdots,9\}$ & $\{0,\cdots,9\}$ & $\{0,\cdots,9\}$ & $\{0,\cdots,9\}$ & $\{0,\cdots,9\}$\\
 			\hline
 		\end{tabular}
 	\end{figure}\\
 	By MRV, we can choose $G$ since it has the minimum remaining values. We can assign the only value in the domain $1$ to $G$.
 	\begin{figure}[h!]
 		\centering
-		\begin{subfigure}[h]{0.3\textwidth}
+		\begin{subfigure}[h]{0.2\textwidth}
 			\includegraphics[width=\textwidth]{Crypt game.png}
 		\end{subfigure}
 		$\Longrightarrow$
-		\begin{subfigure}[h]{0.3\textwidth}
+		\begin{subfigure}[h]{0.2\textwidth}
 			\includegraphics[width=\textwidth]{Crypt game MRV.png}
 		\end{subfigure}
 	\end{figure}
@@ -224,35 +225,55 @@ How do we choose a value for a variable? We may choose the one that can be assig
 We can use a tie-breaking strategy. E.g. The smallest value is chosen first.
 \begin{example}
 	\label{LCV}
-	We again use the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}. Consider the case when we have already assigned $G=1$, $A=4$, $S=8$. 
-	\begin{figure}[h]
+	We again use the cryptarithmetic puzzle in Example \ref{Cryptarithmetic puzzle}. Consider the case when we have already assigned $G=1$ ($C_{3}=1$), $S=8$, $L=5$ and $E=3$ ($C_{1}=0$, $C_{2}=1$). We check the constraints and get the following possible values for each variables: 
+	\begin{figure}[h!]
 		\centering
 		\begin{tabular}{|c||c|c|c|c|c|c|c|}
 			\hline
 			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
 			\hline
-			Domain & $1$ & $\{2,\cdots,9\}$ & $4$ & $\{0,2,\cdots,9\}$ & $8$ & $\{0,2,\cdots,9\}$ & $\{0,2,\cdots,9\}$\\
+			Possible values & $1$ & $\{6,7,9\}$ & $\{0,2,4,6,7,9\}$ & $\{7,9\}$ & $8$ & $5$ & $3$\\
 			\hline
 		\end{tabular}
 	\end{figure}\\
-	We want to assign a value for $M$, which one should we choose? By LCV, since $0$ removes the least number of values of the domains, we assign $0$ to $M$.
+	We want to assign a value for $A$, which one should we choose? We check the number of values removed in the domain using the constraints.
 	\begin{figure}[h!]
 		\centering
 		\begin{subfigure}[h]{0.3\textwidth}
+			\begin{align*}
+				\text{Alldiff}(G,B,&A,M,S,L,E)\\
+				2\times B+C_{3}&=A+10\\
+				2\times A+1&=M+10\times C_{3}
+			\end{align*}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.69\textwidth}
+			\begin{tabular}{|c||c|c|c|c|c|c|}
+				\hline
+				$A$ & $0$ & $2$ & $4$ & $6$ & $7$ & $9$\\
+				\hline
+				No. of removed values in $B$ & $3$ & $2$ & $2$ & $3$ & $3$ & $3$\\
+				No. of removed values in $M$ & $2$ & $2$ & $1$ & $2$ & $2$ & $2$\\
+				\hline
+			\end{tabular}
+		\end{subfigure}
+	\end{figure}\\
+	By LCV, since $4$ removes the least number of values of the domains, we assign $4$ to $A$.
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}[h]{0.2\textwidth}
 			\includegraphics[width=\textwidth]{Crypt game LCV before.png}
 		\end{subfigure}
 		$\Longrightarrow$
-		\begin{subfigure}[h]{0.3\textwidth}
+		\begin{subfigure}[h]{0.2\textwidth}
 			\includegraphics[width=\textwidth]{Crypt game LCV after.png}
 		\end{subfigure}
 	\end{figure}
 \end{example}
-Why do we do this? This allows for more freedom of assignments to the other unassigned variables and potentially lead to fewer backtracking.\\
-Usually, we use both MRV and LCV at the same time.
+Why do we do this? This allows for more freedom of assignments to the other unassigned variables and potentially lead to fewer backtracking. Usually, we use both MRV and LCV at the same time.
 
 \newpage
 \section{Filtering}
-Do you notice that in our Example \ref{LCV}, we still assign a bad value to $M$? This is because we only check whether it violates the constraint \textbf{after} we have assigned the value to the variable. Therefore, we can assign a variable with better value by keeping track of the domains for unassigned variables and cross bad options.
+In the above example, we check \textbf{all} the values in the domain whether it violates the constraint after we have assigned the value to the variable. This is highly inefficient as the domain doesn't change. How about we keep track of the domain of each value and update the domain as we check the constraint every time?
 \begin{definition}
 	\textbf{Forward checking} is a filtering method of checking the domain of unassigned variables by crossing off values that violate constraints after adding an existing assignment. 
 \end{definition}
@@ -355,7 +376,7 @@ How do we use this method? We can use arc consistency to propagate constraint in
 			\hline
 			Variable & $G$ & $B$ & $A$ & $M$ & $S$ & $L$ & $E$\\
 			\hline
-			Domain & $1$ &  & $\{1,6\}$ & $2$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$\\
+			Domain & $1$ & $\{\}$ & $\{1,6\}$ & $2$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$ & $\{0,3,\cdots,9\}$\\
 			\hline
 		\end{tabular}
 	\end{figure}\\
