@@ -585,11 +585,11 @@ The t-distribution has the following properties.
 	\end{align*}
 	Therefore, we can find the $95\%$ confidence interval:
 	\begin{equation*}
-		\left(\overline{X}-t_{0.025,n-1}\frac{S_{n-1}}{\sqrt{n}},\overline{X}+t_{0.025,n-1}\frac{S_{n-1}}{\sqrt{n}}\right)
+		\left(\overline{x}-t_{0.025,n-1}\frac{S_{n-1}}{\sqrt{n}},\overline{x}+t_{0.025,n-1}\frac{S_{n-1}}{\sqrt{n}}\right)
 	\end{equation*}
 	Usually when $n>30$, $t_{0.025,n-1}\approx z_{0.025}$. Therefore, we may find the $95\%$ confidence interval:
 	\begin{equation*}
-		\left(\overline{X}-z_{0.025}\frac{S_{n-1}}{\sqrt{n}},\overline{X}+z_{0.025}\frac{S_{n-1}}{\sqrt{n}}\right)
+		\left(\overline{x}-z_{0.025}\frac{S_{n-1}}{\sqrt{n}},\overline{x}+z_{0.025}\frac{S_{n-1}}{\sqrt{n}}\right)
 	\end{equation*}
 \end{eg}
 
@@ -975,7 +975,7 @@ Central Limit Theorem can provide us a limiting standard normal distribution of 
 \end{cor}
 \begin{eg}
 	Assume that there are $70$ respondents, $68$ of which would vote for one candidate.\\
-	If we use the same process from previous examples, we would find that the $95\%$ confidence interval is $(0.9324,1.0105)$, which is out of the range. In fact, if the point estimate $\hat{p}$ is quite close to $0$ or $1$, the resulting interval guess may include values that is out of the range of $p$. This is a poor interval guess.\\
+	If we use the same process from previous examples, we find that the $95\%$ confidence interval is $(0.9324,1.0105)$, which is out of the range. In fact, if the point estimate $\hat{p}$ is quite close to $0$ or $1$, the resulting interval guess may include values that is out of the range of $p$. This is a poor interval guess.\\
 	We take a transformation, say $g(p)$, such that $g(p)\in(-\infty,\infty)$. We may find that since $0<p<1$, $\ln{p}<0$. Therefore, we can find that:
 	\begin{equation*}
 		g(p)=\ln(-\ln{p})\in(-\infty,\infty)
@@ -1910,7 +1910,7 @@ or in one-parameter case,
 	\label{Chapter 1 (Example) Sufficient statistics of Bern(theta)}
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample from $\Bern(\theta)$, where $\theta\in[0,1]$ is unknown. The joint PMF of the random sample is:
 	\begin{align*}
-		p_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)=\prod_{i=1}^{n}\prob(X_{i}=x_{i}|\theta)&=\theta^{\sum_{i=1}^{n}x_{i}}(1-\theta)^{n-\sum_{i=1}^{n}x_{i}}\times 1\\
+		p_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)=\prod_{i=1}^{n}\theta^{x_{i}}(1-\theta)^{1-x_{i}}&=\theta^{\sum_{i=1}^{n}x_{i}}(1-\theta)^{n-\sum_{i=1}^{n}x_{i}}\times 1\\
 		&=g\left(\left.\sum_{i=1}^{n}x_{i}\right|\theta\right)\times h(x_{1},\cdots,x_{n})		
 	\end{align*}
 	Therefore, $S=\sum_{i=1}^{n}X_{i}$ is a sufficient statistic.
@@ -1930,15 +1930,15 @@ or in one-parameter case,
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[0,\theta]$, where $\theta>0$ is unknown. The joint PDF of the random sample is:
 	\begin{align*}
 		f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)&=\frac{1}{\theta^{n}}\prod_{i=1}^{n}\mathbf{1}_{0\leq x_{i}\leq\theta}\\
-		\tag{$x_{i}$ is the $i$-th smallest sample}
+		\tag{$x_{(i)}$ is the $i$-th smallest sample}
 		&=\frac{1}{\theta^{n}}\mathbf{1}_{0\leq x_{(1)}<x_{(n)}\leq\theta}\\
 		&=\frac{1}{\theta^{n}}\mathbf{1}_{x_{(n)}\leq\theta}\times\mathbf{1}_{x_{(1)}\geq 0}\\
 		&=g(x_{(n)}|\theta)\times h(x_{1},\cdots,x_{n})
 	\end{align*}
-	Therefore, $S=X_{(n)}$ is sufficient.
+	Therefore, $S=X_{(n)}=\max\{X_{1},\cdots,X_{n}\}$ is sufficient.
 \end{eg}
 \begin{eg}
-	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[\theta-\frac{1}{2},\theta+\frac{1}{2}]$, where $\theta\in\mathbb{R}$ is unknown. The joint PDF of the random sample is:
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[\theta-\frac{1}{2},\theta+\frac{1}{2}]$, where $\theta$ is unknown. The joint PDF of the random sample is:
 	\begin{align*}
 		f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)&=\prod_{i=1}^{n}\mathbf{1}_{\theta-\frac{1}{2}\leq x_{i}\leq\theta+\frac{1}{2}}\\
 		\tag{$x_{i}$ is the $i$-th smallest sample}
@@ -1949,7 +1949,7 @@ or in one-parameter case,
 	Therefore, $S_{1}=X_{(1)}=\min\{X_{1},\cdots,X_{n}\}$ and $S_{2}=X_{(n)}=\max\{X_{1},\cdots,X_{n}\}$ are jointly sufficient.
 \end{eg}
 \begin{eg}
-	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[\theta_{1},\theta_{2}]$, where $\theta_{1},\theta_{2}\in\mathbb{R}$ are unknown with $\theta_{1}<\theta_{2}$ and $\theta_{1}$ is not a function of $\theta_{2}$. The joint PDF of the random sample is:
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[\theta_{1},\theta_{2}]$, where $\theta_{1},\theta_{2}$ are unknown with $\theta_{1}<\theta_{2}$ and $\theta_{1}$ is not a function of $\theta_{2}$. The joint PDF of the random sample is:
 	\begin{align*}
 		f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta_{1},\theta_{2})&=\frac{1}{(\theta_{2}-\theta_{1})^{n}}\prod_{i=1}^{n}\mathbf{1}_{\theta_{1}\leq x_{i}\leq\theta_{2}}\\
 		\tag{$x_{i}$ is the $i$-th smallest sample}
@@ -2074,7 +2074,7 @@ Recall that we actually want to find UMVUE. Does sufficiency help us find UMVUE?
 	\end{align*}
 	Therefore, we have:
 	\begin{equation*}
-		\E\left(X_{1}=1\left|\sum_{i=1}^{n}X_{i}=s\right.\right)=\prob\left(X_{1}=1\left|\sum_{i=1}^{n}X_{i}=s\right.\right)=1-\prob\left(X_{1}=0\left|\sum_{i=1}^{n}X_{i}=s\right.\right)=\frac{s}{n}
+		\E\left(X_{1}\left|\sum_{i=1}^{n}X_{i}=s\right.\right)=\prob\left(X_{1}=1\left|\sum_{i=1}^{n}X_{i}=s\right.\right)=1-\prob\left(X_{1}=0\left|\sum_{i=1}^{n}X_{i}=s\right.\right)=\frac{s}{n}
 	\end{equation*}
 	We have found that $T'=\E\left(X_{1}|\sum_{i=1}^{n}X_{i}\right)=\frac{1}{n}\sum_{i=1}^{n}X_{i}$. We may find that:
 	\begin{equation*}
@@ -2165,9 +2165,9 @@ or in one-parameter case,
 		\int_{0}^{\theta}g(y)y^{n-1}\,dy=0
 	\end{equation*}
 	Differentiating both sides with respect to $\theta$ will get $g(\theta)\theta^{n-1}=0$ and hence $g(\theta)=0$ for $\theta>0$. We replace a number $y$ with the parameter $\theta$ and get $g(y)=0$ for $y\in(0,\theta]$ for all $\theta>0$.\\
-	Since $0\leq x_{n}\leq\theta$, we may find that for all $\theta\in\Theta$:
+	Since $0\leq x_{(n)}\leq\theta$, we may find that for all $\theta\in\Theta$:
 	\begin{equation*}
-		\prob(g(X_{n})=0)=1
+		\prob(g(X_{(n)})=0)=1
 	\end{equation*}
 	Therefore, $X_{(n)}$ is complete.
 \end{eg}
@@ -2242,7 +2242,7 @@ The following results show that we can find complete and minimal sufficient and 
 \begin{eg}
 	Consider a random sample from $\N(\mu,\sigma^{2})$, where $\mu$ and $\sigma>0$ are unknown. We have:
 	\begin{equation*}
-		f(x|\mu,\sigma^{2})=\frac{1}{\sqrt{2\pi\sigma^{2}}}\exp\left(-\frac{(x-\mu)^{2}}{2\sigma^{2}}\right)=\exp\left(-\frac{\mu^{2}}{2\sigma^{2}}-\frac{1}{2}\ln(2\pi\sigma^{2})-\frac{1}{2\sigma^{2}}x^{2}+\frac{\mu}{\sigma^{2}}x\right)
+		f(x|\mu,\sigma^{2})=\frac{1}{\sqrt{2\pi\sigma^{2}}}\exp\left(-\frac{(x-\mu)^{2}}{2\sigma^{2}}\right)=\exp\left(-\frac{\mu^{2}}{2\sigma^{2}}-\frac{1}{2}\ln(2\pi\sigma^{2})+\frac{\mu}{\sigma^{2}}x-\frac{1}{2\sigma^{2}}x^{2}\right)
 	\end{equation*}
 	Since the support does not depend on $\mu$ and $\sigma^{2}$, by Theorem \ref{Chapter 3 (Theorem) Exponential family to jointly complete and minimal sufficient statistics}, $\sum_{i=1}^{n}X_{i}$ and $\sum_{i=1}^{n}X_{i}^{2}$ are jointly complete and minimal sufficient statistics.
 \end{eg}
@@ -2276,7 +2276,7 @@ We still haven't explained why complete and minimal sufficient statistic can lea
 	We continue the example above. This time we try Strategy 2, which is solving for $h(CS)$ by $\E[h(CS)]=g(\theta)=\theta$.
 	\begin{align*}
 		\int_{0}^{\infty}h(x)\frac{\theta^{n}}{\Gamma(n)}x^{n-1}e^{-\theta x}\,dx&=\theta\\
-		\int_{0}^{\infty}h(x)\frac{\theta^{n}}{\Gamma(n)}x^{n-2}e^{-\theta x}\,dx&=1\\
+		\int_{0}^{\infty}h(x)\frac{\theta^{n-1}}{\Gamma(n)}x^{n-1}e^{-\theta x}\,dx&=1\\
 		\int_{0}^{\infty}\left(h(x)\frac{x}{n-1}\right)\frac{\theta^{n-1}}{\Gamma(n-1)}x^{(n-1)-1}e^{-\theta x}\,dx&=1
 	\end{align*} 
 	It is only true if $h(x)\frac{x}{n-1}=1$ for all $s>0$. Thus, $h(x)=\frac{n-1}{x}$ and therefore:
@@ -2418,7 +2418,7 @@ This theorem has an interesting result that if we can write $\odv*{\ln{f_{X_{1},
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\Poisson(\lambda)$, where $\lambda$ is unknown.
 	\begin{align*}
 		\odv*{\ln{p_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\lambda)}}{\lambda}&=\odv*{\ln\left(\prod_{i=1}^{n}\frac{\lambda^{X_{i}}e^{-\lambda}}{X_{i}!}\right)}{\lambda}\\
-		&=\odv*{\sum_{i=1}^{n}[X_{i}\ln{\lambda}-\lambda+\ln(X_{i}!)]}{\lambda}\\
+		&=\odv*{\sum_{i=1}^{n}[X_{i}\ln{\lambda}-\lambda-\ln(X_{i}!)]}{\lambda}\\
 		&=\sum_{i=1}^{n}\frac{X_{i}}{\lambda}-1\\
 		&=\frac{n}{\lambda}(\overline{X}-\lambda)
 	\end{align*}
@@ -2446,5 +2446,143 @@ This theorem has an interesting result that if we can write $\odv*{\ln{f_{X_{1},
 \end{eg}
 \begin{rem}
 	Theorem \ref{Chapter 3 (Theorem) C-R equality} also can only be used under regularity conditions. For instance, for $\U[0,\theta]$, we cannot use this Theorem.
+\end{rem}
+
+\chapter{Hypothesis Testing}
+This chapter will be primarily focus on comparing different unbiased point estimators. 
+
+In engineering and science field, people usually hypothesize something about a system. Before they prove the conjecture using experimental data, they need to define a hypothesis.
+\begin{defn}
+	\textbf{Statistical hypothesis} is an assertion or conjecture of the random variable of our interest. If a parametric distribution is considered, then a statistical hypothesis can be a conjecture about the true value of the unknown parameters of the parametric distribution.
+\end{defn}
+\begin{eg}
+	\label{Chapter 4 (Example) Engineer example}
+	An engineer decides on the basis of sample data whether the true average lifetime of a certain kind of tire is at least $22,000$ miles.
+	
+	The engineer has to test the hypothesis that $\theta$ in $\Exp(\theta)$ is at least $22,000$.
+\end{eg}
+\begin{eg}
+	An agronomist want to decide on the basis of experiments whether one kind of fertilizer produces a higher yield of soybeans than another.
+	
+	The agronomist has to test the hypothesis that $\mu_{1}>\mu_{2}$ from two distributions $\N(\mu_{1},\sigma_{1}^{2})$ and $\N(\mu_{2},\sigma_{2}^{2})$.
+\end{eg}
+\begin{eg}
+	\label{Chapter 4 (Example) Manufacturer example}
+	A manufacturer of pharmaceutical products decides on the basis of samples whether $90\%$ of all patients given a new medication will recover from a certain disease.
+	
+	The manufacturer has to test the hypothesis that $\theta$ in $\Bin(n,\theta)$ equals $0.90$.
+\end{eg}
+
+\section{Null and Alternative Hypotheses}
+The hypothesis of our interest is related to a particular class of $\theta$, say $\Theta_{0}$, and its complement $\Theta_{1}=\Theta\setminus\Theta_{0}$. This two classes are subsets of the parameter space $\Theta$ of $\theta$.
+\begin{defn}
+	The hypothesis with $\theta\in\Theta_{0}$ is the \textbf{null hypothesis} $H_{0}$, and the hypothesis with $\theta\in\Theta_{1}$ is the \textbf{alternative hypothesis}.
+\end{defn}
+\begin{rem}
+	We usually use the signs with implied equals in $H_{0}$.
+\end{rem}
+\begin{defn}
+	The hypothesis is \textbf{simple} if the parametric distribution would be fully specified under the hypothesis. Otherwise, the hypothesis is \textbf{composite}.
+\end{defn}
+\begin{eg}
+	Using the Example \ref{Chapter 4 (Example) Engineer example}, we have that:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: & \theta\geq 22,000\\
+			H_{1}: & \theta<22,000
+		\end{cases}
+	\end{equation*}
+	Both $H_{0}$ and $H_{1}$ are composite because it does not specify the parameter.
+\end{eg}
+
+\newpage
+\begin{eg}
+	Using the Example \ref{Chapter 4 (Example) Manufacturer example}, we have that:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta=0.9\\
+			H_{1}: &\theta\neq 0.9
+		\end{cases}
+	\end{equation*}
+	$H_{0}$ is simple while $H_{1}$ is composite.
+\end{eg}
+In hypothesis testing, we want to see whether or not we can find an evidence to say that $H_{0}$ is false.
+\begin{rem}
+	Hypothesis testing usually follows these three steps:
+	\begin{enumerate}
+		\item Determine $H_{0}$ and $H_{1}$.
+		\item Under $H_{0}$, define a rare event, event that happens with a very small probability in one experiment with $n$ data.
+		\item Collect data.
+		\begin{enumerate}
+			\item If data causes the rare event to happen, it contradicts $H_{0}$. This mean we can say that $H_{0}$ is false and reject $H_{0}$.
+			\item If data does not cause the rare event to happen, it does not contradicts $H_{0}$. This mean we cannot say that $H_{0}$ is false and we do not reject $H_{0}$.
+		\end{enumerate}
+	\end{enumerate}
+\end{rem}
+\begin{rem}
+	Not rejecting $H_{0}$ does not mean we accept $H_{0}$. It just mean there is no sufficient evidence to reject $H_{0}$. The whole idea is to try gathering enough evidence to have great confidence that $H_{0}$ is false and $H_{1}$ is true.
+\end{rem}
+\begin{eg}
+	We want to know whether or not a coin is fair. Consider a random experiment of flipping the coin $10$ times. We may determine that:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\prob(\{H\})=\prob(\{T\})=0.5\\
+			H_{1}: &\prob(\{H\})\neq\prob(\{T\})
+		\end{cases}
+	\end{equation*}
+	Under $H_{0}$, we define that the event of getting $10$ tails to be the rare event under $H_{0}$ since the probability of getting $10$ tails in one experiment is $0.5^{10}\approx 0.00098$.
+	
+	We can them preform the experiment to collect data by flipping the coin $10$ times. If we get $10$ tails, then the collected data tells us that getting $10$ tails is not a rare event, which contradicts $H_{0}$. Therefore, we have evidence to suspect the reliability of $H_{0}$ and thus reject $H_{0}$ and accept $H_{1}$.
+\end{eg}
+
+\section{Test Errors and Error Probabilities}
+After we decide the null and alternative hypotheses, we need to determine a test statistic, i.e. the point estimator, to construct a test of rejecting or not rejecting the null hypothesis.
+\begin{defn}
+	\textbf{Non-rejection region} $C_{0}$ is a subset of $\Theta$ such that we do not reject $H_{0}$, i.e.
+	\begin{equation*}
+		C_{0}=\{\mathbf{x}:\text{Not reject }H_{0}\}
+	\end{equation*}
+	\textbf{Rejection region} $C_{1}$ is a subset of $\Theta$ such that we reject $H_{0}$, i.e.
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:\text{Reject }H_{0}\}
+	\end{equation*}
+\end{defn}
+However, there is no prefect test statement due to randomness of sample of data. Each test would lead to the following two kinds of errors.
+\begin{defn}
+	\textbf{Type I Error} is the error of rejecting $H_{0}$ when it is true. \textbf{Type II Error} is the error of not rejecting $H_{0}$ when it is false.
+\end{defn}
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{||c|c|c|}
+		\hline
+		& Not reject $H_{0}$ & Reject $H_{0}$\\
+		\hline
+		If $H_{0}$ is true & No error & Type I Error\\
+		If $H_{0}$ is false & Type II Error & No error\\
+		\hline
+	\end{tabular}
+\end{figure}
+
+\newpage
+We may define their corresponding probabilities.
+\begin{defn}
+	\textbf{Type I error probability}, denoted by $\gamma(\theta)$, is the probability of rejecting $H_{0}$ for $\theta\in\Theta_{0}$.
+	\begin{equation*}
+		\gamma(\theta)=\prob(\text{Reject }H_{0}|\theta)=\prob(\mathbf{X}\in C_{1}|\theta)
+	\end{equation*}
+	\textbf{Type II error probability}, denoted by $\beta(\theta)$, is the probability of not rejecting $H_{0}$ for $\theta\in\Theta_{1}$.
+	\begin{equation*}
+		\beta(\theta)=\prob(\text{Not reject }H_{0}|\theta)=\prob(\mathbf{X}\in C_{0}|\theta)
+	\end{equation*}
+\end{defn}
+\begin{rem}
+	Since we cannot control $\gamma(\theta)$ and $\beta(\theta)$ at the same time, conventionally, we assign an upper bound to $\gamma(\theta)$ over $\Theta_{0}$ and find a test with $\beta(\theta)$ as small as possible. If we are dealing with continuous case,
+	\begin{equation*}
+		\sup_{\theta\in\Theta_{0}}\gamma(\theta)=\alpha
+	\end{equation*}
+	If we are dealing with discrete case,
+	\begin{equation*}
+		\sup_{\theta\in\Theta_{0}}\gamma(\theta)\leq\alpha
+	\end{equation*}
 \end{rem}
 \end{document}
