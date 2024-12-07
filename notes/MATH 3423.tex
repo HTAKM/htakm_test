@@ -25,8 +25,8 @@
 	\small Website: \url{https://htakm.github.io/htakm_test/}
 }
 \date{
-	Last major change: November 28, 2024\\
-	Last small update: November 28, 2024
+	Last major change: December 7, 2024\\
+	Last small update: December 7, 2024
 }
 \begin{document}
 \maketitle
@@ -41,6 +41,9 @@ This is MATH 3423 lecture note made by me. Note that some of the notations are s
 	Convergence in distribution & $X_{n}\xrightarrow{D}X$ & $X_{n}\xrightarrow{d}X$\\
 	Probability & $\prob$ & $P$\\
 	Expected value & $\E$ & $E$ or $E_{X}$\\
+	chisq-value & $\chi_{\alpha,n}^{2}$ & $\chi_{\alpha}^{2}(n)$\\
+	t-value & $t_{\alpha,n}$ & $t_{\alpha}(n)$\\
+	f-value & $f_{\alpha,(n,m)}$ & $F_{\alpha}(n,m)$ or $f_{\alpha}(n,m)$\\
 	\hline
 \end{tabular}
 \tableofcontents
@@ -396,6 +399,10 @@ Let us recall some useful distributions.
 	\begin{align*}
 		f_{X}(x)&=\phi(x)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^{2}}{2}\right) & F_{X}(x)&=\Phi(x)=\intlu{-\infty}{x}\phi(u)\,du & \E(X)&=0 & \Var(X)&=1
 	\end{align*}
+	We define $z_{\alpha}$ by:
+	\begin{equation*}
+		\prob(Z\geq z_{\alpha})=\alpha
+	\end{equation*}
 \end{eg}
 \begin{eg}\named{Gamma distribution} $X\sim\Gam(\alpha,\beta)$\\
 	Random variable $X$ is a gamma random variable with parameters $\alpha>0$ and $\beta>0$ if its PDF is:
@@ -409,8 +416,7 @@ Let us recall some useful distributions.
 \begin{rem}
 	Gamma function $\Gamma(z)$ has the following properties:
 	\begin{enumerate}
-		\item If $z$ is a positive integer, then $\Gamma(z)=(z-1)!$.
-		\item For all $z$, $\Gamma(z+1)=z\Gamma(z)$.
+		\item For all $z$, $\Gamma(z+1)=z\Gamma(z)$. If $z$ is a positive integer, then $\Gamma(z)=(z-1)!$.
 		\item If $\Re(z)>0$, then $\Gamma(z)=\int_{0}^{\infty}t^{z-1}e^{-t}\,dt$.
 		\item $\Gamma(\frac{1}{2})=\sqrt{\pi}$.
 	\end{enumerate}
@@ -440,10 +446,14 @@ We have some more distributions that are associated with normal distribution. Fo
 			0, \text{Otherwise}
 		\end{cases} & \E{Y}&=n & \Var(Y)&=2n
 	\end{align*}
+	We define $\chi^{2}_{\alpha,n}$ by:
+	\begin{equation*}
+		\prob(Y\geq\chi^{2}_{\alpha,n})=\alpha
+	\end{equation*}
 \end{eg} 
 \begin{thm}
 	\label{Chapter 1 (Theorem) chi-square distribution with 1 degree of freedom}
-	If the random variable $X\sim\N(\mu,\sigma^{2})$, where $\sigma^{2}>0$, then the random variable $V=\frac{(X-\mu)^{2}}{\sigma^{2}}\sim\chi^{2}(1)$.
+	If random variable $X\sim\N(\mu,\sigma^{2})$, where $\sigma^{2}>0$, then random variable $V=\frac{(X-\mu)^{2}}{\sigma^{2}}\sim\chi^{2}(1)$.
 \end{thm}
 \begin{proofing}
 	By the properties of normal distribution, we get that:
@@ -553,6 +563,10 @@ We have some more distributions that are associated with normal distribution. Fo
 			\frac{r}{r-2}, &r>2
 		\end{cases}
 	\end{align*}
+	We define $t_{\alpha,r}$ by:
+	\begin{equation*}
+		\prob(T\geq t_{\alpha,r})=\alpha
+	\end{equation*}
 \end{eg}
 \begin{rem}
 	As $r\to\infty$, $T\to\N(0,1)$ by CLT.
@@ -603,18 +617,18 @@ The t-distribution has the following properties.
 	\begin{equation*}
 		f_{F}(w)=\frac{\Gamma\left(\frac{r_{1}+r_{2}}{2}\right)}{\Gamma\left(\frac{r_{1}}{2}\right)\Gamma\left(\frac{r_{2}}{2}\right)}\left(\frac{r_{1}}{r_{2}}\right)^{\frac{r_{1}}{2}}w^{\frac{r_{1}}{2}-1}\left(1+\frac{r_{1}w}{r_{2}}\right)^{-\frac{r_{1}+r_{2}}{2}}
 	\end{equation*}
-	where $0<w<\infty$. We define $F_{\alpha}(r_{1},r_{2})$ by:
+	where $0<w<\infty$. We define $f_{\alpha,(r_{1},r_{2})}$ by:
 	\begin{equation*}
-		\prob(F\geq F_{\alpha}(r_{1},r_{2}))=\alpha
+		\prob(F\geq f_{\alpha,(r_{1},r_{2})})=\alpha
 	\end{equation*}
 \end{eg}
 \begin{lem}
 	Let $U\sim F(r_{1},r_{2})$. The F-distribution has the following properties:
 	\begin{enumerate}
 		\item $\frac{1}{U}\sim F(r_{2},r_{1})$
-		\item If $F_{\alpha}(r_{1},r_{2})$ is defined by $\prob(U\geq F_{\alpha}(r_{1},r_{2}))=\alpha$, then:
+		\item If $f_{\alpha,(r_{1},r_{2})}$ is defined by $\prob(U\geq f_{\alpha,(r_{1},r_{2})})=\alpha$, then:
 		\begin{equation*}
-			\frac{1}{F_{\alpha}(r_{1},r_{2})}=F_{1-\alpha}(r_{2},r_{1})
+			\frac{1}{f_{\alpha,(r_{1},r_{2})}}=f_{1-\alpha,(r_{2},r_{1})}
 		\end{equation*}
 	\end{enumerate}
 \end{lem}
@@ -628,16 +642,16 @@ The t-distribution has the following properties.
 		\begin{equation*}
 			\frac{1}{U}=\frac{\frac{Y}{r_{2}}}{\frac{X}{r_{1}}}\sim F(r_{2},r_{1})
 		\end{equation*}
-		\item With $\prob(U\geq F_{\alpha}(r_{1},r_{2}))=\alpha$, since $f_{U}(w)$ is only defined for $w>0$, we can get that:
+		\item With $\prob(U\geq f_{\alpha,(r_{1},r_{2})})=\alpha$, since $f_{U}(w)$ is only defined for $w>0$, we can get that:
 		\begin{align*}
-			\prob\left(\frac{1}{U}\leq\frac{1}{F_{\alpha}(r_{1},r_{2})}\right)&=\alpha\\
-			\prob\left(\frac{1}{U}>\frac{1}{F_{\alpha}(r_{1},r_{2})}\right)&=1-\alpha
+			\prob\left(\frac{1}{U}\leq\frac{1}{f_{\alpha,(r_{1},r_{2})}}\right)&=\alpha\\
+			\prob\left(\frac{1}{U}>\frac{1}{f_{\alpha,(r_{1},r_{2})}}\right)&=1-\alpha
 		\end{align*}
 		From Part 1, we find that $\frac{1}{U}\sim F(r_{2},r_{1})$. Therefore,
 		\begin{equation*}
-			\prob\left(\frac{1}{U}\geq F_{1-\alpha}(r_{2},r_{1})\right)=1-\alpha
+			\prob\left(\frac{1}{U}\geq f_{1-\alpha,(r_{2},r_{1})}\right)=1-\alpha
 		\end{equation*}
-		We find that $\frac{1}{F_{\alpha}(r_{1},r_{2})}=F_{1-\alpha}(r_{2},r_{1})$
+		We find that $\frac{1}{f_{\alpha,(r_{1},r_{2})}}=f_{1-\alpha,(r_{2},r_{1})}$
 	\end{enumerate}
 \end{proofing}
 
@@ -654,8 +668,8 @@ The t-distribution has the following properties.
 	\end{equation*}
 	Then we can find the $95\%$ confidence interval by:
 	\begin{align*}
-		0.95&=\prob\left(f_{0.975,m-1,n-1}\leq\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\left(\frac{S_{m-1,2}^{2}}{S_{n-1,1}^{2}}\right)\leq f_{0.025,m-1,n-1}\right)\\
-		&=\prob\left(\frac{S_{n-1,1}^{2}}{S_{m-1,2}^{2}}f_{0.975,m-1,n-1}\leq\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\leq \frac{S_{n-1,1}^{2}}{S_{m-1,2}^{2}}f_{0.025,m-1,n-1}\right)
+		0.95&=\prob\left(f_{0.975,(m-1,n-1)}\leq\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\left(\frac{S_{m-1,2}^{2}}{S_{n-1,1}^{2}}\right)\leq f_{0.025,(m-1,n-1)}\right)\\
+		&=\prob\left(\frac{S_{n-1,1}^{2}}{S_{m-1,2}^{2}}f_{0.975,(m-1,n-1)}\leq\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\leq \frac{S_{n-1,1}^{2}}{S_{m-1,2}^{2}}f_{0.025,(m-1,n-1)}\right)
 	\end{align*}
 \end{eg}
 
@@ -1440,7 +1454,7 @@ The idea is that for each realization of $\mathbf{x}$, we want to estimate a val
 	The term $(\overline{x}-\theta)^{2}$ is minimized while satisfying the constraint is when $\theta=0$.\\
 	Therefore, if we restrict $\theta\geq 0$, the MLE of $\theta$ would be:
 	\begin{equation*}
-		\hat{\theta}=\max(\overline{x},0)
+		\hat{\theta}=\max\{\overline{x},0\}
 	\end{equation*}
 \end{eg}
 \begin{rem}
@@ -1457,8 +1471,7 @@ The idea is that for each realization of $\mathbf{x}$, we want to estimate a val
 	\end{equation*}
 \end{eg}
 \begin{rem}
-	MLE may be biased and it may not exist in $\Theta$, especially when $\Theta$ is an open set.
-\end{rem}
+	MLE may be biased and it may not exist in $\Theta$, especially when $\Theta$ is an open s\end{rem}
 
 \newpage
 \begin{rem}
@@ -1628,7 +1641,7 @@ By applying the same result to a random sample of size $n$, we can obtain the fo
 		\tag{$\frac{\Gamma(z_{1})\Gamma(z_{2})}{\Gamma(z_{1}+z_{2})}=\int_{0}^{1}t^{z_{1}-1}(1-t)^{z_{2}-1}\,dt$}
 		&=\frac{4\Gamma(\frac{3}{2})\Gamma(\frac{3}{2})}{\pi\Gamma(3)}=\frac{4(0.5\sqrt{\pi})^{2}}{2!}=\frac{1}{2}
 	\end{align*}
-	Therefore, $I_{X_{1},\cdots,X_{n}}(\theta)=nI_{X_{1}}(\theta)=\frac{n}{2}$.
+	Therefore, $\mathcal{I}_{X_{1},\cdots,X_{n}}(\theta)=n\mathcal{I}_{X_{1}}(\theta)=\frac{n}{2}$.
 \end{eg}
 
 \newpage
@@ -1676,6 +1689,7 @@ We may prove Theorem \ref{Chapter 2 (Thoerem) Sequence of MLE is asympt. normal}
 	\end{equation*}
 \end{proofing}
 \begin{rem}
+	\label{Chapter 2 (Remark) Cases when Fisher Information cannot be determined easily}
 	Sometime, $\mathcal{I}_{X}(\theta)$ cannot be determined easily. We will replace it by an observed Fisher Information defined by $-\frac{1}{n}l''(\hat{\theta}_{n})$. Since $\hat{\theta}_{n}$ is consistent for $\theta$, $-\frac{1}{n}l''(\hat{\theta}_{n})$ is also consistent for $\mathcal{I}_{X}(\theta)$ by continuous mapping theorem. Therefore,
 	\begin{equation*}
 		\sqrt{-l''(\hat{\theta}_{n})}(\hat{\theta}_{n}-\theta)=\sqrt{n}\sqrt{-\frac{1}{n}l''(\hat{\theta}_{n})}(\hat{\theta}_{n}-\theta)\to\N(0,1)
@@ -1862,7 +1876,7 @@ or in one-parameter case,
 	does not depend on $\theta$, for all values $s$ of $S$.
 \end{defn}
 \begin{thm}\named{Fisher-Neyman Factorization Theorem}
-	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$. A set of statistics $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,n$, is jointly sufficient if and only if:
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$. A set of statistics $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,r$, is jointly sufficient if and only if:
 	\begin{equation*}
 		\begin{cases}
 			p_{\mathbf{X}}(\mathbf{x}|\theta)=g(S_{1}(\mathbf{x}),\cdots,S_{r}(\mathbf{x})|\theta)h(\mathbf{x}), &\text{Discrete case}\\
@@ -1927,6 +1941,7 @@ or in one-parameter case,
 	Therefore, $S_{1}=\sum_{i=1}^{n}X_{i}$ and $S_{2}=\sum_{i=1}^{n}X_{i}^{2}$ are jointly sufficient.
 \end{eg}
 \begin{eg}
+	\label{Chapter 3 (Example) Sufficient statistic for U[0,theta]}
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[0,\theta]$, where $\theta>0$ is unknown. The joint PDF of the random sample is:
 	\begin{align*}
 		f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)&=\frac{1}{\theta^{n}}\prod_{i=1}^{n}\mathbf{1}_{0\leq x_{i}\leq\theta}\\
@@ -2474,7 +2489,7 @@ In engineering and science field, people usually hypothesize something about a s
 \end{eg}
 
 \section{Null and Alternative Hypotheses}
-The hypothesis of our interest is related to a particular class of $\theta$, say $\Theta_{0}$, and its complement $\Theta_{1}=\Theta\setminus\Theta_{0}$. This two classes are subsets of the parameter space $\Theta$ of $\theta$.
+The hypothesis of our interest is related to a particular class of $\theta$, say $\Theta_{0}$, and its complement $\Theta_{1}$. This two classes are subsets of the parameter space $\Theta$ of $\theta$. We have $\Theta_{0}\cup\Theta_{1}\subseteq\Theta$ and $\Theta_{0}\cap\Theta_{1}=\emptyset$.
 \begin{defn}
 	The hypothesis with $\theta\in\Theta_{0}$ is the \textbf{null hypothesis} $H_{0}$, and the hypothesis with $\theta\in\Theta_{1}$ is the \textbf{alternative hypothesis}.
 \end{defn}
@@ -2584,5 +2599,631 @@ We may define their corresponding probabilities.
 	\begin{equation*}
 		\sup_{\theta\in\Theta_{0}}\gamma(\theta)\leq\alpha
 	\end{equation*}
+	We usually call $\alpha$ the \textbf{significance threshold} or \textbf{significance level}. $\sup$ can be replaced with $\max$ if it exists.
 \end{rem}
+\begin{rem}
+	We use a point estimator $T(\mathbf{X})$ to formulate our test with:
+	\begin{enumerate}
+		\item \textbf{One-sided left tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})>k\}$ or $H_{1}:\theta>\theta_{0}$
+		\item \textbf{One-sided right tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})<k\}$ or $H_{1}:\theta<\theta_{0}$
+		\item \textbf{Two-sided tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})<k_{1}\text{ or }T(\mathbf{x})>k_{2}\}$ or $H_{1}:\theta\neq\theta_{0}$
+	\end{enumerate}
+	For one-sided tests, $k$ can be obtained by solving:
+	\begin{equation*}
+		\sup_{\theta\in\Theta_{0}}\prob(\mathbf{X}\in C_{1}|\theta)\begin{cases}
+			=\alpha, &\text{Continuous case}\\
+			\leq\alpha, &\text{Discrete case}
+		\end{cases}
+	\end{equation*}
+	For two-sided tests, $k_{1}$ and $k_{2}$ can be obtained by solving:
+	\begin{align*}
+		\prob(T(\mathbf{X})<k_{1}|\theta_{0})&=\frac{\alpha}{2} & \prob(T(\mathbf{X})>k_{2}|\theta_{0})&=\frac{\alpha}{2}
+	\end{align*}
+	If they cannot be found exactly (such as when we cannot determine the exact distribution of $T(\mathbf{X})$), then we can approximate them by using the limiting distribution of $T(\mathbf{X})$ or simplified terms.
+\end{rem}
+\begin{eg}
+	Assume that we have a random sample $X\sim\N(\mu,\sigma^{2})$ where $\sigma$ is known. We want to see if $\mu\geq 3423$ with $2\%$ significance level. Let $\mathbf{X}$ be a random sample of size $n$ from $X$. We define the test as follows:
+	\begin{align*}
+		T(\mathbf{X})&=\overline{X} & &\begin{cases}
+			H_{0}: &\mu\geq3423\\
+			H_{1}: &\mu<3423
+		\end{cases} & C_{1}&=\{\mathbf{x}:\overline{x}<k\}
+	\end{align*}
+	We find $k$ by solving:
+	\begin{equation*}
+		0.02=\max_{\mu\geq3423}\prob(\overline{X}<k|\mu)
+	\end{equation*}
+	It is obvious to see that:
+	\begin{align*}
+		0.02&=\max_{\mu\geq3423}\prob\left(Z<\frac{\sqrt{n}(k-\mu)}{\sigma}\right)=\prob\left(Z<\frac{\sqrt{n}(k-3423)}{\sigma}\right) & 0.98&=\prob\left(Z\geq\frac{\sqrt{n}(k-3423)}{\sigma}\right)
+	\end{align*}
+	Therefore, we can find that:
+	\begin{equation*}
+		k=3423-z_{0.02}\frac{\sigma}{\sqrt{n}}=3423+z_{0.98}\frac{\sigma}{\sqrt{n}}
+	\end{equation*}
+	We would reject $H_{0}$ at $\alpha=0.02$ if $\overline{x}<3423-z_{0.02}\frac{\sigma}{\sqrt{n}}$.
+\end{eg}
+However, in a lot of cases, $\theta$ may not be $\mu$ or $\sigma^{2}$. What do we do if the distribution of $T(\mathbf{X})$ cannot be easily determined?
+
+\newpage
+\section{Likelihood Test}
+Similar to finding the MLE in Chapter 2, we also have a general method called likelihood ratio test.
+\begin{defn}
+	\textbf{Likelihood ratio test} (LRT) for testing $H_{0}:\theta\in\Theta_{0}$ against $H_{1}:\theta\in\Theta_{1}$ at a significance level of $\alpha$ is a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:\lambda(\mathbf{x})\leq k\}
+	\end{equation*}
+	where $k\in(0,1)$ satisfies $\max_{\theta\in\Theta_{0}}\prob(\lambda(\mathbf{X})\leq k|\theta)=\alpha$ and the LRT statistic $\lambda$ is given by:
+	\begin{equation*}
+		\lambda(\mathbf{x})=\frac{L(\hat{\theta}_{0})}{L(\hat{\theta})}
+	\end{equation*}
+	with MLE $\hat{\theta}_{0}$ of $\theta$ over $\Theta_{0}$ and MLE $\hat{\theta}$ over $\Theta^{*}=\Theta_{0}\cup\Theta_{1}\subseteq\Theta$.
+\end{defn}
+\begin{rem}
+	Since $\Theta_{0}\subset\Theta_{0}\cup\Theta_{1}$, we can see that $L(\hat{\theta}_{0})\leq L(\hat{\theta})$. Therefore, $0<\lambda(\mathbf{x})\leq 1$.
+\end{rem}
+\begin{rem}
+	If $\lambda(\mathbf{x})$ is close to $0$, then it suggests that the data is not compatible with $H_{0}$. Therefore, $H_{0}$ should be rejected.
+\end{rem}
+\begin{rem}
+	If the hypothesis is simple, then there is no point at finding the MLE. We use the hypothesized value of $\theta$ instead of MLE.
+\end{rem}
+\begin{eg}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\Exp(\theta)$, where $\theta$ is unknown. We can construct a LRT at a significant level of $\alpha$:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta=\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}
+	\end{equation*}
+	where $\theta_{0}$ is known and positive. Note that $\Theta_{0}=\{\theta_{0}\}$ and $\Theta_{1}=(\theta_{0},\infty)$. Parameter space $\Theta^{*}$ is restricted to be at least $\theta_{0}$. We may find that:
+	\begin{equation*}
+		\odv*{l(\theta)}{\theta}=\frac{n}{\theta}-n\overline{x}
+	\end{equation*}
+	Therefore, the MLE of $\theta$ over $\Theta^{*}$ is:
+	\begin{equation*}
+		\hat{\theta}=\max\biggl\{\theta_{0},\frac{1}{\overline{x}}\biggr\}
+	\end{equation*}
+	The likelihood ratio test statistic can be found by:
+	\begin{align*}
+		L(\hat{\theta}_{0})&=\theta_{0}^{n}e^{-n\theta_{0}\overline{x}} & L(\hat{\theta})&=\begin{cases}
+			\left(\frac{1}{\overline{x}}\right)^{n}e^{-n}, &\text{if }\frac{1}{\overline{x}}>\theta_{0}\\
+			\theta_{0}^{n}e^{-n\theta_{0}\overline{x}}, &\text{if }\frac{1}{\overline{x}}\leq\theta_{0}
+		\end{cases}
+	\end{align*}
+	\begin{equation*}
+		\lambda(\mathbf{x})=\begin{cases}
+			\frac{\theta_{0}^{n}e^{-n\theta_{0}\overline{x}}}{(\overline{x})^{-n}e^{-n}}, &\text{if }\frac{1}{\overline{x}}>\theta_{0}\\
+			1, &\text{if }\frac{1}{\overline{x}}\leq\theta_{0}
+		\end{cases}=\begin{cases}
+			(\theta_{0}\overline{x})^{n}e^{-n(\theta_{0}\overline{x}-1)}, &\text{if }\frac{1}{\overline{x}}>\theta_{0}\\
+			1, &\text{if }\frac{1}{\overline{x}}\leq\theta_{0}
+		\end{cases}
+	\end{equation*}
+	Therefore, we reject $H_{0}$ if $\frac{1}{\overline{x}}>\theta_{0}$ and $(\theta_{0}\overline{x})^{n}e^{-n(\theta_{0}\overline{x}-1)}\leq k$. But how do we determine $k$?
+	
+	If the term $(\theta_{0}\overline{x})^{n}e^{-n(\theta_{0}\overline{x}-1)}$ is a function of some quantity $y$, where the distribution of $Y$ can be easily determined, then the test based on $y$ will be equivalent to the original test.
+	
+	Let $y=\theta_{0}\overline{x}$. The function $y^{n}e^{-n(y-1)}$ attain its maximum at $y=1$. Therefore,
+	\begin{equation*}
+		C_{1}=\bigl\{\mathbf{x}:y<1\text{ and }y^{n}e^{-n(y-1)}\leq k\bigr\}=\{\mathbf{x}:y\leq K\in(0,1)\}=\biggl\{\mathbf{x}:\sum_{i=1}^{n}x_{i}\leq\frac{nK}{\theta_{0}}=K'\biggr\}
+	\end{equation*}
+	Therefore, we can reject $H_{0}$ when $\sum_{i=1}^{n}x_{i}\leq K'$, where $\sum_{i=1}^{n}X_{i}\sim\Gamma(n,\theta)$. $K'$ can be determined by:
+	\begin{equation*}
+		\prob\left(\left.\sum_{i=1}^{n}X_{i}\leq K'\right|\theta_{0}\right)=\alpha
+	\end{equation*}
+\end{eg}
+
+\newpage
+\begin{eg}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\N(\theta,\sigma^{2})$, where both $\theta$ and $\sigma$ are unknown. We want to test at a significance level of $\alpha$ that:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta=\theta_{0}\\
+			H_{1}: &\theta\neq\theta_{0}
+		\end{cases}
+	\end{equation*}
+	Since $H_{0}$ is simple, we have:
+	\begin{align*}
+		\hat{\theta}_{0}&=\theta_{0} & \hat{\sigma}_{0}^{2}=\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\theta_{0})^{2}
+	\end{align*}
+	To find the denominator, we find that the MLE of $\theta$ and $\sigma^{2}$:
+	\begin{align*}
+		\hat{\theta}&=\overline{x} & \hat{\sigma}^{2}&=\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		L(\hat{\theta}_{0},\hat{\sigma}_{0}^{2})&=\left(\frac{2\pi}{n}\sum_{i=1}^{n}(X_{i}-\theta_{0})^{2}\right)^{-\frac{n}{2}}\exp\left(-\frac{\sum_{i=1}^{n}(X_{i}-\theta_{0})^{2}}{\frac{2}{n}\sum_{i=1}^{n}(X_{i}-\theta_{0})^{2}}\right)=\left(\frac{2\pi}{n}\sum_{i=1}^{n}(X_{i}-\theta_{0})^{2}\right)^{-\frac{n}{2}}\exp\left(-\frac{n}{2}\right)\\
+		L(\hat{\theta},\hat{\sigma}^{2})&=\left(\frac{2\pi}{n}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}\right)^{-\frac{n}{2}}\exp\left(-\frac{\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}{\frac{2}{n}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}\right)=\left(\frac{2\pi}{n}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}\right)^{-\frac{n}{2}}\exp\left(-\frac{n}{2}\right)\\
+		\lambda(\mathbf{X})&=\frac{L(\hat{\theta}_{0},\hat{\sigma}_{0}^{2})}{L(\hat{\theta},\hat{\sigma}^{2})}=\left(\frac{\sum_{i=1}^{n}(X_{i}-\theta_{0})^{2}}{\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}\right)^{-\frac{n}{2}}
+	\end{align*}
+	By CLT, we have that if $\theta=\theta_{0}$,
+	\begin{align*}
+		\frac{\sqrt{n}(\overline{X}-\theta_{0})}{\sigma}&\sim\N(0,1) & \frac{n(\overline{X}-\theta_{0})^{2}}{\sigma^{2}}&\sim\chi^{2}(1)
+	\end{align*}
+	By Theorem \ref{Chapter 1 (Theorem) Normal and chi-squared distribution related to sample mean and variance}, we find that:
+	\begin{equation*}
+		\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}\sim\chi^{2}(n-1)
+	\end{equation*}
+	Therefore, using the definition of F-distribution, define $F$ by:
+	\begin{equation*}
+		F=(n-1)\frac{n(\overline{X}-\theta_{0})^{2}}{\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}=\frac{\frac{n(\overline{X}-\theta_{0})^{2}}{\sigma^{2}}}{\frac{\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}{\sigma^{2}(n-1)}}\sim F(1,n-1)
+	\end{equation*}
+	We may find that:
+	\begin{equation*}
+		\lambda(\mathbf{X})=\left(\frac{\sum_{i=1}^{n}(X_{i}-\theta_{0})^{2}}{\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}\right)^{-\frac{n}{2}}=\left(1+\frac{\sum_{i=1}^{n}(\overline{X}-\theta_{0})^{2}}{\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}}\right)^{-\frac{n}{2}}=\left(1+\frac{F}{n-1}\right)^{-\frac{n}{2}}
+	\end{equation*}
+	We can now modify the problem to:
+	\begin{equation*}
+		\lambda(\mathbf{X})\leq k\implies F\geq(n-1)\left(k^{-\frac{2}{n}}-1\right)=K'
+	\end{equation*}
+	Finally, we find that:
+	\begin{equation*}
+		\alpha=\prob(\lambda(\mathbf{X})\leq k)=\prob(F\geq K')
+	\end{equation*}
+	We can find that $K'=f_{\alpha,(1,n-1)}$. Therefore, we reject $H_{0}$ if $F\geq f_{\alpha,(1,n-1)}$.
+\end{eg}
+
+\newpage
+For the tests with large $n$, if the large-$n$ results such as CLT can be used for the point estimator. then we can easily draw the conclusion.
+\begin{eg}
+	Consider the MLE $\hat{\theta}_{n}(\mathbf{X})$. Similar to Remark \ref{Chapter 2 (Remark) Cases when Fisher Information cannot be determined easily}, we can use:
+	\begin{equation*}
+		T_{1}=\sqrt{-l''(\hat{\theta}_{n})}(\hat{\theta}_{n}(\mathbf{X})-\theta_{0})\to\N(0,1)
+	\end{equation*}
+	For $H_{1}:\theta>\theta_{0}$, we reject $H_{0}$ at a significant level of $\alpha$ if the actual value of $T_{1}>z_{\alpha}$.
+	
+	For $H_{1}:\theta<\theta_{0}$, we reject $H_{0}$ at a significant level of $\alpha$ if the actual value of $T_{1}<z_{\alpha}$.
+\end{eg}
+However, on likelihood ratio test, it is a bit more complicated. We only consider the cases with only one unknown parameter for two-sided tests. Since the parameter space is restricted ($\theta\geq\theta_{0}$ or $\theta\leq\theta_{0}$), the result for the large-sample likelihood ratio test has to be further adjusted. We omit it due to its complexity.
+
+\begin{defn}
+	\textbf{Large-sample likelihood ratio test statistic} is defined by:
+	\begin{equation*}
+		X_{L}=-2\ln{\lambda(\mathbf{X})}=2\left[l\left(\hat{\theta}_{n}(\mathbf{X})\right)-l(\theta_{0})\right]
+	\end{equation*}
+\end{defn}
+\begin{thm}
+	Under $H_{0}$, the large-sample likelihood ratio test statistic follows an asymptotic $\chi^{2}(1)$. Thus, we reject $H_{0}$ at a significance level of $\alpha$ when:
+	\begin{equation*}
+		\mathbf{x}_{L}>\chi_{\alpha,1}^{2}
+	\end{equation*}
+	which is the $(1-\alpha)$-th quantile of chi-square distribution with $1$ degree of freedom.
+\end{thm}
+\begin{rem}
+	$X_{L}$ and $T_{1}^{2}$ are asymptotically equivalent for two-sided tests.
+\end{rem}
+\begin{eg}
+	Suppose that following data from $\Exp(\lambda)$:
+	\begin{equation*}
+		1,3,5,8,10,15,18,19,22,25
+	\end{equation*}
+	Perform a likelihood ratio test with $H_{0}:\lambda=0.06$ against $H_{1}:\lambda\neq 0.06$ and draw a conclusion at a significance level of $0.05$. Use the fact that $\chi_{0.95,1}^{2}=3.841459$.
+	
+	We have:
+	\begin{equation*}
+		l(\lambda)=n\ln{\lambda}-\lambda\sum_{i=1}^{n}x_{i}
+	\end{equation*}
+	Over $\Theta=(0,\infty)$, the MLE for $\lambda$ is $\hat{\lambda}_{n}=\frac{1}{\overline{x}}$. Therefore,
+	\begin{equation*}
+		l(\hat{\lambda}_{n})=-n\ln{\overline{x}}-n=-35.33697
+	\end{equation*}
+	Since $H_{0}$ is simple, we have:
+	\begin{equation*}
+		l(\hat{\lambda}_{0})=n\ln(0.06)-0.06(126)=-35.69411
+	\end{equation*}
+	Therefore, the actual value of $X_{L}$ is $2(-35.33697+35.69411)=0.7143\leq\chi_{0.95,1}^{2}$. We do not reject $H_{0}$ at $\alpha=0.05$.
+\end{eg}
+
+\newpage
+\section{Power Function and Power of a Test Statement}
+In parameter estimation, we have many point estimators to estimate an unknown parameters. In hypothesis testing, we can also use different test statistics to construct tests for testing $H_{0}$ against $H_{1}$. Which one of them is the best? We need a quantity for comparison.
+\begin{defn}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$. For a test, the \textbf{power function} $Q:\Theta\to[0,1]$ is defined for $\theta\in\Theta$ by:
+	\begin{equation*}
+		Q(\theta)=\begin{cases}
+			\sum_{\mathbf{x}\in C_{1}}p_{\mathbf{X}}(\mathbf{x}|\theta), &\text{Discrete case}\\
+			\int_{C_{1}}f_{\mathbf{X}}(\mathbf{x}|\theta)\,d\mathbf{x}, &\text{Continuous case}
+		\end{cases}
+	\end{equation*}
+\end{defn}
+\begin{rem}
+	The power function of a test is the probability of rejecting $H_{0}$. In particular, for $\theta\in\Theta_{1}$, $Q(\theta)=1-\beta(\theta)$ is called the \textbf{power of the test at $\theta$}, which is the probability of rejecting $H_{0}$ at $\theta\in\Theta_{1}$.
+\end{rem}
+\begin{rem}
+	In terms of the power function, our goal is to find a test for which the value of the power at $\theta\in\Theta_{1}$ is as large as possible, subject to the condition that:
+	\begin{equation*}
+		\max_{\theta\in\Theta_{0}}Q(\theta)=\alpha
+	\end{equation*}
+\end{rem}
+Given two tests, we would first require them at the same significance level $\alpha$. How do we compare them?
+\begin{defn}
+	A test is said to be \textbf{more powerful} at a value $\theta^{*}\in\Theta_{1}$ if it has a higher power at $\theta^{*}$.
+	
+	A test is said to be the \textbf{most powerful} at $\theta^{*}$ if it is more powerful than any other tests at $\theta^{*}$.
+	
+	A test is said to be \textbf{uniformly most powerful} (UMP) if it is the most powerful for all $\theta\in\Theta_{1}$. More precisely, the UMP test at a significance level $\alpha$ is the test with a power function $Q(\theta)$ satisfying:
+	\begin{enumerate}
+		\item $\max_{\theta\in\Theta_{0}}Q(\theta)=\alpha$
+		\item $Q(\theta)\geq Q^{*}(\theta)$ for all $\theta\in\Theta_{1}$ for any test with $Q^{*}(\theta)$
+	\end{enumerate}
+\end{defn}
+\begin{rem}
+	The UMP test in hypothesis testing has a similar role to the best estimator under the criterion of MSE in parameter estimation.
+\end{rem}
+\begin{rem}
+	In general, a UMP test does not exist for two-sided tests. To fix this, we usually consider a smaller class, which is the class of unbiased estimators.
+\end{rem}
+We first consider how to find the UMP test for simple tests.
+
+For testing $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta=\theta_{1}$ at a significance level $\alpha=\gamma(\theta_{0})=Q(\theta_{0})$ and its power $Q(\theta_{1})=1-\beta(\theta_{1})$, we have the Neyman-Pearson Lemma.
+\begin{lem}\named{Neyman-Pearson Lemma}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(\mathbf{x}|\theta)$ or a PMF $p(\mathbf{x}|\theta)$, where $\theta\in\Theta=\{\theta_{0},\theta_{1}\}$ and $\mathbf{x}$ is its realization. Then, at a significance level $\alpha$, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:\frac{L(\theta_{0})}{L(\theta_{1})}\leq k\biggr\}
+	\end{equation*}
+	is the UMP test for testing $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta=\theta_{1}$, at a significance level $\alpha$, where $k>0$.
+\end{lem}
+\begin{thm}
+	The likelihood ratio test for a simple test is a UMP test.
+\end{thm}
+\begin{proofing}
+	For a simple test, the LRT at a significance level of $\alpha$ has a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:\lambda(\mathbf{x})\leq k<1\}
+	\end{equation*}
+	where $\prob(\lambda(\mathbf{X})\leq k|\theta_{0})=\alpha$ and:
+	\begin{equation*}
+		\lambda(\mathbf{x})=\frac{L(\theta_{0})}{\max\{L(\theta_{0}),L(\theta_{1})\}}=\begin{cases}
+			1, &\text{if }L(\theta_{0})\geq L(\theta_{1})\\
+			\frac{L(\theta_{0})}{L(\theta_{1})}, &\text{if }L(\theta_{0})<L(\theta_{1})
+		\end{cases}
+	\end{equation*}
+	Therefore, we have:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:\lambda(\mathbf{x})\leq k<1\}=\biggl\{\mathbf{x}:\frac{L(\theta_{0})}{L(\theta_{1})}\leq k<1\biggr\}
+	\end{equation*}
+	By Neyman-Pearson Lemma, LRT is a UMP test for a simple test.
+\end{proofing}
+\begin{eg}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\N(\theta,\sigma_{0}^{2})$, where $\theta$ is unknown but $\sigma_{0}^{2}$ is known. We want to construct a UMP test for testing $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta=\theta_{1}$ at a significance level of $\alpha$, where $\theta_{0}<\theta_{1}$. Note that:
+	\begin{equation*}
+		\frac{L(\theta_{0})}{L(\theta_{1})}=\exp\left(\frac{n[\theta_{1}^{2}-\theta_{0}^{2}-2\overline{x}(\theta_{1}-\theta_{0})]}{2\sigma_{0}^{2}}\right)
+	\end{equation*}
+	Thus, we can modify the rejection region into:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:\frac{L(\theta_{0})}{L(\theta_{1})}\leq k\biggr\}=\biggl\{\mathbf{x}:\overline{x}\geq \frac{1}{2}(\theta_{0}+\theta_{1})-\frac{\sigma_{0}^{2}\ln{k}}{n(\theta_{1}-\theta_{0})}=K\biggr\}
+	\end{equation*}
+	Since $\overline{X}\sim\N(\theta,\frac{\sigma_{0}^{2}}{n})$, we can determine $K$ by:
+	\begin{equation*}
+		\alpha=\prob(\overline{X}\geq K|\theta_{0})=\prob\left(Z\geq\frac{\sqrt{n}(K-\theta_{0})}{\sigma_{0}}\right)
+	\end{equation*}
+	We have that $K=\theta+z_{\alpha}\frac{\sigma_{0}}{\sqrt{n}}$. Therefore, by Neyman-Pearson Lemma, the UMP test for testing $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta=\theta_{1}$ at a significant level of $\alpha$ is the test with a rejection region:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:\overline{x}\geq\theta_{0}+z_{\alpha}\frac{\sigma_{0}}{\sqrt{n}}\biggr\}
+	\end{equation*}
+	where $\theta_{0}<\theta_{1}$.
+\end{eg}
+Neyman-Pearson Lemma only provides us with a way of constructing UMP test for a simple test. For UMP one-sided tests, we need another result. Without loss of generality, we only discuss how to find the UMP test for one-sided right test.
+\begin{defn}
+	A distribution has the property of \textbf{monotone likelihood ratio} (MLR) in $T$ if the likelihood ratio $\frac{L(\theta')}{L(\theta'')}$ is non-decreasing in $T$ for $\theta'>\theta''$, where at least one of $L(\theta')$ and $L(\theta'')$ is positive.
+\end{defn}
+\begin{eg}
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\Bern(\theta)$, where $\theta\in(0,1)$ is unknown. For $\theta'>\theta''$, the likelihood ratio:
+	\begin{equation*}
+		\frac{L(\theta')}{L(\theta'')}=\left(\frac{1-\theta'}{1-\theta''}\right)^{n}\left(\frac{\theta'(1-\theta'')}{\theta''(1-\theta')}\right)^{\sum_{i=1}^{n}x_{i}}
+	\end{equation*}
+	is non-decreasing in $T=\sum_{i=1}^{n}x_{i}$ because $\frac{\theta'(1-\theta'')}{\theta''(1-\theta')}>1$. Therefore, MLR holds for $\Bern(\theta)$ in $T=\sum_{i=1}^{n}x_{i}$.
+\end{eg}
+\begin{eg}
+	\label{Chapter 4 (Example) MLR for N(mu,sigma^2)}
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\N(\theta,\sigma_{0}^{2})$, where $\theta$ is unknown but $\sigma_{0}^{2}$ is known. For $\theta'>\theta''$, the likelihood ratio:
+	\begin{equation*}
+		\frac{L(\theta')}{L(\theta'')}=\exp\left(\frac{n[(\theta'')^{2}-(\theta')^{2}-2\overline{x}(\theta''-\theta')]}{2\sigma_{0}^{2}}\right)
+	\end{equation*}
+	is non-decreasing in $T=\overline{x}$. Therefore, MLR holds for $\N(\theta,\sigma_{0}^{2})$ in $T=\overline{x}$.
+\end{eg}
+We have now some theorems that we can use to obtain the UMP one-sided right test.
+\begin{thm}\named{Karlin-Rubin Theorem}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a distribution with a parameter $\theta$ having MLR in $T(\mathbf{x})$, where $\mathbf{x}$ is the realization of $\mathbf{X}$. At a significance level of $\alpha$, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:T(\mathbf{x})\geq K\}
+	\end{equation*}
+	is a UMP one-sided right test for $H_{0}:\theta\leq\theta_{0}$ against $H_{1}:\theta>\theta_{0}$ at a significance level $\alpha$ for some $K$. The test is also a UMP one-sided right test for $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta>\theta_{0}$.
+\end{thm}
+
+\newpage
+\begin{thm}\named{Karlin-Rubin Theorem with sufficient statistic}
+	\label{Chapter 4 (Theorem) Karlin-Rubin Theorem for sufficient statistic}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample from a distribution with a parameter $\theta$ and $S(\mathbf{X})$ is a sufficient statistic for $\theta$. If the distribution of $S(\mathbf{X})$ has MLR in itself, then at a significance level $\alpha$, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:S(\mathbf{x})\geq K\}
+	\end{equation*}
+	is a UMP one-sided right test for $H_{0}:\theta\leq\theta_{0}$ against $H_{1}:\theta>\theta_{0}$ at a significance level $\alpha$ for some $K$. The test is also a UMP one-sided right test for $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta>\theta_{0}$.
+\end{thm}
+\begin{eg}
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\N(\theta,\sigma_{0}^{2})$, where $\theta$ is unknown but $\sigma_{0}^{2}$ is known. We try to construct a UMP test for testing at a significance level $\alpha$:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta\leq\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}
+	\end{equation*}
+	The MLE of $\theta$ over $\Theta_{0}$ is $\min\{\overline{x},\theta_{0}\}$. Therefore,
+	\begin{align*}
+		\lambda(\mathbf{x})&=\begin{cases}
+			1, &\text{if }\overline{x}\leq\theta_{0}\\
+			\exp\left(-\frac{1}{2\sigma_{0}^{2}}\left[\sum_{i=1}^{n}(x_{i}-\theta_{0})^{2}-\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}\right]\right), &\text{if }\overline{x}>\theta_{0}
+		\end{cases}\\
+		&=\begin{cases}
+			1, &\text{if }\overline{x}\leq\theta_{0}\\
+			\exp\left(-\frac{n(\overline{x}-\theta_{0})^{2}}{2\sigma_{0}^{2}}\right), &\text{if }\overline{x}>\theta_{0}
+		\end{cases}
+	\end{align*}
+	We find that the rejection region is:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:\overline{x}>\theta_{0}\text{ and }\exp\left(-\frac{n(\overline{x}-\theta_{0})^{2}}{2\sigma_{0}^{2}}\right)\leq k<1\biggr\}=\biggl\{\mathbf{x}:\overline{x}\geq\theta_{0}+\sqrt{-\frac{2\sigma_{0}^{2}}{n}\ln{k}}=K'\biggr\}
+	\end{equation*}
+	Since $\overline{X}\sim\N(\theta,\frac{\sigma_{0}^{2}}{n})$, we can easily find that $K'=\theta_{0}+z_{\alpha}\frac{\sigma_{0}}{\sqrt{n}}$.
+	
+	From Example \ref{Chapter 4 (Example) MLR for N(mu,sigma^2)}, we have found that MLR holds for $\N(\theta,\sigma_{0}^{2})$ in $T=\overline{x}$. By Karlin-Rubin Theorem, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:\overline{x}\geq K'\}
+	\end{equation*}
+	is a UMP one-sided right test for testing $H_{0}:\theta\leq\theta_{0}$ against $H_{1}:\theta>\theta_{0}$ at a significance level of $\alpha$. Therefore, we have found the UMP one-sided test.
+\end{eg}
+Remember exponential family, it is also very useful on hypothesis testing.
+\begin{cor}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a distribution belonging to a one-parameter exponential family in form of:
+	\begin{equation*}
+		\exp[a(\theta)+b(x)+c(\theta)d(x)]
+	\end{equation*}
+	For the test at a significance level $\alpha$ of:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta\leq\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}\text{ or }\begin{cases}
+			H_{0}: &\theta=\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}
+	\end{equation*}
+	the test with a rejection region:
+	\begin{enumerate}
+		\item for an increasing function $c(\theta)$,
+		\begin{equation*}
+			C_{1}=\biggl\{\mathbf{x}:\sum_{i=1}^{n}d(x_{i})\geq K\biggr\}
+		\end{equation*}
+		\item for an decreasing function $c(\theta)$,
+		\begin{equation*}
+			C_{1}=\biggl\{\mathbf{x}:\sum_{i=1}^{n}d(x_{i})\leq K\biggr\}
+		\end{equation*}
+	\end{enumerate}
+	is the UMP test at a significance level $\alpha$ for some $K$.
+\end{cor}
+
+\newpage
+\begin{proofing}
+	For $\theta'>\theta''$, the likelihood ratio is:
+	\begin{equation*}
+		\frac{L(\theta')}{L(\theta'')}=\exp\left[n(a(\theta')-a(\theta''))+(c(\theta')-c(\theta''))\sum_{i=1}^{n}d(x_{i})\right]
+	\end{equation*}
+	If $c(\theta)$ is increasing, then $c(\theta')-c(\theta'')>0$. We find that $\frac{L(\theta')}{L(\theta'')}$ is non-decreasing in $\sum_{i=1}^{n}d(x_{i})$. Therefore, by Karlin-Rubin Theorem, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:\sum_{i=1}^{n}d(x_{i})\geq K\biggr\}
+	\end{equation*}
+	is a UMP test at a significance level $\alpha$ for some $K$.
+	
+	If $c(\theta)$ is decreasing, then $c(\theta'')-c(\theta')<0$. We find that $\frac{L(\theta')}{L(\theta'')}$ is non-decreasing in $-\sum_{i=1}^{n}d(x_{i})$. Therefore, by Karlin-Rubin Theorem, at test with a rejection region:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:-\sum_{i=1}^{n}d(x_{i})\geq K'\biggr\}=\biggl\{\mathbf{x}:\sum_{i=1}^{n}d(x_{i})\leq -K'=K\biggr\}
+	\end{equation*}
+	is a UMP test at a significance level $\alpha$ for some $K$.
+\end{proofing}
+\begin{eg}
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[0,\theta]$, where $\theta>0$ is unknown. We want to construct a UMP test for testing:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta\leq\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}
+	\end{equation*}
+	at a significance level $\alpha$, where $\theta_{0}>0$. From Example \ref{Chapter 3 (Example) Sufficient statistic for U[0,theta]}, we have found that $X_{(n)}$ is sufficient for $\theta$ with PDF:
+	\begin{equation*}
+		f_{X_{(n)}}(y|\theta)=\frac{ny^{n-1}}{\theta^{n}}\mathbf{1}_{y\leq\theta}
+	\end{equation*}
+	For $\theta'>\theta''$, since it only has one term, we find the likelihood ratio of itself:
+	\begin{equation*}
+		\frac{L(\theta')}{L(\theta'')}=\frac{f_{X_{(n)}}(y|\theta')}{f_{X_{(n)}}(y|\theta'')}=\begin{cases}
+			\left(\frac{\theta''}{\theta'}\right)^{n}<1, &\text{if } y\leq\theta''\\
+			\infty, &\text{if } \theta''<y\leq\theta'
+		\end{cases}
+	\end{equation*}
+	is non-decreasing in itself. Note that we only consider $y\leq\theta'$ since both $L(\theta')$ and $L(\theta'')$ would be zero if $y>\theta'$. Therefore, MLR holds in $X_{(n)}$ itself. By Theorem \ref{Chapter 4 (Theorem) Karlin-Rubin Theorem for sufficient statistic}, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:x_{(n)}\geq K\}
+	\end{equation*}
+	is a UMP test for testing $H_{0}:\theta\leq\theta_{0}$ against $H_{1}:\theta>\theta_{0}$ at a significance level $\alpha$.
+	
+	To find $K$, we consider:
+	\begin{align*}
+		\alpha&=\max_{\theta\in\Theta_{0}}\prob(X_{(n)}\geq K)\\
+		&=\max_{\theta\in\Theta_{0}}\int_{K}^{\theta}\frac{ny^{n-1}}{\theta^{n}}\,dy\\
+		&=\max_{\theta\in\Theta_{0}}\left[1-\left(\frac{K}{\theta}\right)^{n}\right]\\
+		&=1-\left(\frac{K}{\theta_{0}}\right)^{n}
+	\end{align*}
+	Therefore, we find that $K=\theta_{0}\left(1-\alpha\right)^{\frac{1}{n}}$.
+\end{eg}
+
+\appendix
+\renewcommand{\thechapter}{\Alph{chapter}}
+\chapter{Over-simplified Summary}
+\begin{thm}\named{Weak Law of Large Numbers (WLLN)}
+	Let $\{X_{n}\}$ be a sequence of i.i.d. random variables. Let $\E(X_{i})=\mu$ for all $i=1,2,\cdots$. As $n\to\infty$, we have:
+	\begin{equation*}
+		\overline{X}\xrightarrow{D}\mu
+	\end{equation*}
+\end{thm}
+\begin{thm}\named{Central Limit Theorem (CLT)}
+	Let $\{X_{n}\}$ be a sequence of i.i.d. random variables whose MGFs exist on a neighbourhood of $0$. Let $\E(X_{i})=\mu$ and $\Var(X_{i})=\sigma^{2}>0$ for all $i=1,2,\cdots$. As $n\to\infty$, we have:
+	\begin{equation*}
+		\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\to\N(0,1)
+	\end{equation*}
+\end{thm}
+\begin{thm}\named{L\'evy-Linderberg Central Limit Theorem} 
+	Let $\{X_{n}\}$ be a sequence of i.i.d. random variables with common population mean $\mu$ and population variance $\sigma^{2}$. Assume that $0<\sigma^{2}<\infty$. As $n\to\infty$,
+	\begin{equation*}
+		\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\to\N(0,1)
+	\end{equation*}
+\end{thm}
+\begin{thm}\named{Slutsky's Theorem}
+	If $X_{n}\xrightarrow{D}X$ and $Y_{n}\xrightarrow{\prob}c$ for some constant $c$, then:
+	\begin{enumerate}
+		\item $X_{n}+Y_{n}\xrightarrow{D}X+c$
+		\item $X_{n}Y_{n}\xrightarrow{D}cX$
+		\item $\frac{X_{n}}{Y_{n}}\xrightarrow{D}\frac{X}{c}$ if $c\neq 0$
+	\end{enumerate}
+\end{thm}
+\begin{thm}\named{Continuous Mapping Theorem}
+	Let $\{X_{n}\}$ be a sequence of random variables and $X$ be a random variable. Suppose there is a function $g$ with a set of discontinuity points $D_{g}$ such that $\prob(X\in D_{g})=0$. We have:
+	\begin{enumerate}
+		\item If $X_{n}\xrightarrow{D}X$, then $g(X_{n})\xrightarrow{D}g(X)$.
+		\item If $X_{n}\xrightarrow{\prob}X$, then $g(X_{n})\xrightarrow{\prob}g(X)$.
+	\end{enumerate}
+\end{thm}
+\begin{thm}\named{Delta method}
+	Let $\{X_{n}\}$ be a sequence of random variables such that for constants $a$ and $b>0$, as $n\to\infty$,
+	\begin{equation*}
+		\sqrt{n}(X_{n}-a)\to\N(0,b^{2})
+	\end{equation*}
+	Then for a given function $g$, suppose that $g'(a)$ exists and not $0$, as $n\to\infty$:
+	\begin{equation*}
+		\sqrt{n}(g(X_{n})-g(a))\to\N(0,[g'(a)b]^{2})
+	\end{equation*}
+	In particular, if $\{X_{n}\}$ is a random sample of size $n$ from a distribution with a finite mean $\mu$ and variance $\sigma^{2}>0$, such that $g'(\mu)$ exists and not $0$, then as $n\to\infty$,
+	\begin{equation*}
+		\sqrt{n}(g(\overline{X})-g(\mu))\to\N(0,[g'(\mu)\sigma]^{2})
+	\end{equation*}
+\end{thm}
+\begin{thm}
+	A sequence of MME $\{\tilde{\theta}_{n}\in\mathbb{R}^{k}\}$ is consistent, asymptotically unbiased for $\theta$ and asymptotically normally distributed. More precisely, under certain assumption like $\E\abs{X}^{2k}<\infty$, as $n\to\infty$,
+	\begin{equation*}
+		\sqrt{n}(\tilde{\theta}_{n}-\theta)\to\N_{k}(\mathbf{0},\mathbf{GHG}^{T})
+	\end{equation*}
+	where $\mathbf{G}$ is a $k\times k$ matrix with $\pdv{g_{i}}{\mu_{j}'}$ as its $(i,j)$-th entry and $\mathbf{H}$ is a $k\times k$ matrix with $\mu_{i+j}'-\mu_{i}'\mu_{j}'$ as its $(i,j)$-th entry, for $i=1,\cdots,k$ and $j=1,\cdots,k$.
+\end{thm}
+\begin{thm}
+	A sequence of MLE $\{\hat{\theta}_{n}\in\mathbb{R}^{k}\}$ is consistent, asymptotically unbiased for $\theta$, asymptotically efficient and asymptotically normally distributed. More precisely, under regularity assumption, as $n\to\infty$,
+	\begin{equation*}
+		\sqrt{n}(\hat{\theta}_{n}-\theta)\to\N_{k}(\mathbf{0},\mathcal{I}_{X}^{-1}(\theta))
+	\end{equation*}
+	where $\mathcal{I}_{X}(\theta)$ is the $k\times k$ Fisher Information matrix with $(i,j)$-th entry defined as:
+		\begin{equation*}
+		\begin{cases}
+			\E\left[\left(\pdv*{\ln{f_{X}(X|\theta)}}{\theta_{i}}\right)\left(\pdv*{\ln{f_{X}(X|\theta)}}{\theta_{j}}\right)\right], &\text{Continuous case}\\
+			\E\left[\left(\pdv*{\ln{p_{X}(X|\theta)}}{\theta_{i}}\right)\left(\pdv*{\ln{p_{X}(X|\theta)}}{\theta_{j}}\right)\right], &\text{Discrete case}
+		\end{cases}
+	\end{equation*}
+	for $i=1,\cdots,k$ and $j=1,\cdots,k$.
+\end{thm}
+\begin{thm}\named{Fisher-Neyman Factorization Theorem}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$. A set of statistics $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,r$, is jointly sufficient is and only if:
+	\begin{equation*}
+		\begin{cases}
+			p_{\mathbf{X}}(\mathbf{x}|\theta)=g(S_{1}(\mathbf{x}),\cdots,S_{r}(\mathbf{x})|\theta)h(\mathbf{x}), &\text{Discrete case}\\
+			f_{\mathbf{X}}(\mathbf{x}|\theta)=g(S_{1}(\mathbf{x}),\cdots,S_{r}(\mathbf{x})|\theta)h(\mathbf{x}), &\text{Continuous case}
+		\end{cases}
+	\end{equation*}
+	where $g$ is a non-negative function of $x_{1},\cdots,x_{n}$ only through the statistics $S_{1},\cdots,S_{r}$ and depends on $\theta$, and $h$ is a non-negative function of $x_{1},\cdots,x_{n}$ not depending on $\theta$.
+\end{thm}
+\begin{thm}\named{Rao-Blackwell Theorem}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$, and a set of jointly sufficient statistic $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,r$. Suppose that $T=T(\mathbf{X})$ is an unbiased estimator for $g(\theta)$ for a function $g$. Then:
+	\begin{enumerate}
+		\item $\E(T|S_{1},\cdots,S_{r})$ is a statistic, and it is a function of jointly sufficient statistics.
+		\item $\E(T|S_{1},\cdots,S_{r})$ is unbiased for $g(\theta)$
+		\item $\Var(\E(T|S_{1},\cdots,S_{r}))\leq\Var(T)$
+	\end{enumerate}
+\end{thm}
+\begin{thm}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a distribution in an one-parameter exponential family with a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}$, in form of:
+	\begin{equation*}
+		\exp[a(\theta)+b(x)+c(\theta)d(x)]
+	\end{equation*}
+	Then, $\sum_{i=1}^{n}d(X_{i})$ is a complete and minimal sufficient statistic.
+\end{thm}
+\begin{thm}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a distribution in an one-parameter exponential family with a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$, in form of:
+	\begin{equation*}
+		\exp\left(a(\theta)+b(x)+\sum_{j=1}^{k}c_{j}(\theta)d_{j}(x)\right)
+	\end{equation*}
+	Then, the set $\{\sum_{i=1}^{n}d_{1}(X_{i}),\cdots,\sum_{i=1}^{n}d_{k}(X_{i})\}$ is a set of jointly complete and minimal sufficient statistics.
+\end{thm}
+\begin{thm}\named{Lehmann-Scheff\'e Theorem}
+	Let $CS$ be a complete and (minimal) sufficient statistic. If there exists a function $h(CS)$ which is unbiased for $g(\theta)$, then $h(CS)$ is the unique UMVUE of $g(\theta)$. In particular, if $\E[f(\mathbf{X})]=g(\theta)$, then $h(CS)=\E[f(\mathbf{X})|T]$ is the UMVUE for $g(\theta)$.
+\end{thm}
+\begin{thm}\named{Cram\'er-Rao Inequality}
+	Under the regularity conditions, the variance of an unbiased estimator $T(\mathbf{X})$ for $\theta$ based on a set of random variables $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ from their joint PDF $f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)$ satisfies the following inequality:
+	\begin{equation*}
+		\Var(T(\mathbf{X}))\geq\frac{1}{\mathcal{I}_{X_{1},\cdots,X_{n}(\theta)}}=\frac{1}{\E\left[\odv*{\ln{f_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\theta)}}{\theta}\right]^{2}}
+	\end{equation*}
+	with the lower bound be the Cram\'er-Rao lower bound.
+	
+	If $T(\mathbf{X})$ is an unbiased estimator for $g(\theta)$, then it becomes:
+	\begin{equation*}
+		\Var(T(\mathbf{X}))\geq\frac{\left[\odv*{g(\theta)}{\theta}\right]^{2}}{\mathcal{I}_{X_{1},\cdots,X_{n}(\theta)}}=\frac{\left[\odv*{g(\theta)}{\theta}\right]^{2}}{\E\left[\odv*{\ln{f_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\theta)}}{\theta}\right]^{2}}
+	\end{equation*}
+	
+	The equality only holds if and only if:
+	\begin{equation*}
+		\odv*{\ln{f_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\theta)}}{\theta}=A(\theta,n)[T(X_{1},\cdots,X_{n})-g(\theta)]
+	\end{equation*}
+	where $A(\theta,n)$ is a non-zero function. Thus, $T(X_{1},\cdots,X_{n})$ would be an UMVUE of $g(\theta)$.
+\end{thm}
+\begin{thm}
+	Under $H_{0}$, the large-sample likelihood ratio test statistic follows an asymptotic $\chi^{2}(1)$. We reject $H_{0}$ at a significance level $\alpha$ when:
+	\begin{equation*}
+		\mathbf{x}_{L}>\chi^{2}_{\alpha,1}
+	\end{equation*}
+\end{thm}
+\begin{lem}\named{Neyman-Pearson Lemma}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(\mathbf{x}|\theta)$ or a PMF $p(\mathbf{x}|\theta)$, where $\theta\in\Theta=\{\theta_{0},\theta_{1}\}$ and $\mathbf{x}$ is its realization. Then, at a significance level $\alpha$, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\biggl\{\mathbf{x}:\frac{L(\theta_{0})}{L(\theta_{1})}\leq k\biggr\}
+	\end{equation*}
+	is the UMP test for testing $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta=\theta_{1}$, at a significance level $\alpha$, where $k>0$.
+\end{lem}
+\begin{thm}\named{Karlin-Rubin Theorem}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a distribution with a parameter $\theta$ having MLR in $T(\mathbf{x})$. At a significance level of $\alpha$, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:T(\mathbf{x})\geq K\}
+	\end{equation*}
+	is a UMP one-sided right test for:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta\leq\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}\text{ or }\begin{cases}
+			H_{0}: &\theta=\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}
+	\end{equation*}
+	at a significance level $\alpha$ for some $K$.
+\end{thm}
+\begin{thm}\named{Karlin-Rubin Theorem with sufficient statistic}
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample from a distribution with a parameter $\theta$ and $S(\mathbf{X})$ is a sufficient statistic for $\theta$. If the distribution of $S(\mathbf{X})$ has MLR in itself, then at a significance level $\alpha$, a test with a rejection region:
+	\begin{equation*}
+		C_{1}=\{\mathbf{x}:S(\mathbf{x})\geq K\}
+	\end{equation*}
+	is a UMP one-sided right test for:
+	\begin{equation*}
+		\begin{cases}
+			H_{0}: &\theta\leq\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}\text{ or }\begin{cases}
+			H_{0}: &\theta=\theta_{0}\\
+			H_{1}: &\theta>\theta_{0}
+		\end{cases}
+	\end{equation*}
+	at a significance level $\alpha$ for some $K$.
+\end{thm}
 \end{document}
