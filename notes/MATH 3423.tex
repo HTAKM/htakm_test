@@ -26,7 +26,7 @@
 }
 \date{
 	Last major change: December 7, 2024\\
-	Last small update: December 7, 2024
+	Last small update: December 13, 2024
 }
 \begin{document}
 \maketitle
@@ -2133,7 +2133,7 @@ In addition to sufficiency, we would need completeness in order to find the UMVU
 \begin{defn}
 	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ and a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$ for an integer $k>1$. A set of statistics $\{T_{1},\cdots,T_{r}\}$, where $r\geq k$ and $T_{1}=T_{1}(\mathbf{X})$ for $i=1,\cdots,r$, is said to be \textbf{jointly complete} if and only if for any function $g$:
 	\begin{equation*}
-		\E[g(T_{1},\cdots,T_{r})]\text{ for all }\theta\in\Theta\implies\prob(g(T_{1},\cdots,T_{r})=0)=1\text{ for all }\theta\in\Theta
+		\E[g(T_{1},\cdots,T_{r})]=0\text{ for all }\theta\in\Theta\implies\prob(g(T_{1},\cdots,T_{r})=0)=1\text{ for all }\theta\in\Theta
 	\end{equation*}
 \end{defn}
 or in one-parameter case,
@@ -2269,7 +2269,7 @@ We still haven't explained why complete and minimal sufficient statistic can lea
 \begin{thm}\named{Lehmann-Scheff\'e Theorem} Let $CS$ be a complete and (minimal) sufficient statistic. If there exists a function $h(CS)$ which is unbiased for $g(\theta)$, then $h(CS)$ is the unique UMVUE of $g(\theta)$.
 \end{thm}
 \begin{thm}
-	Let $CS$ be a complete and (minimal) sufficient statistic. If $\E[f(\mathbf{X})]=g(\theta)$ for all $\theta$, then $h(CS)=\E[f(\mathbf{X})|T]$ is the UMVUE for $g(\theta)$.
+	Let $CS$ be a complete and (minimal) sufficient statistic. If $\E[f(\mathbf{X})]=g(\theta)$ for all $\theta$, then $h(CS)=\E[f(\mathbf{X})|CS]$ is the UMVUE for $g(\theta)$.
 \end{thm}
 \begin{rem}
 	From this theorem, we can formulate some strategies to find the UMVUE which is a function of $CS$:
@@ -2420,6 +2420,7 @@ When would the equality for C-R inequality holds?
 	\end{equation*}
 	where $A(\theta,n)$ is a non-zero function. The statistic $T(X_{1},\cdots,X_{n})$ is an UMVUE of $g(\theta)$. 
 \end{thm}
+This theorem has an interesting result that if we can write $\odv*{\ln{f_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\theta)}}{\theta}$ into $A(\theta,n)[T(X_{1},\cdots,X_{n})-g(\theta)]$, then the statistic must be an UMVUE.
 \begin{lem}
 	If $T(X_{1},\cdots,X_{n})$ is an UMVUE of $g(\theta)$ such that C-R equality holds, then $aT(X_{1},\cdots,X_{n})+b$ is an UMVUE of $ag(\theta)+b$, where $a\neq 0$.
 \end{lem}
@@ -2429,7 +2430,6 @@ When would the equality for C-R inequality holds?
 	\end{equation*}
 	By having $B(\theta,n)=\frac{A(\theta,n)}{a}$, we can find that $aT(X_{1},\cdots,X_{n})+b$ is an UMVUE of $ag(\theta)+b$.
 \end{proofing}
-This theorem has an interesting result that if we can write $\odv*{\ln{f_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\theta)}}{\theta}$ into $A(\theta,n)[T(X_{1},\cdots,X_{n})-g(\theta)]$, then the statistic must be an UMVUE.
 \begin{eg}
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\Poisson(\lambda)$, where $\lambda$ is unknown.
 	\begin{align*}
@@ -2605,8 +2605,8 @@ We may define their corresponding probabilities.
 \begin{rem}
 	We use a point estimator $T(\mathbf{X})$ to formulate our test with:
 	\begin{enumerate}
-		\item \textbf{One-sided left tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})>k\}$ or $H_{1}:\theta>\theta_{0}$
-		\item \textbf{One-sided right tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})<k\}$ or $H_{1}:\theta<\theta_{0}$
+		\item \textbf{One-sided right tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})>k\}$ or $H_{1}:\theta>\theta_{0}$
+		\item \textbf{One-sided left tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})<k\}$ or $H_{1}:\theta<\theta_{0}$
 		\item \textbf{Two-sided tests}: $C_{1}=\{\mathbf{x}:T(\mathbf{x})<k_{1}\text{ or }T(\mathbf{x})>k_{2}\}$ or $H_{1}:\theta\neq\theta_{0}$
 	\end{enumerate}
 	For one-sided tests, $k$ can be obtained by solving:
