@@ -1,0 +1,409 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{titlesec}
+\usepackage[a4paper,total={8.1in,11.25in}]{geometry}
+\titleformat{\section}{\bfseries}{Chapter\,\arabic{section}}{1em}{}
+\titleformat{\subsection}{\bfseries}{(\alph{subsection})}{1em}{}
+\setlength{\parindent}{0.0in}
+\titlespacing{\section}{0pt}{0pt plus 3pt minus 2pt}{0pt plus 3pt minus 2pt}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\s}{s}
+\DeclareMathOperator{\h}{h}
+\DeclareMathOperator{\days}{days}
+\DeclareMathOperator{\yrs}{yrs}
+\DeclareMathOperator{\nm}{nm}
+\DeclareMathOperator{\mum}{\mu m}
+\DeclareMathOperator{\mm}{mm}
+\DeclareMathOperator{\cm}{cm}
+\DeclareMathOperator{\m}{m}
+\DeclareMathOperator{\km}{km}
+\DeclareMathOperator{\AU}{AU}
+\DeclareMathOperator{\ly}{ly}
+\DeclareMathOperator{\pc}{pc}
+\DeclareMathOperator{\Mpc}{Mpc}
+\DeclareMathOperator{\g}{g}
+\DeclareMathOperator{\kg}{kg}
+\DeclareMathOperator{\atm}{atm}
+\DeclareMathOperator{\K}{K}
+\DeclareMathOperator{\J}{J}
+\DeclareMathOperator{\W}{W}
+
+
+\title{PHYS 1002 Notes}
+\author{Kwok Yuk Hang}
+\date{November 2023}
+
+\begin{document}
+$\mathcal{L}$: Luminosity \quad $\mathcal{T}$: Temperature \quad $\mathcal{D}$: Density \quad $\mathcal{P}$: Pressure \quad $\mathcal{M}$: Mass
+\section{A Modern View of the Universe}
+\textit{Cosmic Address}: \textit{Universe: Filaments and Voids: Local Supercluster: Local group: Milky Way Galaxy: Solar system: Earth: Asia:}\\
+\text{Planet}: Rocky, icy, or gaseous object that orbits a star, shining by reflected light. $d_{\text{Earth}}=0.009d_{\text{Sun}}\qquad d_{\text{Jupitar}}=0.1d_{\text{Sun}}$\\
+\textit{Satellite}: Man-made object that orbits a planet.\\
+\textit{Asteroid}: Relatively small and \textit{rocky} object that orbits a star, often non-spherical in shape.\\
+\textit{Comet}: Relatively small and \textit{icy} object that orbits a star. Comets usually have two tails: plasma tail and dust tail.\\
+\textit{Solar system}: Stars and all the material that orbits it, including its planets and moons.\\
+$1:10^{10}$ scale: $d_{\text{Sun}}'=0.14\m$ (Grapefruit), $d_{\text{Earth}}'=0.0012\m$ (Tip of ballpoint pen) ($15\m$ away), $d_{\text{Neptune}}'=0.0048\m$ ($449\m$ away).\\
+\textit{Nebula}: Interstellar cloud of gas and/or dust\\
+$1:10^{19}$ scale: distance to nearest star $=0.004\m$.\\
+Currently, $d_{\text{observable universe}}\approx 9.3\times 10^{10}\ly$.\\
+No. of galaxies $\approx 10^{11}$. No. of stars $\approx 10^{11}\times 10^{11}=10^{22}$. As many stars as grains of sand on Earth's beaches.\\
+Universe is at least 250 times larger than observable universe.\\
+Look-back time (LBT): Time elapsed between when light was emitted and when we detect the light on Earth.\\
+Speed of light $c=3\times 10^{5}\km\s^{-1}$\qquad Light year: $1\ly\approx 9.46\times10^{12}\km\approx 10^{13}\km$\\
+The farther away we look in distance, the further back we look in time.\\
+Cosmic Calendar: A scale on which we compress the history of the Universe into 1 year.\\
+Human civilization: Few seconds. Human lifetime: Very small fraction of a second.\\
+Earth rotates around its axis once every day. Earth orbits the Sun once every year. Average distance $=1\AU\approx 1.5\times 10^{8}\km$.\\
+Earth's axis tilted by $23.5\degree$ pointing to Polaris, rotates in same direction it orbits (counterclockwise viewed from above North Pole)
+Earth spins at $1650\km\h^{-1}$ about its axis and orbits at $\sim 107,000\km\h^{-1}$ around the Sun.\\
+We don't feel Earth's motions due to almost constant and smooth motions and low angular speeds ($0.04$ turns $\h^{-1}$) $F=\frac{mv^{2}}{R}$.\\
+Sun moves randomly at $>70,000\km\h^{-1}$ relative to other stars in local solar neighbourhood.\\
+Sun orbits the center of galaxy every $230\times 10^{6}\yrs$ with speed $\approx 800,000\km\h^{-1}$.\\
+All stars appear to be stationary and fixed due to large distance between stars.\\
+All galaxies outside our Local Group are moving away from us. The more distant the galaxy, the faster it is racing away.
+\section{Discovering the Universe for Yourself}
+\textit{Constellations}: Regions of the sky. Total $88$. Star appears to go around once per day.\\
+\textit{Celestial Sphere (c.s.)}: A model which helps us visualize positions of objects in the sky. Imaginary sphere with Earth as center.\\
+Sphere appears to rotate about celestial pole axis once a day due to Earth's rotation.\\
+Sun, moon and planets appear to move from one place to another on the sphere.\\
+\textit{Zenith}: Point on c.s. directly overhead \qquad \textit{Nadir}: Point on c.s. directly underneath \qquad \textit{Horizon}: Plane with zenith as normal\\
+Celestial equator: projection of Earth’s equator onto the c.s.\\
+\textit{North (South) celestial pole}: projection of Earth’s north (south) pole onto the c.s.\\
+Milky Way in c.s.: A band of light that makes a circle around c.s..\\
+Milky Way is flat spiral galaxy. Solar system is half way between center and edge.\\
+\textit{Meridian}: Half circle from N horizon through zenith to S horizon\\
+Axial tilting effects: Longer day in summer and shorter in winter, Sun's altitude changes with seasons\\
+Cause of Analemma (figure-8 shape): Earth's $23.5\degree$ axial tilt and eliptical orbit\\
+More spread light: Lower $\mathcal{T}$ (Distance doesn't matter as variation of distance is small ($3\%$))\\
+At equinoxes: both hemisphere's receive same amount of sunlight\\
+At summer/winter solstice: axis tilt at largest angle with northern/southern hemisphere towards the sun (Tropic of Cancer/Capricorn)\\
+$4$ seasons only at temperate latitudes (TLs) (Between tropics and polar regions $23.5-66.5\degree$)\\
+Tropics: Region surrounding the Equator\\
+Gravity of moon, sun, other planets causes Earth's axis to precess (over about $26,000\yrs$) Polaris won't always be North ($22.1-24.5\degree$)\\
+Phases of Moon (Light from empty, appear start in right): Rise: $6$ a.m., Highest: noon, Set: $6$ p.m., adding $3\h$\\
+New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Third Quarter, Waning Crescent\\
+Sidereal month $=27.3\days$ \qquad Synodic month (Full cycle) $=29.5\days$\\
+\textit{Umbra}: Region of total darkness \quad \textit{Penumbra}: Region of partial darkness\\
+Lunar eclipses: full moon\\
+Total eclipses: Red moon (violet scattered away, red is refracted), completely immersed in umbra \quad Partial \quad Penumbral\\
+Solar eclipses (new moon): Total (totality reached, sees corona), annular (moon smaller than sun), partial\\
+Moon's orbit tilted $5\degree$ with Earth's orbit. \quad Line of nodes: Moon on Earth's orbit plane (Possible eclipse when point towards Sun)\\
+Apparent retrograde motion: Planets move westward instead of eastward
+\section{Ancient Science of Astronomy}
+Modern science trace roots to Greeks: Developed models of nature and emphasized predictions of models agree with observations\\
+Ptolemaic model had each planet move on small circle whose cener moves around Earth on larger circle\\
+Kepler's First Law: Orbit of each plenet around Sun is ellipse with Sun at one focus\\
+\textit{Perihelion}: Point nearest to Sun \quad \textit{Aphelion}: Point farthest to Sun\\
+Kepler's Second Law: Line joining planet and sun sweeps out equal area in equal time (Planets travel faster when closer to sun)\\
+Kepler's Third Law: $p^{2}=a^{3}$ ($p$: Orbital period in yrs, $a$: Semi-major axis in $\AU$)\\
+Copernicus: Sun-centered model. Tycho provides data to improve the model. Kepler found a model that fit Tycho's data.\\
+Galileo: Reject: Nature of motion, heavenly perfection, parallax
+\newpage
+\section{Understanding Motion, Energy and Gravity}
+Gravitational constant $G=6.67\times 10^{-11}\m^{3}\kg^{-1}\s^{-2}$ \quad $a=\frac{v^{2}}{r}=\frac{G\mathcal{M}}{r^{2}}$\\
+Newton's version of Kepler's Third Law: $p^{2}=\frac{4\pi^{2}}{G(\mathcal{M}_{1}+\mathcal{M}_{2})}r^{3}$ \quad Assume $\mathcal{M}_{1}=0$ when $\mathcal{M}_{1}<<\mathcal{M}_{2}$\\
+Period of orbit: $p=\frac{2\pi r}{v}$ \quad Angular momentum: $L=\mathcal{M}r\times v$ \quad Torque: $\tau=rF\sin{\theta}$\\
+Gravitational Potential Energy: $\text{PE}=\mathcal{M}gh=-\frac{G\mathcal{M}_{1}\mathcal{M}_{2}}{r}$ \quad Mass Potential Energy: $E=\mathcal{M}c^{2}$\\
+Change orbit: Object lose or gain orbital energy \quad Change by: Atmospheric drag, gain orbital energy, gravitational encounter\\
+Escape velocity: $v_{\text{escape}}=\sqrt{\frac{2G\mathcal{M}}{r}}$\\
+Tides: Periodic variation in height of Earth's ocean (Mainly due to tidal force of moon, sun slightly)\\
+Tidal force (differential force): Non-uniform gravity \quad Vertical: Stretching force \quad Horizontal: Compressing force\\
+Tidal force on Earth is hardly noticeable. That on stellar black hole is very large (Spaghettification)\\
+High tide near and far side (Moon pulls Earth away from water on far side) \quad Sun do only $\frac{1}{3}$\\
+Tidal Friction: Earth's self-rotation drag tidal bulges around with it (Slowing Earth's rotation)\\
+Gravity of bulges pulls Moon ahead: increasing orbital distance ($0.0378\m$ per yr)\\
+Tidal locking: Tidal friction slow Earth's down trying to have rotation be equal to orbital motion of Moon\\
+Increase Earth-day from $5-6\h$ to $24\h$, kocking of Moon is faster due to less massive
+\section{Light, The Cosmic Messenger}
+Light is electromagnetic wave \quad Light speed: $c=3\times 10^{8}\m\s^{-1}=f\lambda$ \quad Low $f$: Radio wave \quad High $f$: Gamma rays\\
+Photons: particles of EM radiation \quad Photon energy $E=hf$ ($h=6.626\times 10^{-34}\J\s$) Photon momentum $p=\frac{E}{c}=\frac{h}{\lambda}$\\
+Atom: $d_{\text{H nucleus}}=1.75\times 10^{-15}\m$, $d_{\text{U nucleus}}=15\times 10^{-15}\m$\\
+Atomic no.: No. of protons in nucleus \quad Atomic Mass No.: No. of protons and neutrons\\
+Isotopes: Sane no. og protons but different no. of neutrons \quad Molecules: Consist of $\geq 2$ atoms\\
+Matter emit. absorb, transmit, reflect and scatter light\\
+Three basic types of spectra:\\
+Continuous spectrum: Spectrum span all visible $\lambda$\\
+Emission Line Spectrum: Excited thin or low $\mathcal{D}$ cloud emit lights at specific $\lambda$ (Bright emission lines)\\
+Absorption Line Spectrum: Cold, thim or low $\mathcal{D}$ cloud absorb lights at specific $\lambda$ (Dark absorption lines)\\
+Specific atom has unique set of energy level: Downward transitions: Produce emission lines \quad Upward: Produce absorption lines\\
+Use spectral fingerprints to determine chemical compositions\\
+Thermal radiation: all thing above absolute zero ($-273\celsius$) emit thermal radiation\\
+Stefan-Boltzmann's Law: Flux $F=\sigma\mathcal{T}^{4}$ ($\sigma=5.7\times 10^{-8}\W\m^{-2}\K^{-4}$) \qquad Wien's Law: $\lambda_{\text{max}}=\frac{2.9\times 10^{6}}{\mathcal{T}}\nm$\\
+Luminosity: Total amount of light energy given out by star per second\\
+Doppler Effect: $\lambda$ of wave received by observer is changed when source is moving with respect to observer\\
+$\frac{\Delta\lambda}{\lambda_{\text{rest}}}=\frac{v_{r}}{c}$ $v_{r}$: radial velocity of source relative to observer\\
+Blueshift: Object moving towards us \qquad Redshift: Object moving away from us
+\section{Telescopes: Portals of Discovery}
+Telescope collect more light than eyes: Larger light-collecting area\\
+Telescope see more detail than eyes: Higher angular resolution\\
+Some telescopes detect light that is invisible in eyes: Broader spectral coverage\\
+Bigger telescope: Higher light gathering power (no. of photons collected, proportional to square of diameter), higher resolving power\\
+Angular resolution: Minimum angular separation to distinguish\\
+Resolving power $\alpha=\frac{1.22\lambda}{D}$ \quad $D$: Aperture (Diameter of lens)\\
+Refracting telescope: Chromatic aberration (Lens will not focus different color in same place since index of refraction varies with $\lambda$)\\
+Reflecting telescope: E.g. Keck I/II\\
+Radio telescope: Big dish due to weak radio signal from space and long $\lambda$ (Low resolving power)\\
+Telescope in space: No light pollution, no air movement blurs (Turbulence cause twinkling), no atmosphere absorb EM spectrum (X-ray, gamma ray, far-UV)\\
+Adaptive optics: Rapid change in mirror shape to compensate for atmospheric turbulence (Use bright star as reference)\\
+Interferometry: Combine signals detected from no. of radio telescopes. $D$ becomes distance between telescopes
+\section{Our Star}
+$r_{\text{Sun}}=6.9\times 10^{8}\m$ \quad $\mathcal{M}_{\odot}=\mathcal{M}_{\text{Sun}}=2\times 10^{30}\kg$ \quad $\mathcal{L}_{\odot}=3.8\times 10^{26}\W$ \quad Source of energy: Nuclear energy (Nuclear fusion) $E=\mathcal{M}c^{2}$\\
+Nuclear fusion: Need $>10\times 10^{6}\K$, high $\mathcal{D}$, high $\mathcal{P}>10^{10}\atm$ to overcome electric repulsion\\
+Gravitational contraction: Provide energy for fusion \\
+Stellar Balance: Hydrostatic equilibrium (Gravity inward and internal pressure outward)\\
+Pressure-temperature thermostat: Rely on strong $\mathcal{T}$ dependence of fusion rate\\
+Core contracts and gets hotter, fuse H faster, more radiation and pressure, core expands, core gets cooler, reaction decrease\\
+Structure of Sun: Solar wind: Flow of charged particles from surface \qquad Corona: Outermost layer of solar atmosphere ($1\times 10^{6}\K$)\\
+Chromosphere: Middle layer of solar atmosphere ($10^{4}-10^{5}\K$) \qquad Photosphere: Visible surface of Sun ($5800\K$)\\
+Convection zone: Energy transport upward by rising hot gas (Bottom $1.5\times 10^{6}\K$)\\
+Radiation zone: Energy transported upward by photons $7-1.5\times 10^{6}\K$ \qquad Core: Energy generated by nuclear fusion ($15\times 10^{6}\K$)\\
+Heat transfer: Radiation, convection \quad depends on $\mathcal{T}$, thermal and density gradients, and $\mathcal{P}$\\
+Scattering: Radiation zone: less-absorptive \quad Convective zone: more absorptive (Takes photon $1\times 10^{6}\yrs$ to go out)\\
+$<0.4\mathcal{M}_{\odot}$: Star conductive \quad $\approx 1\mathcal{M}_{\odot}$: Core, radiative, convective \quad $>>1\mathcal{M}_{\odot}$: Convective core, radiative shell\\
+Solar neutrino: electron neutrino ($v_{e}$), muon neutrino  ($v_{\mu}$), tau neutrino ($v_{\tau}$)\\
+Sunspots ($4500\K$): Cooler part of surface (Strong magnetic fields) \quad Zeeman effect: Split spectral line into 3 lines\\
+Strong magnetic activity causes solar prominences, magnetic storm causes solar flares\\
+Coronal mass ejection (huge, balloon-shaped plasma bursts): Send bursts of energetic charged particles out through solar system
+\newpage
+\section{Surveying the Stars}
+Luminosity: Total amount of power a star radiates \qquad Apparent brightness: Amount of starlight that reaches Earth\\
+Brightness $B=\frac{\mathcal{L}}{4\pi d^{2}}$ (Inverse Square Law)\\
+Parallax: Apparent shift in location of object with respect to ones further away due to change in observation point\\
+Stellar parallax $\theta$: Half of total shift in angle of that star using Earth's orbital diameter (Works for nearby stars)\\
+$1\pc=206265\AU=3.26\ly$ \qquad $1\rad=1\arcsec$ \qquad $d=\frac{1}{\theta}$ \quad $\theta:$ in $\arcsec$ \quad $d:$ in $\pc$\\
+Stars luminosity: $10^{-4}-10^{6}L_{\text{Sun}}$ \quad Dim stars are far more common\\
+Apparent magnitude $m$: Magnitude $1$ stars (first class): brightest \quad Magnitude $6$ stars (sixth class): faintest\\
+Ratio: $\frac{B_{A}}{B_{B}}=(100^{\frac{1}{5}})^{m_{B}-m_{A}}$\\
+Absolute magnitude $M$: $\mathcal{L}$ of stars \qquad $\frac{\mathcal{L}_{A}}{\mathcal{L}_{B}}=2.512^{M_{B}-M_{A}}$ \qquad Distance modulus $=m-M$ \quad Distance in $\pc$ $d=10^{0.2(m-M+5)}$\\
+Measure surface $\mathcal{T}$: $\mathcal{L}$, level of ionization (absorption line) \quad Surface: ($50000\K$) O B A F G K M ($3000\K$)\\
+If $\mathcal{T}$ is too high, most or all H atoms have electrons staring out at level 2.\\
+If $\mathcal{T}$ is too low, most of H atoms have electrons on ground state.\\
+Optimized $\mathcal{T}$ ($10000\K$ A star) at which absorption line strength hits maximum\\
+Stellar mass: Need $2$ of $3$ observables: orbital period ($p$), orbital separation ($a$ or $r$), orbital velocity ($v$) $v=\frac{2\pi r}{p}$\\
+Types of Binary star systems: Visual Binary: Pair of stars that we see distinctly\\
+Eclipsing Binary: Cchange in apparent rightness \qquad Spectroscopic Binary: Measuring blueshift (Approach) and redshift (Recede)\\
+Eclipsing binary offers orbital period. Spectroscopic binary offer orbital velocity and period, thus the $\mathcal{M}$ of heavier star.\\
+Most massive star: $226\mathcal{M}_{\odot}$ \qquad Least massive star: $0.08\mathcal{M}_{\odot}$\\
+Hertzsprung-Russell (HR) diagram: Plot $\mathcal{L}$ and surface $\mathcal{T}$ of stars on a graph\\
+Radii of stars: Cannot be measured directly due to too small angular diameter, use $\mathcal{L}=4\pi\sigma\mathcal{T}^{4}R^{2}$ \quad Size of stars: $0.01r_{\text{sun}}-2000r_{\text{sun}}$\\
+Stars with low $\mathcal{T}$ and high $\mathcal{L}$: Giants and supergiants\\
+Stars with high $\mathcal{T}$ and low $\mathcal{L}$: White dwarfs\\
+Collisional broadening: Broadening of spectral lines increases with frequency of collisions which increases $\mathcal{D}$ of atmosphere of stars\\
+Uncertainty principle: $\Delta x\Delta p\geq\frac{\hbar}{2}$\\
+Supergiants: Larger in size $\rightarrow$ Lower $\mathcal{D}$ in atmosphere $\rightarrow$ Sharper spectral lines\\
+Same surface $\mathcal{T}$: Sharp to broader lines, high to low $\mathcal{L}$: supergiants, giants, main sequence, white dwarf\\
+Star's full classification includes spectral type and $\mathcal{L}$ class E.g. Sun (G2 V)\\
+Main-Sequence (MS) Line: Luminous stars are hot (blue), less luminous ones are cooler (red) \quad Most stars fall on lower ends\\
+Core $\mathcal{P}$ and $\mathcal{T}$ of more massive MS star is higher to balance gravity $\rightarrow$ Greater $\mathcal{L}$, higher surface $\mathcal{T}$, larger radius\\
+$\mathcal{M}$ and $\mathcal{L}$ of MS stars: $\mathcal{L}=\mathcal{M}^{3.5}$ \qquad $L$: In terms of $\mathcal{L}_{\odot}$ \quad $\mathcal{M}$: In terms of $\mathcal{M}_{\odot}$\\
+Life expectancies of stars: $t=\frac{\mathcal{M}}{\mathcal{L}}=\mathcal{M}^{-2.5}$ \quad Cool stars live longer\\
+MS Star after fusion has ceased: $>0.25\mathcal{M}_{\odot}$: Giant and supergiant \quad $<0.25\mathcal{M}_{\odot}$: Blue dwarf $\rightarrow$ white dwarf $\rightarrow$ black dwarf\\
+Star clusters: Group of stars born around the sane time at about same distance to Earth (Determine age and distance)\\
+Two types of star clusters: Globular clusters (round, very dense and old) and open clusters (Random, not dense, younger)\\
+Massive stars move out of MS sooner than lower $\mathcal{M}$ star \qquad More massive stars begin leaving MS in cluster over time\\
+Turn-off point: All MS stars above the point have moved away \qquad Age of cluster $t=\mathcal{M}_{\text{turn-off}}^{-2.5}$\\
+Distance: Using standard HR diagram for absolute magnitude ($M$) and using HR diagram for apparent magnitude ($m$)
+\section{Life of Stars}
+Interstellar Medium: Nebulae (visible/invisible parts of molecular clouds) between stars\\
+See nebulae in 3 ways:\\
+Emission nebulae: Stars are embedded in/near nebula, emitting ultraviolet that excite H to give emission spectra (Pink-red in general)\\
+Reflection nebulae: Scattering of blue starlight by dust (Blue)\\
+Dark nebulae: Dense clouds of gas and dust blocking light of distant stars\\
+Interstellar reddening: Stars visible near the edges of dark nebula are reddened (Red slightly reduced, blue greatly reduced)\\
+Formation of stars: Start at molecular cloud ($\mathcal{T}\approx 30\K$, $n\approx 300\cm^{-3}$) contain at least few hundred $\mathcal{M}_{\odot}$ for gravity to overcome $\mathcal{P}$\\
+Prevent $\mathcal{P}$ buildup via emitting infrared, microwave, radio photons generated from gravitational contraction $\rightarrow$ further contraction\\
+Stars begin to form: Dust grains that absorb visible light emit infrared\\
+Conservation of energy: Cloud heats up when it contracts. Continue contraction if part of thermal energy is radiated away\\
+Conservation of angular momentum: Cloud becomes smaller cause it to spin faster\\
+Flattening: Gas settles into spinning disk as spin hampers collapse perpendicular to spin axis and collision between particles\\
+Formation of jets: Rotation causes bipolar jets of matter to shoot out (Due to dynamic interactions in accretion disc)\\
+Accretion discs (Thought) generate tangled/twisted magnetic fields that collimate jets\\
+Protostar: Fragment collapses under self-gravity. Very high $\mathcal{L}$ due to gravity, $\mathcal{T}$ too low for nuclear reaction\\
+MS Star: Protostar contracts and heats until $\mathcal{T}$ is enough for H fusion \quad Contraction ends at hydrostatic equilibrium\\
+$\mathcal{L}$ drops and shell shrinks, surface $\mathcal{T}$ increases and size drops\\
+Upper limit: $150\mathcal{M}_{\odot}$: So luminous that collective pressure of photons drives matter into space\\
+Lower limit: $<0.08\mathcal{M}_{\odot}$ (Brown dwarf): Fusion cannot begin as $T<10^{7}\K$\\
+Degenerate electron gas: Pauli exclusion principle: No 2 electrons occupy same state \qquad Degeneracy pressure: Do not depend on $\mathcal{T}$\\
+Brown dwarf: Electron degeneracy pressure halts contraction $\rightarrow$ no fusion (Emit infrared due to heat left from contraction)\\
+Loss $\mathcal{L}$ over time to become black dwarf \quad Infrared observation can reveal recently formed brown dwarfs\\
+Born star: begins at zero-age main sequence (ZAMS) line in HR diagram \quad Older star: More $\mathcal{L}$ and cooler surface $\mathcal{T}$\\
+Life of star: $4$H $\rightarrow 1$He \quad Use up H and core contracts $\rightarrow$ more luminous and surface expands $\rightarrow$ cooler surface $\mathcal{T}$\\
+Medium star: H shell heats up and do H fusion (hydrogen shell burning) $\rightarrow$ more He, He core contracts, becomes red giant\\
+Red giant: Higher $\mathcal{L}$ and lower surface $\mathcal{T}$ \quad H burning shell deposits He ash into He core\\
+He core increases in $\mathcal{M}$ and contracts until electrons become degenerate for red giants with $0.25\mathcal{M}_{\odot}<\mathcal{M}<2.25\mathcal{M}_{\odot}$\\
+Core $\mathcal{T}$ goes up with no change in $\mathcal{P}$, degenerate $\mathcal{P}$ increase with $\mathcal{D}$ as more He ash drops into core\\
+For medium-mass star, core $\mathcal{T}$ is high enough for He fusion \quad Triple-$\alpha$ process: $3$ $^{4}$He $\rightarrow 1$ $^{12}$C\\
+At higher core $\mathcal{T}$ ($2\times 10^{8}\K$), $^{12}$C$+$ $^{4}$He $\rightarrow$ $^{16}$O\\
+Helium flash: He fusion starts in degenerate core with broken thermostat, fusion rate skyrocket until enough $\mathcal{T}$ to eliminate degeneracy\\
+Core expands, electron gas $\mathcal{D}$ drops and stop degenerate\\
+Helium core fusion: Burn He in core and H in shell $\rightarrow$ Core expands, absorb energy from envelope $\rightarrow$ Contracts, hotter and smaller\\
+C and O produced from He fusion is left behind around the center\\
+Double shell-burning: He runs out at core, C and O core contracts and heats up $\rightarrow$ He shell fusion + H shell fusion $\rightarrow$ Red giant\\
+Hydrostatic equilibrium is impossible, outer layers expelled by high radiation and thermal pressure $\rightarrow$ Planetary nebula\\
+Core left behind is white dwarf\\
+CNO cycle: High mass MS star fuse H to He using C, N, O as catalysts \quad Greater core $\mathcal{T}$ enables H to overcome greater repulsion\\
+Life of high-mass star: High core $\mathcal{T}$ allow He to fuse with heavier elements \quad Core $\mathcal{T}$ in star $>\mathcal{M}_{\odot}$ allow fusion of elements to Fe.\\
+Fe is dead end because Fe has lowest mass per nuclear particle \quad Builds up in core until degeneracy pressure cannot resist gravity\\
+Supernova explosion: Core collapses due to electrons combine with protons, making neutrons and neutrino\\
+$1.4-3\mathcal{M}_{\odot}$: Neutron star \qquad $>3\mathcal{M}_{\odot}$: Black hole
+\section{Bizarre Stellar Graveyard}
+White dwarf: Remaining cores of dead medium and low mass star \quad Electron degeneracy pressure supports against gravity\\
+Ideal gas law: $\mathcal{P}V=nR\mathcal{T}$ when particles have much room to move\\
+For degenerate matter, gravitational contraction can be balanced by degeneracy pressure\\
+White dwarfs mainly made of C and O from medium mass star, mainly made of He from low mass star \quad Size similar to Earth\\
+Chandrasekhar Limit: $M<1.4M_{\odot}$ takes into account of relativity \quad $>1.4M_{\odot}$ allows gravitational collapse\\
+Size of white dwarf decreases with its $\mathcal{M}$ \quad Size goes to $0$ when $\mathcal{M}=1.4\mathcal{M}_{\odot}$\\
+By $\Delta p\Delta x\geq\frac{\hbar}{2}$, as white dwarf's $\mathcal{M}\to 1.4\mathcal{M}_{\odot}$, electrons move nearly speed of light\\
+Stars near white dwarf: Matter orbits white dwarf in accretion disk due to angular momentum \\
+Friction between rings of matter heat up the disk and glow \quad surface of white dwarf hot enough for H fusion \\
+Fusion begins suddenly and explosively, causing nova \quad Nova system temporarily appear much brighter, drives accreted matter out\\
+White-dwarf supernova (Type Ia): C and O fusion begins as white dwarf reaches Chandrasekhar limit, causing complete explosion\\
+Release energy larger than gravitational binding energy $\rightarrow$ nothing in center\\
+Massive-star supernova (Type II): Iron core reaches white dwarf limit and becomes neutron star or black hole\\
+In light curves, type II has plateau in luminosity while type Ia doesn't \quad Type Ia is much more $\mathcal{L}$\\
+Type Ia do not have H absorption lines due to H being consumed by nova and become He\\
+Type Ia show strong ionized silicon emission line at $615\nm$\\
+Neutron star: Ball of neutrons from massive-star supernova \quad Supported by degeneracy pressure\\
+Pulsar: Neutron star that beams radiation along magnetic axis that is not aligned with rotation axis \quad Emits in form of 2 beams\\
+Source: Non-thermal synchrotron radiation: Emitted from particles accelerated rapidly along magnetic field\\
+Thermal radiation: Particles colliding with neutron star surface at magnetic poles \\ 
+Contain x-rays, optical and radio radiation since protons smash at extremely high velocities\\
+Why Pulsars are neutron stars: Spin rate of fast pulsars $=1000$ cycles per second \quad Surface rotation velocity $=60000\km\s^{-1}$\\
+Matter accreting onto neutron star becomes hot and dense enough for H and He to fuse $\rightarrow$ Produce burst of x-rays\\
+Neutron star has thin atmosphere of He, accreting matter contain He and H fusion forms He\\
+Neutron degeneracy pressure has a limit of $3\mathcal{M}_{\odot}$ $\rightarrow$ becomes black hole\\
+Escape velocity: $v_{\text{escape}}=\sqrt{\frac{2G\mathcal{M}}{r}}$\\
+Schwarzschild Radius: Smallest distance from black hole such that light can escape \quad $r_{s}=\frac{2G\mathcal{M}}{c^{2}}$\\
+Non-rotating black hole: Singularity at center (0 size and infinite $\mathcal{D}$) \quad Event horizon: singularity centered with Schwarzschild radius\\
+Tidal force for force at top and force at bottom: $F_{1}-F_{2}=\frac{2G\mathcal{M}_{\text{black hole}}\mathcal{M}\ell}{r^{3}}$\\
+At event horizon, $F_{1}-F_{2}=\frac{c^{6}\mathcal{M}\ell}{4G^{2}\mathcal{M}_{\text{black hole}}}$ \quad More massive black holes have smaller tidal force\\
+Black hole strongly warps space-time in vicinity of event horizon\\
+Gravitational Time Dilation: Clock near massive object appears to run more slowly\\
+Gravitational redshift: Light is redshifted when moving away from massive object\\
+Methods for hunting black holes:\\
+Measure mass: Use orbital properties of companion or measure velocity and distance or orbiting gas \\ 
+Compact object is black hole if it has mass $3\mathcal{M}_{\odot}$\\
+Gravitational lensing: Multiple images or rings of distant objects as light bends\\
+Einstein's ring: Seen when massive object is spherical \quad Einstein's cross: Seen when massive object has less regular shape\\
+Gravitational waves: Massive objects undergoing rapid non-uniform motion emit gravitational waves (Binary black hole system)\\
+Gamma ray bursts origin: Supernovae, hypernova, collision between neutron stars
+\section{Our Galaxy}
+\textit{Galaxy}: Spiral galaxy with (on average $10^{11}$) stars in space, all held together by gravity and orbiting a common center.\\
+Milky Way consists of disk with spiral arms, nuclear bulge and halos with globular clusters \quad $d_{\text{Milky Way}}=25000\pc=75000\ly$\\
+Sun is located about $27000\ly$ from galactic center\\
+Disk: Contains gas and dust, hosts younger generation of stars, location of open clusters \quad Bulge: Mixture of both young and old stars \\
+Halo: Contains very few gas or dust, hosts older generation of stars, location of globular clusters, a lot of dark matter\\
+Star in disk orbit same direction with up-and-down motion due to gravity of disk stars pulling them toward the disk\\
+Orbits of stars in bulge and halo have random orientation\\
+Orbital Velocity Law: $\mathcal{M}_{r}=\frac{r\times v^{2}}{G}=\frac{4\pi^{2}r^{3}}{Gp^{2}}$ \quad Mass within Sun's orbit: $1\times 10^{11}\mathcal{M}_{\odot}$\\
+Galactic Recycling: Star-Gas-Star cycle \quad Gas from old stars form new stars\\
+Multiple supernovae create giant bubble in which hot gas can blow out of it into halo \quad Gas clouds cooling rain back down onto disk\\
+Atomic H gas forms as hot gas cools allowing electrons to join with protons\\
+Molecular clouds form after gas cools enough to allow atoms to combine into molecules \quad Stars form in molecular clouds\\
+Radiation from newly formed stars erode surface of clouds and glows \quad Densest gas resist the erosion and continue to form stars\\
+Observation of star-gas-star cycle:\\
+$21\cm$ radio waves show where H gas cooled and settled in disk \quad $2.6-1.3\mm$ radio waves from CO show locations of molecular clouds\\
+Long $\lambda$ infrared ($60-100\mum$) from star heated intestellar dust \quad Short $\lambda$ infrared ($1-4\mum$) shows stars behind interstellar materials\\
+Visible light emitted by stars is scattered and absorbed by dust \quad X-ray emitted from hot gas bubbles and X-ray binaries (Point-like)\\
+Gamma-ray emitted from collisions of cosmic rays with atomic nuclei in interstellar clouds\\
+$21\cm$ radio radiation: Electron orbiting proton with parallel spins has higher energy than one with anti-parallel\\
+Hyperfine structure arises from coupling between magnetic moment of electron and nuclear magnetic moment\\
+$2.6-1.3\mm$ radio waves: Comes from rotational transition ($3$ rotational energy levels: 2 emit $1.3\mm$, $2.6\mm$ to 0)\\
+Easily detected CO radio emission lines are used to infer amount of H$_{2}$ (Only in Milky Way)\\
+Emission nebulae, blue stars $\rightarrow$ O-going star formation \quad Star formation mostly happens in spiral arms\\
+Spiral arms: Not fixed \quad Gas clouds get squeezed as they move into spiral arms $\rightarrow$ Star formation $\rightarrow$ Young stars\\
+Center of Milky Way: Sagittarius A$^{*}$ \quad Using radio frequency, infra and x-ray imaging with adaptive optics to identify center with precision and clarity\\
+Enclosed mass density is too high to be compatible with anything other than single supermassive black hole ($4.3\times 10^{6}\mathcal{M}_{\odot}$)
+\section{Galaxies, the Foundation of Modern Cosmology and Galaxy Evolution}
+Cosmology: Study of structure and evolution of universe\\
+Spiral Galaxy: Disk component: Stars of all ages, many gas clouds\\
+Bulge: Mixture of both young and old stars \quad Halo: Old stars, globular clusters, few gas clouds, lots of dark matter\\
+Barred spiral galaxy: Bar of stars across the bulge\\
+Elliptical galaxy: Spheroidal shape, no disk component\\
+Lenticular galaxy: Has disk like spiral galaxy, but much less dusty gas and lack spiral arms (Intermediate between spiral and elliptical)\\
+Irregular galaxy: No particular shape\\
+Spiral galaxies found in groups of galaxies \qquad Elliptical galaxies found in huge clusters of galaxies\\
+Cosmic Distance Ladder: Stellar parallax limit to $200\pc$, use properties of nearby stars for further stars\\
+Radar ranging ($1\AU$), stellar parallax ($200\pc$), spectroscopic parallax ($10000\pc$), variable stars ($50\times 10^{6}\pc$)\\
+Variable stars: Standard candle: Object with known luminosity\\
+Variable stars pulsate because of changing balance between thermal pressure and gravity near equilibrium configuration\\
+Happens in energy absorbing layer in outer envelope where He is partially ionized \\ 
+Absorbing and releasing of energy lead to oscillation of star size, hence $\mathcal{L}$ and surface $\mathcal{T}$\\
+Stars with higher $\mathcal{T}$: Layer cannot be formed \quad Stars with lower $\mathcal{T}$: Layer locate very deep in envelope, not significant variation\\
+Period of variable star tells average $\mathcal{L}$, we can use the stars as standard candles\\
+Apparent brightness of white-dwarf supernova tell us distance of its galaxy ($3066\times 10^{6}\pc$) \\
+Type Ia Supernova always give same amount of energy ($M=-19.3$)\\
+Hubble: Virtually all galaxies are redshifted (Moving away from us) \quad Redshift and distance are related\\
+Hubble's Law: $d=\frac{v}{H}$ (Hubble constant $H=64000\m\s^{-1}\Mpc^{-1}$) \quad Implies expanding universe\\
+Universe age $t=\frac{d}{v}=\frac{1}{H}$ \quad Cosmological Principle: Universe looks about the same on very large scales no matter where you are in it\\
+Matter is almost evenly distributed on very large scale \quad No center and no edge\\
+Cosmological redshift: Expansion of universe stretches photon $\lambda$\\
+Galaxy formation: Start from protogalactic clouds, H and He gases formed first stars\\
+Supernova heated surrounding interstellar gas, slowed down collapse of protogalactic clouds \\
+For spiral galaxies, leftover gas settled into spinning disk\\
+High $\mathcal{D}$ cloud form stars faster $\rightarrow$ Elliptical galaxy \quad Low $\mathcal{D}$ cloud form stars slower $\rightarrow$ Spiral galaxy\\
+Galactic Cannibalism: Massive galaxies eat small ones due to larger gravity (Milky Way eats up large and small magellanic clouds)\\
+Galactic collisions: More likely early in time \quad Trigger burst of star formation \quad Form elliptical galaxies\\
+Starburst galaxies: From collision or near collision \quad Form stars so quickly that they use up all gas in less than billion yrs\\
+Redshift $z=\frac{\lambda_{\text{shift}}-\lambda_{\text{rest}}}{\lambda_{\text{rest}}}$ \qquad Recessional speed $v_{r}=c\frac{(z+1)^{2}-1}{(z+1)^{2}+1}$\\
+Quasars: $>10^{12}\mathcal{L}_{\odot}$ \quad Vary in brightness on timescale of hours, days or weeks\\
+Highly redshifted spectra of quasars indicates large distance \quad Contains very wide range of $\lambda$ (Contain matter with wide range of $\mathcal{T}$)\\
+Active galactic nucleus (AGN): Unusually bright center of galaxy\\
+Normal galaxy: $>90\%$ of galaxies, $10^{6}-10^{10}\mathcal{L}_{\odot}$ \\ Active galaxy: $>10^{12}\mathcal{L}_{\odot}$, strong radiation from radio frequency to x-ray\\
+Radio galaxy: Contain active nuclei shooting out jets of plasma that power lobes' radio radiation through synchrotron radiation\\
+Charged particles in synchrotron radiation moves near speed of light but decelerating due to interaction with intergalactic medium\\
+AGN shoot out blobs of plasma at speed of light $\rightarrow$ supermassive black hole is present\\
+Accretion disks of some radio galaxies blocked by dusty gas clouds, look like quasar viewed along direction closer to jet axis\\
+Power source of quasars and AGN: Accretion of gas onto a supermassive black hole at the center
+\newpage
+\section{Birth of Universe, Dark Matter, Dark Energy, and Fate of Universe}
+Age of universe: about $13.8\times 10^{9}\yrs$, but due to expansion of space, humans are observing objects that were originally much closer but are now considerably farther away.\\
+Current Cosmic Model: Dark Matter $22\%$, dark energy $73\%$\\
+Normal matter: $10\g$ in $10^{30}\cm^{3}$ \quad Dark matter: Matter we infer to exist through gravitational effects but emit no detectable radiation\\
+Evidence of existence:
+$\mathcal{M}$ of spiral galaxies: Far more $\mathcal{M}$ than we see in stars \quad Flat rotational curves meaning lots of dark matter\\
+$\mathcal{M}$ of elliptical galaxies: More massive galaxies have more gravity so stars are moving at faster orbital speed\\
+More massive galaxies should have broader absorption lines\\
+$\mathcal{M}$ in galaxy clusters: Measure velocities of galaxies from Doppler shift, $\mathcal{T}$ of hot gases, gravitational lensing\\
+Possible dark matter: Massive Compact Halo Objects, weakly interacting massive particles, axions and neutrino-like particles\\
+Olber's Paradox: If Universe if infinite, unchanging and everywhere the same, then night sky should be bright\\
+Since night sky is dark, universe cannot be unchanging in time and infinite in space\\
+Big bang: Hot and dense universe starts to expand\\
+Earliest phases: Consists of radiation (photons) at $\mathcal{T}=10^{32}\K$ and high $\mathcal{D}$. \\
+$1\s$: $\mathcal{T}=10^{10}$, protons, neutrons, electrons, neutrino emerged\\
+Primordial Nucleosynthesis: H, He, Li, Be and isotopes formed\\
+Cooler further: Formation of stars and galaxies (Formed He, C and heavier elements)\\
+Hubble's Law: Redshift due to expansion of space-time\\
+Cosmic Background Radiation (CBR): Freely streaming across universe since atoms formed at $\mathcal{T}=3000\K$ (Become transparent)\\
+When early universe was hot, it was radiation-dominated (Mostly electrons, ions, scattered photons), makes it opaque\\
+When it expands, at age of $380000\yrs$, cools enough for recombination of ions and electrons to form neutral atoms (Become transparent)\\
+COBE: Satellite/thermometer to measure diffuse infrared and microwave radiation from early universe\\
+BB model: Total expansion is $1000$ time since universe became transparent \quad Measured $\mathcal{T}=3\K$ \quad Observed $=2.735\K$\\
+Model also predict spectrum obey black-body radiation form\\
+Early universe: Photon converted to particle-antiparticle pairs \\
+At $10^{9}\K$, protons and neutrons fused into deuterium and helium \quad $2$ p $+2$ n $\rightarrow 1$ $^{4}$He \quad converted all free neutrons into He in $5$ minutes\\
+In very short time of He synthesis, there were $7$ protons every neutrons (Explain why H/He mass abundance ratio is $3$)\\
+Model also works extremely well for other light elements \quad Form $^{2}$H, $^{4}$He, $^{3}$He, $^{6}$He, $^{7}$He in $5$ minutes\\
+BB model: basic framework of modern cosmology\\
+Curvature of Universe: Universe cannot be perfectly uniform (Inhomogeneities show in CBR)\\
+Angular size of $\mathcal{T}$ variation used to determine curvature of Universe ($1\degree$ in angular size for flat universe) Data support Universe is flat\\
+At age $10^{-32}\s$, Universe suddenly inflated by factor of $10^{78}$ due to high-energy to low-energy transition\\
+Force of nature separated around cosmic inflation \quad Small size of Universe before inflation allow $\mathcal{T}$ to equalize $\rightarrow$ isotropic\\
+Flatness Problem: Inflation theory means tremendous expansion greatly dilutes initial curvature\\
+Curvature of Universe $k=-1,0,1$ depends on total mass density $\rho$ \quad Critical density for $k=0$ $\rho_{c}=\frac{3H_{0}^{2}}{8\pi G}=10^{-29}\g\cm^{-3}$\\
+Density normalized to critical density $\ohm=\frac{\rho}{\rho_{c}}$\\
+Dark energy: Causing universe expansion to accelerate (no idea what it is) \quad Anti-gravity\\
+Models without acceleration: Assume $\ohm_{m}=1$ implies age only $9\times 10^{9}\yrs$ (Younger than some globular clusters)\\
+Total energy density $\ohm_{t}=\ohm_{m}+\ohm_{k}+\ohm_{\Lambda}$ \quad $m$: Ordinary and extraordinary matter \quad $k$: curvature of space \quad $\Lambda$: Dark energy\\
+Since curvature of universe is flat, $\ohm_{k}=0$ \quad Geometrically flat: $\ohm_{t}=1.02\pm 0.02$\\
+Mass of universe: $\ohm_{m}=\ohm_{DM}+\ohm_{\text{atom}}\approx 0.3$ \quad This means $\ohm_{\Lambda}\approx 0.7$\\
+Concordance Cosmic Model ($\Lambda$CDM Model):\\
+Type Ia supernovae: Cosmic acceleration depends on difference between repulsive $\ohm_{\Lambda}$ and attractive $\ohm_{m}$, $\ohm_{\Lambda}>\ohm_{m}$\\
+Galaxy clusters: $\ohm_{m}\approx 0.3$ \quad CBR Ripples: $\ohm_{m}+\ohm_{\Lambda}=1$\\
+Before dark energy: $\ohm_{m}>1$: Closed universe $\rightarrow$ Big crunch \quad $\ohm_{m}<1$: Open universe $\rightarrow$ Big freeze\\
+After dark energy: $\ohm_{m}\approx 0.3$, $\ohm_{\Lambda}\approx 0.7$: Flat and accelerating universe $\rightarrow$ Big Freeze
+\end{document}

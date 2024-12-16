@@ -1,0 +1,277 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage[a4paper,total={8.2in,11.5in}]{geometry}
+\titleformat{\section}{\bfseries}{Chapter\,\arabic{section}}{1em}{}
+\titleformat{\subsection}{\bfseries}{(\alph{subsection})}{1em}{}
+\titlespacing{\section}{0pt}{0pt plus 3pt minus 2pt}{0pt plus 3pt minus 2pt}
+\setlength{\parindent}{0.0in}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Binomial}{Binomial}
+\DeclareMathOperator{\Poisson}{Poisson}
+\newcommand{\rulesep}{\unskip\ \vrule\ }
+\begin{document}
+\begin{figure}[h!]
+    \begin{subfigure}{0.5\textwidth}
+        Sample mean $\overline{x}=\frac{x_{1}+\cdots+x_{n}}{n}$.\\
+        Population mean $\mu_{X}=E(X)=\sum_{x\in\chi}(xp(x))$\\
+        $E(g(X))=\sum_{x\in\chi}(g(x)p(x))=\int_{-\infty}^{\infty}g(x)f(x)\,dx$\\
+        $E(aX+Y+b)=aE(X)+E(Y)+b$
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        Sample Variance: $s_{n-1}^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}$\\
+        Sample Standard Deviation: $s_{n-1}$\\
+        Population Variance $\sigma_{X}^{2}=\Var{(X)}=\sum_{x\in\chi}((x-\mu)^{2}p(x))$\\
+        $\Var{(X)}=E((X-\mu)^{2})=E(X^{2})-\mu^{2}$\\
+        $\Var{(aX+b)}=a^{2}\Var{(X)}$\\
+        If $X$ and $Y$ are independent, $\Var{(X+Y)}=\Var{(X)}+\Var{(Y)}$
+    \end{subfigure}
+\end{figure}
+\section{Descriptive Statistics}
+\begin{figure}[h!]
+\vspace*{-10px}
+\begin{subfigure}[h!]{0.5\textwidth}
+Data:
+\begin{enumerate}
+        \item Categorical/ Qualitative\\
+        Nominal (Cannot be ranked), Ordinal (Can be ranked)
+        \item Quantitative\\
+        Discrete (Counting), Continuous (Measuring)
+\end{enumerate}
+Sample median $\widetilde{x}=\begin{cases}
+    x_{\frac{x+1}{2}}, &\text{if $n$ is odd}\\
+    \frac{1}{2}(x_{\frac{n}{2}}+x_{\frac{n}{2}+1}), &\text{if $n$ is even}
+\end{cases}$.\\
+Trimmed mean: $\overline{x}_{\tr(10)}$ (Mean after eliminate top and bottom $10\%$)\\
+Sample range: $x_{max}-x_{min}$ \quad Inter-quartile range (IQR): $Q_{3}-Q_{1}$
+\end{subfigure}
+\begin{subfigure}[h!]{0.49\textwidth}
+    Ways of presenting:
+    \begin{enumerate}
+        \item Line Chart, Pie Chart, Bar Chart\\
+        Histogram (Table with bars)\\
+        Frequency Table (Arranged with columns and rows)\\
+        Boxplot (Gives quartiles and outliers, left line $Q_{1}-1.5$IQR, right line $Q_{3}+1.5$IQR)\\
+        Scatter plot (Data comes in pairs)
+    \end{enumerate}
+    Skewness:\\
+    Left skewed (Mean $<$ median), Right skewed (Mean $>$ median)\\
+    Symmetric (Mean $\approx$ median)\\
+\end{subfigure}
+\end{figure}
+\section{Probability}
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Difference: $A-B=\{s\vert s\in A\text{ and }s\not\in B\}=A\cap B^{c}$.\\
+        Symmetric Difference: $A\Delta B=\{s\vert s\in A\cup B\text{ and }s\not\in A\cap B\}$.\\
+        Commutative, associative, distributive\\
+        De Morgan's Laws: $(A\cap B)^{c}-A^{c}\cup B^{c}$, $(A\cup B)^{c}-A^{c}\cap B^{c}$\\
+        Permutation: Ordered arrangement of set of objects\\
+        No. of permutations of $n$ distinct objects taken $r$ once: $\frac{n!}{(n-r)!}$\\
+        No. of permutations of $n$ objects arranged in a circle: $(n-1)!$\\
+        Combination: Unordered arrangement of selecting $r$ from $n$: $\binom{n}{r}$\\
+        No. of combinations of $n$ distinct objects taken $r$ once: $\frac{n!}{(n-r)!r!}$\\
+        No. of ways that $n$ distinct stuff grouped into $k$ classes: $\frac{n!}{n_{1}!\cdots n_{k}!}$\\
+        If $P(AB)=P(A)P(B)$, $A$ and $B$ are independent.\\
+        Independent: not mutually effected. Disjoint: No overlap.\\
+        Mutually independent: $P(\bigcap_{k=i}^{j}A_{k})=\prod_{k=i}^{j}P(A_{k})$ for all $i<j$\\
+        Pairwise independent: $P(A_{i}A_{j})=P(A_{i})P(A_{j})$ for all $i<j$
+    \end{subfigure}
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Probability: $0\leq P(E)\leq 1$, $P(S)=1$, $P(E^{c})=1-P(E)$\\
+        Mutually exclusive (Disjoint): $P(\bigcup_{i=1}^{n}E_{i})=\sum_{i=1}^{n}P(E_{i})$\\
+        Countable: $A=\bigcup_{k=1}^{\infty}\{a_{k}\}$ E.g. $\mathbb{N}$\\
+        Probability of empty set: $P(\Phi)=0$\\
+        Exhaustive: $E_{1}\cup\cdots\cup E_{n}=S$\\
+        Partition: Mutually Exclusive $+$ Exhuastive
+        
+        $P(A)\leq P(B)$ if $A\subseteq B$\\
+        $P(A_{1}\cup\cdots\cup A_{n})=\sum_{j=1}^{n}(-1)^{j-1}\sum_{i_{1}<\cdots i_{j}}\binom{n}{j}P(A_{i_{1}}\cdots A_{i_{j}})$\\
+        $P(A\vert B)=\frac{P(AB)}{P(B)}\geq P(AB)=P(A\vert B)P(B)=P(B\vert A)P(A)$\\
+        $P(A_{1}\cdots A_{n})=P(A_{n}\vert A_{1}\cdots A_{n-1})\cdots P(A_{2}\vert A_{1})P(A_{1})$\\
+        $P((A\cap B)\vert D)=P(A\vert(B\cap D))P(B\vert D)$\\
+        If $B_{i}$ is partition of $S$, $P(A)=\sum_{i=1}^{n}P(A\vert B_{i})P(B_{i})$\\
+        Law of total probability: Let $S$ be sample space.\\
+        Bayes' Theorem: If $B_{i}$ is partition, $P(B_{j}\vert A)=\frac{P(A\vert B_{j})P(B_{j})}{\sum_{i=1}^{n}P(A\vert B_{i})P(B_{i})}$
+    \end{subfigure}
+\end{figure}
+\section{Random Variables}
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Random variable $X:S\rightarrow R$: $X(a)$ is assigned to outcome $a$ in $S$\\
+        Probability mass function (pmf): $p(x)$\\
+        Cumulative distribution function (cdf): $F(x)=P(X\leq x)$\\
+        $P(a<X\leq b)=F(b)-F(a)$\\
+        $F(x)$ is non-decreasing and $0\leq F(x)\leq 1$.\\
+        \newline
+        Bernoulli $X\sim\Binomial{(n,p)}$: $E(X)=np$ \quad $\Var(X)=np(1-p)$\\
+        For $n$ trials: $p(x)=P(X=x)=\binom{n}{x}p^{x}(1-p)^{n-x}$ for $x=0,\cdots,n$\\
+        Poisson distribution $X\sim\Poisson{(\lambda)}$: $E(X)=\lambda$ \quad $\Var(X)=\lambda$\\
+        Determine probability of counts of occurrence over line\\
+        $\lambda$ is rate of occurrences of event per unit time or space\\
+        or average number of occurrences of event per unit time or space\\
+        $p(x)=P(X=x)=\frac{\lambda^{x}e^{-\lambda}}{x!}$ for $x=0,1,\cdots$\\
+        Count of occurrences for $t$ units of time with rate $\lambda$: $Y_{t}\sim\Poisson{(\lambda t)}$\\
+        Poisson Limit Theorem: When $\lambda=np$,\\
+        $\lim_{n\to\infty}\binom{n}{k}p^{k}_{n}(1-p_{n})^{n-k}=\frac{\lambda^{k}e^{-\lambda}}{k!}$\\
+        Closely approximates if $n$ is large and $p$ is small\\
+        Normal distribution $X\sim N(\mu,\sigma^{2})$: $E(X)=\mu$ $\Var{(X)}=\sigma^{2}$\\
+        $f(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\frac{1}{2\sigma^{2}}(x-\mu)^{2}}$\\
+        Standard normal distribution $X\sim N(0,1)$ (Use $z$-table):\\
+        Distribution function $\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}e^{-\frac{t^{2}}{2}}\,dt$\\
+        If $X\sim N(\mu,\sigma^{2}),$ $Z=\frac{X-\mu}{\sigma}\sim N(0,1)$
+    \end{subfigure}
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Discrete r.v.: Finite or countably infinite number of values\\
+        Continuous r.v.: Values continuously on an interval\\
+        $0<p(x)\leq 1$ for all $x\in\chi$, $p(x)=0$ for all $x\not\in\chi$.\\
+        Probability density function (pdf): $f(x)$\\
+        $f(x)>0$ for all $x\in\chi$, and $f(x)=0$ for all $x\not\in\chi$\\
+        $\sum_{x\in\chi}p(x)=\int_{-\infty}^{\infty}f(x)\,dx=1$\\
+        $P(X\in A)=\sum_{A}p(x)=\int_{A}f(x)\,dx$\\
+        $P(X=k)=0$ for any $k$ for continuous r.v..\\
+        $F(a)=P(X\leq a)=\sum_{x\leq a}p(x)=\int_{-\infty}^{a}f(x)\,dx$\\
+        $P(a<X\leq b)=F(b)-F(a)=\int_{a}^{b}f(x)\,dx$\\
+        Chebystev's Inequality: For any $t>0$: $P(\left|X-\mu\right|\geq t)\leq\frac{\sigma^{2}}{t^{2}}$\\
+        Let $t=k\sigma$, $P(\left|X-\mu\right|\geq k\sigma)\leq\frac{1}{k^{2}}$\\
+        $r$-th moment about origin of $X$: $E(X^{r})$ for $r\in\mathbb{N}$\\
+        $r$-th central moment: $E((X-E(X))^{r})$ for $r\in\mathbb{N}$\\
+        Skewness: $E(Z^{3})=\frac{\mu_{3}}{\sigma^{3}}$ where $\mu_{3}$ is $3$rd central moment\\
+        +ve skewness: Right long tail \quad -ve skewness: Left long tail\\
+        Kurtosis: $E(Z^{4})=\frac{\mu_{4}}{\sigma^{4}}$ where $\mu_{4}$ is $4$th central moment\\
+        Excess kurtosis $=$ Kurtosis $-3$\\
+        $0$ excess kurtosis: Normal distribution\\
+        +ve ex. kurtosis: Thicker tails \quad -ve ex. kurtosis: Thinner tails\\
+        Moment generation function (mgf): $M_{X}(t)=E(e^{tX})$\\
+        $M_{X}^{k}(0)=\frac{d^{k}}{dt^{k}}M_{X}(t)\big\vert_{t=0}=E(X^{k})$\\
+        For Binomial distribution: $M_{X}(t)=E(e^{tX})=(pe^{t}+1-p)^{n}$\\
+        For Normal distribution: $M_{Z}(t)=E(e^{tZ})=e^{\frac{t^{2}}{2}}$
+        \end{subfigure}
+\end{figure}
+\newpage
+\section{Parameter Estimation}
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.5\textwidth}
+        Unknown population: An unknown distribution of r.v. $X$\\
+        Sample: Collection of data of $X$\\
+        Parameter: $\mu_{X},\sigma_{X}^{2}$ \quad Statistic: $\overline{x},s_{n-1}^{2},s_{n}^{2}$\\
+        Estimator: $X_{1},\cdots,X_{n}$ \quad Sample mean: $\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}$\\
+        $k$-th sample moment about origin: $\overline{X^{k}}$ \quad Estimate: $x_{1},\cdots,x_{n}$\\
+        If $E(X)=\mu$, $\Var(X)=\sigma^{2}$,\\
+        $E(\overline{X})=\mu$, $\Var(\overline{X})=\frac{\sigma^{2}}{n}$, $E(s_{n-1}^{2})=\sigma^{2}$\\
+        Point estimator of $\theta$: $Y=T(X_{1},\cdots,X_{n})$ (estimate $\theta$)\\
+        Point estimate of $\theta$: $y=T(x_{1},\cdots,x_{n})$\\
+        cdf of $X$: $X\sim F(x;\theta)$\\
+        Method of moment estimator (MME): $(\hat{\theta}_{1},\cdots,\hat{\theta}_{m})$ of $(\theta_{1},\cdots,\theta_{m})$\\
+        $\hat{\theta}_{i}=g_{i}(\overline{X},\cdots,\overline{X^{m}},\cdots)$ where $\overline{X^{k}}=\frac{1}{n}\sum_{i=1}^{n}X_{i}^{k}$\\
+        When $n$ is large, $\overline{X^{k}}\approx E(X^{k})$.\\
+        E.g. MME of $\lambda$ when $X\sim\Poisson(\lambda)$ is $\hat{\lambda}=\overline{X}$.\\
+        If $E(\hat{\theta})=\theta$, then $\hat{\theta}$ is unbiased estimator of $\theta$.\\
+        Bias of $\hat{\theta}$: $b_{n}(\hat{\theta})=E(\hat{\theta})-\theta$.\\
+        If unbiased only at $\infty$, it is asymptotic.\\
+        If $E(\hat{\theta}_{1})=E(\hat{\theta}_{2})=\theta$ and $\Var(\hat{\theta}_{1})\leq\Var(\hat{\theta}_{2})$, $\hat{\theta}_{1}$ is more efficient.
+    \end{subfigure}
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Point estimators cannot provide precision and reliability.\\
+        Range may be more meaningful.\\
+        R.v.: Random interval \quad Numerical: Confidence interval\\
+        Given $T_{1}\leq T_{2}$, high $T_{2}-T_{1}$ have high reliability, low precision\\
+        $P(T_{1}\leq\theta\leq T_{2})\geq 1-\alpha$. $[T_{1},T_{2}]$ is $1-\alpha$ confidence interval.\\
+        $P(\mu_{X}-k_{1}\leq\overline{X}\leq\mu_{X}+k_{2})=P(\overline{X}-k_{2}\leq\mu_{X}\leq\overline{X}+k_{1})=1-\alpha$\\
+        If $X\sim N(0,1)$ and $Y=X_{1}^{2}+\cdots+X_{n}^{2}$, then $Y\sim\chi^{2}(n)$.\\
+        If $Z\sim N(0,1)$, $Y\sim\chi^{2}(n)$, $W=\frac{Z}{\sqrt{Y/n}}\sim t(n)$.\\
+        If $X\sim N(\mu_{X},\sigma_{X}^{2})$, $\overline{X}\sim N(\mu_{X},\frac{\sigma_{X}^{2}}{n})$, $\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)$\\
+        $\frac{\overline{X}-\mu_{X}}{S_{n-1}/\sqrt{n}}\sim t(n-1)$.\\
+        $\mu_{X}$ (known $\sigma_{X}^{2}$): $P(-z_{\frac{\alpha}{2}}\leq\frac{\overline{X}-\mu_{X}}{\sigma_{X}/\sqrt{n}}\leq z_{\frac{\alpha}{2}})=1-\alpha$\\
+        $\mu_{X}$ with $1-\alpha$ C.I.: $\left[\overline{X}-z_{\frac{\alpha}{2}}\sigma_{X}/\sqrt{n},\overline{X}+z_{\frac{\alpha}{2}}\sigma_{X}/\sqrt{n}\right]$\\
+        $\mu_{X}$ (unknown $\sigma_{X}^{2}$): $P(-t_{n-1,\frac{\alpha}{2}}\leq\frac{\overline{X}-\mu_{X}}{S_{n-1}/\sqrt{n}}\leq t_{n-1,\frac{\alpha}{2}})=1-\alpha$\\
+        $\sigma_{X}^{2}$ (unknown $\mu_{X}$): $P(\chi_{n-1,1-\frac{\alpha}{2}}^{2}\leq\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\leq\chi_{n-1,\frac{\alpha}{2}}^{2})=1-\alpha$\\
+        $\sigma_{X}^{2}$ (known $\mu_{X}$): $P(\chi_{n,1-\frac{\alpha}{2}}^{2}\leq\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}\leq\chi_{n,\frac{\alpha}{2}}^{2})=1-\alpha$
+    \end{subfigure}
+\end{figure}
+\section{Hypothesis Testing}
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.5\textwidth}
+        Null hypothesis $H_{0}$: Tested to reject or not (With $=$ sign)\\
+        Alternative hypothesis $H_{1}$: Accept if reject $H_{0}$.\\
+        $\alpha=P(\text{Type I error})=P(\text{Reject }H_{0}\text{ if }H_{0}\text{ is true})$\\
+        $\beta=P(\text{Type II error})=P(\text{Not reject }H_{0}\text{ if }H_{0}\text{ is false})$\\
+        Critical value: $c$ where $\overline{X}$ is a rare event under $H_{0}$ (Reject $H_{0}$)\\
+        Power of test statement: $1-\beta=1-P(\overline{X}\leq c\text{ if }\mu_{X}=\mu_{2})$\\
+        At significance level $a$:\\
+        One-sided right [left] test: Let $H_{0}:\sigma_{X}^{2}=\sigma_{0}^{2},H_{1}:\sigma_{X}^{2}>[<]\sigma_{0}^{2}$\\
+        Critical value (unknown $\mu_{X}$): Reject if $\frac{(n-1)s_{n-1}^{2}}{\sigma_{0}^{2}}>[<]\chi_{n-1,a[1-a]}^{2}$\\
+        p-value (unknown $\mu_{X}$): Reject if $P(U_{n-1}>[<]\frac{(n-1)s_{n-1}^{2}}{\sigma_{0}^{2}})<a$\\
+        Two-sided test: Let $H_{0}:\sigma_{X}^{2}=\sigma_{0}^{2},H_{1}:\sigma_{X}^{2}\neq\sigma_{0}^{2}$\\
+        Critical value (unknown $\mu_{X}$):\\
+        Reject if $\frac{(n-1)s_{n-1}^{2}}{\sigma_{0}^{2}}<\chi_{n-1,1-\frac{a}{2}}^{2}$ or $\frac{(n-1)s_{n-1}^{2}}{\sigma_{0}^{2}}>\chi_{n-1,\frac{a}{2}}^{2}$\\
+        p-value (unknown $\mu_{X}$):\\
+        Reject if $2\min(P(U_{n-1}<\frac{(n-1)s_{n-1}^{2}}{\sigma_{0}^{2}}),P(U_{n-1}>\frac{(n-1)s_{n-1}^{2}}{\sigma_{0}^{2}}))<a$
+    \end{subfigure}
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Simple test: Let $H_{0}:\mu_{X}=\mu_{1}, H_{1}:\mu_{X}=\mu_{2}$ for $\mu_{1}<\mu_{2}$\\
+        $\alpha=P(\overline{X}>c\text{ if }\mu_{X}=\mu_{1})=P(\frac{\overline{X}-\mu_{1}}{\sigma_{X}/\sqrt{n}}>\frac{c-\mu_{1}}{\sigma_{X}/\sqrt{n}}=z_{a})$\\
+        Critical value: Reject $H_{0}$ if $\overline{x}>c$\\
+        p-value $=P(\overline{X}>\overline{x}\text{ if }\mu_{X}=\mu_{1})$ \quad Reject if p-value $<a$\\
+        One-sided right [left] test: Let $H_{0}:\mu_{X}=\mu_{0},H_{1}:\mu_{X}>[<]\mu_{0}$\\
+        Critical value (known $\sigma_{X}^{2}$): Reject if $\overline{x}>[<]\mu_{0}+[-]z_{a}\frac{\sigma_{X}}{\sqrt{n}}$\\
+        p-value (known $\sigma_{X}^{2}$): Reject if $P(Z>[<]\frac{\overline{x}-\mu_{0}}{\sigma_{X}/\sqrt{n}})<a$.\\
+        t value (unknown $\sigma_{X}^{2}$): Reject if $\overline{x}>[<]\mu_{0}+[-]t_{n-1,a}\frac{s_{n-1}}{\sqrt{n}}$\\
+        p-value (unknown $\sigma_{X}^{2}$): Reject if $P(T_{n-1}>[<]\frac{\overline{x}-\mu_{0}}{s_{n-1}/\sqrt{n}})<a$\\
+        Two-sided test: Let $H_{0}:\mu_{X}=\mu_{0},H_{1}:\mu_{X}\neq\mu_{0}$\\
+        Critical value (known $\sigma_{X}^{2}$): Reject if $\left|\frac{\overline{x}-\mu_{0}}{\sigma_{X}/\sqrt{n}}\right|>z_{\frac{\alpha}{2}}$\\
+        p-value (known $\sigma_{X}^{2})$: Reject if $2P(Z>\left|\frac{\overline{x}-\mu_{0}}{\sigma_{X}/\sqrt{n}}\right|)<a$\\
+        t value (unknown $\sigma_{X}^{2}$): Reject if $\left|\frac{\overline{x}-\mu_{0}}{s_{n-1}/\sqrt{n}}\right|>t_{n-1,\frac{a}{2}}$\\
+        p-value (unknown $\sigma_{X}^{2}$): Reject if $2P(T_{n-1}>\left|\frac{\overline{x}-\mu_{0}}{s_{n-1}/\sqrt{n}}\right|)<a$\\
+    \end{subfigure}
+\end{figure}
+\section{Simple linear regression model and Least squares}
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.5\textwidth}
+        Scatter plot: Collection of paired data of $x$ and $y$\\
+        Model: $Y=\beta_{0}+\beta_{1}x+\epsilon$ \quad Regression coefficients: $\beta_{0},\beta_{1}$\\
+        Least square method: $S(u,v)=\sum_{i=1}^{n}(y_{i}-(u+vx_{i}))$\\
+        Finding minimum of $S$ at $(a,b)$: $a=\overline{y}-b\overline{x}$\\
+        $b=\frac{\sum_{i=1}^{n}x_{i}y_{i}-(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})/n}{\sum_{i=1}^{n}x_{i}^{2}-(\sum_{i=1}^{n}x_{i})^{2}/n}=\frac{\sum_{i=1}^{n}(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}}=\frac{S_{XY}}{S_{XX}}$\\
+        Fitted regression line: $\hat{y}=a+bx$ \quad Substitute $x_{i}$, $e_{i}=y_{i}-\hat{y}_{i}$\\
+        Sum of Squared Errors (SSE) $=\sum_{i=1}^{n}(y_{i}-\hat{y}_{i})^{2}$\\
+        Pearson's correlation coefficient $r=\frac{S_{XY}}{\sqrt{S_{XX}}\sqrt{S_{YY}}}$\\
+        Population correlation coefficient $\rho=\frac{E((X-\mu_{X})(Y-\mu_{Y}))}{\sigma_{X}\sigma_{Y}}$\\
+        $0<\rho<1$: Positively correlated (Slope is +ve)\\
+        $-1<\rho<0$: Negatively correlated (Slope is -ve)\\
+        $\rho=0$: Uncorrelated\\
+        $z_{\text{Fisher}}=\frac{1}{2}\ln\left(\frac{1+r}{1-r}\right)$. $\mu=\frac{1}{2}\ln\left(\frac{1+\rho}{1-\rho}\right)$ and $\sigma=\frac{1}{n-3}$\\
+        Regression Sum of Squares (RSS) $=\sum_{i=1}^{n}(\hat{y}_{i}-\overline{y})^{2}$\\
+        Total variability of response (SST) $=\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}=\text{RSS}+\text{SSE}$\\
+        Variation due to regression model and variation due to error\\
+        R-squared: $R^{2}=\frac{\text{RSS}}{\text{SST}}=1-\frac{\text{SSE}}{\text{SST}}$\\
+        $\Var(\epsilon)=\sigma^{2}$ \quad $\hat{\beta}_{1}=\frac{\sum_{i=1}^{n}(x_{i}-\overline{x})(Y_{i}-\overline{Y})}{S_{XX}}$, $\hat{\beta}_{0}=\overline{Y}-\hat{\beta}_{1}\overline{x}$\\
+        $100(1-\alpha)\%$ prediction interval for $y_{new}$\\
+        $=\hat{y}_{new}\pm t_{n-2,\frac{\alpha}{2}}s\sqrt{1+\frac{1}{n}+\frac{(x_{new}-\overline{x})^{2}}{S_{XX}}}$
+    \end{subfigure}
+    \begin{subfigure}[h!]{0.49\textwidth}
+        Assume $\epsilon$ are independent and normally distributed.\\
+        Assume $\Var(\epsilon)=\sigma^{2},E(\epsilon)=0$\\
+        $\epsilon_{i}\sim N(0,\sigma^{2})$, $\hat{\beta}_{1}\sim N\left(\beta_{1},\frac{\sigma^{2}}{S_{XX}}\right)$, $\hat{\beta}_{0}\sim N\left(\beta_{0},\frac{\sigma^{2}\sum_{i=1}^{n}x_{i}^{2}}{nS_{XX}}\right)$\\
+        They are unbiased estimators. $\hat{\beta}_{1}=\frac{\sum_{i=1}^{n}(x_{i}-\overline{x})Y_{i}}{S_{XX}}$\\
+        $E(\hat{\beta}_{0})=\frac{\sum_{i=1}^{n}(x_{i}-\overline{x})E(Y_{i})}{S_{XX}}=\frac{\sum_{i=1}^{n}(x_{i}-\overline{x})(\beta_{0}+\beta_{1}x_{i})}{S_{XX}}=\beta_{1}$\\
+        $\Var(\hat{\beta}_{1})=\frac{\sum_{i=1}^{n}(x_{i}-\overline{x})^{2}\Var(Y_{i})}{(S_{XX})^{2}}=\frac{\sigma^{2}}{S_{XX}}$\\
+        Residual $e_{i}=y_{i}=\hat{y}_{i}$ is actual value of $\epsilon_{i}$\\
+        Mean Square Error (MSE) $S^{2}=\frac{\sum_{i=1}^{n}E_{i}^{2}}{n-2}=\frac{\sum_{i=1}^{n}(Y_{i}-\hat{Y}_{i})^{2}}{n-2}$\\
+        MSE is unbiased estimator of $\sigma^{2}$. $s^{2}=\frac{\text{SSE}}{n-2}=\frac{S_{YY}-bS_{XY}}{n-2}$\\
+        Replacing unknown $\sigma^{2}$ by MSE, $T_{n-2}=\frac{\hat{\beta}_{1}-\beta_{1}}{\sqrt{S^{2}/S_{XX}}}\sim t(n-2)$\\
+        $100(1-\alpha)\%$ C.I. is $b\pm t_{n-2}.\frac{\alpha}{2}\sqrt{s^{2}/S_{XX}}$\\
+        Replacing unknown $\sigma^{2}$ by MSE, $T_{n-2}=\frac{\hat{\beta}_{0}-\beta_{0}}{\sqrt{S^{2}\sum_{i=1}^{n}x_{i}^{2}/nS_{XX}}}$\\
+        $100(1-\alpha)\%$ C.I. is $(\overline{y}-b\overline{x})\pm t_{n-2,\frac{\alpha}{2}}\sqrt{s^{2}\sum_{i=1}^{n}x_{i}^{2}/nS_{XX}}$\\
+        One-sided right test: $H_{0}:\beta_{1}=b_{1},H_{1}:\beta_{1}>b_{1}$\\
+        t value: $\frac{b-b_{1}}{s/\sqrt{S_{XX}}}>t_{n-2,\alpha}$ \quad p-value: $P(T_{n-2}>\frac{b-b_{1}}{s/\sqrt{S_{XX}}})<\alpha$\\
+        One-sided right test: $H_{0}:\beta_{0}=b_{0}.H_{1}:\beta_{0}>b_{0}$\\
+        t value: $\frac{a-b_{0}}{s\sqrt{\sum_{i=1}^{n}x_{i}^{2}/nS_{XX}}}>t_{n-2,\alpha}$\\
+        p-value: $P(T_{n-2}>\frac{a-b_{0}}{s\sqrt{\sum_{i=1}^{n}x_{i}^{2}/nS_{XX}}})<\alpha$
+    \end{subfigure} 
+\end{figure}
+\end{document}

@@ -1,0 +1,507 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage{tikz-cd}
+\usepackage[a4paper,total={8in,11in}]{geometry}
+\usepackage{titlesec}
+    \titleformat{\section}{\bfseries}{Chapter\,\arabic{section}}{1em}{}
+\theoremstyle{definition}
+    \newtheorem{defn}{Definition}[section]
+    \newtheorem{thm}[defn]{Theorem}
+    \newtheorem{lem}[defn]{Lemma}
+    \newtheorem{corollary}[defn]{Corollary}
+    \newtheorem{prop}[defn]{Proposition}
+    \newtheorem{conjecture}[defn]{Conjecture}
+    \newtheorem{example}{Important example}[section]
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Ker}{Ker}
+\renewcommand{\Im}{\text{Im}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Nul}{Nul}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Row}{Row}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Dom}{Dom}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\section{Abstract Vector Space}
+A \textit{vector space} over a field $K$ is a set $V$ together with $2$ binary operations:
+\begin{align*}
+    +&:{V\times V}\rightarrow{V} & &\text{(Addition)} & \cdot&:{K\times V}\rightarrow{V} & &\text{(Scalar Multiplication)}
+    \end{align*}
+subject to the following $8$ rules for all $\mathbf{u},\mathbf{v},\mathbf{w}\in V$ and $c,d\in K$:
+\begin{align*}
+    &(+1\text{ Addition Commutativity}) & &\mathbf{u}+\mathbf{v}=\mathbf{v}+\mathbf{u} & &(+2\text{ Addition Associativity}) & &(\mathbf{u}+\mathbf{v})+\mathbf{w}=\mathbf{u}+(\mathbf{v}+\mathbf{w})\\
+    &(+3\text{ Zero exists}) & &\exists{0\in V}:\mathbf{u}+\mathbf{0}=\mathbf{u} & &(+4\text{ Additive Inverse exists}) & &\exists{\mathbf{u}'\in V}:\mathbf{u}+\mathbf{u}'=\mathbf{0}\qquad(\mathbf{u}'=-\mathbf{u})\\
+    &(\cdot 1\text{ Multiplication Associativity}) & &(cd)\cdot\mathbf{u}=c\cdot(d\cdot\mathbf{u}) & &(\cdot 2\text{ Unity}) & & 1\cdot\mathbf{u}=\mathbf{u}\\
+    &(\cdot 3\text{ Distributivity 1}) & & c\cdot(\mathbf{u}+\mathbf{v})=c\cdot\mathbf{u}+c\cdot\mathbf{v} & &(\cdot 4\text{ Distributivity 2}) & & (c+d)\cdot\mathbf{u}=c\cdot\mathbf{u}+d\cdot\mathbf{u}
+\end{align*}
+Elements of a vector space $V$ are called \textit{vectors}.\\
+$\mathbf{0}\in V$ is unique. For all $\mathbf{v}$, $-\mathbf{v}$ is unique. (Uniqueness) \qquad\qquad $\mathbf{u}+\mathbf{v}=\mathbf{u}+\mathbf{v}'\Leftrightarrow\mathbf{v}=\mathbf{v}'$ (Cancellation Law)\\
+$c\mathbf{u}=\mathbf{0}\Leftrightarrow{c=0}$ or $\mathbf{u}=\mathbf{0}$.\\
+A subset $U\subset V$ is \textit{subspace} if it is vector space:
+\begin{align*}
+    &(1\text{ Zero exists}) & &\mathbf{0}\in U & &(2\text{ Closure under addition}) & \mathbf{u},\mathbf{v}\in U\rightarrow\mathbf{u}+\mathbf{v}\in U\\
+    &(3\text{ Closure under multiplication}) & &\mathbf{u}\in U,c\in K\rightarrow c\mathbf{u}\in U
+\end{align*}
+Let $\mathcal{S}\subset V$. \textit{Linear combination} of $\mathcal{S}$ is any $c_{1}\mathbf{v}_{1}+\cdots+c_{n}\mathbf{v}_{n}\in V$ with $c_{1},\cdots,c_{n}\in K,\mathbf{v}_{1},\cdots,\mathbf{v}_{n}\in\mathcal{S}$. Set of all l.c. is $\Span(\mathcal{S})\in V$\\
+If $\mathcal{S}=\emptyset$, $\Span(\mathcal{S})=\{\mathbf{0}\}$ and $\Span(V)=V$\\
+(Subspace Criterion) $U\subset V$ is subspace of $V$ iff $U$ is non-empty and $c\in K,\mathbf{u},\mathbf{v}\in U\Rightarrow c\mathbf{u}+\mathbf{v}\in U$.\\
+$\{\mathbf{v}_{1},\cdots,\mathbf{v}_{n}\}$ is \textit{linearly dependent} if $c_{1}\mathbf{v}_{1}+\cdots+c_{n}\mathbf{v}_{n}=\mathbf{0}$ for some $c_{i}\in K$ possibly not all zero.\\
+$\{\mathbf{v}_{1},\cdots,\mathbf{v}_{n}\}$ is \textit{linearly independent} if $c_{1}\mathbf{v}_{1}+\cdots+c_{n}\mathbf{v}_{n}=\mathbf{0}$ implies all $c_{i}=0$.\\
+Ordered set $\mathcal{B}\subset V$ is \textit{basis} for $V$ iff $\mathcal{B}$ is l.i. and $V=\Span(\mathcal{B})$\\
+(Spanning Set Theorem) Let $\mathcal{S}=\{\mathbf{v}_{1},\cdots,\mathbf{v}_{n}\}\subset V$ and $U=\Span(\mathcal{S})$.\\
+$U=\Span(\mathcal{S}\setminus\{\mathbf{v}_{k}\})$ if $\mathbf{v}_{k}$ is l.c. of other vectors. If $U\neq\{\mathbf{0}\}$, some subset of $\mathcal{S}$ is basis of $U$.\\
+(Unique Representation Theorem) Let $\mathcal{B}=\{\mathbf{b}_{1},\cdots,\mathbf{b}_{n}\}\subset V$. Any $\mathbf{v}\in V$ is an unique l.c. of $\mathcal{B}$ iff $\mathcal{B}$ is basis of $V$.\\
+$\left[\mathbf{v}\right]_{\mathcal{B}}=\begin{pmatrix}
+    c_{1}\\
+    \vdots\\
+    c_{n}
+\end{pmatrix}\in K^{n}$ is \textit{coordinate vector} of $\mathbf{v}$ relative to $\mathcal{B}$ and $c_{1},\cdots,c_{n}$ are \textit{coordinates} of $\mathbf{v}$ relative to $\mathcal{B}$.\\
+(Replacement Theorem) If $V=\Span(\mathbf{v}_{1},\cdots,\mathbf{v}_{n})$ and $\mathcal{S}=\{\mathbf{u}_{1},\cdots,\mathbf{u}_{m}\}\subset V$ is l.i. subset, then $\left|\mathcal{S}\right|=m\leq n$\\
+All basis of $V$ has same number of elements.\\
+\textit{Dimension} of $V$ is $\dim{V}=\left|\mathcal{B}\right|=n$. $\dim\{\mathbf{0}\}=0$. $V$ is \textit{finite dimensional} if $\dim{V}<\infty$. $V$ is \textit{infinite dimensional} if $\dim{V}=\infty$.\\
+(Basis Extension Theorem) Let $\dim{V}<\infty$ and $U\subset V$ be subspace. L.i. $\mathcal{S}\subset U$ can be extended to basis of $V$ and $\dim{U}\leq\dim{V}$.\\
+If $U$ is subspace of $V$ and $\dim{U}=\dim{V}$, then $U=V$.\\
+(Basis Criterion) Let $\dim{V}=n\geq 1$ and $\mathcal{S}\subset V$ has $n$ elements. If $\mathcal{S}$ is l.i. or $\mathcal{S}$ spans $V$, then $\mathcal{S}$ is basis of $V$.\\
+Let $U,W\subset V$ be subspaces. $U+W=\{\mathbf{u}+\mathbf{w}:\mathbf{u}\in U,\mathbf{w}\in W\}$.\\
+$V=U\oplus W$ is \textit{direct sum} of $U$ and $W$ iff $V=U+W$ and $U\cap W=\{\mathbf{0}\}$.\\
+(Uniqueness of direct sum) $V=U\oplus W$ iff every $\mathbf{v}\in V$ can be expressed uniquely as $\mathbf{v}=\mathbf{u}+\mathbf{w}$, $\mathbf{u}\in U,\mathbf{w}\in W$.\\
+(Direct Sum Complement) Assume $\dim{V}<\infty$ and let $U\subset V$ be subspace.\\
+There exist subspace $W\subset V$ called \textit{direct sum complement} of $U$ such that $V=U\oplus W$.\\
+(Dimension formula) $\dim{U}+\dim{W}=\dim(U+W)+\dim(U\cap W)$ and $\dim{U}+\dim{W}=\dim(U\oplus W)$\\
+Let $U,W$ be vector spaces. \textit{Product} of $U,W$ is the set $U\times W=\{(\mathbf{u},\mathbf{w}):\mathbf{u}\in U,\mathbf{w}\in W\}$ with operations:
+\begin{align*}
+    (\mathbf{u},\mathbf{w})+(\mathbf{u}',\mathbf{w}')&=(\mathbf{u}+\mathbf{u}',\mathbf{w}+\mathbf{w}') & c\cdot(\mathbf{u},\mathbf{w})&=(c\mathbf{u},c\mathbf{w})
+\end{align*}
+which makes $U\times W$ a vector space with $(\mathbf{0},\mathbf{0})\in U\times W$.\\
+$U\times W=\{(\mathbf{u},\mathbf{0}):\mathbf{u}\in U\}\oplus\{(\mathbf{0},\mathbf{w}):\mathbf{w}\in W\}$ and $\dim(U\times W)=\dim{U}+\dim{W}$\\
+Let $U_{1},\cdots,U_{n}$ be subspace of $V$. If $V=U_{1}+\cdots+U_{n}$ and $U_{j}\cap\sum_{i\neq j}U_{i}=\{\mathbf{0}\}$ for all $j$. Then $V=U_{1}\oplus\cdots\oplus U_{n}$.\\
+(Uniqueness of direct sum) $V=U_{1}\oplus\cdots\oplus U_{n}$ iff every $\mathbf{v}\in V$ can be uniquely written as $\mathbf{v}=\mathbf{u}_{1}+\cdots+\mathbf{u}_{n}$ where $\mathbf{u}_{i}\in U_{i}$
+\newpage
+\section{Linear Transformations and Matrices}
+\textit{Linear Transformation} $T:V\rightarrow W$ is a map such that $T(c\mathbf{u}+\mathbf{v})=cT(\mathbf{u})+T(\mathbf{v})$ for all $\mathbf{u},\mathbf{v}\in V,c\in K$.\\
+$V$ is \textit{domain} and $W$ is \textit{target}. Set of all l.t. $T:V\rightarrow W$ is $\mathscr{L}(V,W)$.\\
+Let $S,T\in\mathscr(V,W)$, $\mathbf{v}\in V$ and $c\in K$. $(S+T)(\mathbf{v})=S\mathbf{v}+T\mathbf{u}\in W$ and $(cT)(\mathbf{v})=cT(\mathbf{v})\in W$. This makes $\mathscr(V,W)$ a vector space.\\
+Any $T\in\mathscr(V,W)$ is uniquely determined by image of any basis $\mathcal{B}$ of $V$.\\
+Zero map $O:V\rightarrow W$ is given by $O(\mathbf{v})=\mathbf{0}$. Identity map $I:V\rightarrow V$ is given by $I(\mathbf{v})=\mathbf{v}$.\\
+$T\in\mathscr{L}(K^{n},K^{m})$ is represented by $m\times n$ matrix $\mathbf{A}$: $\begin{pmatrix}
+    \mathbf{w}_{1} & \hdots & \mathbf{w}_{n}
+\end{pmatrix}$. $i$-th column $\mathbf{w}_{i}$ is image $T(\mathbf{e}_{i})$ of standard basis vector $\mathbf{e}_{i}\in K^{n}$.\\
+\textit{Kernel} (null space) $\Ker(T)=\{\mathbf{v}\in V:T(\mathbf{v})=\mathbf{0}\}$ is subspace of $V$.\\
+\textit{Image} (range) $\Im(T)=\{\mathbf{w}\in W:\mathbf{w}=T(\mathbf{v})\text{ for some }\mathbf{v}\in V\}$ is subspace of $W$.\\
+If $S\in\mathscr{L}(U,V)$ and $T\in\mathscr{L}(V,W)$, then the \textit{composition} $T\circ S\in\mathscr{L}(U,W)$ is linear. $T^{2}=T\circ T$.\\
+$T$ is \textit{one-to-one} (injective) if $T(\mathbf{u})=T(\mathbf{v})\rightarrow\mathbf{u}=\mathbf{v}$. $T$ is \textit{onto} (surjective) if every $\mathbf{w}\in W$ exists $\mathbf{v}\in V$ such that $T(\mathbf{v})=\mathbf{w}$.\\
+$T$ is \textit{isomorphism} if both one-to-one and onto. If $T\in\mathscr{L}(V,W)$ exists, $V$ is \textit{isomorphic} to $W$ ($V\simeq W$).\\
+(Proposition 2.10) $T$ is onto $\Leftrightarrow T(V)=W\Leftrightarrow T$ maps spanning set to spanning set.\\
+(Proposition 2.10) $T$ is one-to-one $\Leftrightarrow\Ker(T)=\{\mathbf{0}\}\Leftrightarrow T$ maps from l.i. set to l.i. set $\Leftrightarrow \dim T(U)=\dim U$ for any subspace $U\subset V$.\\
+(Proposition 2.11) $T$ is isomorphism $\rightarrow\dim V=\dim W$ and unique $T^{-1}\in\mathscr{L}(W,V)$ exists such that $T^{-1}\circ T=I_{V}$ and $T\circ T^{-1}=T_{W}$.\\
+(Proposition 2.12) If $S,T$ are isomorphism, then $S\circ T$ is isomorphism and $(S\circ T)^{-1}=T^{-1}\circ S^{-1}$.\\
+(Theorem 2.13) If $\mathcal{B}$ is basis of $V$, then coordinate mapping is isomorphism $V\simeq K^{n}$.
+\begin{align*}
+    \psi_{V,\mathcal{B}}:V&\rightarrow K^{n} & \mathbf{v}&\mapsto\left[\mathbf{v}\right]_{\mathcal{B}}
+\end{align*}
+$\left[T\right]_{\mathcal{B}'}^{\mathcal{B}}\in\mathscr{L}(K^{n},K^{m})$ is matrix representing $T$ with respect to bases $\mathcal{B}$ and $\mathcal{B}'$. $\left[T\right]_{\mathcal{B}}$ if $V=W$ and $\mathcal{B}=\mathcal{B}'$.\\
+If $\mathbf{A}$ is $m\times n$ matrix and $\mathbf{B}$ is $n\times r$ matrix, $(\mathbf{AB})_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}$.\\
+\textit{Trace} $\Tr(\mathbf{A})=\sum_{i=1}^{n}a_{ii}$ and $\Tr(\mathbf{AB})=\Tr(\mathbf{BA})$ (Proposition 2.16)\\
+(Proposition 2.17) $\mathbf{AB}=\begin{pmatrix}
+    \mathbf{Ab}_{1} & \cdots & \mathbf{Ab}_{r}
+\end{pmatrix}$.\\
+(Proposition 2.18) If $\mathbf{A}$ represent $T\in\mathscr{L}(K^{n},K^{m})$ and $\mathbf{B}$ represent $S\in\mathscr{L}(K^{r},K^{n})$, then $\mathbf{AB}$ represent $T\circ S$.\\
+(Proposition 2.19) For $S\in\mathscr{L}(U,V)$ and $T\in\mathscr{L}(V,W)$ with basis $\mathcal{B},\mathcal{B}',\mathcal{B}''$ of $U,V,W$ respectively, $\left[T\right]_{\mathcal{B}''}^{\mathcal{B}'}$ and $\left[T\circ S\right]_{\mathcal{B}''}^{\mathcal{B}}=\left[T\right]_{\mathcal{B}''}^{\mathcal{B}'}\left[S\right]_{\mathcal{B}'}^{\mathcal{B}}$\\
+Kernal of $T$ is \textit{null space} $\Nul\mathbf{A}$ which is set of all solutions to $\mathbf{Ax}=\mathbf{0}$.\\
+Image of $T$ is \textit{column space} $\Col\mathbf{A}$ which is set of l.c. of columns of $\mathbf{A}$.\\
+Row operations (similar to column operations): $\mathbf{r}_{i}\leftrightarrow\mathbf{r}_{j}\qquad\mathbf{r}_{i}\mapsto\mathbf{r}_{i}+c\mathbf{r}_{j}\qquad\mathbf{r}_{i}\mapsto c\mathbf{r}_{i}$\\
+(Proposition 2.22) If $\mathbf{A}'$ is $\mathbf{A}$ after row operations, $\Nul\mathbf{A}'=\Nul\mathbf{A}$. If $\mathbf{A}''$ is $\mathbf{A}$ after column operations, $\Col\mathbf{A}''=\Col\mathbf{A}$.\\
+\textit{Row echelon form} (REF) is matrix with all zero rows at bottom and pivots equals $1$ strictly right of pivot of rows about it.\\
+\textit{Reduced row echelon form} (RREF) is if each column containing pivot has zeros in entries other than pivot.\\
+(Proposition 2.24) Row operations do not change linear dependency of column vectors.\\
+(Corollary 2.25) RREF of matrix $\mathbf{A}$ is unique and uniquely determines spanning set of $\Nul\mathbf{A}$ that is RCEF.\\
+\textit{Transpose} $\mathbf{A}^{T}$ is $n\times m$ matrix with entries $(\mathbf{A}^{T})_{ji}=(\mathbf{A})_{ij}$. $(\mathbf{AB})^{T}=\mathbf{B}^{T}\mathbf{A}^{T}$.\\
+Rank of $\mathbf{A}=\dim\Col\mathbf{A}$. Row rank of $\mathbf{A}=\dim\Col\mathbf{A}^{T}$. Nullity of $\mathbf{A}=\dim\Nul\mathbf{A}$. Rank of $\mathbf{A}=$ Rank of $\mathbf{A}^{T}$ (Theorem 2.29)\\
+(Rank-Nullity Theorem) Let $\dim V<\infty$ and $T\in\mathscr{L}(V,W)$. Then $\dim\Im(T)+\dim\Ker(T)=\dim V$.\\
+Square matrix $\mathbf{A}$ is \textit{invertible} if it represents isomorphism $T$. $\mathbf{A}^{-1}\mathbf{A}=\mathbf{AA}^{-1}=\mathbf{I}$.\\
+(Invertible Matrix Theorem) $n\times n$ matrix $\mathbf{A}$ is invertible iff any one of statements hold:
+\begin{align*}
+    &(1) & &\Col\mathbf{A}=K^{n}\text{. }(\mathbf{A}\text{ is surjective}) & &(2) & &\Nul\mathbf{A}=\{\mathbf{0}\}\text{. Nullity of }\mathbf{A}=0\text{.}\\
+    &(3) & &\text{Rank of }\mathbf{A}=\text{ Rank of }\mathbf{A}^{T}=n\text{. } & &(4) & &\text{RREF of }\mathbf{A}\text{ is }\mathbf{I}\text{.}
+\end{align*}
+(Change of Basis Formula) There exists $n\times n$ $\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}$ such that $\left[\mathbf{v}\right]_{\mathcal{B}'}=\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}\left[\mathbf{v}\right]_{\mathcal{B}}$ where $\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}=\left[I\right]_{\mathcal{B}'}^{\mathcal{B}}$.\\
+$\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}$ is \textit{change-of-coordinate matrix} from $\mathcal{B}$ to $\mathcal{B}'$. It is invertible with inverse given by $\mathbf{P}_{\mathcal{B}}^{\mathcal{B}'}=(\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}})^{-1}$. (Proposition 2.34)\\
+(Proposition 2.35) For any bases $\mathcal{B},\mathcal{B}',\mathcal{B}''$ of $V$, $\mathbf{P}_{\mathcal{B}''}^{\mathcal{B}'}\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}=\mathbf{P}_{\mathcal{B}''}^{\mathcal{B}}$. $\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}=(\mathbf{P}_{\mathcal{E}}^{\mathcal{B}'})^{-1}\mathbf{P}_{\mathcal{E}}^{\mathcal{B}}$.\\
+(Theorem 2.36) Let $T\in\mathscr{L}(V,V)$ and $\left[T\right]_{\mathcal{B}}=\mathbf{A},\left[T\right]_{\mathcal{B}'}=\mathbf{B},\mathbf{P}=\mathbf{P}_{\mathcal{B}'}^{\mathcal{B}}$. Then $\mathbf{B}=\mathbf{PAP}^{-1}$ and $\mathbf{A}$ is similar to $\mathbf{B}$. ($\mathbf{A}\sim\mathbf{B}$)\\
+(Proposition $5.13$) If $\mathbf{A}=\mathbf{PBP}^{-1}$, $q(\mathbf{A})=\mathbf{P}q(\mathbf{B})\mathbf{P}^{-1}$ for any polynomial $q(t)$.\\
+(Proposition 2.38) Two polynomials in $K_{n}\left[t\right]$ are same if they agree on $n+1$ distinct points.\\
+Given $n+1$ distinct points $t_{0},\cdots,t_{n}\in K$ ($t_{i}\neq t_{j}$ for $i\neq j$), the evaluation map is
+\begin{align*}
+    T:K_{n}\left[t\right]&\rightarrow K^{n+1} & p(t)&\mapsto\begin{pmatrix}
+        p(t_{0})& \hdots & p(t_{n})
+    \end{pmatrix}^{T}
+\end{align*}
+(Proposition 2.40) Choosing $\mathcal{E}=\{1,t,\cdots,t^{n}\}$ of $K_{n}\left[t\right]$ and $\mathcal{E}'=\{\mathbf{e}_{0},\cdots,\mathbf{e}_{n}\}$ of $K^{n+1}$.\\
+$T$ is represented by Vandermonde matrix: $\left[T\right]_{\mathcal{E}'}^{\mathcal{E}}\begin{pmatrix}
+    1 & \hdots & t_{0}^{n}\\
+    \vdots & \ddots & \vdots\\
+    1 & \hdots & t_{n}^{n}
+\end{pmatrix}$ and is invertible, \\
+(Proposition 2.41) For $k=0,\cdots,n$, image of polynomial (of degree $n$) $p_{k}(t)=\prod_{\substack{0\leq j\leq n\\j\neq k}}\frac{t-t_{j}}{t_{k}-t_{j}}$ under $T$ is $\mathbf{e}_{k}\in K^{n+1}$.\\
+Image of polynomial $p(t)=\sum_{i=0}^{n}\lambda_{i}p_{i}(t)$ under $T$ is \textit{Lagrange interpolation polynomial} $\begin{pmatrix}
+    \lambda_{0} & \hdots & \lambda_{n}
+\end{pmatrix}^{T}\in K^{n+1}$.
+\newpage
+\section{Determinants}
+\textit{Determinant} is a function $\det:M_{n\times n}(K)\rightarrow K$ which satisfies:
+\begin{enumerate}
+    \item Multilinear: $\det\begin{pmatrix}
+        \hdots & \mathbf{w} & c\mathbf{u}+\mathbf{v} & \hdots
+    \end{pmatrix}=c\det\begin{pmatrix}
+        \hdots & \mathbf{w} & \mathbf{u} & \hdots
+    \end{pmatrix}+\det\begin{pmatrix}
+        \hdots & \mathbf{w} & \mathbf{v} & \hdots
+    \end{pmatrix}$
+    \item Alternating: $\det\begin{pmatrix}
+        \hdots & \mathbf{w} & \mathbf{u} & \mathbf{v} & \hdots
+    \end{pmatrix}=-\det\begin{pmatrix}
+        \hdots & \mathbf{w} & \mathbf{v} & \mathbf{u} & \hdots
+    \end{pmatrix}$
+    \item $\det(\mathbf{I})=1$
+\end{enumerate}
+(Proposition 3.2) Determinant of triangular (or diagonal) matrix is product of its diagonal entries.\\
+(Leibniz Expansion / Expansion by Permutations) $\det\mathbf{A}=\sum_{\sigma\in\mathcal{S}_{n}}\epsilon(\sigma)a_{\sigma(1)1}\cdots a_{\sigma(n)n}$ where $\mathcal{S}_{n}$: set of all permutations of $\{1,\cdots,n\}$\\
+Sign of permutation $\epsilon(\sigma)$: $+1$ if $\sigma\in\mathcal{S}_{n}$ can be obtained by even number of transpositions, $-1$ if odd number of transpositions.\\
+Any function $D$ satisfying (1),(2) of definition of determinant is scalar multiple $c\cdot\det$ where $c=D(\mathbf{I})$.\\
+$\det(\mathbf{AB})=\det(\mathbf{A})\det(\mathbf{B})$. $\mathbf{A}$ is invertible iff $\det(\mathbf{A})\neq 0$. $\det(\mathbf{A}^{-1})=\det(\mathbf{A})^{-1}$. $\mathbf{A}\sim\mathbf{B}\longrightarrow\det(\mathbf{A})=\det(\mathbf{B})$.\\
+If $\dim V<\infty$, determinant of $T\in\mathscr{L}(V,V)$ is $\det(T)=\det(\mathbf{A})$ for any square matrix $\mathbf{A}$ representing $T$.\\
+$\det\begin{pmatrix}\begin{array}{c|c}
+    \mathbf{A}_{k\times k} & \mathbf{B}_{k\times l}\\
+    \hline
+    \mathbf{O}_{l\times k} & \mathbf{C}_{l\times l}
+\end{array}\end{pmatrix}=\det\begin{pmatrix}\begin{array}{c|c}
+    \mathbf{A}_{k\times k} & \mathbf{O}_{k\times l}\\
+    \hline
+    \mathbf{B}_{l\times k} & \mathbf{C}_{l\times l}
+\end{array}\end{pmatrix}=\det(\mathbf{A}_{k\times k})\det(\mathbf{C}_{l\times l})$.\\
+(Proposition 3.9) Column operations are same as multiplying on the right by elementary matrices ($1$ in diagonal, $0$ in others)
+\begin{enumerate}
+    \item $\mathbf{E}=\begin{pmatrix}
+        \ddots\\
+        & 1 & c\\
+        & 0 & 1\\
+        & & & \ddots
+    \end{pmatrix}$: Adding multiple of $i$-th column to $j$-th column. $\det(\mathbf{E})=1$.\\
+    \item $\mathbf{E}=\begin{pmatrix}
+        \ddots\\
+        & c\\
+        & & \ddots
+    \end{pmatrix}$: Scalar multiplying $i$-th column bu $c$. $\det(\mathbf{E})=c$.\\
+    \item $\mathbf{E}=\begin{pmatrix}
+        \ddots\\
+        & 0 & 1\\
+        & 1 & 0\\
+        & & & \ddots
+    \end{pmatrix}$: Interchanging two columns. $\det(\mathbf{E})=-1$.
+\end{enumerate}
+(Proposition 3.10) Row operations are same as multiplying on the left by elementary matrices.\\
+(Theorem 3.11) For any square matrix $\mathbf{A}$, $\overline{\det(\mathbf{A})}=\det(\mathbf{A}^{*})$.\\
+(Theorem 3.12) $\det(\mathbf{A})$ is \textit{$n$-dimensional signed volume} of parallelepiped $\mathbf{P}=\{c_{1}\mathbf{v}_{1}+\cdots+c_{n}\mathbf{v}_{n}:0\leq c_{i}\leq 1\}\subset\mathbb{R}^{n}$.\\
+It is spanned by columns of $\mathbf{A}$. \textit{Volume} $=\left|\det(\mathbf{A})\right|$\\
+Let $\mathcal{B}=\{\mathbf{v}_{1},\cdots,\mathbf{v}_{n}\}\subset\mathbb{R}^{n}$ be a basis. $\mathcal{B}$ is \textit{positively oriented} if $\det\begin{pmatrix}
+    \mathbf{v}_{1} & \hdots & \mathbf{v}_{n}
+\end{pmatrix}>0$. Otherwise, $\mathcal{B}$ is \textit{negatively oriented}.\\
+(Laplace Expansion / Expansion by Cofactors) For any $i,j$,\\
+$C_{ij}=(-1)^{i+j}\det(\mathbf{A}_{ij})$ are \textit{cofactors}. $\mathbf{A}_{ij}$ is submatrix from $\mathbf{A}$ by deleting $i$-th row and $j$-th column.
+\begin{enumerate}
+    \item Expansion by rows: $\det(\mathbf{A})=a_{i1}C_{i1}+\cdots+a_{in}C_{in}$
+    \item Expansion by columns: $\det(\mathbf{A})=a_{1j}C_{1j}+\cdots+a_{nj}C_{nj}$
+\end{enumerate}
+(Cramer's Rule) If $\mathbf{A}$ is invertible, solution to $\mathbf{Ax}=\mathbf{b}$ is given by $\mathbf{x}=\begin{pmatrix}
+    x_{1}\\
+    \vdots\\
+    x_{n}
+\end{pmatrix}$ where $x_{i}=\frac{\det(\mathbf{A}_{i})}{\det(\mathbf{A})}$.\\
+$\mathbf{A}_{i}$ is obtained by replacing $i$-th column of $\mathbf{A}$ with $\mathbf{b}$.\\
+(Theorem 3.16) If $\mathbf{A}$ is invertible, cofactor matrix $\mathbf{C}=(C_{ij})$ and \textit{adjugate matrix} $\adj(\mathbf{A})=\mathbf{C}^{T}$. $\mathbf{A}^{-1}=\frac{\adj(\mathbf{A})}{\det(\mathbf{A})}$.
+\newpage
+\section{Inner Product Spaces}
+\textit{Real dot product} of $\mathbf{u}=\begin{pmatrix}
+    u_{1}\\
+    \vdots\\
+    u_{n}
+\end{pmatrix},\mathbf{v}=\begin{pmatrix}
+    v_{1}\\
+    \vdots\\
+    v_{n}
+\end{pmatrix}\in\mathbb{C}^{n}$ is defined to be $\mathbf{u}\cdot\mathbf{v}=\mathbf{v}{*}\mathbf{u}=\overline{\mathbf{u}^{*}\mathbf{v}}=\sum_{i=1}^{n}u_{i}\overline{v_{i}}\in\mathbb{C}$.\\
+(Proposition 4.2) For any $\mathbf{A}=(a_{ij})\in M_{m\times n}(\mathbb{R})$, then $a_{ij}=\mathbf{e}_{i}'\cdot\mathbf{Ae}_{j}$.\\
+$\{\mathbf{e}_{1},\cdots,\mathbf{e}_{n}\}$ is standard basis for $\mathbb{R}^{n}$ and $\{\mathbf{e}_{1}',\cdots,\mathbf{e}_{m}'\}$ is standard basis for $\mathbb{R}^{m}$.\\
+If $\mathbf{A}=\begin{pmatrix}
+    \mathbf{a}_{1}^{T}\\
+    \vdots\\
+    \mathbf{a}_{m}^{T}
+\end{pmatrix}$ is $m\times k$ real matrix and $\mathbf{B}=\begin{pmatrix}
+    \mathbf{b}_{1} & \hdots & \mathbf{b}_{n}
+\end{pmatrix}$ is $k\times n$ real matrix, then $\mathbf{AB}=\begin{pmatrix}
+    \mathbf{a}_{1}\cdot\mathbf{b}_{1} & \hdots & \mathbf{a}_{1}\cdot\mathbf{b}_{n}\\
+    \vdots & \ddots & \vdots\\
+    \mathbf{a}_{n}\cdot\mathbf{b}_{1} & \hdots & \mathbf{a}_{n}\cdot\mathbf{b}_{n}
+\end{pmatrix}$\\
+\textit{Inner product} is binary operator $\left<\ ,\ \right>:V\times V\rightarrow\mathbb{R}(\mathbb{C})$ satisfying for any $\mathbf{u},\mathbf{v},\mathbf{w}\in V$ and $c\in\mathbb{R}(\mathbb{C})$:
+\begin{enumerate}
+    \item Commutativity: $\left<\mathbf{u},\mathbf{v}\right>=\left<\mathbf{v},\mathbf{u}\right>(\overline{\left<\mathbf{v},\mathbf{u}\right>})$
+    \item Linearity: $\left<c\mathbf{u}+\mathbf{v},\mathbf{w}\right>=c\left<\mathbf{u},\mathbf{w}\right>+\left<\mathbf{v},\mathbf{w}\right>$
+    \item Positivity: $\left<\mathbf{u},\mathbf{u}\right>\geq 0$ and $\left<\mathbf{u},\mathbf{u}\right>=0\Leftrightarrow\mathbf{u}=\mathbf{0}$
+\end{enumerate}
+\textit{Euclidean space} is $V=\mathbb{R}^{n}$ equipped with dot product as inner product.\\
+\textit{Norm} (length) of $\mathbf{v}\in V$ is non-negative scalar $\lVert\mathbf{v}\rVert=\sqrt{\left<\mathbf{v},\mathbf{v}\right>}\in\mathbb{R}_{\geq 0}$.\\
+\textit{Unit vector} is vector $\mathbf{u}\in V$ with $\lVert\mathbf{u}\rVert=1$. Given $\mathbf{0}\neq\mathbf{v}\in V$, vector $\frac{\mathbf{v}}{\lVert\mathbf{v}\rVert}$ has unit length and is the \textit{normalization} of $\mathbf{v}$.\\
+\textit{Distance} between $\mathbf{u},\mathbf{v}\in V$ $\dist(\mathbf{u},\mathbf{v})=\lVert\mathbf{u}-\mathbf{v}\rVert$.\\
+(Law of Cosine) The angle $0\leq\theta\leq\pi$ between non-zero $\mathbf{u},\mathbf{v}\in V$ is defined by $\left<\mathbf{u},\mathbf{v}\right>=\lVert\mathbf{u}\rVert\lVert\mathbf{v}\rVert\cos\theta$.\\
+Two vectors $\mathbf{u},\mathbf{v}\in V$ are \textit{orthogonal} (perpendicular) to each other if $\left<\mathbf{u},\mathbf{v}\right>=0$.\\
+(Pythagorean Theorem) Let $\mathbf{u},\mathbf{v}\in V$, If $\left<\mathbf{u},\mathbf{v}\right>=0$, then $\lVert\mathbf{u}+\mathbf{v}\rVert^{2}=\lVert\mathbf{u}\rVert^{2}+\lVert\mathbf{v}\rVert^{2}$.\\
+(Cauchy-Schwarz Inequality) For all $\mathbf{u},\mathbf{v}\in V$, $\left|\left<\mathbf{u},\mathbf{v}\right>\right|\leq\lVert\mathbf{u}\rVert\lVert\mathbf{v}\rVert$.\\
+(Triangle Inequality) $\lVert\mathbf{u}+\mathbf{v}\rVert\leq\lVert\mathbf{u}\rVert+\lVert\mathbf{v}\rVert$.\\
+Let $\mathcal{S}=\{\mathbf{u}_{1},\cdots,\mathbf{u}_{r}\}\subset V$ be finite set. $\mathcal{S}$ is \textit{orthogonal set} if $\left<\mathbf{u}_{i},\mathbf{u}_{j}\right>=0$ for all $i\neq j$.\\
+If in addition $\mathcal{S}$ is basis of $V$, $\mathcal{S}$ is \textit{orthogonal basis} for $V$. If in addition all vectors in $\mathcal{S}$ has unit norm, $\mathcal{S}$ is \textit{orthonormal basis} for $V$.\\
+Standard basis $\{\mathbf{e}_{1},\cdots,\mathbf{e}_{n}\}$ for $\mathbb{R}^{n}$ is orthonormal basis $\mathbf{e}_{i}\cdot\mathbf{e}_{j}=\delta_{ij}=\begin{cases}
+    1 &\text{if }i=j\\
+    0 &\text{if }i\neq j
+\end{cases}$ where $\delta_{ij}$ is Kronecker delta.\\
+(Proposition 4.13) Let $\mathcal{B}=\{\mathbf{b}_{1},\cdots,\mathbf{b}_{n}\}$ be o.g. basis for $V$. Then coordinate mapping with respect to $\mathcal{B}$ is
+\begin{align*}
+    \psi_{V,\mathcal{B}}:V&\rightarrow\mathbb{R}^{n} & \mathbf{v}&\mapsto\left[\mathbf{v}\right]_{\mathcal{B}}=\begin{pmatrix}
+        c_{1}\\
+        \vdots\\
+        c_{n}
+    \end{pmatrix} & \text{where }c_{i}&=\frac{\left<\mathbf{v},\mathbf{b}_{i}\right>}{\left<\mathbf{b}_{i},\mathbf{b}_{i}\right>},\qquad i=1,\cdots,n
+\end{align*}
+(Corollary 4.14) For $\mathbf{A}=(a_{ij})=\left[T\right]_{\mathcal{B}'}^{\mathcal{B}}$ with respect to basis $\mathcal{B}=\{\mathbf{v}_{1},\cdots,\mathbf{v}_{n}\}\subset V$ and o.n. basis $\mathcal{B}'=\{\mathbf{w}_{1},\cdots,\mathbf{w}_{n}\}\subset W$,\\
+then $a_{ij}=\left<\mathbf{w},T\mathbf{v}_{j}\right>$.\\
+\textit{Orthogonal complement} of $U$ is subset $U^{\perp}=\{\mathbf{v}\in V:\left<\mathbf{v},\mathbf{u}\right>=0\text{ for any }\mathbf{u}\in U\}$.\\
+(Proposition 4.16) $U^{\perp}\subset V$ is subspace. $U\subset(U^{\perp})^{\perp}$. $\mathbf{u}\in U^{\perp}$ iff $\left<\mathbf{u},\mathbf{v}\right>=0$ for all $\mathbf{v}\in U$.\\
+(Proposition 4.17) Let $\mathbf{A}\in M_{n\times n}(\mathbb{R})$. $(\Col\mathbf{A}^{T})^{\perp}=\Nul\mathbf{A}$,  $(\Col\mathbf{A})^{\perp}=\Nul\mathbf{A}^{T}$ with respect to standard dot product on $\mathbb{R}^{n}$ and $\mathbb{R}^{m}$.\\
+(Proposition 4.18) O.g. projection of $\mathbf{b}$ onto $\mathbf{u}$ is given by $\Proj_{\mathbf{u}}(\mathbf{b})=\left<\mathbf{b},\mathbf{e}\right>\mathbf{e}=\frac{\left<\mathbf{b},\mathbf{u}\right>}{\left<\mathbf{u},\mathbf{u}\right>}\mathbf{u}$ where $\mathbf{e}=\frac{\mathbf{u}}{\lVert\mathbf{u}\rVert}$ is normalization of $\mathbf{u}$.\\
+(Gram-Schmidt Process) Let $\dim V=n$ and $\{\mathbf{x}_{1},\cdots,\mathbf{x}_{n}\}$ be basis for $V$.
+\begin{align*}
+    \mathbf{u}_{1}&=\mathbf{x}_{1} & \mathbf{u}_{2}&=\mathbf{x}_{2}-\Proj_{\mathbf{u}_{1}}(\mathbf{x}_{2}) & \mathbf{u}_{k}&=\mathbf{x}_{k}-\left(\sum_{i=0}^{k-1}\Proj_{\mathbf{u}_{i}}(\mathbf{x}_{k})\right)
+\end{align*}
+Then $\mathcal{B}=\{\mathbf{u}_{1},\cdots,\mathbf{u}_{n}\}$ is o.g. basis for $V$. For all $1\leq k\leq n$, $\Span(\mathbf{u}_{1},\cdots,\mathbf{u}_{k})=\Span(\mathbf{x}_{1},\cdots,\mathbf{x}_{k})$\\
+(Corollary 4.20) Any finite dimensional inner product space has an o.n. basis.\\
+(Orthogonal Decomposition Theorem) Let $\dim V<\infty$ and $U\subset V$ be subspace.\\
+Each $\mathbf{v}\in V$ can be written uniquely in form $\mathbf{v}=\mathbf{v}_{||}+\mathbf{v}_{\perp}$ where $\mathbf{v}_{||}\in U$ and $\mathbf{v}_{\perp}\in U^{\perp}$. Therefore, $V=U\oplus U^{\perp}$ and $U\cap U^{\perp}=\{\mathbf{0}\}$.\\
+(Corollary 4.22) If $\dim V<\infty$ and $U\subset V$ be a subspace. $(U^{\perp})^{\perp}=U$. (Not true if $\dim V=\infty$)\\
+(Proposition 4.23) If $\{\mathbf{u}_{1},\cdots,\mathbf{u}_{r}\}$ is orthonormal basis for $U\subset\mathbb{R}^{n}$ with respect to dot product, $\Proj_{U}(\mathbf{x})=(\mathbf{x}\cdot\mathbf{u}_{1})\mathbf{u}_{1}+\cdots+(\mathbf{x}\cdot\mathbf{u}_{r})\mathbf{u}_{r}$.\\
+If $\mathbf{P}=\begin{pmatrix}
+    \mathbf{u}_{1} & \hdots & \mathbf{u}_{r}
+\end{pmatrix}$ is $n\times r$ matrix, then $\Proj_{U}(\mathbf{x})=\mathbf{PP}^{*}\mathbf{x}$\\
+\textit{Projection matrix} is $n\times n$ matrix $\mathbf{M}$ such that $\mathbf{M}^{2}=\mathbf{M}$. It is \textit{orthogonal projection matrix} if in addition $\mathbf{M}^{*}=\mathbf{M}$.\\
+(Best Approximation Theorem) Let $U$ be subspace of $\mathbb{R}^{n}$ and $\mathbf{x}\in\mathbb{R}^{n}$. Then $\lVert\mathbf{x}-\Proj_{U}(\mathbf{x})\rVert\leq\lVert\mathbf{x}-\mathbf{u}\rVert$ for any $\mathbf{u}\in U$.\\
+$\Proj_{U}(\mathbf{x})\in U$ is closest point in $U$ to $\mathbf{x}$.\\
+(Riesz Representation Theorem) If $\dim V<\infty$ and $T\in\mathscr{L}(V,\mathbb{R})$, then there exists \textbf{unique} vector $\mathbf{u}\in V$ such that $T(\mathbf{v})=\left<\mathbf{u},\mathbf{v}\right>$.
+\newpage
+\section{Spectral Theory}
+$T\in\mathscr{L}(V,V)$ is l.i. and is represented by $\mathbf{A}\in M_{n\times n}(K)$ if $\dim{V}<\infty$. $\mathbf{D}$ is diagonal matrix consisting of corresponding eigenvalues.\\
+
+\textit{Eigenvector} of $T$ is non-zero vector $\mathbf{u}\in V$ such that $T\mathbf{u}=\lambda\mathbf{u}$ for some scalar $\lambda\in K$. $\lambda$ is \textit{eigenvalue}.\\
+Space $V_{\lambda}=\{\mathbf{u}:T\mathbf{u}=\lambda\mathbf{u}\}\subset V$ is \textit{eigenspace} of $\lambda$. If finite set of eigenvectors form a basis of $V$, it is \textit{eigenbasis}.\\
+(Proposition $5.2$) $V_{\lambda}=\Ker(T-\lambda I)$ is non-zero subspace of $V$. ($\mathbf{0}\in V_{\lambda}$)\\
+(Proposition $5.3$) If $\dim{V}<\infty$, $\lambda$ is eigenvalue of $T$ iff $\det(T-\lambda I)=0$.\\
+(Proposition $5.4$) $\lambda$ of triangular matrix are given by entries on main diagonal.\\
+(Theorem $5.5$) Eigenvector set $\{\mathbf{v}_{1},\cdots,\mathbf{v}_{r}\}$ is l.i. if it corresponds to \textit{distinct} $\lambda_{1},\cdots,\lambda_{r}$.\\
+$p(\lambda)=\det(T-\lambda I)$ is \textit{characteristic polynomial} over $K$ of degree $n$. Eigenvalues are roots of $p(\lambda)=0$.\\
+(Proposition $5.7$) For $p(\lambda)$, top term is $\lambda^{n}$ with coefficient $(-1)^{n}$, coefficient of $\lambda^{n-1}\Tr(\mathbf{A})$, constant term is $\det(\mathbf{A})$.\\
+\textit{Geometric multiplicity} of $\lambda_{i}$ is $\dim{V_{\lambda_{i}}}$. \textit{Algebraic multiplicity} of $\lambda_{i}$ is number of factors $(\lambda-\lambda_{i})$ in $p(\lambda)$.\\
+(Proposition $5.9$) If $K=\mathbb{C}$, a.m. of all eigenvalues add up to $\dim_{\mathbb{C}}{V}=n$. (Every complex $\mathbf{A}$ has $n$ eigenvalues)\\
+(Corollary $5.10$) $\Tr(\mathbf{A})$ is sum of all complex eigenvalues. $\det(\mathbf{A})$ is product of all complex eigenvalues.\\
+(Proposition $5.11$) If $\mathbf{A}\sim\mathbf{B}$, they have same determinant, trace, charpoly, eigenvalues, a.m. and g.m..\\
+$\mathbf{A}$ is \textit{diagonalizable} iff $\mathbf{A}\sim\mathbf{D}$ ($\mathbf{A}=\mathbf{PDP}^{-1}$)\\
+(Diagonalization Theorem) $\mathbf{A}$ is diagonalizable iff $\mathbf{A}$ has $n$ linearly independent eigenvectors.\\
+Columns of $\mathbf{P}$ are eigenvectors of $\mathbf{A}$ and $\mathbf{D}$ is diagonal matrix consisting of corresponding eigenvalues.\\
+$T$ is diagonalizable of $V$ has an eigenbasis of $T$.\\
+(Corollary $5.16$) $T$ is diagonalizable iff $V=V_{\lambda_{1}}\oplus\cdots\oplus V_{\lambda_{r}}$ with \textbf{distinct} $\lambda_{1},\cdots,\lambda_{r}\in K$.\\
+(Corollary $5.17$) $T$ has $n$ different eigenvalues $\longrightarrow$ diagonalizable.\\
+(Corollary $5.18$) $T$ is diagonalizable $\longrightarrow$ a.m. $=$ g.m. for $\lambda_{i}$. a.m. $=$ g.m. for $\lambda_{i}$ and a.m. add up to $\dim{V}=n$ $\longrightarrow$ $T$ is diagonalizable.\\
+$\mathbf{A}$ is \textit{symmetric} if $\mathbf{A}^{T}=\mathbf{A}$.\\
+(Proposition $5.20$) $\mathbf{A}$ is symmetric iff $\mathbf{u}\cdot\mathbf{Av}=\mathbf{Au}\cdot\mathbf{v}$.\\
+(Theorem $5.21$) If $\mathbf{A}$ is symmetric, then different eigenspaces are orthogonal to each other.\\
+Matrix $\mathbf{A}$ is \textit{orthogonally diagonalizable} if $\mathbf{A}=\mathbf{PDP}^{-1}=\mathbf{PDP}^{T}$ for some o.g. matrix $\mathbf{P}$ and $\mathbf{D}$.\\
+(Theorem $5.23$) If $\mathbf{A}$ is a real symmetric matrix, then all eigenvalues are real. (charpoly has $n$ real roots)\\
+(Theorem $5.24$) $\mathbf{A}$ is symmetric iff it is o.g. diagonalizable.
+\section{Positive Definite Matrices and SVD}
+Assume $\dim{V}<\infty$.\\
+\textit{Bilinear form} on $V$ is a real-valued function $f(\mathbf{x},\mathbf{y})$ in two variables that is linear in both arguments $\mathbf{x},\mathbf{y}\in V$.\\
+Any bilinear form on $\mathbb{R}^{n}$ is of form $f(\mathbf{x},\mathbf{y})=\mathbf{x}^{*}\mathbf{Ay}$ for some matrix $\mathbf{A}$.\\
+Let $\mathbf{A}$ be real symmetric. It is \textit{positive (semi)definite} if $\mathbf{x}^{*}\mathbf{Ax}=\mathbf{Ax}\cdot\mathbf{x}>(\geq)0$ for all non-zero $\mathbf{x}\in \mathbb{R}^{n}$.\\
+Any inner product on $\mathbb{R}^{n}$ is of form $\left<\mathbf{x},\mathbf{y}\right>=\mathbf{x}^{*}\mathbf{Ay}$ for some p.d. matrix $\mathbf{A}$.\\
+Symmetric matrix $\mathbf{A}$ is +ve.(semi)d. iff $\mathbf{\lambda_{i}}>(\geq)0$ for all $i$. ($\rightarrow\det(\mathbf{A})>(\geq)0$)\\
+(Theorem $6.7$) Let $\mathbf{A}$ be +ve.(semi)d. matrix. There exists \textbf{unique} +ve.(semi)d. matrix $\mathbf{B}$ such that $\mathbf{B}^{2}=\mathbf{A}$.\\
+$\mathbf{B}=\sqrt{\mathbf{A}}$ is \textit{square root} of $\mathbf{A}$. If $\mathbf{A}=\mathbf{PDP}^{*}$, $\sqrt{\mathbf{A}}=\mathbf{PD}^{\frac{1}{2}}\mathbf{P}^{*}$. $\sqrt{\mathbf{A}}=q(\mathbf{A})$ for some polynomial $q(t)$.\\
+If $\mathbf{B}$ commutes with p.(semi)d. $\mathbf{A}$, then it commutes with $\sqrt{\mathbf{A}}$.\\
+Let $\mathbf{A}$ be any $m\times n$ matrix. $\mathbf{A}^{*}\mathbf{A}$ is +ve.(semi)d.. \textit{Absolute value} of $\mathbf{A}$ $\left|\mathbf{A}\right|=\sqrt{\mathbf{A}^{*}\mathbf{A}}$.\\
+Any +ve.(semi)d. matrix is of form $\mathbf{A}^{*}\mathbf{A}$ for some $\mathbf{A}$.\\
+\textit{Singular values} of $\mathbf{A}$ is eigenvalues $\sigma_{i}$ of $\left|\mathbf{A}\right|$.\\
+If $\mathbf{A}$ rank $r$, then we have $r$ non-zero singular values arranged in descending order. ($\sigma_{1}\geq\cdots\geq\sigma_{r}>0$).\\
+(Singular Value Decomposition) Let $\mathbf{A}$ be $m\times n$ matrix with rank $r$. $\mathbf{A}=\mathbf{U\Sigma V}^{*}$. $\mathbf{U},\mathbf{V}$ are $m\times m,n\times n$ o.g. matrix respectively.\\
+$\mathbf{\Sigma}$ is $m\times n$ quasi-diagonal matrix consisting of $r$ non-zero singular values $\sigma_{1},\cdots,\sigma_{r}$ of $\mathbf{A}$.\\
+For any real square matrix $\mathbf{A}$, we have polar decomposition $\mathbf{A}=\mathbf{PH}$ where $\mathbf{P}=\mathbf{UV}^{*}$ is o.g. and $\mathbf{H}=\mathbf{V\Sigma V}^{*}$ is +ve.(semi)d..\\
+Columns $\{\mathbf{u}_{1},\cdots,\mathbf{u}_{r}\}$ is o.n. basis of $\Col{\mathbf{A}}$. Columns $\{\mathbf{u}_{r+1},\cdots,\mathbf{u}_{m}\}$ is o.n. basis of $\Nul(\mathbf{A}^{*})$.\\
+Columns $\{\mathbf{v}_{1},\cdots,\mathbf{v}_{r}\}$ is o.n. basis of $\Row{\mathbf{A}}=\Col{\mathbf{A}^{*}}$. $\{\mathbf{v}_{r+1},\cdots,\mathbf{v}_{n}\}$ is o.n. basis of $\Nul{\mathbf{A}}$.\\
+Let $\mathbf{U}_{r},\mathbf{V}_{r}$ be submatrix consisting of first $r$ columns, $\mathbf{A}=\begin{pmatrix}
+    \mathbf{U}_{r} & *
+\end{pmatrix}\begin{pmatrix}
+    \mathbf{D} & \mathbf{O}\\
+    \mathbf{O} & \mathbf{O}
+\end{pmatrix}\begin{pmatrix}
+    \mathbf{V}_{r}^{*}\\
+    *
+\end{pmatrix}=\mathbf{U}_{r}\mathbf{DV}_{r}^{*}$.\\
+\textit{Pseudo-inverse} of $\mathbf{A}$ is $\mathbf{A}^{+}=\mathbf{V}_{r}\mathbf{D}^{-1}\mathbf{U}_{r}^{*}$. Given equation $\mathbf{Ax}=\mathbf{b}$, least square solution is given by $\hat{\mathbf{x}}=\mathbf{A}^{+}\mathbf{b}=\mathbf{V}_{r}\mathbf{D}^{-1}\mathbf{U}_{r}^{*}\mathbf{b}$.\\
+\textit{Matrix norm} $\lVert\mathbf{A}\rVert=\max_{\lvert\mathbf{v}\rvert=1}\lVert\mathbf{Av}\rVert$.
+\newpage
+\section{Complex Matrices}
+Let $T\in\mathscr{L}(V,W)$. \textit{Adjoint} of $T$ is l.t. $T^{*}\in\mathscr{L}(W,V)$ satisfying $\left<T\mathbf{v},\mathbf{w}\right>_{W}=\left<\mathbf{v},T^{*}\mathbf{w}\right>$ for all $\mathbf{v}\in V,\mathbf{w}\in W$.\\
+If $\dim{V}<\infty$, then $T^{*}$ exists and is unique.\\
+If $S\in\mathscr{L}(U,V)$ and $T,T'\in\mathscr{L}(V,W)$ such that adjoints exist, $(cT+T'+T^{*})^{*}=cT^{*}+T'^{*}+T$. $(T\circ S)=S^{*}\circ T^{*}$.\\
+In case of $\mathbb{C}^{n}$ with \textit{standard dot product}, if $T$ is represented by $\mathbf{A}$, then $T^{*}$ is represented by conjugate transpose $\mathbf{A}^{*}=\overline{\mathbf{A}}^{T}$.\\ ($(a_{ij})^{*}=(\overline{a_{ji}})$). $(\mathbf{AB})^{*}=\mathbf{B}^{*}\mathbf{A}^{*}$.\\
+$T$ is \textit{self-adjoint} if $T=T^{*}$. ($\left<T\mathbf{v},\mathbf{w}\right>=\left<\mathbf{v},T\mathbf{w}\right>$ for all $\mathbf{v},\mathbf{w}\in V$).\\
+If $T$ is self-adjoint, different eigenspaces are orthogonal to each other, all $\lambda$ are real, and $T$ has o.n. eigenbasis if $\dim V<\infty$.\\
+$\mathbf{U}$ is \textit{unitary matrix} if is square matrix and consists of o.n. columns under complex dot product. $\mathbf{U}^{-1}=\mathbf{U}^{*}$. $\left|\det(\mathbf{U})\right|=1$.\\
+Set of unitary matrices is $U(n)$.
+$\mathbf{I}_{n\times n}\in U(n)$. If $\mathbf{U},\mathbf{V}\in U(n)$, $\mathbf{U}^{-1},\mathbf{UV}\in U(n)$.\\
+If $\lambda\in\mathbb{C}$ is eigenvalue of $\mathbf{U}$, then $\left|\lambda\right|=1$.\\
+$\mathbf{A}$ is \textit{unitarily equivalent} to $\mathbf{B}$ if there exists unitary $\mathbf{U}$ such that $\mathbf{A}=\mathbf{UBU}^{*}$.\\
+(Schur's Lemma) Any complex square matrix $\mathbf{A}$ is unitarily equivalent to an upper triangular matrix.\\
+Steps:
+\begin{enumerate}
+    \item Pick an eigenvector $\mathbf{v}\in\mathbb{C}^{n}$ with eigenvalue $\lambda$. By Gram-Schmidt Process, extend to o.n. basis $\mathcal{B}=\{\mathbf{v},\mathbf{u}_{2},\cdots,\mathbf{u}_{n}\}$ of $\mathbb{C}^{n}$.
+    \item Matrix $\mathbf{U}'$ with column $\mathcal{B}$ is unitary. We have block form $\mathbf{U}'^{*}\mathbf{AU}'=\begin{pmatrix}
+        \begin{array}{c|c}
+            \lambda & *\\
+            \hline
+            0 & \mathbf{A}_{n-1}
+        \end{array}
+    \end{pmatrix}$\\
+    Repeat this process by picking another eigenvector until an upper triangular matrix $\mathbf{T}$ is obtained.
+\end{enumerate}
+If two \textbf{real} matrices $\mathbf{A}\sim\mathbf{B}$ in $K=\mathbb{C}$, then $\mathbf{A}\sim\mathbf{B}$ in $K=\mathbb{R}$.\\
+If $\mathbf{A}=\mathbf{UBU}^{*}$ for some $\mathbf{U}\in U(n)$, then $\mathbf{A}=\mathbf{PBP}^{T}$ for some $\mathbf{P}\in O(n)$.\\
+Note: If $\det(\mathbf{X}+i\mathbf{Y})\neq 0$, then $\det(\mathbf{X}+\lambda\mathbf{Y})$ is non-zero polynomial.\\
+$\mathbf{A}$ is \textit{unitarily diagonalizable} if it is unitarily equivalent to diagonal matrix $\mathbf{A}=\mathbf{UDU}^{-1}=\mathbf{UDU}^{*}$.\\
+$\mathbf{A}$ is \textit{Hermitian} if $\mathbf{A}=\mathbf{A}^{*}$.\\
+(Spectral Theorem for Hermitian Matrices)\\
+Hermitian $\Longrightarrow$ eigenvectors from different eigenspaces are o.g. $+$ real $\lambda$ $+$ unitarily diagonalizable.\\
+Unitarily diagonalizable $+$ all real $\lambda$ $\Longrightarrow$ $\mathbf{A}$ is Hermitian.\\
+L.i. $T\in\mathscr{L}(V,V)$ is \textit{normal} if $TT^{*}=T{*}T$. ($\mathbf{AA}^{*}=\mathbf{A}^{*}\mathbf{A}$)\\
+E.g. Hermitian matrix, unitary matrix, skew-hermitian matrix, complex symmetric and orthogonal matrices.\\
+Let $T\in\mathscr{L}(V,V)$ be normal operator. For all $\mathbf{v}\in V$, $\lVert T\mathbf{v}\rVert=\lVert T^{*}\mathbf{v}\rVert$. If $\lambda$ is eigenvalue of $T$, $\overline{\lambda}$ is eigenvalue of $T^{*}$.\\
+Eigenvectors corresponding to different eigenvalues are orthogonal to each other.\\
+Upper triangular matrix is normal iff it is diagonal.\\
+Square matrix $\mathbf{A}$ is unitarily diagonalizable iff it is normal. (For $\dim{V}<\infty$, $V$ has o.n. eigenbasis of $T\in\mathscr{L}(V,V)$ iff it is normal).
+\section{Invariant Subspaces}
+Let $T\in\mathscr{L}(V,V)$, $U\subset V$ be $T$-invariant subspace.\\
+
+A subspace $U$ is \textit{$T$-invariant subspace} if $T(U)\subset U$. If $U$ is $T$-invariant, we have \textit{restriction} $T\vert_{U}:U\longrightarrow U$.\\
+Let $\mathbf{v}\in V$. $U_{\mathbf{v}}=\Span(\mathbf{v},T\mathbf{v},T^{2}\mathbf{v},\cdots)$ is the \textit{cyclic subspace} of $T$ generated by \textit{cyclic vector} $\mathbf{v}\in V$.\\
+Cyclic subspace $U_{\mathbf{v}}$ of $T$ is $T$-invariant subspace and is spanned by first $r$ elements where $r=\dim U_{\mathbf{v}}$ if $\dim{V}<\infty$.\\
+Assume $V$ is direct sum of $T$-invariant subspaces $V=U_{1}\oplus\cdots\oplus U_{k}$. Let $\mathbf{v}=\mathbf{u}_{1}+\cdots+\mathbf{u}_{k}$ be unique decomposition.\\
+Then $T(\mathbf{v})=T_{1}(\mathbf{u}_{1})+\cdots+T_{k}(\mathbf{u}_{k})$ where $T_{i}=T\vert_{U_{i}}$. We write $T=T_{1}\oplus\cdots\oplus T_{k}$.\\
+Conversely, $V$ is direct sum of $T$-invariant subspaces $U_{i}=\Dom(T_{i})$.\\
+If $T_{i}$ is reprsented by matrix square $\mathbf{A}_{i}$, then $T$ is represented by $\mathbf{A}=\begin{pmatrix}
+    \begin{array}{c|c|c}
+        \mathbf{A}_{1} & & \mathbf{O}\\
+        \hline
+        & \ddots\\
+        \hline
+        \mathbf{O} & & \mathbf{A}_{k}
+    \end{array}
+\end{pmatrix}$.\\
+Let $V=U\oplus W$. square matrix $\mathbf{A}_{U}$ represents $T\vert_{U}$, then $T$ is represented by $\mathbf{A}=\begin{pmatrix}
+    \begin{array}{c|c}
+        \mathbf{A}_{U} & *\\
+        \hline
+        \mathbf{O} & *
+    \end{array}
+\end{pmatrix}$.\\
+Let $V=U\oplus U^{\perp}$. $U^{\perp}$ is $T^{*}$-invariant. If $\dim{V}<\infty$ and $T$ is normal, $U^{\perp}$ is $T$-invariant.\\
+If $T$ is normal and 
+$U$ is $T^{*}$-invariant, then $(T\vert_{U})=T^{*}\vert_{U}\in\mathscr{L}(U,U)$ and $T\vert_{U}$ is normal.\\
+Charpoly $p\vert_{U}(\lambda)$ of $T\vert_{U}$ divides $p(\lambda)$. ($p(\lambda)=p\vert_{U}(\lambda)q(\lambda)$ for some polynomial $q(\lambda)$)\\
+(Cayley-Hamilton Theorem) If $p(\lambda)$ is charpoly of $T$, then $p(T)=O$.\\
+\textit{Minimal polynomial} $m(\lambda)$ is \textbf{unique} polynomial such that $m(T)=O$ with leading coefficient $1$.\\
+If $p(\lambda)$ be such that $p(T)=O$, then $m(\lambda)$ divides $p(\lambda)$ ($p(\lambda)=m(\lambda)q(\lambda)$ for some polynomial $q(\lambda)$)\\
+Set of roots of $m(\lambda)$ consist of all eigenvalues of $T$.\\
+(Primary Decomposition Theorem)\\
+If $m(\lambda)=p_{1}(\lambda)\cdots p_{k}(\lambda)$ where $p_{i}(\lambda)$ and $p_{j}(\lambda)$ are relatively prime for $i\neq j$, then $V=\Ker(p_{1}(T))\oplus\cdots\oplus\Ker(p_{k}(T))$.\\
+$T$ is diagonalizable iff $m(\lambda)$ only has \textbf{distinct} linear factors.\\
+Let $V$ be inner product space. $T$ is diagonalizable $\Longrightarrow$ $T\vert_{U}$ is also diagonalizable. $T$ is normal $\Longrightarrow$ $T\vert_{U}$ is also normal.\\
+(Spectral Theorem of Commuting Operators)\\
+Let $\{T_{i}\}_{i=1}^{k}\subset\mathscr{L}(V,V)$ be set ($\dim V\leq\infty$) of diagonalizable l.t.. $T_{i}T_{j}=T_{j}T_{i}$ for all $i,j$ iff they can be simultaneously diagonalized.\\
+If each $T_{i}$ is normal, they can be simultaneously unitarily diagonalized.\\
+(Spectral Theorem of Commuting Matrices) Same with Spectral Theorem of Commuting Operators but $\mathbf{A}_{i}$ represents $T_{i}$ for all $i$.
+\newpage
+\section{Canonical Form}
+Let $\dim{V}<\infty$, $T\in\mathscr{L}(V,V)$ and $S=T-\lambda I$.\\
+\textit{Generalized eigenspace} is invariant subspace of form $\Ker(T-\lambda I)^{m}$ for some $\lambda\in\mathbb{C},m\in\mathbb{N}$.\\
+$T$ is \textit{nilpotent} if $T^{m}=O$ for some positive integer $m$.\\
+Let $\mathbf{v}\in V$ be vector such that $S^{k}\mathbf{v}=\mathbf{0}$ but $S^{k-1}\mathbf{v}\neq\mathbf{0}$. Let $U_{\mathbf{v}}$ be $S$-invariant cyclic subspace.\\
+$\dim{U_{\mathbf{v}}}=k$ with basis $\{S^{k-1}\mathbf{v},\cdots,S\mathbf{v},\mathbf{v}\}$ called \textit{Jordan chain} of size $k$. For $r\leq k$, $\Ker(S^{r})\cap U_{\mathbf{v}}$ is spanned by first $r$ basis vectors.\\
+Matrix representing $T=S+\lambda I$ restricted to $U_{\mathbf{v}}$ is given by \textit{Jordan block} of size $k\times k$ and eigenvalue $\lambda$: $\mathbf{J}_{\lambda}^{(k)}=\begin{pmatrix}
+    \lambda & 1 & 0 & \hdots & 0\\
+    0 & \ddots & \ddots & \ddots & \vdots\\
+    \vdots & \ddots & \ddots & \ddots & 0\\
+    \vdots & & \ddots & \ddots & 1\\
+    0 & \hdots & \hdots & 0 & \lambda
+\end{pmatrix}$.\\
+$V$ admits a basis of Jordan chains $\mathcal{B}=\{S^{k_{1}-1}\mathbf{v}_{1},\cdots,\mathbf{v}_{1}\}\cup\{S^{k_{2}-1}\mathbf{v}_{2},\cdots,\mathbf{v}_{2}\}\cup\cdots\cup\{S^{k_{N}-1}\mathbf{v}_{N},\cdots,\mathbf{v}_{N}\}$ for some integers $N$.\\
+In terms of $T$-invariant cyclic subspaces $V=U_{\mathbf{v}_{1}}\oplus\cdots\oplus U_{\mathbf{v}_{N}}$ where $T\vert_{U_{\mathbf{v}_{i}}}$ is represented by Jordan block $\mathbf{J}_{\lambda}^{(k_{i})}$.\\
+Combination of Jordan blocks is uniquely determined by $T$.\\
+Steps to find Jordan basis $\mathbf{P}$:
+\begin{enumerate}
+    \item We first find Jordan basis of $\Im(S):\mathcal{B}_{\mathbf{u}}=\bigcup_{i=1}^{N}\{S^{k_{i}-1}\mathbf{u}_{i}.\cdots,\mathbf{u}_{i}\}$ for some $\mathbf{u}_{i}\in\Im(S)$.
+    \item Since there exists $\mathbf{v}_{i}\in V$ such that $\mathbf{u}_{i}=S\mathbf{v}_{i}$, We have collection of Jordan chains $\mathcal{B}_{\mathbf{v}}=\bigcup_{i=1}^{N}\{S^{k_{i}}\mathbf{v}_{i}.\cdots,\mathbf{v}_{i}\}$ after adding $\mathbf{v}_{i}$.
+    \item Extend $\mathcal{B}_{\mathbf{v}}$ to basis of $\mathcal{B}$ of $V$  by adding some vectors $\mathbf{w}_{1},\cdots,\mathbf{w}_{k}\in V$.
+    \item There exists $\mathbf{w}_{i}'\in\Span(\mathcal{B}_{\mathbf{v}})$ such that $S\mathbf{w}_{i}=S\mathbf{w}_{i}'$.\\
+    Modifying $\mathbf{w}_{i}\mapsto\mathbf{w}_{i}-\mathbf{w}_{i}'$, we have Jordan chain basis $\mathcal{B}=\bigcup_{i=1}^{N}\{S^{k_{i}}\mathbf{v}_{i}.\cdots,\mathbf{v}_{i}\}\cup\{\mathbf{w}_{1}\}\cup\cdots\cup\{\mathbf{w}_{k}\}$ of $V$.
+\end{enumerate}
+(Jordan Canonical Form) There exist basis of $V$ such that $T$ is represented by $\mathbf{J}=\mathbf{J}_{\lambda_{1}}^{(k_{1})}\oplus\cdots\oplus\mathbf{J}_{\lambda_{N}}^{(k_{N})}$ where $\lambda_{i}$ is eigenvalues of $T$.\\
+Any $\mathbf{A}\in M_{n\times n}(\mathbb{C})$ is similar to \textit{Jordan Canonical Form} $\mathbf{J}$. Decomposition is unique up to permuting order of Jordan blocks.
+Note: Orthonormal basis may not exist.\\
+Eigenvalues $\lambda_{1},\cdots,\lambda_{k}$ are entries of diagonal.\\
+Charpoly $p(\lambda)=(\lambda-\lambda_{1})^{n_{1}}\cdots(\lambda-\lambda_{k})^{n_{k}}$ and a.m. $n_{i}$ is number of occurences of $\lambda_{i}$ on diagonal.\\
+Minipoly $m(\lambda)=(\lambda-\lambda_{1})^{m_{1}}\cdots(\lambda-\lambda_{k})^{m_{k}}$ where $m_{i}$ is size of largest $\lambda_{i}$-block in $\mathbf{A}$. G.m. of $\lambda_{i}$ is number of $\lambda_{i}$-blocks in $\mathbf{A}$.\\
+If each eigenvalue corresponds to \textbf{unique} block, steps to find $\mathbf{P}$ (Do not work if there are multiples Jordan blocks of same eigenvalue):
+\begin{enumerate}
+    \item For each eigenvectors $\mathbf{v}_{1}=\mathbf{v}$ with eigenvalue $\lambda$, solve $\lambda_{i}$ such that $(T-\lambda I)\mathbf{v}_{i}=\mathbf{v}_{i-1}$ until no solution found.\\
+    \item Collection $\{\mathbf{v}_{1},\cdots,\mathbf{v}_{k}\}$ is basis corresponding to Jordan block $\mathbf{J}_{\lambda}^{(k)}$. Repeat with all eigenvectors.
+\end{enumerate}
+We can use JCF to prove
+\begin{enumerate}
+    \item Cayley-Hamilton Theorem holds
+    \item $\mathbf{A}$ is diagonalizable iff $m(\lambda)$ only has linear factors
+    \item $\mathbf{A}$ is similar to upper triangulat matrix and $\mathbf{A}^{T}$
+\end{enumerate}
+Let $\mathcal{B}=\{\mathbf{v},T\mathbf{v},\cdots,T^{r-1}\mathbf{v}\}$ be basis of $U_{\mathbf{v}}$. $T\vert_{U_{\mathbf{v}}}$ is represented by \textit{companion matrix} $\mathbf{C}(g)=\begin{pmatrix}
+    0 & \hdots & \hdots & 0 & -a_{0}\\
+    1 & \ddots & & \vdots & \vdots\\
+    0 & \ddots & \ddots & \vdots & \vdots\\
+    \vdots & \ddots & \ddots & 0 & -a_{r-2}\\
+    0 & \hdots & \hdots & 1 & -a_{r-1}
+\end{pmatrix}$ of $g(\lambda)$.\\
+$g(\lambda)=p\vert_{U_{\mathbf{v}}}(\lambda)=\lambda^{r}+a_{r-1}\lambda^{r-1}+\cdots+a_{0}$ is charpoly and minipoly of $T\vert_{U_{\mathbf{v}}}$.\\
+(Rational Canonical Form)\\
+$V$ can be decomposed into $T$-invariant cyclic subspaces $V=U_{\mathbf{v}_{1}}\oplus\cdots\oplus U_{\mathbf{v}_{k}}$ such that if $g_{i}(\lambda)$ is charpoly and minipoly of $T\vert_{U_{\mathbf{v}_{i}}}$:
+$g_{i}(\lambda)$ divides $g_{i+1}(\lambda)$, $p(\lambda)=g_{1}(\lambda)\cdots g_{k}(\lambda)$ and $m(\lambda)=g_{k}(\lambda)$.\\
+Collection of invariant factors $\{g_{1}(\lambda),\cdots,g_{k}(\lambda)\}$ is uniquely determined by $T$. $T$ is represented by $\mathbf{A}=\begin{pmatrix}
+\begin{array}{c|c|c}
+    \mathbf{C}(g_{1}) & & \mathbf{O}\\
+    \hline
+    & \ddots\\
+    \hline
+    \mathbf{O} & & \mathbf{C}(g_{k})
+\end{array}
+\end{pmatrix}$
+\end{document}
