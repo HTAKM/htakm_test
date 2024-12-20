@@ -26,30 +26,79 @@
 }
 \date{
 	Last major change: December 7, 2024\\
-	Last small update: December 13, 2024
+	Last small update: December 21, 2024
 }
 \begin{document}
 \maketitle
-This is MATH 3423 lecture notes made by me. Note that some of the notations are slightly different with what is used in the course for better clarity (adjusting to my notation preference). For example:\\
-\begin{tabular}{||c|c|c||}
-	\hline
-	Name & My notation & Ycw's notation\\
-	\hline
-	Transpose & $\mathbf{A}^{T}$ &  $\mathbf{A}'$\\
-	Set of real numbers & $\mathbb{R}$ & $R$\\
-	Fisher Information & $\mathcal{I}_{X}(\theta)$ & $I_{X}(\theta)$\\
-	Convergence in distribution & $X_{n}\xrightarrow{D}X$ & $X_{n}\xrightarrow{d}X$\\
-	Probability & $\prob$ & $P$\\
-	Expected value & $\E$ & $E$ or $E_{X}$\\
-	Indicator function & $\mathbf{1}_{A}$ & $I_{A}$\\
-	chisq-value & $\chi_{\alpha,n}^{2}$ & $\chi_{\alpha}^{2}(n)$\\
-	t-value & $t_{\alpha,n}$ & $t_{\alpha}(n)$\\
-	f-value & $f_{\alpha,(n,m)}$ & $F_{\alpha}(n,m)$ or $f_{\alpha}(n,m)$\\
-	\hline
-\end{tabular}
+This is MATH 3423 lecture notes made by me. Note that some of the notations are slightly different with what is used in the course for better clarity (adjusting to my notation preference). For example:
+\begin{table}[h]
+	\centering
+	\begin{tabular}{||c|c|c||}
+		\hline
+		Name & My notation & Dr. YU Chi Wai's notation\\
+		\hline
+		Transpose & $\mathbf{A}^{T}$ &  $\mathbf{A}'$\\
+		Set of real numbers & $\mathbb{R}$ & $R$\\
+		Fisher Information & $\mathcal{I}_{X}(\theta)$ & $I_{X}(\theta)$\\
+		Convergence in distribution & $X_{n}\xrightarrow{D}X$ & $X_{n}\xrightarrow{d}X$\\
+		Probability & $\prob$ & $P$\\
+		Expected value & $\E$ & $E$ or $E_{X}$\\
+		Indicator function & $\mathbf{1}_{A}$ & $I_{A}$\\
+		chisq-value & $\chi_{\alpha,n}^{2}$ & $\chi_{\alpha}^{2}(n)$\\
+		t-value & $t_{\alpha,n}$ & $t_{\alpha}(n)$\\
+		f-value & $f_{\alpha,(n,m)}$ & $F_{\alpha}(n,m)$ or $f_{\alpha}(n,m)$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+Some things to note about:
+\begin{enumerate}
+	\item Following all the examples in this lecture notes are not adequate to help you survive Dr. YU's exam, but it does help you (according to an anonymous reader who got almost high in Dr. YU's exams (wtf))
+	\item Some topics may or may not be tested. This lecture notes include topics from some MATH 2421/2431 stuff and untested supplementary notes.
+	\item If you do the Dr. YU's exam, please try to follow his notations instead.
+	\item There may be typos in the notes. Proceed with caution. (?)
+\end{enumerate}
 \tableofcontents
 \chapter{Preliminary}
 Statistical inference is a statistical process which investigates how to use the information from the data to make an inference about the distribution of the random variable of our interest. In MATH 3423, we will focus on two core concepts of statistical inference: point estimation and hypothesis testing.
+\section{Random variables}
+In a particular event, it usually results in an outcome $\omega$. We group all of these possible outcomes into a sample space $\Omega$.
+
+However, in order to obtain a reasonable numerical analysis from the sample space, we should map the outcomes into a numerical value. We define it as random variable.
+\begin{defn}
+	Given a sample space $\Omega$.
+	\begin{enumerate}
+		\item \textbf{Random variable} $X$ is a function $X:\Omega\to\mathbb{R}$ that maps from a sample space $\Omega$ as a set of possible outcomes to a real number space.
+		\item We define the \textbf{probability} of $X$ that takes a value in a set $A$ by:
+		\begin{equation*}
+			\prob(X\in A)=\prob(\{\omega\in\Omega: X(\omega)\in A\})
+		\end{equation*}
+		\item The \textbf{cumulative distribution function} (CDF) of $X$ is given by:
+		\begin{equation*}
+			F_{X}(x)=\prob(X\leq x)
+		\end{equation*}
+		\item The random variable $X$ is \textbf{discrete} if it has a \textbf{probability mass function} (PMF) $p_{X}$ given by:
+		\begin{equation*}
+			p_{X}(x)=\prob(X=x)
+		\end{equation*}
+		\item The random variable $X$ is \textbf{continuous} if it's  CDF can be expressed using a \textbf{probability density function} (PDF) $f_{X}$ by:
+		\begin{equation*}
+			F_{X}(x)=\int_{-\infty}^{x}f(u)\,du
+		\end{equation*}
+	\end{enumerate}
+\end{defn}
+\begin{defn}
+	Two random variables $X$ and $Y$ are \textbf{independent} if either:
+	\begin{equation*}
+		f_{X,Y}(x,y)=f_{X}(x)f_{Y}(y)\text{ or }F_{X,Y}(x,y)=F_{X}(x)F_{Y}(y)
+	\end{equation*}
+\end{defn}
+This Theorem is very important and we will use a lot later.
+\begin{thm}
+	If $X$ and $Y$ are independent, then $f(X)$ and $g(Y)$ are independent for any functions $f$ and $g$.
+\end{thm}
+
+\newpage
 \section{Random sample and parametric distribution}
 To make a statistical inference about the distribution of the random variable $X$ of our interest, we need to draw a sample of data.
 \begin{defn}
@@ -79,8 +128,6 @@ The underlying distribution of $X$ is assumed to be unknown or partially known i
 \begin{rem}
 	Instead of using parametric distributions of the data, we may assume that the form of the distribution is unknown but that the distribution has some properties. E.g. A distribution is continuous. This distribution is called a \textbf{non-parametric distribution} and the corresponding statistical method is called \textbf{non-parametric statistical approach}. If parameters are involved but the form of the distribution is unknown, then such a distribution is called \textbf{semi-parametric distribution} and the corresponding method is called \textbf{semi-parametric statistical approach}.
 \end{rem}
-
-\newpage
 \begin{eg}
 	Data are usually assumed from the normal distribution with mean $\mu$ and variance $\sigma^{2}$, where the parameter:
 	\begin{equation*}
@@ -104,10 +151,13 @@ The underlying distribution of $X$ is assumed to be unknown or partially known i
 		\end{equation*}
 	\end{enumerate}
 \end{lem}
+
+\newpage
 Under parametric setting, we can see that uncertainty of the distribution is the uncertainty of its parameters. One of the central problem in statistics is how to determine which function of data is the best one to estimate $\theta$.
 \begin{defn}
-	If $\mathbf{X}=(X_{1}\ \cdots\ X_{n})^{T}$ is a random vector and $T(\cdot)$ is a real-valued or vector-valued function such that for all $\mathbf{X}\in\Omega$, $T(\mathbf{X})$ does not contain any unknown parameters, then $T(\mathbf{X})$ is called a \textbf{statistic}.
+	Let $\mathbf{X}=(X_{1}\ \cdots\ X_{n})^{T}$ be a random vector.
 	\begin{enumerate}
+		\item If $T(\cdot)$ is a real-valued or vector-valued function such that for all $\mathbf{X}\in\Omega$, $T(\mathbf{X})$ does not contain any unknown parameters, then $T(\mathbf{X})$ is called a \textbf{statistic}.
 		\item If we use the statistic $T(\mathbf{X})$ to estimate an unknown parameter $\theta$, then we call $T(\mathbf{X})$ and $T(\mathbf{x})$ an \textbf{estimator} and an \textbf{estimate} of $\theta$ respectively, where $\mathbf{x}$ is an observed value of $\mathbf{X}$.
 	\end{enumerate}
 \end{defn}
@@ -119,28 +169,71 @@ Under parametric setting, we can see that uncertainty of the distribution is the
 \end{rem}
 
 \section{Moments}
-The population moments of a distribution play an important role in theoretical and applied statistics.
+The population moments of a distribution play an important role in theoretical and applied statistics. Let us first define what a moment is.
 \begin{defn}
-	For each positive integer $k$, the \textbf{$k$-th population moment} of $X$ about $0$, denoted by $\mu_{k}'$, is defined as:
-	\begin{equation*}
-		\mu_{k}'=\E(X^{k})
-	\end{equation*}
-	if the expectation exists.\\
-	When $k=1$, $\mu_{1}'$ is the population mean $\mu=E(X)$ of $X$.
+	Given a random variable $X$.
+	\begin{enumerate}
+		\item If the random variable is discrete with a PMF $p_{X}(x)$, then the \textbf{expectation} or \textbf{population mean} of $X$ is defined by:
+		\begin{equation*}
+			\mu=\E(X)=\sum_{x}xp_{X}(x)
+		\end{equation*}
+		\item If the random variable is continuous with a PDF $f_{X}(x)$, then the \textbf{expectation} or \textbf{population mean} of $X$ is defined by:
+		\begin{equation*}
+			\mu=\E(X)=\int_{-\infty}^{\infty}xf_{X}(x)
+		\end{equation*}
+	\end{enumerate}
 \end{defn}
-\begin{defn}
-	The \textbf{$k$-th population central moment} of $X$, denoted by $\mu_{k}$, is defined as:
+\begin{lem}\named{Linearity of expectation}
+	Given a set of random variables $\{X_{1},\cdots,X_{n}\}$. For any numbers $a_{i}$, it satisfies:
 	\begin{equation*}
-		\mu_{k}=\E(X-\mu)^{k}
+		\E\left(\sum_{i=1}^{n}a_{i}X_{i}\right)=\sum_{i=1}^{n}a_{i}\E\left(X_{i}\right)
 	\end{equation*}
-	if the expectation exists.\\
-	When $k=2$, $\mu_{2}$ is the \textbf{population variance} $\sigma^{2}$ of $X$.
+\end{lem}
+\begin{lem}
+	Given a set of \text{independent} random variables. It satisfies:
+	\begin{equation*}
+		\E\left(\prod_{i=1}^{n}X_{i}\right)=\prod_{i=1}^{n}\E(X_{i})
+	\end{equation*}
+\end{lem}
+\begin{defn}
+	Given a random variable $X$. The \textbf{population variance} of $X$ is defined by:
+	\begin{equation*}
+		\sigma^{2}=\Var(X)=\E(X-\E(X))^{2}=\E(X^{2})-[\E(X)]^{2}
+	\end{equation*}
+\end{defn}
+\begin{lem}
+	Given a set of \textit{independent} random variables $\{X_{1},\cdots,X_{n}\}$. For any numbers $a_{i}$, it satisfies:
+	\begin{equation*}
+		\Var\left(\sum_{i=1}^{n}a_{i}X_{i}\right)=\sum_{i=1}^{n}a_{i}^{2}\Var(X_{i})
+	\end{equation*}
+\end{lem}
+\begin{defn}
+	Given two random variables $X$ and $Y$. The \text{covariance} of $X$ and $Y$ is defined by:
+	\begin{equation*}
+		\cov(X,Y)=\E(X-\E(X))\E(Y-\E(Y))=\E(XY)-\E(X)\E(Y)
+	\end{equation*}
+\end{defn}
+
+\newpage
+From these definitions, we may generalize it into many population moments.
+\begin{defn}
+	For each positive integer $k$, 
+	\begin{enumerate}
+		\item the \textbf{$k$-th population moment} of $X$ about $0$, denoted by $\mu_{k}'$, is defined by:
+		\begin{equation*}
+			\mu_{k}'=\E(X^{k})
+		\end{equation*}
+		if the expectation exists.
+		\item the \textbf{$k$-th population central moment} of $X$, denoted by $\mu_{k}$, is defined by:
+		\begin{equation*}
+			\mu_{k}=\E(X-\mu)^{k}
+		\end{equation*}
+		if the expectation exists.
+	\end{enumerate}
 \end{defn}
 \begin{rem}
 	Don't confuse the population mean $\mu$ and the $k$-th population central moment $\mu_{k}$!
 \end{rem}
-
-\newpage
 \begin{eg}
 	We have terminologies for some useful population moments.
 	\begin{enumerate}
@@ -166,6 +259,7 @@ We usually use sample moments to estimate the population moments.
 		\begin{equation*}
 			\overline{X^{k}}=\frac{1}{n}\sum_{i=1}^{n}X_{i}^{k}
 		\end{equation*}
+		When $k=1$, $\overline{X}$ is called the \textbf{sample mean} of $X$.
 		\item the \textbf{$k$-th sample moment} about $\overline{X}$, denoted by $S_{n}^{k}$, is defined as:
 		\begin{equation*}
 			S_{n}^{k}=\frac{1}{n}\sum_{i=1}^{n}(X_{i}-\overline{X})^{k}
@@ -173,14 +267,16 @@ We usually use sample moments to estimate the population moments.
 	\end{enumerate}
 \end{defn}
 \begin{eg}
-	When $k=1$, $\overline{X}$ is called the \textbf{sample mean} of $X$. When $k=2$, $S_{n}^{2}$ is called the \textbf{sample variance}. However, we usually don't use this version of sample variance. Instead, we use another sample variance, denoted by $S_{n-1}^{2}$, which is defined by:
+	When $k=2$, $S_{n}^{2}$ is called the \textbf{sample variance}. However, we usually don't use this version of sample variance. Instead, we use another sample variance, denoted by $S_{n-1}^{2}$, which is defined by:
 	\begin{equation*}
 		S_{n-1}^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}
 	\end{equation*}
 	We do this because $S_{n-1}^{2}$ is unbiased while $S_{n}^{2}$ is not unbiased.
 \end{eg}
+
+\newpage
 \begin{lem}
-	Let $X_{1},\cdots,X_{n}$ be a random sample of size $n$. We have:
+	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$. We have:
 	\begin{equation*}
 		\E(\overline{X^{k}})=\mu_{k}'
 	\end{equation*}
@@ -196,13 +292,12 @@ We usually use sample moments to estimate the population moments.
 	\end{equation*}
 	Therefore, we have:
 	\begin{equation*}
-		\E(\overline{X^{k}})=\E\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}^{k}\right]=\frac{1}{n}\sum_{i=1}^{n}\E(X_{i}^{k})=\frac{n\mu_{k}'}{n}=\mu_{k}'
+		\E(\overline{X^{k}})=\E\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}^{k}\right)=\frac{1}{n}\sum_{i=1}^{n}\E(X_{i}^{k})=\mu_{k}'
 	\end{equation*}
 	Since $X_{1}^{k},\cdots,X_{n}^{k}$ are independent,
-	\begin{align*}
-		\Var(\overline{X^{k}})=\Var\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}^{k}\right)=\frac{1}{n^{2}}\Var\left(\sum_{i=1}^{n}X_{i}^{k}\right)=\frac{1}{n^{2}}\sum_{i=1}^{n}\Var(X_{i}^{k})&=\frac{1}{n^{2}}\sum_{i=1}^{n}\left[\E(X_{i}^{2k})-(\E(X_{i}^{k})^{2})\right]\\
-		&=\frac{1}{n}[\mu_{2k}'-(\mu_{k}')^{2}]
-	\end{align*}
+	\begin{equation*}
+		\Var(\overline{X^{k}})=\Var\left(\frac{1}{n}\sum_{i=1}^{n}X_{i}^{k}\right)=\frac{1}{n^{2}}\sum_{i=1}^{n}\Var(X_{i}^{k})=\frac{1}{n^{2}}\sum_{i=1}^{n}\left[\E(X_{i}^{2k})-[\E(X_{i}^{k})]^{2}\right]=\frac{1}{n}[\mu_{2k}'-(\mu_{k}')^{2}]
+	\end{equation*}
 \end{proofing}
 
 \section{Conditional distribution}
@@ -247,6 +342,8 @@ The conditional distribution has its corresponding expectation.
 	\end{align*}
 	We may see that $(X|Y=y)\sim\Exp(\frac{1}{y})$. Therefore, $\E(X|Y=y)=y$.
 \end{eg}
+
+\newpage
 Conditional expectation has the following properties.
 \begin{lem}
 	\label{Chapter 1 (Lemma) Properties of conditional expectation}
@@ -287,10 +384,10 @@ If $\E(Y|X)$ is a function of $X$, then what is its expectation?
 \begin{proofing}
 	We may proof in continuous case. Discrete case works similarly.
 	\begin{align*}
-		\E(\E(Y|X))=\intinfty\E(Y|x)f_{X}(x)\,dx&=\intinfty\intinfty y f_{Y|X}(y|x)f_{X}(x)\,dy\,dx\\
-		&=\intinfty\intinfty f_{Y|X}(y|x)f_{X}(x)\,dx\,dy\\
-		&=\intinfty\intinfty f_{X,Y}(x,y)\,dx\,dy\\
-		&=\intinfty f_{Y}(y)\,dy=\E(Y)
+		\E(\E(Y|X))=\intinfty\E(Y|X=x)f_{X}(x)\,dx&=\intinfty\intinfty y f_{Y|X}(y|x)f_{X}(x)\,dy\,dx\\
+		&=\intinfty\intinfty yf_{Y|X}(y|x)f_{X}(x)\,dx\,dy\\
+		&=\intinfty\intinfty yf_{X,Y}(x,y)\,dx\,dy\\
+		&=\intinfty yf_{Y}(y)\,dy=\E(Y)
 	\end{align*}
 \end{proofing}
 The following theorem is the generalization of Law of total expectation. We will omit the proof.
@@ -302,6 +399,8 @@ The following theorem is the generalization of Law of total expectation. We will
 	\end{equation*}
 	if both expectations exist.
 \end{lem}
+
+\newpage
 Similarly, we have a conditional variance.
 \begin{defn}
 	Given two random variables $X$ and $Y$. The \textbf{conditional variance} of $Y$ given $X$ is defined by:
@@ -329,26 +428,47 @@ We have the law of total variance.
 \begin{thm}\named{Law of total variance}
 	Given two random variables $X$ and $Y$. We have:
 	\begin{equation*}
-		\Var(Y)=\E[\Var(Y|X)]+\Var[\E(Y|X)]
+		\Var(Y)=\E[\Var(Y|X)]+\Var(\E(Y|X))
 	\end{equation*}
 	if the expectation and variances exist.
 \end{thm}
 \begin{proofing}
 	By Lemma \ref{Chapter 1 (Lemma) Conditional variance decomposition} and Law of total expectation,
 	\begin{align*}
-		\E[\Var(Y|X)]+\Var[\E(Y|X)]&=\E[\E(Y^{2}|X)]-\E[\E(Y|X)]^{2}+\E[\E(Y|X)]^{2}-\left[\E[\E(Y|X)]\right]^{2}\\
+		\E[\Var(Y|X)]+\Var(\E(Y|X))&=\E[\E(Y^{2}|X)]-\E[\E(Y|X)]^{2}+\E[\E(Y|X)]^{2}-\left[\E(\E(Y|X))\right]^{2}\\
 		&=\E(Y^{2})-[\E(Y)]^{2}=\Var(Y)
 	\end{align*}
 \end{proofing}
 
 \section{Commonly used distribution}
+The indicator function is highly important later.
+\begin{defn}
+	Indicator function of a set $A$ is a function $\mathbf{1}_{A}$ defined as:
+	\begin{equation*}
+		\mathbf{1}_{A}(x)=\begin{cases}
+			1, &x\in A\\
+			0, &x\not\in A
+		\end{cases}
+	\end{equation*}
+\end{defn}
 Let us recall some useful distributions.
+\begin{eg}\named{Bernoulli distribution} $X\sim\Bern(p)$\\
+	Random variable $X$ is a Bernoulli random variable with parameters $p\in[0,1]$ if it has a PMF:
+	\begin{align*}
+		p_{X}(x)&=\begin{cases}
+			p^{x}(1-p)^{1-x}, &x=\{0,1\}\\
+			0, &\text{Otherwise}
+		\end{cases} & \E(X)&=p & \Var(X)&=p(1-p)
+	\end{align*}
+\end{eg}
 \begin{eg}\named{Binomial distribution} $X\sim\Bin(n,p)$\\
 	Random variable $X$ is a Binomial random variable with parameters $n\in\mathbb{N}$ and $p\in[0,1]$ if it has a PMF for $x=0,\cdots,n$:
 	\begin{align*}
 		p_{X}(x)&=\binom{n}{x}p^{x}(1-p)^{n-x} & \E(X)&=np & \Var(X)&=np(1-p)
 	\end{align*}
 \end{eg}
+
+\newpage
 \begin{eg}\named{Geometric distribution} $X\sim\Geom(p)$\\
 	Random variable $X$ is geometric with parameter $p\in[0,1]$ if it has a PMF for $x=1,2,\cdots$:
 	\begin{align*}
@@ -396,15 +516,17 @@ Let us recall some useful distributions.
 	\begin{align*}
 		f_{X}(x)&=\frac{1}{\sqrt{2\pi\sigma^{2}}}\exp\left(-\frac{(x-\mu)^{2}}{2\sigma^{2}}\right) & F_{X}(x)&=\intlu{-\infty}{x}f_{X}(u)\,du & \E(X)&=\mu & \Var(X)&=\sigma^{2}
 	\end{align*}
-	Random variable $X$ is standard normal if $\mu=0$ and $\sigma^{2}=1$. ($X\sim\N(0,1)$)
+	Random variable $Z$ is standard normal if it is normal and $\mu=0$, $\sigma^{2}=1$. ($Z\sim\N(0,1)$)
 	\begin{align*}
-		f_{X}(x)&=\phi(x)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^{2}}{2}\right) & F_{X}(x)&=\Phi(x)=\intlu{-\infty}{x}\phi(u)\,du & \E(X)&=0 & \Var(X)&=1
+		f_{Z}(z)&=\phi(z)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{z^{2}}{2}\right) & F_{Z}(z)&=\Phi(z)=\intlu{-\infty}{z}\phi(u)\,du & \E(Z)&=0 & \Var(Z)&=1
 	\end{align*}
 	We define $z_{\alpha}$ by:
 	\begin{equation*}
 		\prob(Z\geq z_{\alpha})=\alpha
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}\named{Gamma distribution} $X\sim\Gam(\alpha,\beta)$\\
 	Random variable $X$ is a gamma random variable with parameters $\alpha>0$ and $\beta>0$ if its PDF is:
 	\begin{align*}
@@ -415,9 +537,9 @@ Let us recall some useful distributions.
 	\end{align*}
 \end{eg}
 \begin{rem}
-	Gamma function $\Gamma(z)$ has the following properties:
+	For any $z$, gamma function $\Gamma(z)$ has the following properties:
 	\begin{enumerate}
-		\item For all $z$, $\Gamma(z+1)=z\Gamma(z)$. If $z$ is a positive integer, then $\Gamma(z)=(z-1)!$.
+		\item $\Gamma(z+1)=z\Gamma(z)$. If $z$ is a positive integer, then $\Gamma(z)=(z-1)!$.
 		\item If $\Re(z)>0$, then $\Gamma(z)=\int_{0}^{\infty}t^{z-1}e^{-t}\,dt$.
 		\item $\Gamma(\frac{1}{2})=\sqrt{\pi}$.
 	\end{enumerate}
@@ -432,7 +554,7 @@ Let us recall some useful distributions.
 	\end{align*}
 \end{eg}
 \begin{rem}
-	Beta function $B(z_{1},z_{2})$ has the following properties:
+	For any $z_{1},z_{2}$, beta function $B(z_{1},z_{2})$ has the following properties:
 	\begin{enumerate}
 		\item $B(z_{1},z_{2})=\frac{\Gamma(z_{1})\Gamma(z_{2})}{\Gamma(z_{1}+z_{2})}$
 		\item $B(z_{1},z_{2})=\int_{0}^{1}t^{z_{1}-1}(1-t)^{z_{2}-1}\,dt$
@@ -470,7 +592,8 @@ We have some more distributions that are associated with normal distribution. Fo
 	Given a set of random variables $\{X_{1},\cdots,X_{k}\}$. Let $Y=\sum_{i=1}^{k}X_{i}$ and $X_{i}\sim\chi^{2}(r_{i})$ for all $i=1,\cdots,k$. If they are independent, then $Y\sim\chi^{2}(r_{1}+\cdots+r_{k})$.
 \end{thm}
 \begin{proofing}
-	It suffices to prove the relation for two random variables $Z_{1}$ and $Z_{2}$. If $Z_{1}\sim\chi^{2}(n_{1})$ and $Z_{2}\sim\chi^{2}(n_{2})$, then $Z_{1}+Z_{2}\sim\chi^{2}(n_{1}+n_{2})$. By repeating applying the relation for two random variables, one can easily have the desired relation for $k$ random variables.\\
+	It suffices to prove that if $Z_{1}\sim\chi^{2}(n_{1})$ and $Z_{2}\sim\chi^{2}(n_{2})$, then $Z_{1}+Z_{2}\sim\chi^{2}(n_{1}+n_{2})$. By repeating applying the relation for two random variables, one can easily have the desired relation for $k$ random variables.
+	
 	From definition, $Z_{1}=X_{11}^{2}+\cdots+X_{1n_{1}}^{2}$ and $Z_{2}=X_{21}^{2}+\cdots+X_{2n_{2}}^{2}$, where $X_{1i}\sim\N(0,1)$ and $X_{2j}\sim\N(0,1)$ for $i=1,\cdots,n_{1}$ and $j=1,\cdots,n_{2}$. Therefore,
 	\begin{equation*}
 		Z_{1}+Z_{2}=X_{11}^{2}+\cdots+X_{1n_{1}}^{2}+X_{21}^{2}+\cdots+X_{2n_{2}}^{2}\sim\chi^{2}(n_{1}+n_{2})
@@ -514,7 +637,7 @@ We have some more distributions that are associated with normal distribution. Fo
 			\end{pmatrix}
 		\end{align*}
 		By Lemma \ref{Chapter 1 (Lemma) Distribution of matrix multiplication with random vector}, we have $\mathbf{AX}\sim\N_{n+1}(\mathbf{A}\boldsymbol{\mu},\mathbf{A\sigma^{2}I_{n\times n}A}^{T})$, where $\boldsymbol{\mu}=(\mu\ \cdots\ \mu)^{T}$.\\
-		Let $\mathbf{X^{*}}=(X_{1}-\overline{X}\ \cdots\ X_{n}-\overline{X})^{T}$ and $\mathbf{\Sigma^{*}}$ be the variance-covariance matrix of $\mathbf{\widetilde{X}}$. We may notice that:
+		Let $\mathbf{X^{*}}=(X_{1}-\overline{X}\ \cdots\ X_{n}-\overline{X})^{T}$ and $\mathbf{\Sigma^{*}}$ be the variance-covariance matrix of $\mathbf{X}^{*}$. We can notice that:
 		\begin{equation*}
 			\mathbf{A\sigma^{2}I_{n\times n}A}^{T}=\begin{pmatrix}\begin{array}{c|c}
 					\Var(\overline{X}) & \cov(\mathbf{X^{*}},\overline{X})\\
@@ -522,23 +645,21 @@ We have some more distributions that are associated with normal distribution. Fo
 					\cov(\mathbf{X^{*}},\overline{X}) & \mathbf{\Sigma^{*}}
 			\end{array}\end{pmatrix}
 		\end{equation*}
-		We prove that $\cov(X_{i}-\overline{X},\overline{X})=0$ for $i=1,\cdots,n$. Since $X_{i}$ are independent for all $i$,
+		Since $X_{i}$ are independent for all $i$,
 		\begin{equation*}
 			\cov(X_{i}-\overline{X},\overline{X})=\cov(X_{i},\overline{X})-\Var(\overline{X})=\frac{1}{n}\Var(X_{i})-\frac{\sigma^{2}}{n}=0
 		\end{equation*}
 		Therefore, we can find that $\cov(\mathbf{X^{*}},\overline{X})=0$. By Lemma \ref{Chapter 1 (Lemma) Independence iff uncorrelated and bivariate}, $\overline{X}$ and $\mathbf{X^{*}}$ are independent.\\
-		Since $S_{n}^{2}$ is a function of $\mathbf{X^{*}}$, we can conclude that $\overline{X}$ and $S_{n-1}^{2}$ are independent.
+		Since $S_{n-1}^{2}$ is a function of $\mathbf{X^{*}}$, we can conclude that $\overline{X}$ and $S_{n-1}^{2}$ are independent.
 		\item We have:
 		\begin{equation*}
 			\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}=\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\mu+\mu-\overline{X})^{2}=\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\mu)^{2}-\frac{n(\overline{X}-\mu)^{2}}{\sigma^{2}}=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu}{\sigma}\right)-\left(\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}\right)^{2}
 		\end{equation*}
 		Let $U=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu}{\sigma}\right)$ and $V=\left(\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}\right)^{2}$. The distribution we are finding is $U-V$.\\
 		From definition, we know that $U\sim\chi^{2}(n)$. From Theorem \ref{Chapter 1 (Theorem) chi-square distribution with 1 degree of freedom}, we find the $V\sim\chi^{2}(1)$. From Part 2, since functions of $\mathbf{X}^{*}$ and $\overline{X}$ are independent, 
-		\begin{align*}
-			M_{U}(t)&=M_{V}(t)M_{U-V}(t)\\
-			(1-2t)^{-\frac{n}{2}}&=(1-2t)^{-\frac{1}{2}}M_{U-V}(t)\\
-			M_{U-V}(t)&=(1-2t)^{-\frac{n-1}{2}}
-		\end{align*}
+		\begin{equation*}
+			M_{U-V}(t)=\frac{M_{U}(t)}{M_{V}(t)}=\frac{(1-2t)^{-\frac{n}{2}}}{(1-2t)^{-\frac{1}{2}}}=(1-2t)^{-\frac{n-1}{2}}
+		\end{equation*}
 		Therefore, we can conclude that:
 		\begin{equation*}
 			\frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}\sim\chi^{2}(n-1)
@@ -600,11 +721,11 @@ The t-distribution has the following properties.
 	\end{align*}
 	Therefore, we can find the $95\%$ confidence interval:
 	\begin{equation*}
-		\left(\overline{x}-t_{0.025,n-1}\frac{S_{n-1}}{\sqrt{n}},\overline{x}+t_{0.025,n-1}\frac{S_{n-1}}{\sqrt{n}}\right)
+		\left(\overline{x}-t_{0.025,n-1}\frac{s_{n-1}}{\sqrt{n}},\overline{x}+t_{0.025,n-1}\frac{s_{n-1}}{\sqrt{n}}\right)
 	\end{equation*}
 	Usually when $n>30$, $t_{0.025,n-1}\approx z_{0.025}$. Therefore, we may find the $95\%$ confidence interval:
 	\begin{equation*}
-		\left(\overline{x}-z_{0.025}\frac{S_{n-1}}{\sqrt{n}},\overline{x}+z_{0.025}\frac{S_{n-1}}{\sqrt{n}}\right)
+		\left(\overline{x}-z_{0.025}\frac{s_{n-1}}{\sqrt{n}},\overline{x}+z_{0.025}\frac{s_{n-1}}{\sqrt{n}}\right)
 	\end{equation*}
 \end{eg}
 
@@ -690,25 +811,21 @@ It would be useful if we have a function that could generate all moments.
 	MGF of $X$ may not always exist. However, if it exists, then $M_{X}(t)$ is continuously differentiable in some neighbourhood of the origin.
 \end{rem}
 \begin{rem}
-	If we replace $e^{tX}$ by its taylor series, then we would get:
+	If we replace $e^{tX}$ by its Taylor series, then we would get:
 	\begin{equation*}
-		M_{X}(t)=\E\left[\sum_{i=0}^{\infty}\frac{(tX)^{i}}{i!}\right]=\sum_{i=0}^{\infty}\frac{t^{i}}{i!}\E(X^{i})=\sum_{i=0}^{\infty}\frac{t^{i}}{i!}\mu_{i}'
+		M_{X}(t)=\E\left(\sum_{i=0}^{\infty}\frac{(tX)^{i}}{i!}\right)=\sum_{i=0}^{\infty}\frac{t^{i}}{i!}\E(X^{i})=\sum_{i=0}^{\infty}\frac{t^{i}}{i!}\mu_{i}'
 	\end{equation*}
 \end{rem}
 \begin{lem}
 	If $M_{X}(t)$ is the MGF of a random variable $X$, then:
 	\begin{equation*}
-		\left.\pdv*[order={k}]{M_{X}(t)}{t}\right|_{t=0}=\E(X^{k})=\mu_{k}'
+		\left.\odv*[order={k}]{M_{X}(t)}{t}\right|_{t=0}=\E(X^{k})=\mu_{k}'
 	\end{equation*}
 \end{lem}
 \begin{proofing}
-	From the taylor series of MGF, we would see that:
+	From the Taylor series of MGF, we would see that:
 	\begin{equation*}
-		\pdv*[order={k}]{M_{X}(t)}{t}=\sum_{i=k}^{\infty}\frac{t^{i-k}}{(i-k)!}\E(X^{i})
-	\end{equation*}
-	Therefore, by having $t=0$, we would have:
-	\begin{equation*}
-		\left.\pdv*[order={k}]{M_{X}(t)}{t}\right|_{t=0}=\E(X^{k})
+		\left.\odv*[order={k}]{M_{X}(t)}{t}\right|_{t=0}=\left.\sum_{i=k}^{\infty}\frac{t^{i-k}}{(i-k)!}\E(X^{i})\right|_{t=0}=\E(X^{k})
 	\end{equation*}
 \end{proofing}
 \begin{eg}
@@ -770,8 +887,6 @@ It would be useful if we have a function that could generate all moments.
 		M_{X}(t)=\E(e^{tX})=\int_{a}^{b}\frac{e^{tx}}{b-a}\,dt=\left[\frac{e^{tx}}{t(b-a)}\right]_{a}^{b}=\frac{e^{bt}-e^{at}}{t(b-a)}
 	\end{equation*}
 \end{eg}
-
-\newpage
 \begin{eg}
 	If $X\sim\NBin(r,p)$, then for $t<-\ln(1-p)$:
 	\begin{equation*}
@@ -782,6 +897,8 @@ It would be useful if we have a function that could generate all moments.
 		M_{X}(t)=\left(\frac{\beta}{\beta-t}\right)^{\alpha}
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}
 	Given $Y\sim\chi^{2}(r)$. How do we find the MGF of $Y$?\\
 	Note that chi-squared distribution is actually a special case of gamma distribution. We have $\chi^{2}(r)=\Gamma(\frac{r}{2},\frac{1}{2})$. Therefore, by substituting, for $t<\frac{1}{2}$, we may get:
@@ -826,8 +943,6 @@ This means that by knowing the MGF of a particular random variable $X$, we can k
 \begin{rem}
 	Not all sum of distributions will result in the same type of distribution.
 \end{rem}
-
-\newpage
 More generally, we would deal with problems of limiting distribution.
 \begin{thm}
 	Suppose the $\{X_{n}\}$ is a sequence of random variables, each with MGF $M_{X_{n}}(t)$. If we have:
@@ -843,6 +958,8 @@ More generally, we would deal with problems of limiting distribution.
 \begin{rem}
 	Simply, the limiting distribution of $X_{n}$ is equal to the distribution of $Y$.
 \end{rem}
+
+\newpage
 We may define the limiting convergence in truly theoretical way.
 \begin{defn}
 	A sequence of random variables $\{X_{n}\}$ \textbf{converges in distribution} to a random variable $X$, denoted by $X_{n}\xrightarrow{D}X$, if for all continuity point $x$ of $F_{X}$, as $n\to\infty$,
@@ -858,7 +975,10 @@ We also have a more strict convergence.
 	\end{align*}
 \end{defn}
 \begin{rem}
-	If $X_{n}\xrightarrow{P}X$, then $X_{n}\xrightarrow{D}X$. The converse is not necessarily true.
+	If $X_{n}\xrightarrow{\prob}X$, then $X_{n}\xrightarrow{D}X$. The converse is not necessarily true.
+\end{rem}
+\begin{rem}
+	After this point, we only need $X_{n}\xrightarrow{D}X$ on most cases. We may simplify it into $X_{n}\to X$.
 \end{rem}
 
 \section{Limit Theorems}
@@ -872,7 +992,7 @@ Using the last two theorems, the next two theorems are very useful in both stati
 \begin{thm}\named{Classical Central Limit Theorem (CLT)}
 	Let $\{X_{n}\}$ be a sequence of i.i.d. random variables whose MGFs exist in a neighbourhood of $0$. Let $\E(X_{i})=\mu$ and $\Var(X_{i})=\sigma^{2}>0$ for all $i=1,2,\cdots$. Define by $\overline{X}$ the sample mean of the random variables. Then as $n\to\infty$,
 	\begin{equation*}
-		\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\to\N(0,1)
+		\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\xrightarrow{D}\N(0,1)
 	\end{equation*}
 \end{thm}
 \begin{rem}
@@ -882,11 +1002,9 @@ This works generally to most of the distribution. However, it is probably very t
 \begin{thm}\named{L\'evy-Linderberg Central Limit Theorem}
 	Let $\{X_{n}\}$ be a sequence of i.i.d. random variables with common population means $\mu$ and common population variance $\sigma^{2}$. Assume that $0<\sigma^{2}<\infty$. Define by $\overline{X}$ the sample mean of the random variables. Then as $n\to\infty$,
 	\begin{equation*}
-		\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\to\N(0,1)
+		\frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}=\frac{\sum_{i=1}^{n}X_{i}-n\mu}{\sqrt{n}\sigma}\xrightarrow{D}\N(0,1)
 	\end{equation*}
 \end{thm}
-
-\newpage
 Sometimes, we will deal with a function of multiple random variables. We must establish how they converges.
 \begin{thm}\named{Slutsky's Theorem}
 	If $X_{n}\xrightarrow{D}X$ and $Y_{n}\xrightarrow{\prob}c$, then:
@@ -896,6 +1014,8 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 		\item $\frac{X_{n}}{Y_{n}}\xrightarrow{D}\frac{X}{c}$ if $c\neq 0$.
 	\end{enumerate}
 \end{thm}
+
+\newpage
 \begin{eg}
 	Assume that $X_{i}\sim\Bern(p)$ for all $i$. We want to estimate the unknown $p$. We have common mean $\mu=p$ and common variance $\sigma^{2}=p(1-p)$. By applying CLT, as $n\to\infty$,
 	\begin{equation*}
@@ -922,8 +1042,6 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 	\end{equation*}
 	Equivalently, the percentage of voters of candidate A would be from $34.46\%$ to $45.54\%$, with a margin of error $5.54\%$.
 \end{eg}
-
-\newpage
 \begin{eg}
 	Following the previous example. Assume that we have been given a margin of error $D$. How many data should we collect in order to to have the margin of error?\\
 	From how we find the margin of error:
@@ -942,6 +1060,8 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 	If $n^{*}<n_{\text{required}}$, then the current number of data is not enough. We would need to find more respondents.\\
 	If $n^{*}\geq n_{\text{required}}$, then it is enough.
 \end{eg}
+
+\newpage
 \begin{eg}
 	We try to use Poisson random variables to prove that as $n\to\infty$,
 	\begin{equation*}
@@ -953,7 +1073,7 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 	\end{equation*}
 	Therefore, since $Y_{n}\sim\Poisson(n)$, we have:
 	\begin{equation*}
-		e^{-n}\sum_{k=0}^{n}\frac{n^{k}}{k!}=\prob(Y_{n}\leq n)=\prob(\frac{Y_{n}-n}{\sqrt{n}}\leq 0)\to\frac{1}{2}
+		e^{-n}\sum_{k=0}^{n}\frac{n^{k}}{k!}=\prob(Y_{n}\leq n)=\prob\left(\frac{Y_{n}-n}{\sqrt{n}}\leq 0\right)\to\frac{1}{2}
 	\end{equation*}
 \end{eg}
 \begin{eg}
@@ -961,7 +1081,7 @@ Sometimes, we will deal with a function of multiple random variables. We must es
 	\begin{equation*}
 		\frac{\sqrt{n}(\overline{X^{k}}-\mu_{k}')}{\sqrt{\mu_{2k}'-(\mu_{k}')^{2}}}\to\N(0,1)
 	\end{equation*}
-	Therefore, the asymptotic distribution for $\overline{X^{k}}$ when $n\to\infty$ is $\N(\mu_{k}',\frac{1}{n}(\mu_{2k}'-(\mu_{k}')^{2}))$.
+	Therefore, the asymptotic distribution for $\overline{X^{k}}$ when $n\to\infty$ is $\N(\mu_{k}',\frac{1}{n}[\mu_{2k}'-(\mu_{k}')^{2}])$.
 \end{eg}
 Central Limit Theorem can provide us a limiting standard normal distribution of sample mean. However, we usually deal with some functions of the sample mean.
 \begin{thm}\named{Continuous mapping theorem}
@@ -974,20 +1094,32 @@ Central Limit Theorem can provide us a limiting standard normal distribution of 
 \begin{thm}\named{Delta method}
 	Let $\{X_{n}\}$ be a sequence of random variables such that for constants $a$ and $b>0$, as $n\to\infty$,
 	\begin{equation*}
-		\sqrt{n}(X_{n}-a)\to\N(0,b^{2})
+		\sqrt{n}(X_{n}-a)\xrightarrow{D}\N(0,b^{2})
 	\end{equation*}
 	Then for a given function $g$, suppose that $g'(a)$ exists and not $0$, as $n\to\infty$:
 	\begin{equation*}
-		\sqrt{n}(g(X_{n})-g(a))\to\N(0,[g'(a)b]^{2})
+		\sqrt{n}(g(X_{n})-g(a))\xrightarrow{D}\N(0,[g'(a)b]^{2})
 	\end{equation*}
 \end{thm}
 \begin{cor}
 	\label{Chapter 1 (Corollary) CLT for functions of random variables}
 	If $\overline{X}$ is the sample mean of a random sample $X_{1},\cdots,X_{n}$ of size $n$ from a distribution with a finite mean $\mu$ and finite variance $\sigma^{2}>0$. For a given function $g$, suppose that $g'(\mu)$ exists and is not $0$, as $n\to\infty$:
 	\begin{equation*}
-		\sqrt{n}(g(\overline{X})-g(\mu))\to\N(0,[g'(\mu)\sigma]^{2})
+		\sqrt{n}(g(\overline{X})-g(\mu))\xrightarrow{D}\N(0,[g'(\mu)\sigma]^{2})
 	\end{equation*}  
 \end{cor}
+\begin{proofing}
+	By Central Limit Theorem, we get:
+	\begin{equation*}
+		\sqrt{n}(\overline{X}-\mu)\xrightarrow{D}\N(0,\sigma^{2})
+	\end{equation*}
+	Therefore, by the Delta method, for any function $g$ such that $g'(\mu)$ exists and not $0$,
+	\begin{equation*}
+		\sqrt{n}(g(\overline{X})-g(\mu))\xrightarrow{D}\N(0,[g'(\mu)\sigma]^{2})
+	\end{equation*}
+\end{proofing}
+
+\newpage
 \begin{eg}
 	Assume that there are $70$ respondents, $68$ of which would vote for one candidate.\\
 	If we use the same process from previous examples, we find that the $95\%$ confidence interval is $(0.9324,1.0105)$, which is out of the range. In fact, if the point estimate $\hat{p}$ is quite close to $0$ or $1$, the resulting interval guess may include values that is out of the range of $p$. This is a poor interval guess.\\
@@ -997,11 +1129,11 @@ Central Limit Theorem can provide us a limiting standard normal distribution of 
 	\end{equation*}
 	By Delta method,
 	\begin{equation*}
-		\frac{g(\overline{X})-g(p)}{g'(p)\sqrt{\frac{\overline{x}(1-\overline{x})}{n}}}\to\N(0,1)
+		\frac{g(\overline{X})-g(p)}{g'(p)\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}}\to\N(0,1)
 	\end{equation*}
 	By WLLN and continuous mapping theorem, we can replace $g'(p)$ with $g'(\overline{X})$. Therefore, we have:
 	\begin{align*}
-		0.95=\prob\left(-z_{0.025}\leq	\frac{g(\overline{X})-g(p)}{g'(p)\sqrt{\frac{\overline{x}(1-\overline{x})}{n}}}\leq z_{0.025}\right)
+		0.95=\prob\left(-z_{0.025}\leq	\frac{g(\overline{X})-g(p)}{g'(p)\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}}\leq z_{0.025}\right)
 	\end{align*}
 	Solving the formula and we would get the a good $95\%$ confidence interval of $p$.
 \end{eg}
@@ -1010,9 +1142,9 @@ Central Limit Theorem can provide us a limiting standard normal distribution of 
 	\begin{equation*}
 		Z_{n}=2\sqrt{n}\left(\sin^{-1}{\sqrt{\overline{X}}}-\sin^{-1}{\sqrt{\theta}}\right)\to\N(0,1)
 	\end{equation*}
-	Let $g(x)=\sin^{-1}{\sqrt{x}}$. We may obtain that:
+	Let $g(t)=\sin^{-1}{\sqrt{t}}$. We may obtain that:
 	\begin{equation*}
-		g'(x)=\frac{1}{2\sqrt{x}\sqrt{1-x}}
+		g'(t)=\frac{1}{2\sqrt{t}\sqrt{1-t}}
 	\end{equation*}
 	We can find that the derivative is well-defined and non-zero for $0<\theta<1$ by substituting $x=\theta$. Note that $\E(X_{i})=\theta$ and $\Var(X_{i})=\theta(1-\theta)$ for $i=1,\cdots,n$. By Corollary \ref{Chapter 1 (Corollary) CLT for functions of random variables},
 	\begin{equation*}
@@ -1028,8 +1160,9 @@ Central Limit Theorem can provide us a limiting standard normal distribution of 
 	\begin{equation*}
 		Y_{n}=\sqrt{n}[g(\overline{X_{n}})-g(\theta)]
 	\end{equation*}
-	does not depend on $\theta$.\\
-	We may find that $\E(X_{i})=\frac{1}{\theta}$ and $\Var(X_{i})=\frac{1}{\theta^{2}}$ for $i=1,2,\cdots$. We claim that $g(x)=\ln{x}$ is what we want. We can find that:
+	does not depend on $\theta$. We may find that $\E(X_{i})=\frac{1}{\theta}$ and $\Var(X_{i})=\frac{1}{\theta^{2}}$ for $i=1,2,\cdots$. 
+	
+	We claim that $g(x)=\ln{x}$ is what we want. We have:
 	\begin{equation*}
 		g'(x)=\frac{1}{x}
 	\end{equation*}
@@ -1093,31 +1226,30 @@ However, we usually deal with more than 1 variables. Before we extend the theore
 	\label{Chapter 1 (Lemma) Independence iff uncorrelated and bivariate}
 	If we have:
 	\begin{equation*}
-		\begin{pmatrix}X_{1}\\X_{2}\end{pmatrix}\sim\N_{2}\left(\begin{pmatrix}\mu_{1}\\\mu_{2}\end{pmatrix},\begin{pmatrix}\sigma_{11}&\sigma_{12}\\\sigma_{21}&\sigma_{22}\end{pmatrix}\right),
+		\begin{pmatrix}X_{1}\\X_{2}\end{pmatrix}\sim\N_{2}\left(\begin{pmatrix}\mu_{1}\\\mu_{2}\end{pmatrix},\begin{pmatrix}\sigma_{11}^{2}&\sigma_{12}^{2}\\\sigma_{21}^{2}&\sigma_{22}^{2}\end{pmatrix}\right),
 	\end{equation*}
-	then $X_{1}$ and $X_{2}$ are independent if and only if $\sigma_{12}=\sigma_{21}=0$.
+	then $X_{1}$ and $X_{2}$ are independent if and only if $\sigma_{12}^{2}=\sigma_{21}^{2}=0$.
 \end{lem}
 \begin{proofing}
 	From the properties of covariance,
 	\begin{equation*}
-		\sigma_{12}=\cov(X_{1},X_{2})=\cov(X_{2},X_{1})=\sigma_{21}
+		\sigma_{12}^{2}=\cov(X_{1},X_{2})=\cov(X_{2},X_{1})=\sigma_{21}^{2}
 	\end{equation*}
-	Assume that $X_{1}$ and $X_{2}$ are independent. We have:
+	Suppose that $X_{1}$ and $X_{2}$ are independent. We have:
 	\begin{equation*}
 		\cov(X_{1},X_{2})=\E[(X_{1}-\E(X_{1}))(X_{2}-\E(X_{2}))]=\E(X_{1}X_{2})-\E(X_{1})\E(X_{2})=0
 	\end{equation*}
-	Therefore, $\sigma_{12}=\sigma_{21}=0$.\\
-	Assume that $\sigma_{12}=\sigma_{21}=0$. Then $\E(X_{1}X_{2})=\E(X_{1})\E(X_{2})$. We check joint PDF to see if they are independent.\\
-	Since $\cov(X_{1},X_{2})=0$, we have that:
-	\begin{equation*}
-		f_{X_{1},X_{2}}(x_{1},x_{2})=\frac{1}{2\pi\sigma_{11}\sigma_{22}}\exp\left(-\frac{1}{2}\left(\frac{(x_{1}-\mu_{1})^{2}}{2\sigma_{11}^{2}}+\frac{(x_{2}-\mu_{2})^{2}}{2\sigma_{22}^{2}}\right)\right)
-	\end{equation*}
+	Therefore, $\sigma_{12}^{2}=\sigma_{21}^{2}=0$.\\
+	Suppose that $\sigma_{12}^{2}=\sigma_{21}^{2}=0$. We have $\cov(X_{1},X_{2})=0$. Therefore,
+	\begin{align*}
+		f_{X_{1},X_{2}}(x_{1},x_{2})&=\frac{1}{2\pi\sigma_{11}\sigma_{22}}\exp\left(-\frac{1}{2}\left(\frac{(x_{1}-\mu_{1})^{2}}{\sigma_{11}^{2}}+\frac{(x_{2}-\mu_{2})^{2}}{\sigma_{22}^{2}}\right)\right)\\
+		&=\frac{1}{\sqrt{2\pi\sigma_{11}^{2}}}\exp\left(-\frac{(x_{1}-\mu_{1})^{2}}{2\sigma_{11}^{2}}\right)\frac{1}{\sqrt{2\pi\sigma_{22}^{2}}}\exp\left(-\frac{(x_{2}-\mu_{2})^{2}}{2\sigma_{22}^{2}}\right)=f_{X_{1}}(x_{1})f_{X_{2}}(x_{2})
+	\end{align*}
+	Therefore, $X_{1}$ and $X_{2}$ are independent.
 \end{proofing}
 \begin{rem}
 	Two random variables are uncorrelated does not mean they are independent. It is only true if they are bivariate normal.
 \end{rem}
-
-\newpage
 We may extend the CLT to multivariate case.
 \begin{thm}\named{Multivariate Central Limit Theorem}
 	Let $\{\mathbf{X}_{n}=(X_{n1}\ \cdots\ X_{nk})^{T}\in\mathbb{R}^{k}\}$ be a sequence of i.i.d. random vectors with variance-covariance matrix $\mathbf{\Sigma}$. We assume that $\E(X_{ij}^{2})<\infty$ for $i=1,2,\cdots$ and $j=1,\cdots,k$. Define by $\mathbf{\overline{X}}$ the sample mean of the random vectors. Then as $n\to\infty$,
@@ -1148,7 +1280,7 @@ The basic idea of point estimation is that we use a statistic $T$, an estimate $
 	Most often, the parameters of our interest to be estimated (\textbf{estimand}) is a function of the unknown distribution parameters $\theta$. E.g. $\mu^{2},\frac{\sigma}{\mu}$.
 \end{rem}
 \begin{rem}
-	We only estimate an unknown parameters. There is no point to estimate an already known parameters.
+	We only estimate unknown parameters. There is no point to estimate an already known parameters.
 \end{rem}
 \begin{defn}
 	An estimator or estimate $\hat{\theta}$ is \textbf{unbiased} or \textbf{mean-unbiased} for $\theta$ if $\E(\hat{\theta})=\theta$.
@@ -1165,7 +1297,7 @@ Methods of moments estimation is one of the most popular methods in statistics t
 			\theta_{k}=g_{k}(\mu_{1}',\mu_{2}',\cdots,\mu_{k}',\cdots)
 		\end{cases}
 	\end{equation*}
-	then the \textbf{method of moments estimator} (MME), denoted by $(\widetilde{\theta}_{1},\widetilde{\theta}_{2},\cdots,\widetilde{\theta}_{k})$, of $(\theta_{1},\theta_{2},\cdots,\theta_{k})$ is:
+	then the \textbf{method of moments estimator} (MME) of $(\theta_{1},\theta_{2},\cdots,\theta_{k})$, denoted by $(\widetilde{\theta}_{1},\widetilde{\theta}_{2},\cdots,\widetilde{\theta}_{k})$, is:
 	\begin{equation*}
 		\begin{cases}
 			\widetilde{\theta}_{1}=g_{1}(\overline{X},\overline{X^{2}},\cdots,\overline{X^{k}},\cdots)\\
@@ -1175,6 +1307,9 @@ Methods of moments estimation is one of the most popular methods in statistics t
 		\end{cases}
 	\end{equation*}
 \end{defn}
+\begin{rem}
+	The method of moments estimate is obtained by $\widetilde{\theta}_{i}=g_{i}(\overline{x},\overline{x^{2}},\cdots,\overline{x^{k}},\cdots)$ for $i=1,\cdots,k$.
+\end{rem}
 \begin{rem}
 	This estimation is quick and easy, but the MME obtained are often biased and heavily relies on the existence of the required population moments.
 \end{rem}
@@ -1251,7 +1386,7 @@ Methods of moments estimation is one of the most popular methods in statistics t
 \end{lem}
 \begin{thm}
 	\label{Chapter 2 (Thoerem) Sequence of MME is asympt. normal}
-	A sequence of MME $\{\widetilde{\theta}_{n}\in\mathbb{R}^{k}\}$ is consistent and asymptotically unbiased for $\theta$. It is also asymptotically normally distributed. More precisely, under certain assumption like $\E\abs{X}^{2k}<\infty$, as $n\to\infty$, we have:
+	A sequence of MME $\{\widetilde{\theta}_{n}\in\mathbb{R}^{k}\}$ is consistent, asymptotically unbiased for $\theta$, and asymptotically normally distributed. More precisely, under certain assumption like $\E\abs{X}^{2k}<\infty$, as $n\to\infty$, we have:
 	\begin{equation*}
 		\sqrt{n}(\widetilde{\theta}_{n}-\theta)\to\N_{k}(\mathbf{0},\mathbf{GHG}^{T})
 	\end{equation*}
@@ -1270,7 +1405,7 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	\begin{equation*}
 		\lim_{n\to\infty}\E(\widetilde{\theta}_{n})=\theta
 	\end{equation*}
-	Note that $\E(\widetilde{\theta}_{n})\neq\theta$ for some $n$.
+	Note that it may be true that $\E(\widetilde{\theta}_{n})\neq\theta$ for some $n$.
 \end{rem}
 \begin{eg}
 	Consider a random sample of size $n$ from a random variable $X$ with $\E\abs{X}^{4}<\infty$. We take:
@@ -1332,11 +1467,11 @@ Methods of moments estimation is one of the most popular methods in statistics t
 	\end{equation*}
 	As $n\to\infty$,
 	\begin{equation*}
-		\sqrt{n}\left(\begin{pmatrix}
+		\sqrt{n}\left[\begin{pmatrix}
 			\overline{X}_{n}\\ S_{n}^{2}
 		\end{pmatrix}-\begin{pmatrix}
 			\mu\\ \sigma^{2}
-		\end{pmatrix}\right)\to\N_{2}\left(\begin{pmatrix}
+		\end{pmatrix}\right]\to\N_{2}\left(\begin{pmatrix}
 			0\\ 0
 		\end{pmatrix},\begin{pmatrix}
 			\sigma^{2} & \mu_{3}\\
@@ -1388,7 +1523,7 @@ The idea is that for each realization of $\mathbf{x}$, we want to estimate a val
 \begin{rem}
 	In some cases, especially when differentiation is used, it is easier to work with \textbf{log likelihood} defined by:
 	\begin{equation*}
-		l(\theta)=\log{L(\theta)}
+		l(\theta)=\ln{L(\theta)}
 	\end{equation*}
 	We can do this because $l(\theta)$ and $L(\theta)$ are strictly increasing and they have the same maxima. 
 \end{rem}
@@ -1565,7 +1700,7 @@ Condition 2 can be satisfied when the support of $X$ does not depend on $\theta$
 \end{lem}
 \begin{proofing}
 	\begin{equation*}
-		0=\odv*{}{\theta}\intinfty f_{X}(x|\theta)\,dx\intinfty\odv*{}{\theta}f_{X}(x|\theta)\,dx=\intinfty\left(\odv*{}{\theta}\ln{f_{X}(x|\theta)}\right)f_{X}(x|\theta)\,dx=\E\left[\odv*{}{\theta}\ln{f_{X}(X|\theta)}\right]
+		0=\odv*{}{\theta}\intinfty f_{X}(x|\theta)\,dx=\intinfty\odv*{}{\theta}f_{X}(x|\theta)\,dx=\intinfty\left(\odv*{}{\theta}\ln{f_{X}(x|\theta)}\right)f_{X}(x|\theta)\,dx=\E\left[\odv*{}{\theta}\ln{f_{X}(X|\theta)}\right]
 	\end{equation*}
 \end{proofing}
 \begin{rem}
@@ -1640,7 +1775,7 @@ By applying the same result to a random sample of size $n$, we can obtain the fo
 		\tag{Beta integral}
 		&=\frac{4}{\pi}\int_{0}^{1}(y)^{\frac{3}{2}-1}(1-y)^{\frac{3}{2}-1}\,dy\\
 		\tag{$\frac{\Gamma(z_{1})\Gamma(z_{2})}{\Gamma(z_{1}+z_{2})}=\int_{0}^{1}t^{z_{1}-1}(1-t)^{z_{2}-1}\,dt$}
-		&=\frac{4\Gamma(\frac{3}{2})\Gamma(\frac{3}{2})}{\pi\Gamma(3)}=\frac{4(0.5\sqrt{\pi})^{2}}{2!}=\frac{1}{2}
+		&=\frac{4\Gamma(\frac{3}{2})\Gamma(\frac{3}{2})}{\pi\Gamma(3)}=\frac{4(0.5\sqrt{\pi})^{2}}{\pi(2!)}=\frac{1}{2}
 	\end{align*}
 	Therefore, $\mathcal{I}_{X_{1},\cdots,X_{n}}(\theta)=n\mathcal{I}_{X_{1}}(\theta)=\frac{n}{2}$.
 \end{eg}
@@ -1705,9 +1840,9 @@ We may prove Theorem \ref{Chapter 2 (Thoerem) Sequence of MLE is asympt. normal}
 	\end{equation*}
 	We want to find the solution of $l'(\theta)=0$, which is the MLE. Setting:
 	\begin{equation*}
-		\sum_{i=1}^{n}\frac{2(x_{i}-\theta)}{1+(x_{i}-\theta)^{2}}
+		\sum_{i=1}^{n}\frac{2(x_{i}-\theta)}{1+(x_{i}-\theta)^{2}}=0
 	\end{equation*}
-	However, this cannot be solved explicitly in this case.
+	However, this is extremely hard to be solved explicitly. We need a numerical method to solve this.
 \end{eg}
 \begin{eg}\named{Newton-Raphson Algorithm}
 	By Taylor expansion, we can get:
@@ -1801,7 +1936,7 @@ The best unbiased estimator is the unbiased estimator with the smallest variance
 	Assume that UMVUE for $\theta$ exists. Then, it is unique.
 \end{lem}
 \begin{proofing}
-	Assume that there are two distinct UMVUEs, $\hat{\theta}^{*}$ and $\hat{\theta}^{**}$, for $\theta$. We may find that for all $\theta\in\theta$ and any unbiased estimator $\hat{\theta}$ of $\theta$:
+	Assume that there are two distinct UMVUEs, $\hat{\theta}^{*}$ and $\hat{\theta}^{**}$, for $\theta$. We may find that for all $\theta\in\Theta$ and any unbiased estimator $\hat{\theta}$ of $\theta$:
 	\begin{equation*}
 		\Var(\hat{\theta}^{*})=\Var(\hat{\theta}^{**})\leq\Var(\hat{\theta})
 	\end{equation*}
@@ -1888,18 +2023,18 @@ or in one-parameter case,
 \end{thm}
 \begin{proofing}
 	We shall prove it in discrete case with only one statistic. The proof in continuous case or more than one statistic is out of our scope.\\
-	Note that if $\mathbf{X}\in B$ for a set $B$, then $S(X)\in S(B)$. Therefore, for $i=1,\cdots,n$,
+	Note that if $\mathbf{X}\in B$ for a set $B$, then $S(\mathbf{X})\in S(B)$. Therefore, for $i=1,\cdots,n$,
 	\begin{equation*}
 		\{\mathbf{X}\in B\}\cap\{S(\mathbf{X})\in S(B)\}=\{\mathbf{X}\in B\}
 	\end{equation*}
 	\begin{align*}
 		\prob(\mathbf{X}\in B|\theta)&=\prob(\mathbf{X}\in B,S(\mathbf{X})\in S(B)|\theta)\\
-		\tag{$\prob(A\cap B|D)=\prob(A|B\cap D)\prob(B\cap D)$}
+		\tag{$\prob(A\cap B|D)=\prob(A|B\cap D)\prob(B|D)$}
 		&=\prob(\mathbf{X}\in B|S(\mathbf{X})\in S(B),\theta)\prob(S(\mathbf{X})\in S(B)|\theta)
 	\end{align*}
 	
 	\newpage
-	If $S$ is sufficient, then by definition,
+	Suppose that $S$ is sufficient. Then by definition,
 	\begin{equation*}
 		\prob(\mathbf{X}\in B|S(\mathbf{X})\in S(B),\theta)=\prob(X_{i}\in B|S(X_{i})\in S(B))
 	\end{equation*}
@@ -1908,7 +2043,7 @@ or in one-parameter case,
 		p_{\mathbf{X}}(\mathbf{x}|\theta)=p_{\mathbf{X}|S}(\mathbf{x}|S(\mathbf{x}))p_{S}(S(\mathbf{x})|\theta)
 	\end{equation*}
 	We may find that $g(S(\mathbf{x})|\theta)=p_{S}(S(\mathbf{x})|\theta)$ and $h(\mathbf{x})=p_{\mathbf{X}|S}(\mathbf{x}|S(\mathbf{x}))$.\\
-	If $p_{X}(\mathbf{x}|\theta)=g(T(\mathbf{x})|\theta)h(\mathbf{x})$, then:
+	Suppose that $p_{X}(\mathbf{x}|\theta)=g(T(\mathbf{x})|\theta)h(\mathbf{x})$. Then:
 	\begin{equation*}
 		p_{\mathbf{X}|T}(\mathbf{x}|t)=\frac{p_{\mathbf{X},T}(\mathbf{x},t|\theta)}{p_{T}(t|\theta)}=\begin{cases}
 			0, &t\neq T(\mathbf{x})\\
@@ -2022,9 +2157,6 @@ Based on the above example, we may notice that $\overline{X}$ and $\sum_{i=1}^{n
 	\end{equation*}
 	It is not an one-to-one function. Therefore, $(\overline{X})^{2}$ and $\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}$ may not be jointly sufficient.
 \end{eg}
-\begin{rem}
-	Number of one-to-one functions of statistics can be smaller than the number of the statistics themselves.
-\end{rem}
 From previous examples, the number of sufficient statistics can sometimes be more than the number of unknown parameters. How much should data be condense most without losing any information about unknown parameter $\theta$?
 \begin{defn}
 	A set of jointly sufficient statistics $\{S_{1},\cdots,S_{n}\}$ is \textbf{minimal jointly sufficient} if and only if for any other set of jointly sufficient statistics $\{T_{1},\cdots,T_{m}\}$, there exists a set of functions $\{f_{1},\cdots,f_{n}\}$ such that for $i=1,\cdots,n$,
@@ -2034,7 +2166,7 @@ From previous examples, the number of sufficient statistics can sometimes be mor
 \end{defn}
 or in one-statistic case,
 \begin{defn}
-	A sufficient statistic $S$ is \textbf{minimal sufficient} if and only if for nay other sufficient statistic $T$, there exists a function $f$ such that:
+	A sufficient statistic $S$ is \textbf{minimal sufficient} if and only if for any other sufficient statistic $T$, there exists a function $f$ such that:
 	\begin{equation*}
 		S=f(T)
 	\end{equation*}
@@ -2046,7 +2178,7 @@ In general, it is not easy to find the minimal jointly sufficient statistics exc
 
 \newpage
 \section{Relationship of Sufficiency with UMVUE}
-Recall that we actually want to find UMVUE. Does sufficiency help us find UMVUE? Turns out, by Rao-Blackwell Theorem, it helps us find an improved unbiased estimator!
+Recall that we actually want to find UMVUE. Does sufficiency help us find UMVUE? By Rao-Blackwell Theorem, it helps us find an improved unbiased estimator!
 \begin{thm}\named{Rao-Blackwell Theorem}
 	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$, and a set of jointly sufficient statistics $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,r$. Suppose that $T=T(\mathbf{X})$ is an unbiased estimator for $g(\theta)$ for a function $g$. Define $T'$ by $\E(T|S_{1},\cdots,S_{r})$. Then:
 	\begin{enumerate}
@@ -2361,7 +2493,7 @@ is the lowest possible bound for any unbiased estimator. The reason is because o
 	\end{equation*}
 \end{rem}
 \begin{eg}
-	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\N(\theta,\sigma^{2})$., where $\sigma^{2}$ is known and $\theta$ is unknown. The CRLB for $\theta$ is:
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\N(\theta,\sigma^{2})$, where $\sigma^{2}$ is known and $\theta$ is unknown. The CRLB for $\theta$ is:
 	\begin{equation*}
 		\frac{1}{n\mathcal{I}_{X_{1}}(\theta)}=\frac{\sigma^{2}}{n}
 	\end{equation*}
@@ -2428,7 +2560,7 @@ This theorem has an interesting result that if we can write $\odv*{\ln{f_{X_{1},
 	\begin{equation*}
 		\odv*{\ln{f_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\theta)}}{\theta}=A(\theta,n)[T(X_{1},\cdots,X_{n})-g(\theta)]=\frac{A(\theta,n)}{a}[(aT(X_{1},\cdots,X_{n})+b)-(ag(\theta)+b)]
 	\end{equation*}
-	By having $B(\theta,n)=\frac{A(\theta,n)}{a}$, we can find that $aT(X_{1},\cdots,X_{n})+b$ is an UMVUE of $ag(\theta)+b$.
+	By having $A^{*}(\theta,n)=\frac{A(\theta,n)}{a}$, we can find that $aT(X_{1},\cdots,X_{n})+b$ is an UMVUE of $ag(\theta)+b$.
 \end{proofing}
 \begin{eg}
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\Poisson(\lambda)$, where $\lambda$ is unknown.
@@ -2709,7 +2841,7 @@ Similar to finding the MLE in Chapter 2, we also have a general method called li
 	\begin{equation*}
 		C_{1}=\bigl\{\mathbf{x}:y<1\text{ and }y^{n}e^{-n(y-1)}\leq k\bigr\}=\{\mathbf{x}:y\leq K\in(0,1)\}=\biggl\{\mathbf{x}:\sum_{i=1}^{n}x_{i}\leq\frac{nK}{\theta_{0}}=K'\biggr\}
 	\end{equation*}
-	Therefore, we can reject $H_{0}$ when $\sum_{i=1}^{n}x_{i}\leq K'$, where $\sum_{i=1}^{n}X_{i}\sim\Gamma(n,\theta)$. $K'$ can be determined by:
+	Therefore, we can reject $H_{0}$ when $\sum_{i=1}^{n}x_{i}\leq K'$, where $\sum_{i=1}^{n}X_{i}\sim\Gam(n,\theta)$. $K'$ can be determined by:
 	\begin{equation*}
 		\prob\left(\left.\sum_{i=1}^{n}X_{i}\leq K'\right|\theta_{0}\right)=\alpha
 	\end{equation*}
@@ -3160,7 +3292,7 @@ Remember exponential family, it is also very useful on hypothesis testing.
 	Then, the set $\{\sum_{i=1}^{n}d_{1}(X_{i}),\cdots,\sum_{i=1}^{n}d_{k}(X_{i})\}$ is a set of jointly complete and minimal sufficient statistics.
 \end{thm}
 \begin{thm}\named{Lehmann-Scheff\'e Theorem}
-	Let $CS$ be a complete and (minimal) sufficient statistic. If there exists a function $h(CS)$ which is unbiased for $g(\theta)$, then $h(CS)$ is the unique UMVUE of $g(\theta)$. In particular, if $\E[f(\mathbf{X})]=g(\theta)$, then $h(CS)=\E[f(\mathbf{X})|T]$ is the UMVUE for $g(\theta)$.
+	Let $CS$ be a complete and (minimal) sufficient statistic. If there exists a function $h(CS)$ which is unbiased for $g(\theta)$, then $h(CS)$ is the unique UMVUE of $g(\theta)$. In particular, if $\E[f(\mathbf{X})]=g(\theta)$, then $h(CS)=\E[f(\mathbf{X})|CS]$ is the UMVUE for $g(\theta)$.
 \end{thm}
 \begin{thm}\named{Cram\'er-Rao Inequality}
 	Under the regularity conditions, the variance of an unbiased estimator $T(\mathbf{X})$ for $\theta$ based on a set of random variables $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ from their joint PDF $f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)$ satisfies the following inequality:
