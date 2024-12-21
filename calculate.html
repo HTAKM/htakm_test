@@ -23,8 +23,8 @@
             <section>
                 <p>CGA Calculator</p>
                 <p>Please input courses, number of credits and your grade.</p>
-                <form class="courses_given" method="get">
-                    <div class="course_rows_given">
+                <form id="courseForm" method="get">
+                    <div class="calCourseRows">
                         <div class="form_course">
                             <label for="inputCourse1"></label>
                             <input type="text" id="inputCourse1" name="inputCourse" placeholder="COMP 1021">
@@ -39,11 +39,11 @@
                         </div>
                     </div>
                 </form>
-                <button type="button" id="add_row_button" onclick="add_rows()">Add row</button>
-                <button type="button" id="delete_row_button" onclick="delete_rows()">Delete row</button>
-                <button type="submit" id="submit_for_cga" onclick="calculate_CGA()">Submit</button>
+                <button type="button" id="addRowBtn" onclick="addRow()">Add row</button>
+                <button type="button" id="deleteRowBtn" onclick="deleteRow()">Delete row</button>
+                <button type="submit" id="submitBtn" onclick="calculate_CGA()">Submit</button>
                 <noscript>Your website does not allow javescript!</noscript>
-                <div id="result_of_cga">
+                <div id="CGAResult">
                 </div>
             </section>
         </main>
