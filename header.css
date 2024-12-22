@@ -10,12 +10,12 @@ header {
     margin: 0;
     padding-left: 10px;
 }
-#navigatePage {
+#navigate_page {
     width: 50%;
     max-width: 400px;
     height: 50px;
 }
-#navigatePage > ul {
+#navigate_page > ul {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -24,7 +24,7 @@ header {
     margin-block: 0;
     height: 100%;
 }
-#navigatePage > ul > li:hover {
+#navigate_page > ul > li:hover {
     cursor: pointer;
 }
 .header_list {
