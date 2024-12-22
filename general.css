@@ -10,16 +10,16 @@ p {
     -webkit-text-size-adjust: auto;
 }
 main {
-    padding-top: 60px;
-    margin: 0 10px 0 10px;
+    padding-top: 3.75rem;
+    margin: 0 0.625rem 0 0.625rem;
 }
 section {
     width: 80%;
-    margin: 0 auto 10px auto;
-    max-width: 700px;
+    margin: 0 auto 0.625rem auto;
+    max-width: 45rem;
     border: 2px solid purple;
-    border-radius: 10px; 
-    padding: 5px;
+    border-radius: 0.625rem; 
+    padding: 0.3125rem;
 }
 div {
     padding: 0;
@@ -43,5 +43,5 @@ a {
 }
 img {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 25rem;
 }

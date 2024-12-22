@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    height: 50px;
+    height: 3.125rem;
     background-color: #b95fdd;
     display: flex;
     justify-content: space-between;
@@ -8,12 +8,12 @@ header {
     position: fixed;
     top: 0;
     margin: 0;
-    padding-left: 10px;
+    padding-left: 0.625rem;
 }
 #navigate_page {
     width: 50%;
-    max-width: 400px;
-    height: 50px;
+    max-width: 25rem;
+    height: 3.125rem;
 }
 #navigate_page > ul {
     display: flex;
@@ -34,7 +34,7 @@ header {
     font-weight: bold;
 }
 .header_list > a {
-    font-size: 15px;
+    font-size: 1rem;
     text-decoration: none;
     color: #1b1b32;
 }
