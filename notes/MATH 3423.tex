@@ -26,11 +26,11 @@
 }
 \date{
 	Last major change: December 7, 2024\\
-	Last small update: December 21, 2024
+	Last small update: December 22, 2024
 }
 \begin{document}
 \maketitle
-This is MATH 3423 lecture notes made by me. Note that some of the notations are slightly different with what is used in the course for better clarity (adjusting to my notation preference). For example:
+This is MATH 3423 lecture note made by me. Note that some of the notations are slightly different with what is used in the course for better clarity (adjusting to my notation preference). For example:
 \begin{table}[h]
 	\centering
 	\begin{tabular}{||c|c|c||}
@@ -53,18 +53,16 @@ This is MATH 3423 lecture notes made by me. Note that some of the notations are 
 
 Some things to note about:
 \begin{enumerate}
-	\item Following all the examples in this lecture notes are not adequate to help you survive Dr. YU's exam, but it does help you (according to an anonymous reader who got almost high in Dr. YU's exams (wtf))
-	\item Some topics may or may not be tested. This lecture notes include topics from some MATH 2421/2431 stuff and untested supplementary notes.
-	\item If you do the Dr. YU's exam, please try to follow his notations instead.
+	\item Following all the examples in this lecture note is not adequate to help you survive Dr.YU's exam, but it does help you understand (according to an anonymous reader who got almost high in Dr.YU's exams (wtf))
+	\item Some topics may or may not be tested. This lecture note include topics from some MATH 2421/2431 stuff and untested supplementary notes.
+	\item If you are about to attend Dr.YU's exams, please try to follow his notations instead.
 	\item There may be typos in the notes. Proceed with caution. (?)
 \end{enumerate}
 \tableofcontents
 \chapter{Preliminary}
 Statistical inference is a statistical process which investigates how to use the information from the data to make an inference about the distribution of the random variable of our interest. In MATH 3423, we will focus on two core concepts of statistical inference: point estimation and hypothesis testing.
 \section{Random variables}
-In a particular event, it usually results in an outcome $\omega$. We group all of these possible outcomes into a sample space $\Omega$.
-
-However, in order to obtain a reasonable numerical analysis from the sample space, we should map the outcomes into a numerical value. We define it as random variable.
+In a particular event, it usually results in an outcome $\omega$. We group all of these possible outcomes into a sample space $\Omega$. However, in order to obtain a reasonable numerical analysis from the sample space, we should map the outcomes into a numerical value. We define it as random variable.
 \begin{defn}
 	Given a sample space $\Omega$.
 	\begin{enumerate}
@@ -83,7 +81,7 @@ However, in order to obtain a reasonable numerical analysis from the sample spac
 		\end{equation*}
 		\item The random variable $X$ is \textbf{continuous} if it's  CDF can be expressed using a \textbf{probability density function} (PDF) $f_{X}$ by:
 		\begin{equation*}
-			F_{X}(x)=\int_{-\infty}^{x}f(u)\,du
+			F_{X}(x)=\int_{-\infty}^{x}f_{X}(u)\,du
 		\end{equation*}
 	\end{enumerate}
 \end{defn}
@@ -93,7 +91,7 @@ However, in order to obtain a reasonable numerical analysis from the sample spac
 		f_{X,Y}(x,y)=f_{X}(x)f_{Y}(y)\text{ or }F_{X,Y}(x,y)=F_{X}(x)F_{Y}(y)
 	\end{equation*}
 \end{defn}
-This Theorem is very important and we will use a lot later.
+This theorem is very important and we will use a lot later.
 \begin{thm}
 	If $X$ and $Y$ are independent, then $f(X)$ and $g(Y)$ are independent for any functions $f$ and $g$.
 \end{thm}
@@ -835,6 +833,12 @@ It would be useful if we have a function that could generate all moments.
 	\end{equation*}
 \end{eg}
 \begin{lem}
+	Random variables $X$ and $Y$ are independent if and only if:
+	\begin{equation*}
+		M_{X,Y}(s,t)=M_{X}(s)M_{Y}(t)
+	\end{equation*}
+\end{lem}
+\begin{lem}
 	If random variables $X$ and $Y$ are independent, then:
 	\begin{equation*}
 		M_{X+Y}(t)=M_{X}(t)M_{Y}(t)
@@ -871,10 +875,7 @@ It would be useful if we have a function that could generate all moments.
 \begin{eg}
 	What is the MGF of $X\sim\N(\mu,\sigma^{2})$? We may first find the MGF of $Z\sim\N(0,1)$.
 	\begin{align*}
-		M_{Z}(t)=\E(e^{tZ})&=\intinfty\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(z^{2}-2tz)}\,dz\\
-		&=\intinfty\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}((z-t)^{2}-t^{2})}\,dz\\
-		&=e^{\frac{t^{2}}{2}}\intinfty\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(z-t)^{2}}\,dz\\
-		&=e^{\frac{t^{2}}{2}}
+		M_{Z}(t)=\E(e^{tZ})=\intinfty\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(z^{2}-2tz)}\,dz=\intinfty\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}((z-t)^{2}-t^{2})}\,dz=e^{\frac{t^{2}}{2}}\intinfty\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(z-t)^{2}}\,dz=e^{\frac{t^{2}}{2}}
 	\end{align*}
 	Therefore, by having $X=\sigma Z+\mu$, we have:
 	\begin{equation*}
