@@ -26,7 +26,7 @@
 }
 \date{
 	Last major change: December 7, 2024\\
-	Last small update: December 22, 2024
+	Last small update: December 29, 2024
 }
 \begin{document}
 \maketitle
@@ -181,6 +181,9 @@ The population moments of a distribution play an important role in theoretical a
 		\end{equation*}
 	\end{enumerate}
 \end{defn}
+\begin{rem}
+	One may simplify $\E[(X-a)^{k}]$ to $\E(X-a)^{k}$. Just don't confuse it with $[\E(X-a)]^{k}$.
+\end{rem}
 \begin{lem}\named{Linearity of expectation}
 	Given a set of random variables $\{X_{1},\cdots,X_{n}\}$. For any numbers $a_{i}$, it satisfies:
 	\begin{equation*}
@@ -1694,7 +1697,7 @@ Condition 2 can be satisfied when the support of $X$ does not depend on $\theta$
 \end{defn}
 \begin{lem}
 	\label{Chapter 2 (Lemma) Expectation of Fisher Information but with first moment is zero}
-	Suppose the $X$ is a random variable with PDF $f_{X}$. Under the regularity condition, we have:
+	Suppose the $X$ is a random variable with PDF $f_{X}$. Under the regularity conditions, we have:
 	\begin{equation*}
 		\E\left[\odv*{}{\theta}\ln{f_{X}(X|\theta)}\right]=0
 	\end{equation*}
@@ -2093,7 +2096,7 @@ or in one-parameter case,
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[\theta-\frac{1}{2},\theta+\frac{1}{2}]$, where $\theta$ is unknown. The joint PDF of the random sample is:
 	\begin{align*}
 		f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta)&=\prod_{i=1}^{n}\mathbf{1}_{\theta-\frac{1}{2}\leq x_{i}\leq\theta+\frac{1}{2}}\\
-		\tag{$x_{i}$ is the $i$-th smallest sample}
+		\tag{$x_{(i)}$ is the $i$-th smallest sample}
 		&=\mathbf{1}_{\theta-\frac{1}{2}\leq x_{(1)}<x_{(n)}\leq\theta+\frac{1}{2}}\\
 		&=\mathbf{1}_{x_{(n)}-\frac{1}{2}\leq\theta\leq x_{(1)}+\frac{1}{2}}\times 1\\
 		&=g(x_{(1)},x_{(n)}|\theta)\times h(x_{1},\cdots,x_{n})
@@ -2104,7 +2107,7 @@ or in one-parameter case,
 	Let $\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from $\U[\theta_{1},\theta_{2}]$, where $\theta_{1},\theta_{2}$ are unknown with $\theta_{1}<\theta_{2}$ and $\theta_{1}$ is not a function of $\theta_{2}$. The joint PDF of the random sample is:
 	\begin{align*}
 		f_{X_{1},\cdots,X_{n}}(x_{1},\cdots,x_{n}|\theta_{1},\theta_{2})&=\frac{1}{(\theta_{2}-\theta_{1})^{n}}\prod_{i=1}^{n}\mathbf{1}_{\theta_{1}\leq x_{i}\leq\theta_{2}}\\
-		\tag{$x_{i}$ is the $i$-th smallest sample}
+		\tag{$x_{(i)}$ is the $i$-th smallest sample}
 		&=\frac{1}{(\theta_{2}-\theta_{1})^{n}}\mathbf{1}_{\theta_{1}\leq x_{(1)}<x_{(n)}\leq\theta_{2}}\times 1\\
 		&=g(x_{(1)},x_{(n)}|\theta_{1},\theta_{2})\times h(x_{1},\cdots,x_{n})
 	\end{align*}
@@ -2154,7 +2157,7 @@ Based on the above example, we may notice that $\overline{X}$ and $\sum_{i=1}^{n
 	Therefore, by Lemma \ref{Chapter 3 (Lemma) One-to-one sufficiency}, $\overline{X}$ and $\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}$ are jointly sufficient.\\
 	However,
 	\begin{equation*}
-		(\overline{X})^{2}=\frac{1}{n^{2}}\left(\sum_{i=1}^{n}X_{i}\right)
+		(\overline{X})^{2}=\frac{1}{n^{2}}\left(\sum_{i=1}^{n}X_{i}\right)^{2}
 	\end{equation*}
 	It is not an one-to-one function. Therefore, $(\overline{X})^{2}$ and $\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}$ may not be jointly sufficient.
 \end{eg}
@@ -2568,7 +2571,7 @@ This theorem has an interesting result that if we can write $\odv*{\ln{f_{X_{1},
 	\begin{align*}
 		\odv*{\ln{p_{X_{1},\cdots,X_{n}}(X_{1},\cdots,X_{n}|\lambda)}}{\lambda}&=\odv*{\ln\left(\prod_{i=1}^{n}\frac{\lambda^{X_{i}}e^{-\lambda}}{X_{i}!}\right)}{\lambda}\\
 		&=\odv*{\sum_{i=1}^{n}[X_{i}\ln{\lambda}-\lambda-\ln(X_{i}!)]}{\lambda}\\
-		&=\sum_{i=1}^{n}\frac{X_{i}}{\lambda}-1\\
+		&=\sum_{i=1}^{n}\left(\frac{X_{i}}{\lambda}-1\right)\\
 		&=\frac{n}{\lambda}(\overline{X}-\lambda)
 	\end{align*}
 	Therefore, by Theorem \ref{Chapter 3 (Theorem) C-R equality}, $\overline{X}$ is an UMVUE of $\lambda$ and:
@@ -3261,7 +3264,7 @@ Remember exponential family, it is also very useful on hypothesis testing.
 	for $i=1,\cdots,k$ and $j=1,\cdots,k$.
 \end{thm}
 \begin{thm}\named{Fisher-Neyman Factorization Theorem}
-	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$. A set of statistics $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,r$, is jointly sufficient is and only if:
+	Let $\mathbf{X}=\{X_{1},\cdots,X_{n}\}$ be a random sample of size $n$ from a PDF $f(x|\theta)$ or a PMF $p(x|\theta)$, where $\theta\in\Theta\subset\mathbb{R}^{k}$. A set of statistics $\{S_{1},\cdots,S_{r}\}$, where $r\geq k$ and $S_{i}=S_{i}(\mathbf{X})$ for $i=1,\cdots,r$, is jointly sufficient if and only if:
 	\begin{equation*}
 		\begin{cases}
 			p_{\mathbf{X}}(\mathbf{x}|\theta)=g(S_{1}(\mathbf{x}),\cdots,S_{r}(\mathbf{x})|\theta)h(\mathbf{x}), &\text{Discrete case}\\
