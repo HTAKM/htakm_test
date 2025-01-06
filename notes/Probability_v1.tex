@@ -13,7 +13,6 @@
 \DeclareMathOperator{\Exp}{Exp}
 \DeclareMathOperator{\N}{N}
 \DeclareMathOperator{\Cauchy}{Cauchy}
-\DeclareMathOperator{\Gam}{Gamma}
 \DeclareMathOperator{\Beta}{Beta}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\cov}{cov}
@@ -23,15 +22,15 @@
 \setlength{\parindent}{0pt}
 \title{
 	\Huge Probability\\
-	\small Version 2.0
+	\small Version 1.4
 }
 \author{
 	HU-HTAKM\\
 	\small Website: \url{https://htakm.github.io/htakm_test/}
 }
 \date{
-	Last major change: January 6, 2025\\
-	Last small update: January 6, 2025
+	Last major change: September 14, 2024\\
+	Last small update: September 30, 2024
 }
 \begin{document}
 \maketitle
@@ -88,7 +87,6 @@ Please note that all proofs that may be combinatorial proofs are omitted.
 			JPDF & Joint probability density function\\
 			PGF & Probability generating function\\
 			MGF & Moment generating function\\
-			JMGF & Joint moment generating function\\
 			CF & Characteristic function\\
 			JCF & Joint characteristic function\\
 			i.i.d. & independent and identically distributed\\
@@ -131,7 +129,8 @@ Please note that all proofs that may be combinatorial proofs are omitted.
 \tableofcontents
 \chapter{Combinatorial Analysis}
 \section{Probabilities}
-In our life, we mostly believe that the future is largely unpredictable. We express this belief in chance behaviour and assign quantitative and qualitative meanings to its usages. Therefore, we create the concept of "probability", which tries to create a numerical descriptions of how likely an event would occur.
+In our life, we mostly believe that the future is largely unpredictable. We express this belief in chance behaviour and assign quantitative and qualitative meanings to its usages.\\
+Therefore, we create the concept of "probability", which tries to create a numerical descriptions of how likely an event would occur.
 \begin{defn}
 	\textbf{Probability} is a numerical measurement of how likely an event would occur.
 \end{defn}
@@ -198,8 +197,7 @@ We also have cases when two ends of the ordered arrangement are connected togeth
 \end{thm}
 
 \section{Combinations}
-Now, assume that we don't care about the ordering of chosen objects. We only want to choose $k$ objects from $n$ objects.
-
+Now, assume that we don't care about the ordering of choosing objects. We only want to choose $k$ objects from $n$ objects.\\
 Then we have the following definition.
 \begin{defn}
 	If $k\leq n$, \textbf{$k$-combination} of a set with $n$ distinct elements is an unordered arrangement of $k$ elements of the set.
@@ -234,9 +232,10 @@ We can immediately derive the following corollary.
 	\end{equation*}
 \end{cor}
 \begin{proofing}
-	\begin{equation*}
-		\binom{n}{n-k}=\frac{n!}{(n-k)!(n-n+k)!}=\frac{n!}{k!(n-k)!}=\binom{n}{k}
-	\end{equation*}
+	Expanding both sides, we get:
+	\begin{align*}
+		\binom{n}{k}&=\frac{n!}{k!(n-k)!} & \binom{n}{n-k}&=\frac{n!}{(n-k)!(n-n+k)!}=\frac{n!}{k!(n-k)!}=\binom{n}{k}
+	\end{align*}
 \end{proofing}
 
 \newpage
@@ -259,7 +258,7 @@ We have the famous Binomial Theorem.
 	\begin{equation*}
 		(x+y)^{n}=\sum_{k=0}^{n}\binom{n}{k}x^{k}y^{n-k}
 	\end{equation*} 
-	where for all $k$, $\binom{n}{k}$ is called the \textbf{binomial coefficient}.
+	where $\binom{n}{k}$ for all $k$ are called the \textbf{binomial coefficient}.
 \end{thm}
 \begin{cor}
 	Let $n$ be a non-negative integer. We have:
@@ -372,7 +371,7 @@ The formula is way too complicated! Luckily, we have a formula to know how many 
 	\end{equation*}
 	where $x_{i}\geq 0$ for all $i$.
 \end{thm}
-We can also use the above to find number of ways to put $n$ objects into $r$ boxes. If in addition every box must have an object, we have the following.
+We can also use the above to find number of ways to put $n$ objects into $r$ objects. If in addition every box must have a box, we use the theorem below.
 \begin{thm}
 	There are $\binom{n-1}{r-1}$ distinct positive integer-valued vectors $(x_{1},x_{2},\cdots,x_{r})$ that satisfies:
 	\begin{equation*}
@@ -494,9 +493,6 @@ We are more interested on $\sigma$-field that is closed under countably infinite
 	\end{enumerate}
 \end{defn}
 \begin{rem}
-	All $\sigma$-fields are fields. The converse are not necessarily true.
-\end{rem}
-\begin{rem}
 	From this point onwards, $\mathcal{F}$ represents the $\sigma$-field.
 \end{rem}
 \begin{eg}
@@ -512,11 +508,12 @@ We are more interested on $\sigma$-field that is closed under countably infinite
 \begin{rem}
 	These two formulae will be very useful.
 	\begin{align*}
-		(a,b)&=\bigcup_{n=1}^{\infty}\left[a+\frac{1}{n},b-\frac{1}{n}\right] &            [a,b]&=\bigcap_{n=1}^{\infty}\left[a-\frac{1}{n},b+\frac{1}{n}\right]
+		(a,b)&=\bigcup_{n=1}^{\infty}\left[a+\frac{1}{n},b-\frac{1}{n}\right] &             [a,b]&=\bigcap_{n=1}^{\infty}\left[a-\frac{1}{n},b+\frac{1}{n}\right]
 	\end{align*}
 \end{rem}
 
 \section{Probability measure and Kolmogorov axioms}
+We wish to be able to discuss the likelihoods of the occurrences of events.\\
 Now that we define some fundamental terminologies, we can finally define probability.
 \begin{defn}
 	\textbf{Measurable space} $(\Omega,\mathcal{F})$ is a pair comprising a sample space $\Omega$ and a $\sigma$-field $\mathcal{F}$.\\
@@ -545,7 +542,7 @@ We can combine measurable space and measure into a measure space.
 	\end{enumerate}
 	\textbf{Probability space} $(\Omega,\mathcal{F},\prob)$ is a measure space with probability measure $\prob$ as the measure.
 \end{defn}
-Kolmogorov axioms of probability uses axioms to formalize probability.
+Using probability measure, we can use the axiom of probability to formalize probability.
 \begin{defn}(\textbf{Kolmogorov axioms of probability})
 	Let $(\Omega,\mathcal{F},\prob)$ be a probability space, with sample space $\Omega$, $\sigma$-field $\mathcal{F}$, and probability measure $\prob$.
 	\begin{enumerate}
@@ -592,7 +589,7 @@ The following properties are important and build a foundation of probability.
 		\item $\prob(A^{\complement})=1-\prob(A)$.
 		\item If $A\subseteq B$, then $\prob(B)=\prob(A)+\prob(B\setminus A)\geq\prob(A)$.
 		\item $\prob(A\cup B)=\prob(A)+\prob(B)-\prob(A\cap B)$. If $A$ and $B$ are disjoint, then $\prob(A\cup B)=\prob(A)+\prob(B)$.
-		\item (\textbf{Inclusion-exclusion formula}) For any set of events $\{A_{1},\cdots,A_{n}\}$,
+		\item \textbf{Inclusion-exclusion formula}
 		\begin{equation*}
 			\prob\left(\bigcup_{i=1}^{n}A_{i}\right)=\sum_{i}\prob(A_{i})-\sum_{i<j}\prob(A_{i}\cap A_{j})+\cdots+(-1)^{n+1}\prob(A_{1}\cap A_{2}\cap\cdots\cap A_{n})
 		\end{equation*}
@@ -604,19 +601,19 @@ The following properties are important and build a foundation of probability.
 		$A\cap A^{\complement}=\emptyset \Longrightarrow \prob(A\cup A^{\complement})=\prob(A)+\prob(A^{\complement})=1$
 		\item $A\subseteq B\Longrightarrow B=A\cup (B\setminus A)\Longrightarrow\prob(B)=\prob(A)+\prob(B\setminus A)$
 		\item $A\cup B=A\cup (B\setminus A)\Longrightarrow\prob(A\cup B)=\prob(A)+\prob(B\setminus A)=\prob(A)+\prob(B\setminus(A\cap B))=\prob(A)+\prob(B)-\prob(A\cap B)$
-		\item By induction. When $n=1$, it is obviously true. Assume it is true for some positive integers $m$. When $n=m+1$,
+		\item By induction. When $n=1$, it is obviously true.\\
+		Assume it is true for some positive integers $m$. When $n=m+1$,
 		\begin{align*}
-			\tag{Item 3}
 			\prob\left(\bigcup_{i=1}^{m+1}A_{i}\right)&=\prob\left(\bigcup_{i=1}^{m}A_{i}\right)+\prob(A_{m+1})-\prob\left(\bigcup_{i=1}^{m}A_{i}\cap A_{m+1}\right)\\
-			&=\sum_{i=1}^{m+1}\prob(A_{i})-\sum_{1\leq i<j\leq m}\prob(A_{i}\cap A_{j})+\cdots(-1)^{m+1}\prob\left(\bigcap_{i=1}^{m}A_{i}\right)-\prob\left(\bigcup_{i=1}^{m}A_{i}\cap A_{m+1}\right)\\
-			&=\sum_{i=1}^{m+1}\prob(A_{i})-\sum_{1\leq i<j\leq m+1}\prob(A_{i}\cap A_{j})+\cdots+(-1)^{m+2}\prob\left(\bigcap_{i=1}^{m+1}A_{i}\right)
+			&=\sum_{i=1}^{m}\prob(A_{i})-\sum_{1\leq i<j\leq m}\prob(A_{i}\cap A_{j})+\cdots+(-1)^{m+1}\prob\left(\bigcap_{i=1}^{m}A_{i}\right)\\
+			&+\prob(A_{m+1})-\sum_{i=1}^{m}\prob(A_{i}\cap A_{m+1})+\cdots+(-1)^{m+2}\prob\left(\bigcap_{i=1}^{m+1}A_{i}\right)\\
+			&=\sum_{i=1}^{m+1}\prob(A_{i})-\sum_{1\leq i<j\leq m+1}\prob(A_{i}-A_{j})+\cdots+(-1)^{m+2}\prob\left(\bigcap_{i=1}^{m+1}A_{i}\right)
 		\end{align*}
-		Therefore, by induction, the Inclusion-exclusion formula is true for any set of events $\{A_{1},\cdots,A_{n}\}$ for any $n\in\mathbb{N}_{+}$.
 	\end{enumerate}
 \end{proofing}
 We recall the continuity of function $f:\mathbb{R}\to\mathbb{R}$. $f$ is continuous at some point $x$ if for all $x_{n}$, $x_{n}\to x$ when $n\to\infty$. We have:
 \begin{equation*}
-	\lim_{n\to\infty}f(x_{n})=f\left(\lim_{n\to\infty}x_{n}\right)=f(x)
+	\lim_{n\to\infty}f(x_{n})=f\left(\lim_{n\to\infty}x_{n}\right)=f_{X}(x)
 \end{equation*}
 Similarly, we say a set function $\mu$  is continuous if for all $A_{n}$ with $A=\lim_{n\to\infty}A_{n}$, we have:
 \begin{equation*}
@@ -625,8 +622,8 @@ Similarly, we say a set function $\mu$  is continuous if for all $A_{n}$ with $A
 \begin{rem} 
 	Given a sequence of sets $A_{n}$. We have two types of set limit:
 	\begin{align*}
-		\limsup_{n\to\infty}A_{n}&=\lim_{n\to\infty}\sup_{m\geq n}A_{m}=\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_{m}=\{\omega\in\Omega:\omega\in A_{n}\text{ for infinitely many }n\}\\
-		\liminf_{n\to\infty}A_{n}&=\lim_{n\to\infty}\inf_{m\geq n}A_{m}=\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_{m}=\{\omega\in\Omega: \omega\in A_{n}\text{ for all but finitely many }n\}
+		\limsup_{n\to\infty}A_{n}&=\lim_{m\uparrow\infty}\sup_{n\geq m}A_{n}=\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}=\{\omega\in\Omega:\omega\in A_{n}\text{ for infinitely many }n\}\\
+		\liminf_{n\to\infty}A_{n}&=\lim_{m\uparrow\infty}\inf_{n\geq m}A_{n}=\bigcup_{n=1}^{\infty}\bigcap_{n=m}^{\infty}A_{n}=\{\omega\in\Omega: \omega\in A_{n}\text{ for all but finitely many }n\}
 	\end{align*}
 	Apparently, $\liminf_{n\to\infty}A_{n}\subseteq\limsup_{n\to\infty}A_{n}$
 \end{rem}
@@ -645,19 +642,20 @@ From the definition, we can get the following important lemma.
 	\label{Chapter 2 (Lemma) Continuous probability}
 	If $A_{1},A_{2},\cdots$ are an increasing sequence of events ($A_{1}\subseteq A_{2}\subseteq\cdots$), then:
 	\begin{equation*}
-		\prob(A)=\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\lim_{n\to\infty}\prob(A_{n})
+		\prob(A)=\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
 	\end{equation*}
 	Similarly, if $A_{1},A_{2},\cdots$ are a decreasing sequence of events ($A_{1}\supseteq A_{2}\supseteq\cdots)$, then:
 	\begin{equation*}
-		\prob(A)=\prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=\lim_{n\to\infty}\prob(A_{n})
+		\prob(A)=\prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
 	\end{equation*}
 \end{lem}
 \begin{proofing}
 	For $A_{1}\subseteq A_{2}\subseteq\cdots$, let $B_{n}=A_{n}\setminus A_{n-1}$
 	\begin{equation*}
-		\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\prob\left(\bigcup_{n=1}^{\infty}B_{n}\right)=\sum_{m=1}^{\infty}\prob(B_{m})=\lim_{n\to\infty}\sum_{m=1}^{n}\prob(B_{m})=\lim_{n\to\infty}\prob\left(\bigcup_{m=1}^{n}B_{m}\right)=\lim_{n\to\infty}\prob(A_{n})
+		\prob\left(\bigcup_{n\to\infty}^{\infty}A_{n}\right)=\prob\left(\bigcup_{n\to\infty}^{\infty}A_{n}\right)=\sum_{i=1}^{\infty}\prob(B_{n})=\lim_{N\to\infty}\sum_{i=1}^{N}\prob(B_{n})=\lim_{N\to\infty}\prob\left(\bigcup_{n=1}^{\infty}B_{N}\right)=\lim_{N\to\infty}\prob(A_{N})
 	\end{equation*}
-	For $A_{1}\supseteq A_{2}\supseteq\cdots$, we get $A^{\complement}=\bigcup_{i=1}^{\infty}A_{i}^{\complement}$ and $A_{1}^{\complement}\subseteq A_{2}^{\complement}\subseteq\cdots$. Therefore,
+	For $A_{1}\supseteq A_{2}\supseteq\cdots$, we get $A^{\complement}=\bigcup_{i=1}^{\infty}A_{i}^{\complement}$ and $A_{1}^{\complement}\subseteq A_{2}^{\complement}\subseteq\cdots$.\\
+	Therefore,
 	\begin{equation*}
 		\prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=1-\prob\left(\bigcup_{n=1}^{\infty}A_{n}^{\complement}\right)=1-\lim_{n\to\infty}\prob(A_{n}^{\complement})=\lim_{n\to\infty}\prob(A_{n})
 	\end{equation*}
@@ -737,9 +735,7 @@ It is obvious that a certain event occurs when another event either occurs or no
 	\end{equation*}
 \end{lem}
 \begin{proofing}
-	\begin{equation*}
-		A=(A\cap B)\cup(A\cap B^{\complement})\Longrightarrow\prob(A)=\prob(A\cap B)+\prob(A\cap B^{\complement})=\prob(A|B)\prob(B)+\prob(A|B^{\complement})\prob(B^{\complement})
-	\end{equation*}
+	$A=(A\cap B)\cup(A\cap B^{\complement})\Longrightarrow\prob(A)=\prob(A\cap B)+\prob(A\cap B^{\complement})=\prob(A|B)\prob(B)+\prob(A|B^{\complement})\prob(B^{\complement})$
 \end{proofing}
 
 \newpage
@@ -830,7 +826,7 @@ It is relatively simple to prove the following.
 \end{proofing}
 Sometimes, we may deal with more than $2$ events. We have a more specific way to describe their relationship.
 \begin{defn}
-	Given a family of events $\{A_{i}:i\in I\}$ for some $I\subset\mathbb{N}_{+}$.
+	Given a family of events $\{A_{i}:i\in I$ for some $I\in\mathbb{N}_{+}$.
 	\begin{enumerate}
 		\item If $\prob(A_{i}\cap A_{j})=\prob(A_{i})\prob(A_{j})$ for any $i\neq j$, it is \textbf{pairwise independent}.
 		\item If additionally that for all subsets $J$ of $I$:
@@ -976,11 +972,11 @@ We can create new random variables from $X$.
 	\end{enumerate}
 \end{lem} 
 \begin{proofing}
-	Let $y\in\mathbb{R}$ and $z\in\mathbb{R}_{\geq 0}$.
+	Let $y\in\mathbb{R}$ and $z\in\mathbb{R}_{\geq 0}$
 	\begin{enumerate}
 		\item If $c>0$, then:
 		\begin{equation*}
-			Y^{-1}((-\infty,y])=\{\omega\in\Omega:Y(\omega)\leq y\}=\bigg\{\omega\in\Omega:X(\omega)\leq\frac{y-d}{c}\bigg\}\in\mathcal{F}
+			Y^{-1}((-\infty,y])=\{\omega\in\Omega:Y(\omega)\leq y\}=\{\omega\in\Omega:X(\omega)\leq\frac{y-d}{c}\}\in\mathcal{F}
 		\end{equation*}
 		If $c=0$, then:
 		\begin{equation*}
@@ -989,9 +985,9 @@ We can create new random variables from $X$.
 				\Omega\in\mathcal{F}, &y\geq d
 			\end{cases}
 		\end{equation*}
-		If $c<0$, then:
+		If $c<d$, then:
 		\begin{equation*}
-			Y^{-1}((-\infty,y])=\{\omega\in\Omega:Y(\omega)\leq y\}=\bigg\{\omega\in\Omega:X(\omega)\geq\frac{y-d}{c}\bigg\}\in\mathcal{F}
+			Y^{-1}((-\infty,y])=\{\omega\in\Omega:Y(\omega)\leq y\}=\{\omega\in\Omega:X(\omega)\geq\frac{y-d}{c}\}\in\mathcal{F}
 		\end{equation*}
 		Therefore, for any $c,d\in\mathbb{R}$, $Y=cX+d$ is a random variable.
 		\item We have:
@@ -1063,14 +1059,14 @@ Every random variable has its own distribution function.
 	\begin{enumerate}
 		\item $\lim_{x\to -\infty}F_{X}(x)=0$ and $\lim_{x\to\infty}F_{X}(x)=1$.
 		\item If $x<y$, then $F_{X}(x)\leq F_{X}(y)$.
-		\item $F_{X}$ is right-continuous ($F_{X}(x+h)\to F_{X}(x)$ as $h\to 0$)
+		\item $F_{X}$ is right-continuous ($F_{X}(x+h)\to F_{X}(x)$ as $h\downarrow 0$)
 	\end{enumerate}
 \end{lem}
 \begin{proofing}
 	\begin{enumerate}
 		\item Let $B_{n}=\{\omega\in\Omega:X(\omega)\leq -n\}=\{X\leq -n\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
-			\lim_{x\to -\infty}F_{X}(x)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob(\emptyset)=0
+			\lim_{x\to -\infty}F_{X}(x)=\prob\left(\lim_{i\to\infty}B_{i}\right)=\prob(\emptyset)=0
 		\end{equation*}
 		Alternative proof:
 		\begin{equation*}
@@ -1078,7 +1074,7 @@ Every random variable has its own distribution function.
 		\end{equation*}
 		Let $C_{n}=\{\omega\in\Omega:X(\omega)\leq n\}=\{X\leq n\}$. Since $C_{1}\subseteq C_{2}\subseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
-			\lim_{x\to\infty}F_{X}(x)=\prob\left(\lim_{n\to\infty}C_{n}\right)=\prob(\Omega)=1
+			\lim_{x\to\infty}F_{X}(x)=\prob\left(\lim_{i\to\infty}C_{i}\right)=\prob(\Omega)=1
 		\end{equation*}
 		Alternative Proof:
 		\begin{equation*}
@@ -1088,20 +1084,20 @@ Every random variable has its own distribution function.
 		\begin{equation*}
 			F_{X}(y)=\prob(A(y))=\prob(A(x))+\prob(A(x,y))=F_{X}(x)+\prob(x<X\leq y)\geq F_{X}(x)
 		\end{equation*}
-		\item Let $B_{n}=\big\{\omega\in\Omega:X(\omega)\leq x+\frac{1}{n}\big\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
+		\item Let $B_{n}=\{\omega\in\Omega:X(\omega)\leq x+\frac{1}{n}\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
-			\lim_{h\to 0^{+}}F_{X}(x+h)=\prob\left(\bigcap_{n=1}^{\infty}B_{n}\right)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob(\{\omega\in\Omega:X(\omega)\leq x\})=F_{X}(x)
+			\lim_{h\downarrow 0}F_{X}(x+h)=\prob\left(\bigcap_{i=1}^{\infty}B_{i}\right)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob(\{\omega\in\Omega:X(\omega)\leq x\})=F_{X}(x)
 		\end{equation*}
 		Alternative Proof:
 		\begin{equation*}
-			\lim_{h\to 0^{+}}F_{X}(x+h)=\lim_{h\to 0^{+}}\prob\circ X^{-1}((-\infty,x+h])=\lim_{n\to\infty}\prob\circ X^{-1}\left(\left(-\infty,x+\frac{1}{n}\right]\right)=\prob\circ X^{-1}((-\infty,x])=F_{X}(x)
+			\lim_{h\downarrow 0}F_{X}(x+h)=\lim_{h\downarrow 0}\prob\circ X^{-1}((-\infty,x+h])=\lim_{n\to\infty}\prob\circ X^{-1}\left(\left(-\infty,x+\frac{1}{n}\right]\right)=\prob\circ X^{-1}((-\infty,x])=F_{X}(x)
 		\end{equation*}
 	\end{enumerate}
 \end{proofing}
 \begin{rem}
 	$F$ is not left-continuous because:
 	\begin{equation*}
-		\lim_{h\to 0^{+}}F_{X}(x-h)=\lim_{n\to\infty}\prob\circ X^{-1}\left(\left(-\infty,x-\frac{1}{n}\right)\right)=\prob\circ X^{-1}((-\infty,x))=F_{X}(x)-\prob\circ X^{-1}(\{x\})
+		\lim_{h\downarrow 0}F_{X}(x-h)=\lim_{n\to\infty}\prob\circ X^{-1}\left(\left(-\infty,x-\frac{1}{n}\right)\right)=\prob\circ X^{-1}((-\infty,x))=F_{X}(x)-\prob\circ X^{-1}(\{x\})
 	\end{equation*}
 \end{rem}
 \begin{lem}
@@ -1134,31 +1130,26 @@ We can classify some random variables into either discrete or continuous. This t
 		f_{X}(x)=\prob(X=x)=\prob\circ X^{-1}(\{x\})
 	\end{equation*}
 \end{defn}
-\begin{rem}
-	Some textbooks will use $p_{X}(x)$ to mean PMF in order to prevent confusion with PDF.
-\end{rem}
 \begin{lem}
 	\label{Chapter 3 (Lemma) Relationship between pmf and cdf}
 	Relationship between PMF $f_{X}$ and CDF $F_{X}$ of a random variable $X$:
 	\begin{enumerate}
-		\item $F_{X}(x)=\sum_{y\leq x}f_{X}(y)$
-		\item $f_{X}(x)=F_{X}(x)-\lim_{y\to x^{-}}F_{X}(y)$
+		\item $F_{X}(x)=\sum_{i\leq x}f_{X}(i)$
+		\item $f_{X}(x)=F_{X}(x)-\lim_{y\uparrow x}F_{X}(y)$
 	\end{enumerate}
 \end{lem}
 \begin{proofing}
 	\begin{enumerate}
 		\item 
 		\begin{equation*}
-			F_{X}(x)=\prob(X\leq x)=\sum_{i:x_{i}\leq x}\prob(X=x_{i})=\sum_{y\leq x}f_{X}(y)
+			F_{X}(x)=\prob(X\leq x)=\sum_{i=-\infty}^{x}\prob(X=i)=\sum_{i\leq x}f_{X}(i)
 		\end{equation*}
-		\item Let $B_{n}=\big\{x-\frac{1}{n}<X\leq x\big\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
+		\item Let $B_{n}=\{x-\frac{1}{n}<X\leq x\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Chapter 2 (Lemma) Continuous probability},
 		\begin{equation*}
-			F_{X}(x)-\lim_{y\to x^{-}}F_{X}(y)=\prob\left(\bigcap_{n=1}^{\infty}B_{n}\right)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob\left(\left\{\lim_{n\to\infty}\left(x-\frac{1}{n}\right)<X\leq x\right\}\right)=\prob(X=x)
+			F_{X}(x)-\lim_{y\uparrow x}F_{X}(y)=\prob\left(\bigcap_{i=1}^{\infty}B_{i}\right)=\prob\left(\lim_{n\to\infty}B_{n}\right)=\prob\left(\left\{\lim_{n\to\infty}\left(x-\frac{1}{n}\right)<X\leq x\right\}\right)=\prob(X=x)
 		\end{equation*}
 	\end{enumerate}
 \end{proofing}
-
-\newpage
 This is problematic when random variable $X$ is continuous because using PMF will get the result of $f_{X}(x)=0$ for all $x$. Therefore, we would need another definition for continuous random variable.
 \begin{defn}
 	Random variable $X$ is called \textbf{continuous} if its distribution function can be expressed as:
@@ -1186,7 +1177,7 @@ This is problematic when random variable $X$ is continuous because using PMF wil
 \section{JCDF of random variables}
 How do we deal with cases when there are more than one random variables?
 \begin{defn}
-	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\mathbf{X}=(X_{1},X_{2}):\Omega^{2}\to\mathbb{R}$ with properties
+	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\mathbf{X}=(X_{1},X_{2}):\Omega\to\mathbb{R}^{2}$ with properties
 	\begin{equation*}
 		\mathbf{X}^{-1}(D)=\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\}\in\mathcal{F}
 	\end{equation*}
@@ -1221,8 +1212,6 @@ How do we deal with cases when there are more than one random variables?
 \begin{rem}
 	We can write $\prob\circ\mathbf{X}^{-1}(D)=\prob(\mathbf{X}\in D)=\prob(\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\})$.
 \end{rem}
-
-\newpage
 Of course, there is a distribution function corresponding to the random vector.
 \begin{defn}
 	\textbf{Joint distribution function} (JCDF) $F_{\mathbf{X}}:\mathbb{R}^{2}\to [0,1]$ is defined as
@@ -1233,20 +1222,22 @@ Of course, there is a distribution function corresponding to the random vector.
 \begin{rem}
 	We can replace all Borel sets by the form $[a_{1},b_{1}]\times[a_{2},b_{2}]\times\cdots\times[a_{n},b_{n}]$.
 \end{rem}
+
+\newpage
 Joint distribution function has quite similar properties with normal distribution function.
 \begin{lem}
 	JCDF $F_{X,Y}$ of random vector $(X,Y)$ has the following properties:
 	\begin{enumerate}
-		\item $\lim_{(x,y)\to (-\infty,-\infty)}F_{X,Y}(x,y)=0$ and $\lim_{(x,y)\to (\infty,\infty)}F_{X,Y}(x,y)=1$.
-		\item If $x_{1}\leq y_{1}$ and $x_{2}\leq y_{2}$, then $F_{X,Y}(x_{1},y_{1})\leq F_{X,Y}(x_{2},y_{2})$.
-		\item $F_{X,Y}$ is continuous from above, in that $F_{X,Y}(x+u,y+v)\to F_{X,Y}(x,y)$ as $u\to 0^{+}$ and $v\to 0^{+}$.
+		\item $\lim_{x,y\to -\infty}F_{X,Y}(x,y)=0$ and $\lim_{x,y\to\infty}F_{X,Y}(x,y)=1$.
+		\item If $(x_{1},y_{1})\leq (x_{2}.y_{2})$, then $F_{X,Y}(x_{1},y_{1})\leq F_{X,Y}(x_{2},y_{2})$.
+		\item $F_{X,Y}$ is continuous from above, in that $F_{X,Y}(x+u,y+v)\to F_{X,Y}(x,y)$ as $u,v\downarrow 0$.
 	\end{enumerate}
 \end{lem}
 We can find the probability distribution of one random variable by disregarding another variable. We get the following distribution.
 \begin{defn}
 	Let $X,Y$ be random variables. We can get a \textbf{marginal distribution} (marginal CDF) by having:
 	\begin{equation*}
-		F_{X}(x)=\prob\circ X^{-1}((-\infty,x])=\prob\left(X^{-1}((-\infty,x])\cap Y^{-1}((-\infty,\infty))\right)=\lim_{y\to\infty}\prob\left(X^{-1}((-\infty,x])\cap Y^{-1}((-\infty,y])\right)=\lim_{y\to\infty}F_{X,Y}(x,y)
+		F_{X}(x)=\prob\circ X^{-1}((-\infty,x])=\prob\left(X^{-1}((-\infty,x])\cap Y^{-1}((-\infty,\infty))\right)=\lim_{y\uparrow\infty}\prob\left(X^{-1}((-\infty,x])\cap Y^{-1}((-\infty,y])\right)=\lim_{y\uparrow\infty}F_{X,Y}(x,y)
 	\end{equation*}
 \end{defn}
 Joint distribution function also has its probability mass function and probability density function too.
@@ -1291,8 +1282,8 @@ Joint distribution function also has its probability mass function and probabili
 \end{rem}
 \begin{eg}
 	Let $X$ be uniformly distributed on $[0,1]$ ($f_{X}(x)=\mathbf{1}_{[0,1]}$). This means $f_{X}(x)=1$ when $x\in[0,1]$ and $0$ otherwise.\\
-	Let $Y=X$ ($Y(\omega)=X(\omega)$ for all $\omega\in\Omega$). That means $(X,Y)=(X,X)$. Let $B=\{(x,y):x=y\text{ and }x\in[0,1]\}\in\mathcal{B}(\mathbb{R}^{2})$.\\
-	Since $y=x$ is just a line,
+	Let $Y=X$ ($Y(\omega)=X(\omega)$ for all $\omega\in\Omega$). That means $(X,Y)=(X,X)$.\\
+	Let $B=\{(x,y):x=y\text{ and }x\in[0,1]\}\in\mathcal{B}(\mathbb{R}^{2})$. Since $y=x$ is just a line,
 	\begin{align*}
 		\prob\circ(X,Y)^{-1}(B)&=1\\
 		\iint_{B}f_{X,Y}(u,v)\,du\,dv&=0\neq\prob\circ(X,Y)^{-1}(B)
@@ -1315,7 +1306,7 @@ Let's recall some of the definitions on discrete random variable in previous cha
 	\end{equation*}
 	CDF and PMF are related by
 	\begin{align*}
-		F_{X}(x)&=\sum_{i:x_{i}\leq x}f_{X}(x_{i}) & f_{X}(x)&=F_{X}(x)-\lim_{y\to x^{-}}F_{X}(y)
+		F_{X}(x)&=\sum_{i:x_{i}\leq x}f_{X}(x_{i}) & f_{X}(x)&=F_{X}(x)-\lim_{y\uparrow x}F_{X}(y)
 	\end{align*}
 \end{defn}
 \begin{lem}
@@ -1415,11 +1406,151 @@ From the remarks, we can extend the definition of independence from random varia
 \end{proofing}
 \begin{rem}
 	We assume a product space $(\Omega,\mathcal{F},\prob)$ of two probability space $(\Omega_{1},\mathcal{F}_{1},\prob_{1})$ and $(\Omega_{2},\mathcal{F}_{2},\prob_{2})$.\\
+	($\Omega=\Omega_{1}\times\Omega_{2}$, $\mathcal{F}=\sigma(\mathcal{F}_{1}\times\mathcal{F}_{2})$, $\prob(A_{1}\times A_{2})=\prob_{1}(A_{1})\prob_{2}(A_{2})$).\\
 	Any pair of events of the form $E_{1}\times\Omega_{2}$ and $\Omega_{1}\times E_{2}$ are independent.
 	\begin{equation*}
 		\prob((E_{1}\times\Omega_{2})\cap(\Omega_{1}\times E_{2}))=\prob(E_{1}\times E_{2})=\prob_{1}(E_{1})\prob_{2}(E_{2})=\prob(E_{1}\times\Omega_{2})\prob(\Omega_{1}\times E_{2})
 	\end{equation*}
 \end{rem}
+
+\section{Expectation of discrete random variables}
+In real life, we also want to know about the expected final result given the probabilities we calculated. The result is usually a theoretical approximation of empirical average. Assume we have random variables $X_{1},X_{2},\cdots,X_{N}$ which take values in $\{x_{1},x_{2},\cdots,x_{n}\}$ with probability mass function $f_{X}(x)$. We get an empirical average:
+\begin{equation*}
+	\mu=\frac{1}{N}\sum_{i=1}^{N}X_{i}\approx\frac{1}{N}\sum_{i=1}^{n}x_{i}Nf(x_{i})=\sum_{i=1}^{N}x_{i}f(x_{i})
+\end{equation*}
+\begin{defn}
+	Suppose we have a discrete random variable $X$ taking values from $\{x_{1},x_{2},\cdots\}$ with PMF $f_{X}(x)$. \textbf{Mean value}, \textbf{expectation}, or \textbf{expected value} of $X$ is defined to be:
+	\begin{equation*}
+		\expect X=\expect(X):=\sum_{i}x_{i}f_{X}(x_{i})=\sum_{x:f_{X}(x)>0}xf_{X}(x)
+	\end{equation*}
+	whenever this sum is absolutely convergent. Otherwise, we say $\expect X$ does not exist.
+\end{defn}
+\begin{eg}
+	Suppose a product is sold seasonally. Let $b$ be net profit for each sold unit, $\ell$ be net loss for each left unit, and $X$ be number of products ordered by customer. If $y$ units are stocked, what is the expected profit $Q(y)$?
+	\begin{equation*}
+		Q(y)=\begin{cases}
+			bX-(y-X)\ell, &X\leq y\\
+			yb, &X>y
+		\end{cases}
+	\end{equation*}
+\end{eg}
+\begin{thm}(\textbf{Tail Sum Formula})
+	For non-negative integer-valued discrete random variable $X$, we have:
+	\begin{equation*}
+		\expect{X}=\sum_{k=0}^{\infty}\prob(X>k)
+	\end{equation*}
+\end{thm}
+\begin{proofing}
+	\begin{equation*}
+		\sum_{k=0}^{\infty}\prob(X>k)=\sum_{k=1}^{\infty}\prob(X\geq k)=\sum_{k=1}^{\infty}\sum_{i=k}^{\infty}\prob(X=i)=\sum_{k=1}^{\infty}k\prob(X=k)=\expect X
+	\end{equation*}
+\end{proofing}
+\begin{lem}
+	\label{Chapter 4 (Lemma) Mass function expectation}
+	If discrete random variable $X$ has a PMF $f_{X}$ and $g:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ is still a discrete random variable, then
+	\begin{equation*}
+		\expect g(X)=\sum_{x}g(x)f_{X}(x)
+	\end{equation*}
+	whenever this sum is absolutely convergent.
+\end{lem}
+\begin{proofing}
+	Denote by $Y:=g(X)$.
+	\begin{align*}
+		\sum_{x}g(x)f_{X}(x)=\sum_{y}\sum_{x:g(x)=y}g(x)f_{X}(x)=\sum_{y}y\left(\sum_{x:g(x)=y}f_{X}(x)\right)&=\sum_{y}y\left(\sum_{x:g(x)=y}\{\omega\in\Omega:X(\omega)=x\}\right)\\
+		&=\sum_{y}y\prob(\{\omega\in\Omega:g(X(\omega))=y\})\\
+		&=\sum_{y}y\prob(\{\omega\in\Omega:Y(\omega)=y\})\\
+		&=\sum_{y}yf_{Y}(y)=\expect Y=\expect g(X)
+	\end{align*}
+\end{proofing}
+\begin{lem}
+	Let $(X,Y)$ be a discrete random vector with JPMF $f_{X,Y}(x,y)$. Let $g:\mathbb{R}^{2}\to\mathbb{R}$ such that $g(X,Y)$ is a discrete random variable. Then
+	\begin{equation*}
+		\expect g(X,Y)=\sum_{x,y}g(x,y)f_{X,Y}(x,y)
+	\end{equation*}
+\end{lem}
+\begin{proofing}
+	Denote by $Z:=g(X,Y)$.
+	\begin{align*}
+		\sum_{x,y}g(x,y)f_{X,Y}(x,y)=\sum_{z}\sum_{x,y:g(x,y)=z}g(x,y)f_{X,Y}(x,y)&=\sum_{z}z\left(\sum_{x,y:g(x,y)=z}f_{X,Y}(x,y)\right)\\
+		&=\sum_{z}z\left(\sum_{x,y:g(x,y)=z}\prob((X,Y)=(x,y))\right)\\
+		&=\sum_{z}z\prob(\{\omega\in\Omega:g(X,Y)(\omega)=z\})\\
+		&=\sum_{z}z\prob(\{\omega\in\Omega:Z(\omega)=z\})=\sum_{z}zf_{Z}(z)=\expect Z=\expect g(X,Y)
+	\end{align*}
+\end{proofing}
+The lemmas have provided a method to calculate the moments of a discrete distribution. Most of the time, we only care about the expectation and variance.
+\begin{defn}
+	Let $k\in\mathbb{N}_{+}$. We have a special term for each of the following expectations:
+	\begin{enumerate}
+		\item The \textbf{$k$-th moment} $m_{k}$ of $X$ is defined to be $m_{k}=\expect(X^{k})$.
+		\item The \textbf{$k$-th central moment} $\alpha_{k}$ is $\alpha_{k}=\expect((X-\expect X)^{k})=\expect((X-m_{1})^{k})$.
+		\item \textbf{Mean} of $X$ is the $1$st moment $m_{1}=\expect(X)$ and is denoted by $\mu$.
+		\item \textbf{Variance} of $X$ is the $2$nd central moment $\alpha_{2}=\Var(X)=\expect((X-m_{1})^{2})=\expect(X^{2})-(\expect X)^{2}=\expect(X^{2})-\mu^{2}$.
+		\item \textbf{Standard deviation} of $X$ is defined as $\sqrt{\Var(X)}$ and is denoted by $\sigma$.
+	\end{enumerate}
+\end{defn}
+\begin{rem}
+	Not all random variables have $k$-th moments for all $k\in\mathbb{N}_{+}$.
+\end{rem}
+\begin{rem}
+	We cannot use collection of moments to uniquely determine a distribution that has $k$-th moments for all $k\in\mathbb{N}$.
+\end{rem}
+\begin{thm}
+	Expectation operator $\expect$ has the following properties:
+	\begin{enumerate}
+		\item If $X\geq 0$, then $\expect X\geq 0$.
+		\item If $a,b\in\mathbb{R}$, then $\expect(aX+bY)=a\expect X+b\expect Y$.
+		\item The random variable $\mathbf{1}$, taking the value $1$ always, has expectation $\expect(1)=1$.
+	\end{enumerate}
+\end{thm}
+\begin{proofing}
+	\begin{enumerate}
+		\item Since $f_{X}(x)\geq 0$ for all $x$, $\expect X=\sum_{x}xf_{X}(x)\geq 0$ if $X\geq 0$.
+		\item Let $g(X,Y)=aX+bY$. Then,
+		\begin{align*}
+			\expect(aX+bY)=\sum_{x,y}(ax+by)f_{X,Y}(x,y)&=a\sum_{x}x\left(\sum_{y}f_{X,Y}(x,y)\right)+b\sum_{y}y\left(\sum_{x}f_{X,Y}(x,y)\right)\\
+			&=a\sum_{x}xf_{X}(x)+b\sum_{y}yf_{Y}(y)=a\expect X+b\expect Y
+		\end{align*}
+		\item $\expect(1)=1(1)=1$.
+	\end{enumerate}
+\end{proofing}
+\begin{rem}
+	More generally, we have
+	\begin{equation*}
+		\expect\left(\sum_{i=1}^{n}a_{i}X_{i}\right)=\sum_{i=1}^{n}a_{i}\expect X_{i}
+	\end{equation*}
+\end{rem}
+\begin{eg}
+	Assume we have $N$ different types of card and each time one gets a card to be any one of the $N$ types. Each types is equally likely to be gotten. What is the expected number of types of card we can get if we get $n$ cards?\\
+	Let $X=X_{1}+X_{2}+\cdots+X_{N}$ where $X_{i}=1$ if at least one type $i$ card is among the $n$ cards and otherwise $0$.
+	\begin{align*}
+		\expect X_{i}&=\prob(X_{i}=1)=1-\left(\frac{N-1}{N}\right)^{n}\\
+		\expect X&=\sum_{i=1}^{N}\expect X_{i}=N\left(1-\left(\frac{N-1}{N}\right)^{n}\right)
+	\end{align*}
+	What is the expected number of cards one needs to collect in order to get all $N$ types?\\
+	Let $Y=Y_{0}+Y_{1}+\cdots+Y_{N-1}$ where $Y_{i}$ is the number of additional cards we need to get in order to get a new type after having $i$ distinct types.
+	\begin{align*}
+		\tag{$Y_{i}\sim\Geom\left(\frac{N-i}{N}\right)$}
+		\prob(Y_{i}=k)&=\left(\frac{i}{N}\right)^{k-1}\frac{N-i}{N}\\
+		\expect Y_{i}&=\frac{N}{N-i}\\
+		\expect Y&=\sum_{i=0}^{N-1}\expect Y_{i}=N\left(\frac{1}{N}+\frac{1}{N-1}+\cdots+1\right)
+	\end{align*}
+\end{eg}
+\begin{lem}
+	If two discrete random variables $X$ and $Y$ are independent, then $\expect(XY)=\expect X\expect Y$.
+\end{lem}
+\begin{proofing}
+	\begin{equation*}
+		\expect(XY)=\sum_{x,y}xyf_{X,Y}(x,y)=\sum_{x,y}xyf_{X}(x)f_{Y}(y)=\sum_{x}xf_{X}(x)\sum_{y}yf_{Y}(y)=\expect X\expect Y
+	\end{equation*}
+\end{proofing}
+\begin{lem}
+	Given two discrete random variables $X$ and $Y$. Let $g,h:\mathbb{R}\to\mathbb{R}$ such that $g(X),h(Y)$ are still discrete random variables. If $X\independent Y$ and $\expect(g(X)h(Y)),\expect g(X)$ and $\expect h(Y)$ exist, then $\expect(g(X)h(Y))=\expect g(X)\expect h(Y)$.
+\end{lem}
+\begin{proofing}
+	\begin{equation*}
+		\expect(g(X)h(Y))=\sum_{x,y}g(x)h(y)f_{X,Y}(x,y)=\sum_{x,y}g(x)h(y)f_{X}(x)f_{Y}(y)=\sum_{x}g(x)f_{X}(x)\sum_{y}h(y)f_{Y}(y)=\expect g(X)\expect h(Y)
+	\end{equation*}
+\end{proofing}
 
 \section{Conditional distribution of discrete random variables}
 In the first chapter, we have discussed the conditional probability $\prob(B|A)$. We can use this to define a distribution function.
@@ -1467,7 +1598,124 @@ Conditional distributions still have properties of original distribution.
 		This is just Lemma \ref{Chapter 3 (Lemma) Relationship between pmf and cdf}.
 	\end{enumerate}
 \end{proofing}
+\begin{defn}
+	Given two discrete random variables $X$ and $Y$. \textbf{Conditional expectation} $\psi$ of $Y$ given $X=x$ for any $x$ is defined by:
+	\begin{equation*}
+		\psi(x)=\expect(Y|X=x)=\sum_{y}yf_{Y|X}(y|x)
+	\end{equation*}
+	\textbf{Conditional expectation} $\psi$ of $Y$ given $X$ is defined by:
+	\begin{equation*}
+		\psi(X)=\expect(Y|X)
+	\end{equation*}
+\end{defn}
+\begin{eg}
+	Assume we roll a fair dice.
+	\begin{align*}
+		\Omega&=\{1,2,\cdots,6\} & Y(\omega)&=\omega & X(\omega)&=\begin{cases}
+			1, &\omega\in\{2,4,6\}\\
+			0, &\omega\in\{1,3,5\}
+		\end{cases}
+	\end{align*}
+	We try to guess $Y$. If we do not have any information about $X$, 
+	\begin{equation*}
+		\expect Y=\argmin_{e}(\expect((Y-e)^{2}))=3.5
+	\end{equation*}
+	If we know that $X=x$, in which we have two cases: $X=1$ and $X=0$
+	\begin{align*}
+		f_{Y|X}(y|1)&=\frac{\prob(X=1,Y=y)}{\prob(X=1)}=\begin{cases}
+			\frac{1}{3}, &y=2,4,6\\
+			0, &y=1,3,5
+		\end{cases} & f_{Y|X}(y|0)&=\frac{\prob(X=0,Y=y)}{\prob(X=0)}=\begin{cases}
+			0, &y=2,4,6\\
+			\frac{1}{3}, &y=1,3,5
+		\end{cases}\\
+		\expect(Y|X=1)&=\sum_{y}yf_{Y|X}(y|1)=\frac{2+4+6}{3}=4 & \expect(Y|X=0)&=\frac{1+3+5}{3}=3
+	\end{align*}
+	Finally, if we want to guess $Y$ based on the future information of $X$,
+	\begin{equation*}
+		\psi(X)=\expect(Y|X)=4(\mathbf{1}_{X=1})+3(\mathbf{1}_{X=0})
+	\end{equation*}
+\end{eg}
+\begin{eg}
+	If $Y=X$, then $\psi(X)=\expect(Y|X)=\expect(X|X)=X$.
+\end{eg}
+\begin{eg}
+	If $Y\independent X$, then $\psi(X)=\expect Y$.
+\end{eg}
 
+\newpage
+In fact, we can extend the definition of conditional expectation into $\sigma$-field.
+\begin{defn}
+	Given a random variable $Y$ and a $\sigma$-field $\mathcal{H}\subseteq\mathcal{F}$.\\
+	$\expect(Y|\mathcal{H})$ is any random variable $Z$ satisfying the following two properties:
+	\begin{enumerate}
+		\item $Z$ is $\mathcal{H}$-measurable. ($Z^{-1}(B)\in\mathcal{H}$ for all $B\in\mathcal{B}(\mathbb{R})$)
+		\item $\expect(Y\mathbf{1}_{A})=\expect(Z\mathbf{1}_{A})$ for all $A\in\mathcal{H}$.
+	\end{enumerate}
+\end{defn}
+\begin{rem}
+	Under this definition,
+	\begin{equation*}
+		\expect(Y|X)=\expect(Y|\sigma(X))
+	\end{equation*}
+\end{rem}
+\begin{thm}(Law of total expectation)
+	Given two discrete random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
+	\begin{equation*}
+		\expect(\psi(X))=\expect(Y)
+	\end{equation*}
+\end{thm}
+\begin{proofing}
+	By Lemma \ref{Chapter 4 (Lemma) Mass function expectation},
+	\begin{equation*}
+		\expect(\psi(X))=\sum_{x}\psi(x)f_{X}(x)=\sum_{x,y}yf_{Y|X}(y|x)f_{X}(x)=\sum_{x,y}yf_{X,Y}(x,y)=\sum_{y}yf_{Y}(y)=\expect(Y)
+	\end{equation*}
+\end{proofing}
+\begin{eg}
+	A miner is trapped in a mine with doors, each will lead to a tunnel.\\
+	Tunnel 1 will help the miner reach safety after 3 hours respectively.\\
+	However, tunnel 2 and 3 will send the miner back after 5 and 7 hours respectively.\\
+	What is the expected amount of time the miner need to reach safety? (Assume that the miner is memoryless)\\
+	Let $X$ be the amount of time to reach safety, $Y$ be the door number he chooses for the first time.
+	\begin{align*}
+		\expect X&=\expect(\expect(X|Y))=\sum_{k=1}^{3}\expect(X|Y=k)\prob(Y=k)=3\left(\frac{1}{3}\right)+(\expect X+5)\left(\frac{1}{3}\right)+(\expect X+7)\left(\frac{1}{3}\right)\\
+		\expect X&=15
+	\end{align*}
+	What is the expected amount of time the miner needed to reach safety after he chose the second door and sent back?\\
+	Let $\widetilde{X}$ be the time for the miner to reach safety after the first round. 
+	\begin{align*}
+		\expect(X|Y=2)&=\sum_{x}xf_{X|Y}(x|2)=\sum_{x}x\frac{\prob(X=x, Y=2)}{\prob(Y=2)}=\sum_{x}x\frac{\prob(\widetilde{X}=x-5,Y=2)}{\prob(Y=2)}=\sum_{\widetilde{x}}(\widetilde{x}+5)\prob(\widetilde{X}=\widetilde{x})=\expect X+5
+	\end{align*}
+\end{eg}
+\begin{eg}
+	We consider a sum of random number of random variables.\\
+	Let $N$ be the number of customers and $X_{i}$ be the amount of money spent by the $i$-th customers.\\
+	Assume that $N$ and $X_{i}$'s are all independent and $\expect X_{i}=\expect X$, what is the expected total amount of money spent by all $N$ customers?
+	\begin{align*}
+		\expect\left(\sum_{i=1}^{N}X_{i}\right)&=\expect\left(\expect\left(\left.\sum_{i=1}^{N}X_{i}\right| N\right)\right)\\
+		&=\sum_{n=0}^{\infty}\expect\left(\left.\sum_{i=1}^{N}X_{i}\right|N=n\right)\prob(N=n)\\
+		&=\sum_{n=0}^{\infty}\sum_{y}y\left(\frac{\prob\left(\sum_{i=1}^{N}X_{i}=y,N=n\right)}{\prob(N=n)}\right)\prob(N=n)\\
+		&=\sum_{n=0}^{\infty}\sum_{y}y\prob\left(\sum_{i=1}^{n}X_{i}=y\right)\prob(N=n)\\
+		&=\sum_{n=0}^{\infty}\expect\left(\sum_{i=1}^{n}X_{i}\right)\prob(N=n)\\
+		&=\sum_{n=0}^{\infty}n\expect X\prob(N=n)=\expect N\expect X
+	\end{align*}
+\end{eg}
+
+\newpage
+The following theorem is the generalization of Law of total expectation.
+\begin{thm}
+	Given two discrete random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
+	\begin{equation*}
+		\expect(\psi(X)g(X))=\expect(Yg(X))
+	\end{equation*}
+	for any function $g$ for which both expectations exist.
+\end{thm}
+\begin{proofing}
+	By Lemma \ref{Chapter 4 (Lemma) Mass function expectation},
+	\begin{equation*}
+		\expect(\psi(X)g(X))=\sum_{x}\psi(x)g(x)f_{X}(x)=\sum_{x,y}yf_{Y|X}(y|x)g(x)f_{X}(x)=\sum_{x,y}yf_{X,Y}(x,y)g(x)=\expect(Yg(X))
+	\end{equation*}
+\end{proofing}
 \section{Convolution of discrete random variables}
 Finally, a lot of times, we consider the sum of the two variables. For example, the number of heads in $n$ tosses of a coin. However, there are situations that are more complicated, especially when the summands are dependent. We tries to find a formula for describing the mass function of the sum $Z=X+Y$.
 \begin{thm}
@@ -1481,9 +1729,9 @@ Finally, a lot of times, we consider the sum of the two variables. For example, 
 	\begin{equation*}
 		\{X+Y=z\}=\bigcup_{x}(\{X=x\}\cap\{Y=z-x\})
 	\end{equation*}
-	At most countably many of its distributions have non-zero probability. Therefore,
+	At most countably many of its contributions have non-zero probability. Therefore,
 	\begin{equation*}
-		\prob(X+Y=z)=\sum_{x}\prob(X=x,Y=z-x)=\sum_{x}f_{X,Y}(x,z-x)
+		\prob(X+Y=z)=\sum_{x}\prob(X=x,Y=z-x)=\sum_{x}f(x,z-x)
 	\end{equation*}
 \end{proofing}
 \begin{defn}
@@ -1509,6 +1757,8 @@ The following examples are some of the most useful distributions.
 	\end{equation*}
 	$X$ is constant almost surely if there exists $c\in\mathbb{R}$ such that $\prob(X=c)=1$.
 \end{eg}
+
+\newpage
 \begin{eg}(\textbf{Bernoulli distribution}) $X\sim \Bern(p)$\\
 	Let $A\in\mathcal{F}$ be a specific event. A Bernoulli trial is considered a success if $A$ occurs. Let $X:\Omega\to\mathbb{R}$ be such that
 	\begin{align*}
@@ -1516,6 +1766,10 @@ The following examples are some of the most useful distributions.
 			1, &\omega\in A\\
 			0, &\omega\in A^{\complement}
 		\end{cases} & \prob(A)&=\prob(X=1)=p & \prob(A^{\complement})&=\prob(X=0)=1-p
+	\end{align*}
+	The expectation and variance of Bernoulli random variable is:
+	\begin{align*}
+		\expect X&=p & \Var(X)&=p-p^{2}=p(1-p)
 	\end{align*}
 \end{eg}
 \begin{eg}
@@ -1550,20 +1804,43 @@ The following examples are some of the most useful distributions.
 	\end{equation*}
 	Hence, $f_{Y}(k)=\prob(A)=\binom{n}{k}p^{k}(1-p)^{n-k}$.
 \end{eg}
-
-\newpage
+\begin{thm}
+	If $X\sim\Bin(n,p)$, then $\expect X=np$ and $\Var(X)=np(1-p)$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{X}&=\sum_{k=0}^{n}k\binom{n}{k}p^{k}(1-p)^{n-k}=\sum_{k=1}^{n}\frac{n!}{(k-1)!(n-k)!}p^{k}(1-p)^{n-k}=np\sum_{k=1}^{n}\binom{n-1}{k-1}p^{k-1}(1-p)^{n-k}=np\\
+		\Var(X)&=\expect(X(X-1))+\expect{X}-(\expect X)^{2}=np-n^{2}p^{2}+\sum_{k=2}^{\infty}k(k-1)\binom{n}{k}p^{k}(1-p)^{n-k}\\
+		&=np-n^{2}p^{2}+\sum_{k=1}^{n}\frac{n!}{(k-2)!(n-k)!}p^{k}(1-p)^{n-k}\\
+		&=np-n^{2}p^{2}+n(n-1)p^{2}\sum_{k=2}^{n}\binom{n-2}{k-2}p^{k-2}(1-p)^{n-k}\\
+		&=np-n^{2}p^{2}+n(n-1)p^{2}=np(1-p)
+	\end{align*}
+\end{proofing}
 \begin{eg}(\textbf{Trinomial distribution})
 	Suppose we perform $n$ trials, each of which result in three outcomes $A$, $B$ and $C$, where $A$ occurs with probability $p$, $B$ with probability $q$, and $C$ with probability $1-p-q$. Probability of $r$ $A$'s, $w$ $B$'s, and $n-r-w$ $C$'s is
 	\begin{equation*}
 		\prob(\#A=r, \#B=w, \#C=n-r-w)=\binom{n}{r,w,n-r-w}p^{r}q^{w}(1-p-q)^{n-r-w}
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}(\textbf{Geometric distribution}) $W\sim\Geom(p)$\\
 	Suppose we keep performing independent Bernoulli trials until the first success shows up. Let $p$ be the probability of success and $W$ be the \textbf{waiting time} which elapses before first success.
 	\begin{align*}
 		\prob(W>k)&=(1-p)^{k} & \prob(W=k)&=\prob(W>k-1)-\prob(W>k)=p(1-p)^{k-1}
 	\end{align*}
 \end{eg}
+\begin{thm}
+	If $X\sim\Geom(p)$, then $\expect{X}=\frac{1}{p}$ and $\Var(X)=\frac{1-p}{p^{2}}$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{X}&=\sum_{k=1}^{\infty}kp(1-p)^{k-1}=p\sum_{k=1}^{\infty}k(1-p)^{k-1}=\frac{p}{p^{2}}=\frac{1}{p}\\
+		\Var(X)&=\expect(X(x-1))-\expect{X}+(\expect{X})^{2}=\frac{1}{p}-\frac{1}{p^{2}}+\sum_{k=2}^{\infty}k(k-1)p(1-p)^{k-1}\\
+		&=\frac{1}{p}-\frac{1}{p^{2}}+p(1-p)\sum_{k=2}^{\infty}k(k-1)(1-p)^{k-2}\\
+		&=\frac{2p(1-p)}{p^{3}}=\frac{2(1-p)}{p^{2}}
+	\end{align*}
+\end{proofing}
 \begin{eg}(Alternative Geometric distribution)
 	Suppose we keep performing independent Bernoulli trials until the first success shows up. Let $p$ be the probability of success and $W'$ be the number of failures before the first success.
 	\begin{align*}
@@ -1582,6 +1859,17 @@ The following examples are some of the most useful distributions.
 \begin{rem}
 	$W_{r}$ is the sum of $r$ independent geometric variables. 
 \end{rem}
+\begin{thm}
+	If $X\sim\NBin(r,p)$, then $\expect{X}=\frac{r}{p}$ and $\Var(X)=\frac{r(1-p)}{p^{2}}$.
+\end{thm}
+\begin{proofing}
+	Assume that $X_{i}\sim\Geom(p)$ for all $i$. Since $X$ is the sum of $r$ independent geometric random variable, we get:
+	\begin{align*}
+		\expect{X}&=\sum_{k=1}^{r}\expect{X_{k}}=\frac{r}{p} & \Var{X}&=\sum_{k=1}^{r}\Var(X_{k})=\frac{r(1-p)}{p^{2}}
+	\end{align*}
+\end{proofing}
+
+\newpage
 \begin{eg}(\textbf{Poisson distribution}) $X\sim\Poisson(\lambda)$\\
 	\textbf{Poisson variable} is a discrete random variable with Poisson PMF:
 	\begin{align*}
@@ -1594,8 +1882,17 @@ The following examples are some of the most useful distributions.
 		\prob(X=k)&=\binom{n}{k}p^{k}(1-p)^{n-k}=\frac{n!}{(n-k)!k!}\left(\frac{\lambda}{n}\right)^{k}\left(1-\frac{\lambda}{n}\right)^{n-k}=\frac{\lambda^{k}}{k!}\left(\frac{n!}{n^{k}(n-k)!}\right)\frac{\left(1-\frac{\lambda}{n}\right)^{n}}{\left(1-\frac{\lambda}{n}\right)^{k}}\approx\frac{\lambda^{k}}{k!}(1)\left(\frac{e^{-\lambda}}{1}\right)=\frac{\lambda^{k}}{k!}e^{-\lambda}
 	\end{align*}
 \end{eg}
-
-\newpage
+\begin{thm}
+	If $X\sim\Poisson(\lambda)$, then $\expect{X}=\lambda$ and $\Var(X)=\lambda$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{X}&=\sum_{k=1}^{\infty}\frac{\lambda^{k}}{(k-1)!}e^{-\lambda}=\lambda\sum_{k=1}^{\infty}\frac{\lambda^{k-1}}{(k-1)!}e^{-\lambda}=\lambda\\
+		\Var(X)&=\expect(X(X-1))+\expect{X}-(\expect{X})^{2}=\lambda-\lambda^{2}+\sum_{k=2}^{\infty}\frac{\lambda^{k}}{(k-2)!}e^{-\lambda}\\
+		&=\lambda-\lambda^{2}+\lambda^{2}\sum_{k=2}^{\infty}\frac{\lambda^{k-2}}{(k-2)!}e^{-\lambda}\\
+		&=\lambda-\lambda^{2}+\lambda^{2}=\lambda
+	\end{align*}
+\end{proofing}
 We have an interesting example concerning independence with Poisson distribution involved.
 \begin{eg}(\textbf{Poisson flips)}
 	A coin is tossed once and head turns up with probability $p$.\\
@@ -1614,11 +1911,14 @@ We have an interesting example concerning independence with Poisson distribution
 		&=\frac{(\lambda p)^{x}(\lambda(1-p))^{y}}{x!y!}e^{-\lambda}=\prob(X=x,Y=y)
 	\end{align*}
 \end{eg}
+
+\newpage
 \begin{thm}
 	If the number of occurrence of an event in unit time or space followings Poisson distribution with rate $\lambda$, then the number of occurrence in $t$ units times or spaces follows $\Poisson(\lambda t)$.
 \end{thm}
 \begin{proofing}
-	Number of occurrence of an event in $t$ unit time or space is equivalent to the sum of $t$ numbers of occurrence of an event in unit time or space. Let $X_{1}\sim\Poisson(\mu)$, $X_{2}\sim\Poisson(\lambda)$ are independent. For any $k\geq 2$,
+	Number of occurrence of an event in $t$ unit time or space is equivalent to the sum of $t$ numbers of occurrence of an event in unit time or space.\\
+	Let $X_{1}\sim\Poisson(\mu)$, $X_{2}\sim\Poisson(\lambda)$ are independent. For any $k\geq 2$,
 	\begin{align*}
 		\prob(X_{1}+X_{2}=k)&=\sum_{i=0}^{k}\left(\frac{\mu^{i}}{i!}e^{-\mu}\right)\left(\frac{\lambda^{k-i}}{(k-i)!}e^{-\lambda}\right)\\
 		&=\frac{1}{k!}e^{-(\mu+\lambda)}\sum_{i=0}^{k}\frac{k!}{i!(k-i)!}\mu^{i}\lambda^{k-i}\\
@@ -1634,7 +1934,11 @@ We have an interesting example concerning independence with Poisson distribution
 	\begin{equation*}
 		\prob(X=k)=\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}
 	\end{equation*}
-	for $x=0,1,\cdots,\min(m,n)$.
+	for $x=0,1,\cdots,\min(m,n)$.\\
+	The expectation and variance of hypergeometric random variable is:
+	\begin{align*}
+		\expect{X}&=\frac{mn}{N} & \Var(X)&=\frac{mn}{N}\left(\frac{(m-1)(n-1)}{N-1}+1-\frac{mn}{N}\right)
+	\end{align*}
 \end{eg}
 
 There is an important example that has a wide range of applications in real life. However, we will not discuss this here. You can find the example in Appendix \ref{Appendix A Simple random walk}.
@@ -1673,7 +1977,7 @@ Note that we have used the same letter $f$ for mass functions and density functi
 		\end{equation*}
 		\item
 		\begin{equation*}
-			\prob(X=x)=\lim_{h\to 0^{+}}\intlu{x-h}{x}f_{X}(x)\,dx=F_{X}(x)-\lim_{h\to\infty}F(x-h)=F_{X}(x)-F_{X}(x)=0
+			\prob(X=x)=\lim_{h\to 0}\intlu{x-h}{x}f_{X}(x)\,dx=F_{X}(x)-\lim_{h\to\infty}F(x-h)=F_{X}(x)-F_{X}(x)=0
 		\end{equation*}
 		\item
 		\begin{equation*}
@@ -1699,7 +2003,87 @@ We also recall the definition of independence. This definition also works for co
 \begin{thm}
 	Let two continuous random variables $X$ and $Y$ be independent. Suppose $g(X)$ and $h(Y)$ are still continuous random variables, then $g(X)$ and $h(Y)$ are independent.
 \end{thm}
-Similar to discrete case, there is a joint distribution function for two random variables.
+\section{Expectation of continuous random variables}
+In a continuous random variable $X$, the probability in every single point $x$ is $0$. Therefore, in order to make sense of the expectation of continuous random variable, we naturally give the following definition.
+\begin{defn}
+	\textbf{Expectation} of a continuous random variable $X$ with density function $f$ is given by:
+	\begin{equation*}
+		\expect X=\intinfty xf_{X}(x)\,dx
+	\end{equation*}
+	whenever this integral exists.
+\end{defn}
+\begin{rem}
+	We usually can define $\expect X$ only if $\expect|X|$ exists.
+\end{rem}
+We have a special properties in the continuous random variable.
+\begin{lem}(Tail sum formula)
+	\label{Chapter 5 (Lemma) Tail sum formula}
+	If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x<0$, and a CDF $F_{X}$, then
+	\begin{equation*}
+		\expect X=\intlu{0}{\infty}(1-F_{X}(x))\,dx
+	\end{equation*}
+\end{lem}
+\begin{proofing}
+	\begin{equation*}
+		\intlu{0}{\infty}(1-F_{X}(x))\,dx=\intlu{0}{\infty}\prob(X>x)\,dx=\intlu{0}{\infty}\intlu{x}{\infty}f_{X}(y)\,dy\,dx=\intlu{0}{\infty}\intlu{0}{y}f_{X}(y)\,dx\,dy=\intlu{0}{\infty}yf_{X}(y)\,dy=\expect X
+	\end{equation*}
+\end{proofing}
+The following lemma is a formula I developed just for proving the next theorem.
+\begin{lem}
+	\label{Chapter 5 (Lemma) Expectation as integral of CDF}
+	If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x>0$, and a CDF $F_{X}$, then
+	\begin{equation*}
+		\expect X=\intlu{-\infty}{0}-F_{X}(x)\,dx
+	\end{equation*}
+\end{lem}
+\begin{proofing}
+	\begin{equation*}
+		\intlu{-\infty}{0}-F_{X}(x)\,dx=\intlu{-\infty}{0}\intlu{-\infty}{x}-f_{X}(y)\,dy\,dx=\intlu{-\infty}{0}\intlu{y}{0}-f_{X}(y)\,dx\,dy=\intlu{-\infty}{0}yf_{X}(y)\,dy=\expect X
+	\end{equation*}
+\end{proofing}
+Similar to discrete random variable, we can ask what is $\expect g(X)$ for a function $g$.
+\begin{thm}
+	\label{Chapter 5 (Theorem) Expectation of function of continuous random variable}
+	If $X$ and $g(X)$ are continuous random variables, then
+	\begin{equation*}
+		\expect(g(X))=\intinfty g(x)f_{X}(x)\,dx
+	\end{equation*}
+\end{thm}
+
+\newpage
+\begin{proofing}
+	We first consider that $g(x)\geq 0$ for all $x$. Let $Y=g(X)$ and $B=\{x:g(x)>y\}$. By Lemma \ref{Chapter 5 (Lemma) Tail sum formula},
+	\begin{equation*}
+		\expect(g(X))=\intlu{0}{\infty}\prob(g(X)>y)\,dy=\intlu{0}{\infty}\int_{B}f_{X}(x)\,dx\,dy=\intlu{0}{\infty}\intlu{0}{g(x)}f_{X}(x)\,dy\,dx=\intlu{0}{\infty}g(x)f_{X}(x)\,dx
+	\end{equation*}
+	We then consider that $g(x)\leq 0$ for all $x$. Let $Z=g(X)$ and $C=\{x:g(x)<z\}$. By Lemma \ref{Chapter 5 (Lemma) Expectation as integral of CDF},
+	\begin{equation*}
+		\expect(g(X))=\intlu{-\infty}{0}-F_{Z}(z)\,dz=\intlu{-\infty}{0}\int_{C}-f_{X}(x)\,dx\,dz=\intlu{-\infty}{0}\intlu{g(x)}{0}-f_{X}(x)\,dz\,dx=\intlu{-\infty}{0}g(x)f_{X}(x)\,dx
+	\end{equation*}
+	Now we combined both formulas into one. If $g(X)$ is a random variable,
+	\begin{equation*}
+		\expect(g(X))=\int_{0}^{\infty}g(x)f_{X}(x)\,dx+\intlu{-\infty}{0}g(x)f_{X}(x)\,dx=\intinfty g(x)f_{X}(x)\,dx
+	\end{equation*}
+\end{proofing}
+Similar to discrete random variables, this theorem also provided a method to calculate the moments of a continuous distribution.
+\begin{defn}
+	Given $k\in\mathbb{N}_{+}$ and a continuous random variable $X$.
+	\begin{enumerate}
+		\item The \textbf{$k$-th moment} of $X$ is defined to be:
+		\begin{equation*}
+			\expect X^{k}=\intinfty x^{k}f_{X}(x)\,dx
+		\end{equation*}
+		\item The \textbf{$k$-th central moment} of $X$ is defined to be:
+		\begin{equation*}
+			\expect((X-\expect X)^{k})=\intinfty(x-\expect X)^{k}f_{X}(x)\,dx
+		\end{equation*}
+		\item \textbf{Variance} of $X$ is defined as $\Var(X)=\expect(X^{2})-(\expect X)^{2}$.
+		\item \textbf{Standard deviation} of $X$ is defined as $\sigma=\sqrt{\Var(X)}$.
+	\end{enumerate}
+\end{defn}
+
+\section{Joint distribution function of continuous random variables}
+Again, we recall the definition of joint distribution function.
 \begin{defn}
 	\textbf{Joint distribution function} (JCDF) of two continuous  random variables $X$ and $Y$ is the function $F:\mathbb{R}^{2}\to[0,1]$ such that:
 	\begin{equation*}
@@ -1713,10 +2097,34 @@ Similar to discrete case, there is a joint distribution function for two random 
 We also recall the definition of marginal distribution function.
 \begin{defn}
 	Given two continuous random variables $X$ and $Y$. Marginal distribution function (Marginal PDF) of $X$ given $Y$ is
-	\begin{equation*}
-		f_{X}(x)=\intinfty f_{X,Y}(x,u)\,dv
-	\end{equation*}
+	\begin{align*}
+		F_{X}(x)&=\prob(X\leq x)=\intinfty\intlu{-\infty}{x}f_{X,Y}(u,v)\,du\,dv=\intlu{-\infty}{x}\intinfty f_{X,Y}(u,v)\,dv\,du\\
+		f_{X}(x)&=\intinfty f_{X,Y}(x,u)\,dv
+	\end{align*}
 \end{defn}
+Similarly, we have the following extension of Theorem \ref{Chapter 5 (Theorem) Expectation of function of continuous random variable}. However, we are not going to prove it here.
+\begin{thm}
+	If $X$ and $Y$ are jointly continuous random variables and $g(X,Y)$ is continuous random variable, then
+	\begin{equation*}
+		\expect(g(X,Y))=\intinfty\intinfty g(x,y)f_{X,Y}(x,y)\,dx\,dy
+	\end{equation*}
+\end{thm}
+
+\newpage
+We can obtain the following important lemma.
+\begin{lem}
+	If $X$ and $Y$ are jointly continuous random variables, then for any $a,b\in\mathbb{R}$,
+	\begin{equation*}
+		\expect(aX+bY)=a\expect X+b\expect Y
+	\end{equation*}
+\end{lem}
+\begin{proofing}
+	\begin{align*}
+		\expect(aX+bY)&=\intinfty\intinfty(ax+by)f_{X,Y}(x,y)\,dx\,dy\\
+		&=\intinfty axf_{X}(x)\,dx+\intinfty byf_{Y}(y)\,dy\\
+		&=a\expect X+b\expect Y
+	\end{align*}
+\end{proofing}
 
 \section{Conditional distribution of continuous random variables}
 Recall the definition of conditional distribution function of discrete random variable $Y$ given $X=x$.
@@ -1742,8 +2150,6 @@ Suppose the probability distribution function $f_{X}(x)>0$,
 		f_{Y|X}(y|x)=\pdv*{F_{Y|X}(y|x)}{y}=\frac{f_{X,Y}(x,y)}{f_{X}(x)}
 	\end{equation*}
 \end{defn}
-
-\newpage
 \begin{rem}
 	Since $f_{X}(x)$ can also be computed from $f(x,y)$, we can simply compute
 	\begin{equation*}
@@ -1752,10 +2158,13 @@ Suppose the probability distribution function $f_{X}(x)>0$,
 \end{rem}
 \begin{rem}
 	More generally, for two continuous random variables $X$ and $Y$ with PDF  $f_{X}(x)>0$ for some $x\in\mathbb{R}$,
-	\begin{equation*}
-		\prob(Y\in A|X=x)=\int_{A}\frac{f_{X,Y}(x,v)}{f_{X}(x)}\,dv=\int_{A}f_{Y|X}(y|x)\,dy
-	\end{equation*}
+	\begin{align*}
+		\prob(Y\in A|X=x)&=\int_{A}\frac{f_{X,Y}(x,v)}{f_{X}(x)}\,dv\\
+		&=\int_{A}f_{Y|X}(y|x)\,dy
+	\end{align*}
 \end{rem}
+
+\newpage
 \begin{eg}
 	\label{Chapter 5 (Example) JPDF to conditional PDF example}
 	Assume that two jointly continuous random variables $X$ and $Y$ have a JPDF:
@@ -1783,19 +2192,61 @@ Suppose the probability distribution function $f_{X}(x)>0$,
 		\prob(X^{2}+Y^{2}\leq 1|X=x)=\prob(|Y|\leq\sqrt{1-x^{2}}|X=x)&=\int_{A_{x}}f_{Y|X}(y|x)\,dy\\
 		&=\int_{A_{x}\cap[0,1]}\frac{1}{x}\,dy\\
 		&=\intlu{0}{\min\{x,\sqrt{1-x^{2}}\}}\frac{1}{x}\,dy\\
-		&=\min\left\{1,\sqrt{\frac{1}{x^{2}}-1}\right\}
+		&=\min\{1,\sqrt{x^{-2}-1}\}
 	\end{align*}
 	\begin{align*}
-		\prob(X^{2}+Y^{2}\leq 1)=\iint_{x^{2}+y^{2}\leq 1}f_{X,Y}(x,y)\,dy\,dx&=\iint_{x^{2}+y^{2}\leq 1}f_{Y|X}(y|x)f_{X}(x)\,dy\,dx\\
-		&=\intlu{0}{1}\min\left\{1,\sqrt{\frac{1}{x^{2}}-1}\right\}\,dx\\
-		&=\intlu{0}{\frac{1}{\sqrt{2}}}\,dx+\intlu{\frac{1}{\sqrt{2}}}{1}\sqrt{\frac{1}{x^{2}}-1}\,dx\\
+		\prob(X^{2}+Y^{2}\leq 1)&=\iiint_{x^{2}+y^{2}\leq 1}f_{X,Y}(x,y)\,dy\,dx\\
+		&=\iiint_{x^{2}+y^{2}\leq 1}f_{Y|X}(y|x)\,dy f_{X}(x)\,dx\\
+		&=\intlu{0}{1}\min\{1,\sqrt{x^{-2}-1}\}\,dx\\
+		&=\intlu{0}{\frac{1}{\sqrt{2}}}\,dx+\intlu{\frac{1}{\sqrt{2}}}{1}\sqrt{x^{-2}-1}\,dx\\
 		\tag{$x=\sin\theta$}
 		&=\frac{1}{\sqrt{2}}+\intlu{\frac{\pi}{4}}{\frac{\pi}{2}}\left(\frac{1}{\sin\theta}-\sin\theta\right)\,d\theta\\
 		&=\left.\ln\left(\tan\frac{\theta}{2}\right)\right|_{\frac{\pi}{4}}^{\frac{\pi}{2}}=\ln(1)-\ln(\sqrt{2}-1)=\ln(1+\sqrt{2})
 	\end{align*}
 \end{eg}
+With conditional density function defined, we can now define conditional expectation.
+\begin{defn}
+	Given two continuous random variables $X$ and $Y$ and an event $X=x$ for some $x\in\mathbb{R}$. \textbf{Conditional expectation} of $Y$ is defined by:
+	\begin{equation*}
+		\psi(x)=\expect(Y|X=x)=\intinfty yf_{Y|X}(y|x)\,dy
+	\end{equation*}
+	Given a continuous random variable $X$. Conditional expectation of $Y$ is defined by:
+	\begin{equation*}
+		\psi(X)=\expect(Y|X)
+	\end{equation*}
+\end{defn}
 
 \newpage
+Again we also have the same properties of conditional distribution.
+\begin{lem}(Law of total expectation) 
+	Conditional expectation $\psi(X)=\expect(Y|X)$ for continuous random variables $X$ and $Y$ satisfies:
+	\begin{equation*}
+		\expect Y=\expect(\psi(X))
+	\end{equation*}
+\end{lem}
+\begin{proofing}
+	\begin{align*}
+		\expect(\psi(X))&=\intinfty\psi(x)f_{X}(x)\,dx\\
+		&=\intinfty\intinfty yf_{Y|X}(y|x)f_{X}(x)\,dy\,dx\\
+		&=\intinfty\intinfty yf_{X,Y}(x,y)\,dy\,dx\\
+		&=\intinfty y\intinfty f_{X,Y}(x,y)\,dx\,dy\\
+		&=\intinfty yf_{Y}(y)\,dy=\expect Y
+	\end{align*}
+\end{proofing}
+\begin{lem}
+	Conditional expectation $\psi(X)=\expect(Y|X)$ for continuous random variables $X$ and $Y$ satisfies:
+	\begin{equation*}
+		\expect(Yg(X))=\expect(\psi(X)g(X))
+	\end{equation*}
+\end{lem}
+\begin{proofing}
+	\begin{align*}
+		\expect(\psi(X)g(X))&=\intinfty\psi(x)g(x)f_{X}(x)\,dx\\
+		&=\intinfty\intinfty yf_{Y|X}(y|x)f_{X}(x)g(x)\,dy\,dx\\
+		&=\intinfty\intinfty yf_{X,Y}(x,y)g(x)\,dy\,dx\\
+		&=\expect(Yg(X))
+	\end{align*}
+\end{proofing}
 Similar to discrete random variables, we can find the distribution of $X+Y$ when $X$ and $Y$ are jointly continuous.
 \begin{thm}
 	If two jointly continuous random variables $X$ and $Y$ have JPDF $f_{X,Y}$, then $X+Y$ has a PDF
@@ -1805,12 +2256,13 @@ Similar to discrete random variables, we can find the distribution of $X+Y$ when
 \end{thm}
 \begin{proofing}
 	\begin{align*}
-		F_{X+Y}(z)=\prob(X+Y\leq z)&=\iint_{x+y\leq z}f_{X,Y}(x,y)\,dx\,dy\\
+		F_{X+Y}(z)&=\prob(X+Y\leq z)\\
+		&=\iint_{x+y\leq z}f_{X,Y}(x,y)\,dx\,dy\\
 		&=\intinfty\intlu{-\infty}{z-y}f_{X,Y}(x,y)\,dx\,dy\\
 		\tag{$v=x+y$}
 		&=\intinfty\intlu{-\infty}{z}f_{X,Y}(v-y,y)\,dv\,dy\\
 		&=\intlu{-\infty}{z}\intinfty f_{X,Y}(v-y,y)\,dy\,dv\\
-		f_{X+Y}(z)=F_{X+Y}'(z)&=\intinfty f_{X,Y}(z-y,y)\,dy=\intinfty f_{X,Y}(x,z-x)\,dx
+		f_{X+Y}(z)&=F_{X+Y}'(z)=\intinfty f_{X,Y}(z-y,y)\,dy=\intinfty f_{X,Y}(x,z-x)\,dx
 	\end{align*}
 \end{proofing}
 \begin{defn}
@@ -1822,6 +2274,7 @@ Similar to discrete random variables, we can find the distribution of $X+Y$ when
 
 \section{Examples of continuous random variables}
 Similar with discrete random variables, we have some useful parametric distributions.
+
 \begin{defn}
 	\textbf{Parametric distribution} of a continuous random variable is a distribution where the PDF depends on one or more parameters.
 \end{defn}
@@ -1835,7 +2288,7 @@ Similar with discrete random variables, we have some useful parametric distribut
 		\end{cases} & f_{X}(x)&=\begin{cases}
 			\frac{1}{b-a}, &a<x\leq b\\
 			0, &\text{Otherwise}
-		\end{cases}=\frac{1}{b-a}\mathbf{1}_{a<x\leq b}
+		\end{cases}
 	\end{align*}
 \end{eg}
 \begin{eg}
@@ -1845,7 +2298,8 @@ Similar with discrete random variables, we have some useful parametric distribut
 			1, &0\leq t\leq 1\\
 			0, &\text{Otherwise}
 		\end{cases}\\
-		f_{X+Y}(z)=\intinfty f_{X}(z-y)f_{Y}(y)\,dy&=\intlu{0}{1}f_{X}(z-y)\,dy\\
+		f_{X+Y}(z)&=\intinfty f_{X}(z-y)f_{Y}(y)\,dy\\
+		&=\intlu{0}{1}f_{X}(z-y)\,dy\\
 		&=\intlu{0}{1}\mathbf{1}_{0\leq z-y\leq 1}\,dy\\
 		\tag{$z-1\leq y\leq z$}
 		&=\intlu{\max\{0,z-1\}}{\min\{1,z\}}\,dy\\
@@ -1880,6 +2334,8 @@ Similar with discrete random variables, we have some useful parametric distribut
 		F_{Y}(x)=\prob(Y\leq x)=\prob(G^{-1}(U)\leq x)=\prob(U\leq G(x))=F_{U}(G(x))=G(x)
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}(\textbf{Exponential distribution}) $X\sim\Exp(\lambda)$\\
 	Random variable $X$ is \textbf{exponential} with parameter $\lambda>0$ if CDF and PDF of $X$ is
 	\begin{align*}
@@ -1889,7 +2345,7 @@ Similar with discrete random variables, we have some useful parametric distribut
 		\end{cases} & f_{X}(x)&=\begin{cases}
 			\lambda e^{-\lambda x}, &x\geq 0\\
 			0, &x<0
-		\end{cases}=\lambda e^{-\lambda x}\mathbf{1}_{x\geq 0}
+		\end{cases}
 	\end{align*}
 \end{eg}
 \begin{thm}
@@ -1903,6 +2359,18 @@ Similar with discrete random variables, we have some useful parametric distribut
 	\begin{equation*}
 		\prob(X>s+t|X>s)=\frac{\prob(\{X>s+t\}\cap\{X>s\})}{\prob(X>s)}=\frac{\prob(X>s+t)}{\prob(X>s)}=\frac{e^{-\lambda(s+t)}}{e^{-\lambda s}}=e^{-\lambda t}=\prob(X>t)
 	\end{equation*}
+\end{proofing}
+\begin{thm}
+	If $X\sim\Exp(\lambda)$, then $\expect{X}=\frac{1}{\lambda}$ and $\Var(X)=\frac{1}{\lambda^{2}}$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{X}&=\int_{0}^{\infty}x\lambda e^{-\lambda x}\,dx=\left.-xe^{-\lambda x}\right|_{0}^{\infty}+\int_{0}^{\infty}e^{-\lambda x}\,dx=\left.-\frac{1}{\lambda}e^{-\lambda x}\right|_{0}^{\infty}=\frac{1}{\lambda}\\
+		\Var(X)&=\expect(X^{2})-(\expect{X})^{2}=-\frac{1}{\lambda^{2}}+\int_{0}^{\infty}x^{2}\lambda e^{-\lambda x}\,dx\\
+		&=-\frac{1}{\lambda}-\left.x^{2}e^{-\lambda x}\right|_{0}^{\infty}+\int_{0}^{\infty}2xe^{-\lambda x}\,dx\\
+		&=-\frac{1}{\lambda}+\frac{2}{\lambda}\expect{X}\\
+		&=-\frac{1}{\lambda}+\frac{2}{\lambda^{2}}=\frac{1}{\lambda^{2}}
+	\end{align*}
 \end{proofing}
 \begin{eg}(\textbf{Normal distribution} / \textbf{Gaussian distribution}) $X\sim\N(\mu,\sigma^{2})$\\
 	Random variable $X$ is \textbf{normal} if it has two parameters $\mu$ and $\sigma^{2}$, and its PDF and CDF is
@@ -1927,7 +2395,6 @@ Similar with discrete random variables, we have some useful parametric distribut
 	\begin{equation*}
 		I^{2}=\frac{1}{2\pi}\intlu{0}{2\pi}\intlu{0}{\infty}e^{-\frac{r^{2}}{2}}r\,dr\,d\theta=\frac{1}{2\pi}\intlu{0}{2\pi}\intlu{0}{\infty}e^{-\frac{r^{2}}{2}}\,d\left(\frac{r^{2}}{2}\right)\,d\theta=\frac{1}{2\pi}\intlu{0}{2\pi}\,d\theta=1
 	\end{equation*}
-	Since $\phi(x)>0$, $I=1$. Therefore, $\phi(x)$ is a probability distribution function.
 \end{proofing}
 These are some properties that are used frequently.
 \begin{lem}
@@ -1936,6 +2403,7 @@ These are some properties that are used frequently.
 	\begin{enumerate}
 		\item Let $X\sim\N(0,1)$. If a random variable $Y=bX+a$ for some $a,b\in\mathbb{R}$ and $b\neq 0$, then $Y\sim\N(a,b^{2})$.
 		\item Let $X\sim\N(a,b^{2})$ for some $a,b\in\mathbb{R}$ and $b\neq 0$. If a random variable $Y=\frac{X-a}{b}$, then $Y\sim\N(0,1)$.
+		\item If $Y\sim\N(a,b^{2})$, then $\expect Y=a$ and $\Var(Y)=b^{2}$.
 	\end{enumerate}
 \end{lem}
 \begin{proofing}
@@ -1950,6 +2418,13 @@ These are some properties that are used frequently.
 			F_{Y}(y)=\prob(Y\leq y)=\prob(X\leq by+a)=\frac{1}{\sqrt{2\pi b^{2}}}\intlu{-\infty}{by+a}e^{-\frac{(x-a)^{2}}{2b^{2}}}\,dx=\frac{1}{\sqrt{2\pi}}\intlu{-\infty}{y}e^{-\frac{z^{2}}{2}}\,dz
 		\end{equation*}
 		Therefore, $Y\sim\N(0,1)$.
+		\item Let $y=bz+a$.
+		\begin{equation*}
+			\expect Y=\frac{1}{\sqrt{2\pi b^{2}}}\intinfty ye^{-\frac{(y-a)^{2}}{2b^{2}}}\,dy=\frac{1}{\sqrt{2\pi}}\left(\intinfty bze^{-\frac{z^{2}}{2}}\,dz+\intinfty ae^{-\frac{z^{2}}{2}}\,dz\right)=\frac{a}{\sqrt{2\pi}}\intinfty e^{-\frac{z^{2}}{2}}\,dz=a(1)=a
+		\end{equation*}
+		\begin{equation*}
+			\Var(Y)=\frac{1}{\sqrt{2\pi b^{2}}}\intinfty(y-a)^{2}e^{-\frac{(y-a)^{2}}{2b^{2}}}\,dy=\frac{b^{2}}{\sqrt{2\pi}}\intinfty z^{2}e^{-\frac{z^{2}}{2}}\,dz=\frac{-b^{2}}{\sqrt{2\pi}}\intinfty zd\left(e^{-\frac{z^{2}}{2}}\right)=\frac{b^{2}}{\sqrt{2\pi}}\intinfty e^{-\frac{z^{2}}{2}}\,dz=b^{2}
+		\end{equation*}
 	\end{enumerate}
 \end{proofing}
 \begin{lem}
@@ -1971,23 +2446,23 @@ This is a very important theorem, as it claims that the sum of normal distributi
 	\begin{align*}
 		f_{X+Y}(z)&=\intinfty f_{X}(z-y)f_{Y}(y)\,dy\\
 		&=\intinfty\frac{1}{\sqrt{2\pi\sigma^{2}}}\exp\left(-\frac{(z-y)^{2}}{2\sigma^{2}}\right)\left(\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{y^{2}}{2}\right)\right)\,dy\\
-		&=\frac{1}{2\pi\sigma}\exp\left(-\frac{z^{2}}{2\sigma^{2}}\right)\intinfty\exp\left(-\frac{1}{2\sigma^{2}}(-2yz+y^{2}(1+\sigma^{2}))\right)\,dy\\
-		&=\frac{1}{2\pi\sigma}\exp\left(-\frac{z^{2}}{2\sigma^{2}}+\frac{z^{2}}{2\sigma^{2}(1+\sigma^{2})}\right)\intinfty\exp\left(-\frac{1+\sigma^{2}}{2\sigma^{2}}\left(\frac{z^{2}}{(1+\sigma^{2})^{2}}-\frac{2yz}{1+\sigma^{2}}+y^{2}\right)\right)\,dy\\
-		&=\frac{1}{\sqrt{2\pi}\sqrt{1+\sigma^{2}}}\exp\left(-\frac{z^{2}}{2\sigma^{2}}+\frac{z^{2}}{2\sigma^{2}(1+\sigma^{2})}\right)\intinfty\left(\frac{1}{\sqrt{2\pi}\frac{\sigma}{\sqrt{1+\sigma^{2}}}}\right)\exp\left(-\frac{\left(y-\frac{z}{1+\sigma^{2}}\right)^{2}}{2\left(\frac{\sigma}{\sqrt{1+\sigma^{2}}}\right)^{2}}\right)\,dy\\
+		&=\intinfty\frac{1}{2\pi\sigma}\exp\left(-\frac{z^{2}}{2\sigma^{2}}\right)\exp\left(-\frac{1}{2\sigma^{2}}(-2yz+y^{2}(1+\sigma^{2}))\right)\,dy\\
+		&=\intinfty\frac{1}{2\pi\sigma}\exp\left(-\frac{z^{2}}{2\sigma^{2}}+\frac{z^{2}}{2\sigma^{2}(1+\sigma^{2})}\right)\exp\left(-\frac{1+\sigma^{2}}{2\sigma^{2}}\left(\frac{z^{2}}{(1+\sigma^{2})^{2}}-\frac{2yz}{1+\sigma^{2}}+y^{2}\right)\right)\,dy\\
+		&=\intinfty\frac{1}{\sqrt{2\pi}\sqrt{1+\sigma^{2}}}\exp\left(-\frac{z^{2}}{2\sigma^{2}}+\frac{z^{2}}{2\sigma^{2}(1+\sigma^{2})}\right)\left(\frac{1}{\sqrt{2\pi}\frac{\sigma}{\sqrt{1+\sigma^{2}}}}\right)\exp\left(-\frac{\left(y-\frac{z}{1+\sigma^{2}}\right)^{2}}{2\left(\frac{\sigma}{\sqrt{1+\sigma^{2}}}\right)^{2}}\right)\,dy\\
 		&=\frac{1}{\sqrt{2\pi}\sqrt{1+\sigma^{2}}}\exp\left(-\frac{z^{2}}{2(1+\sigma^{2})}\right)
 	\end{align*}
-	Therefore, $X+Y\sim\N(0,1+\sigma^{2})$. In general case when $X_{1}\sim\N(\mu_{1},\sigma_{1}^{2})$, $X_{2}\sim\N(\mu_{2},\sigma_{2}^{2})$ and $X_{1}\independent X_{2}$,
+	Therefore, $X+Y\sim\N(0,1+\sigma^{2})$.\\
+	In general case when $X_{1}\sim\N(\mu_{1},\sigma_{1}^{2})$, $X_{2}\sim\N(\mu_{2},\sigma_{2}^{2})$ and $X_{1}\independent X_{2}$.
 	\begin{equation*}
 		X_{1}+X_{2}=\sigma_{2}\left(\frac{X_{1}-\mu_{1}}{\sigma_{2}}+\frac{X_{2}-\mu_{2}}{\sigma_{2}}\right)+\mu_{1}+\mu_{2}
 	\end{equation*}
 	We get $\frac{X_{1}-\mu_{1}}{\sigma_{2}}\sim\N\left(0,\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\right)$. Now we can apply this to special case and we get $\frac{X_{1}-\mu_{1}}{\sigma_{2}}+\frac{X_{2}-\mu_{2}}{\sigma_{2}}\sim\N\left(0,1+\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\right)$.\\
-	Therefore, $X_{1}+X_{2}\sim\N(\mu_{1}+\mu_{2},\sigma_{1}^{2}+\sigma_{2}^{2})$. By induction, if $X_{i}\sim\N(\mu_{i},\sigma_{i}^{2})$ for $i=1,2,\cdots,n$ and they are independent, then
+	Therefore, $X_{1}+X_{2}\sim\N(\mu_{1}+\mu_{2},\sigma_{1}^{2}+\sigma_{2}^{2})$.\\
+	By induction, if $X_{i}\sim\N(\mu_{i},\sigma_{i}^{2})$ for $i=1,2,\cdots,n$ and they are independent, then
 	\begin{equation*}
 		\sum_{i=1}^{n}X_{i}\sim\N\left(\sum_{i=1}^{n}\mu_{i},\sum_{i=1}^{n}\sigma_{i}^{2}\right)
 	\end{equation*}
 \end{proofing}
-
-\newpage
 Combining two normal distributions into a joint distribution can be really useful.
 \begin{eg}(\textbf{Standard bivariate normal distribution}) 
 	Two continuous random variables $X$ and $Y$ are \textbf{standard bivariate normal} if they have JPDF:
@@ -2006,6 +2481,14 @@ Combining two normal distributions into a joint distribution can be really usefu
 \begin{rem}
 	$\rho$ is called the \textbf{population correlation coefficient} between $X$ and $Y$. It will be discussed in Chapter 6.
 \end{rem}
+\begin{rem}
+	If $X\sim\N(0,1)$ and $Y\sim\N(0,1)$,
+	\begin{align*}
+		\cov(X,Y)&=\expect(XY)-\expect X\expect Y=\expect(XY)\\
+		&=\intinfty\intinfty\frac{y}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}\frac{x}{\sqrt{2\pi(1-\rho^{2})}}e^{-\frac{(x-\rho y)^{2}}{2(1-\rho^{2})}}\,dx\,dy\\
+		&=\intinfty\frac{y}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}\rho y\,dy=\rho\intinfty y^{2}\phi(y)\,dy=\rho
+	\end{align*}
+\end{rem}
 In most of the cases, normal random variables $X$ and $Y$ do not have a mean of $0$ and a variance $1$. If we also include mean and variance into the distribution, we would have the following distribution.
 \begin{eg}(\textbf{Bivariate normal distribution})
 	Two continuous random variables $X$ and $Y$ are \textbf{bivariate normal} with means $\mu_{X}$ and $\mu_{Y}$, variance $\sigma_{X}^{2}$ and $\sigma_{Y}^{2}$, and correlation coefficient $\rho$ if JPDF is given by
@@ -2013,6 +2496,8 @@ In most of the cases, normal random variables $X$ and $Y$ do not have a mean of 
 		f_{X,Y}(x,y)=\frac{1}{2\pi\sigma_{X}\sigma_{Y}\sqrt{1-\rho^{2}}}\exp\left(-\frac{1}{2(1-\rho^{2})}\left(\left(\frac{x-\mu_{X}}{\sigma_{X}}\right)^{2}-2\rho\left(\frac{x-\mu_{X}}{\sigma_{X}}\right)\left(\frac{y-\mu_{Y}}{\sigma_{Y}}\right)+\left(\frac{y-\mu_{Y}}{\sigma_{Y}}\right)^{2}\right)\right)
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}
 	Assume that random variables $X\sim\N(0,1)$ and $Y\sim\N(0,1)$ are standard bivariate normal. For $-1<\rho<1$,
 	\begin{equation*}
@@ -2020,7 +2505,12 @@ In most of the cases, normal random variables $X$ and $Y$ do not have a mean of 
 	\end{equation*}
 	We want to find $f_{X|Y}(x|y)$.
 	\begin{align*}
-		f_{X|Y}(x|y)=\frac{f_{X,Y}(x,y)}{f_{Y}(y)}=\sqrt{2\pi}e^{\frac{1}{2}y^{2}}f_{X,Y}(x,y)&=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^{2}}}e^{\frac{1}{2}y^{2}-\frac{y^{2}}{2(1-\rho^{2})}}\exp\left(-\frac{x^{2}-2\rho xy}{2(1-\rho^{2})}\right)\\
+		f_{X|Y}(x|y)&=\frac{f_{X,Y}(x,y)}{f_{Y}(y)}\\
+		\tag{$C_{1,y}=\sqrt{2\pi}e^{\frac{1}{2}y^{2}}$}
+		&=\sqrt{2\pi}e^{\frac{1}{2}y^{2}}f_{X,Y}(x,y)\\
+		\tag{$C_{2,y}=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^{2}}}e^{\left(\frac{1}{2}-\frac{1}{2(1-\rho^{2}}\right)y^{2}}$}
+		&=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^{2}}}e^{\frac{1}{2}y^{2}-\frac{y^{2}}{2(1-\rho^{2})}}\exp\left(-\frac{x^{2}-2\rho xy}{2(1-\rho^{2})}\right)\\
+		\tag{$C_{3,y}=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^{2}}}$}
 		&=\frac{1}{\sqrt{2\pi}{\sqrt{1-\rho^{2}}}}e^{\left(\frac{1}{2}-\frac{1}{2(1-\rho^{2})}-\frac{\rho^{2}}{2(1-\rho^{2})}\right)y^{2}}\exp\left(-\frac{(x-\rho y)^{2}}{2(1-\rho^{2})}\right)\\
 		&=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^{2}}}\exp\left(-\frac{(x-\rho y)^{2}}{2(1-\rho^{2})}\right)
 	\end{align*}
@@ -2056,7 +2546,7 @@ In most of the cases, normal random variables $X$ and $Y$ do not have a mean of 
 \end{eg}
 There are some remarks that may be important to know about.
 \begin{rem}
-	$X$ and $Y$ are bivariate normal and uncorrelated if and only if $X$ and $Y$ are independent normal. We will talk about what uncorrelatedness means.
+	$X$ and $Y$ are bivariate normal and uncorrelated $\iff$ $X$ and $Y$ are independent normal.
 \end{rem}
 \begin{rem}
 	$X$ and $Y$ are jointly continuous and they are both normal does not mean they are bivariate normal.
@@ -2081,6 +2571,8 @@ There are some remarks that may be important to know about.
 \begin{rem}
 	Two random variables $X$ and $Y$ are jointly continuous and uncorrelated Gaussian does not mean they are independent Gaussian.
 \end{rem}
+
+\newpage
 More generally, we could create a multivariate normal distribution from more than two random variables.
 \begin{eg}(\textbf{Multivariate normal distrubution}) $\mathbf{X}\sim\N_{p}(\boldsymbol{\mu},\mathbf{\Sigma})$\\
 	Random vector $\mathbf{X}$ with dimension $p$ is $p$-dimensional normal with $p\times 1$ mean vector $\boldsymbol{\mu}$ and $p\times p$ variance-covariance matrix $\mathbf{\Sigma}$ if we have:
@@ -2100,56 +2592,57 @@ More generally, we could create a multivariate normal distribution from more tha
 	\begin{equation*}
 		f_{X}(x)=\frac{1}{\pi(1+(x-\theta)^{2})}
 	\end{equation*}
+	It has the expectation
+	\begin{equation*}
+		\expect|X|=\intinfty\frac{|x|}{\pi(1+x^{2})}\,dx=2\intlu{0}{\infty}\frac{x}{\pi(1+x^{2})}\,dx=\infty
+	\end{equation*}
 \end{eg}
 \begin{rem}
 	If $X\sim\N(0,1)$ and $Y\sim\N(0,1)$, then $\frac{X}{Y}\sim\Cauchy(0)$.
 \end{rem}
-\begin{eg}(\textbf{Gamma distribution)} $X\sim\Gam(\alpha,\lambda)$\\
+\begin{eg}(\textbf{Gamma distribution)} $X\sim\Gamma(\alpha,\lambda)$\\
 	Random variable $X$ has a gamma distribution with parameters $\alpha$ and $\lambda$ if it has a PDF:
 	\begin{equation*}
 		f_{X}(x)=\begin{cases}
 			\frac{1}{\Gamma(\alpha)}\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}, &x\geq 0\\
 			0, &x<0
-		\end{cases}=\frac{1}{\Gamma(\alpha)}\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}\mathbf{1}_{x\geq 0}
+		\end{cases}
 	\end{equation*}
 	where $\Gamma(\alpha)$ is called the \textbf{gamma function} defined by:
 	\begin{equation*}
 		\Gamma(\alpha)=\intlu{0}{\infty}e^{-y}y^{\alpha-1}\,dy
 	\end{equation*}
-	Note that $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$. If $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.
+	Note that $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$. If $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$. The expectation and variance are:
+	\begin{align*}
+		\expect{X}&=\frac{\alpha}{\lambda} & \Var(X)&=\frac{\alpha}{\lambda^{2}}
+	\end{align*}
 \end{eg}
-\begin{lem}
+\begin{rem}
 	When $\alpha=1$, it is an exponential distribution.
-\end{lem}
-\begin{proofing}
-	Let $X\sim\Gamma(1,\lambda)$. The PDF is:
-	\begin{equation*}
-		f_{X}(x)=\begin{cases}
-			\frac{1}{\Gamma(1)}\lambda e^{-\lambda x}(\lambda x)^{1-1}, &x\geq 0\\
-			0, &x<0
-		\end{cases}=\begin{cases}
-			\lambda e^{-\lambda x}, &x\geq 0\\
-			0, &x<0
-		\end{cases}
-	\end{equation*}
-\end{proofing}
+\end{rem}
 \begin{eg}(\textbf{Chi-squared distribution}) $Y\sim\chi^{2}(n)$\\
 	Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $n$ if it has a PDF:
 	\begin{equation*}
 		f_{Y}(x)=\begin{cases}
 			\frac{1}{\Gamma(\frac{n}{2})}2^{-\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}, &x\geq 0\\
 			0, &x<0
-		\end{cases}=\frac{1}{\Gamma(\frac{n}{2})}2^{-\frac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}\mathbf{1}_{x\geq 0}
+		\end{cases}
 	\end{equation*}
+	The expectation and variance are:
+	\begin{align*}
+		\expect{Y}&=k & \Var(Y)&=2k
+	\end{align*}
 \end{eg}
 \begin{rem}
 	$\Gamma(\frac{1}{2})=\sqrt{\pi}$.
 \end{rem}
+
+\newpage
 \begin{lem}
-	Random variable $\chi^{2}(n)$ is equivalent to $\Gam(\frac{n}{2},\frac{1}{2})$.
+	Random variable $\chi^{2}(n)$ is equivalent to $\Gamma(\frac{n}{2},\frac{1}{2})$.
 \end{lem}
 \begin{proofing}
-	Let $X\sim\Gam(\frac{n}{2},\frac{1}{2})$. Substituting $\alpha=\frac{n}{2}$ and $\lambda=\frac{1}{2}$ into PDF of $X$, we have:
+	Let $X\sim\Gamma(\frac{n}{2},\frac{1}{2})$. Substituting $\alpha=\frac{n}{2}$ and $\lambda=\frac{1}{2}$ into PDF of $X$, we have:
 	\begin{equation*}
 		f_{X}(x)=\begin{cases}
 			\frac{1}{2\Gamma(\frac{n}{2})}e^{-\frac{x}{2}}\left(\frac{x}{2}\right)^{\frac{n}{2}-1}, &x\geq 0\\
@@ -2181,6 +2674,17 @@ We may derive further from the chi-squared distribution.
 	\begin{equation*}
 		f(w)=\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\left(1+\frac{w^{2}}{n}\right)^{-\frac{n+1}{2}}
 	\end{equation*}
+	The expectation and variance are:
+	\begin{align*}
+		\expect{W}&=\begin{cases}
+			0, &n>1\\
+			\text{Undefined}, &n\leq 0
+		\end{cases} & \Var(W)&=\begin{cases}
+			\frac{n}{n-2}, &n>2\\
+			\infty, &2<n\leq 4\\
+			\text{Undefined}, &\text{Otherwise}
+		\end{cases}
+	\end{align*}
 \end{eg}
 \begin{rem}
 	If $W\sim t(1)$, then from the PDF:
@@ -2189,50 +2693,27 @@ We may derive further from the chi-squared distribution.
 	\end{equation*}
 	This means that $W\sim\Cauchy(0)$.
 \end{rem}
-\begin{rem}
-	Fixing $Y=y$ for some constant $y\neq 0$, we can easily find that $W\sim\N(0,\frac{n}{y})$.
-\end{rem}
 
-\newpage
 \begin{eg}(\textbf{Beta distribution}) $X\sim\Beta(a,b)$\\
 	Random variable $X$ has a beta distribution with parameters $a$ and $b$ if it has a PDF:
 	\begin{equation*}
 		f_{X}(x)=\begin{cases}
 			\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}, &0<x<1\\
 			0, &\text{Otherwise}
-		\end{cases}=\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}\mathbf{1}_{0<x<1}
+		\end{cases}
 	\end{equation*}
 	where $B(a,b)$ is called the \textbf{beta function} defined as:
 	\begin{equation*}
 		B(a,b)=\intlu{0}{1}x^{a-1}(1-x)^{b-1}\,dx=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
 	\end{equation*}
+	The expectation and variance are:
+	\begin{align*}
+		\expect{X}&=\frac{a}{a+b} & \Var(X)&=\frac{ab}{(a+b)^{2}(a+b+1)}
+	\end{align*}
 \end{eg}
-\begin{eg}(\textbf{F distribution}) $F\sim F(r_{1},r_{2})$\\
-	Assume that $X$ and $Y$ are independent random variables with $X\sim\chi^{2}(r_{1})$ and $Y\sim\chi^{2}(r_{2})$. Let:
-	\begin{equation*}
-		F=\frac{\frac{X}{r_{1}}}{\frac{Y}{r_{2}}}
-	\end{equation*}
-	Then $F$ has a F-distribution with $r_{1}$ and $r_{2}$ degrees of freedom with:
-	\begin{equation*}
-		f_{F}(w)=\frac{\Gamma\left(\frac{r_{1}+r_{2}}{2}\right)}{\Gamma\left(\frac{r_{1}}{2}\right)\Gamma\left(\frac{r_{2}}{2}\right)}\left(\frac{r_{1}}{r_{2}}\right)^{\frac{r_{1}}{2}}w^{\frac{r_{1}}{2}-1}\left(1+\frac{r_{1}w}{r_{2}}\right)^{-\frac{r_{1}+r_{2}}{2}}
-	\end{equation*}
-	where $0<w<\infty$.
-\end{eg}
-\begin{lem}
-	If $U\sim F(r_{1},r_{2})$, then $\frac{1}{U}\sim F(r_{2},r_{1})$
-\end{lem}
-\begin{proofing}
-	\begin{enumerate}
-		\item By definition,
-		\begin{equation*}
-			U=\frac{\frac{X}{r_{1}}}{\frac{Y}{r_{2}}}
-		\end{equation*}
-		where $X\sim\chi^{2}(r_{1})$ and $Y\sim\chi^{2}(r_{2})$. Therefore,
-		\begin{equation*}
-			\frac{1}{U}=\frac{\frac{Y}{r_{2}}}{\frac{X}{r_{1}}}\sim F(r_{2},r_{1})
-		\end{equation*}
-	\end{enumerate}
-\end{proofing}
+
+
+\newpage
 \section{Functions of continuous random variables}
 Given a continuous random variable $X$ and a function $g$ such that $g(X)$ is still a random variable, we have $\expect g(X)=\intinfty g(x)f_{X}(x)\,dx$. Therefore, we only need $f_{x}(x)$ to compute $\expect g(X)$. However, very often, we want to know the distribution of $g(X)$.
 \begin{eg}
@@ -2295,6 +2776,8 @@ We can consider the multivariable case.
 		\end{cases}
 	\end{equation*}
 \end{eg}
+
+\newpage
 \begin{eg}
 	Given two jointly continuous random variables $X_{1},X_{2}$ and their JPDF $f_{X_{1},X_{2}}$.\\
 	Let $Y_{1}=X_{1}+X_{2}$ and $Y_{2}=X_{1}-X_{2}$.
@@ -2316,8 +2799,6 @@ We can consider the multivariable case.
 	\end{align*}
 	Therefore, $Y_{1}\independent Y_{2}$ and we have $Y_{1}\sim\N(0,2)$ and $Y_{2}\sim\N(0,2)$.
 \end{eg}
-
-\newpage
 \begin{eg}
 	We do the same thing as the previous example but instead we have two independent random variables $X_{1}\sim\U[0,1]$ and $X_{2}\sim\U[0,1]$. For all $x_{1},x_{2}\in\mathbb{R}$,
 	\begin{align*}
@@ -2330,819 +2811,7 @@ We can consider the multivariable case.
 	\end{align*}
 \end{eg}
 
-\chapter{Expectation}
-\textit{In this chapter, if we are discussing more than one random variables, we assume that either all are discrete or all are continuous. In practical sense, it is possible to have some to be discrete and others continuous, but we will not tackle this situation. It is relatively easy to proof all the theorems and lemmas in this case once you know how to prove when all are discrete or all are continuous.}
-\section{Introduction to expectation}
-In real life, we also want to know about the expected final result given the probabilities we calculated. The result is usually a theoretical approximation of empirical average. Assume we have random variables $X_{1},X_{2},\cdots,X_{N}$ which take values in $\{x_{1},x_{2},\cdots,x_{n}\}$ with probability mass function $f_{X}(x)$. We get an empirical average:
-\begin{equation*}
-	\mu=\frac{1}{N}\sum_{i=1}^{N}X_{i}\approx\frac{1}{N}\sum_{i=1}^{N}x_{i}Nf(x_{i})=\sum_{i=1}^{N}x_{i}f(x_{i})
-\end{equation*}
-We get the formula of expectation of discrete random variable. However, for continuous random variables, the probability in every single point is $0$. In order to make sense, we use the probability density function to obtain the expectation:
-\begin{equation*}
-	\mu=\int_{-\infty}^{\infty}xf(x)\,dx
-\end{equation*}
-\begin{defn}
-	\textbf{Mean value}, \textbf{expectation} or \textbf{expected value} of a discrete random variable $X$ with PMF $f_{X}$ is defined to be:
-	\begin{equation*}
-		\expect{X}=\expect(X):=\sum_{x:f_{X}(x)>0}xf_{X}(x)
-	\end{equation*}
-	whenever this sum is absolutely convergent.\\
-	\textbf{Expectation} of a continuous random variable $X$ with PDF $f_{X}$ is defined to be:
-	\begin{equation*}
-		\expect{X}=\int_{-\infty}^{\infty}xf_{X}(x)\,dx
-	\end{equation*}
-	whenever this integral exists.
-\end{defn}
-\begin{rem}
-	We usually can define $\expect{X}$ only if $\expect\abs{X}$ exists.
-\end{rem}
-\begin{eg}
-	Suppose a product is sold seasonally. Let $b$ be net profit for each sold unit, $\ell$ be net loss for each left unit, and $X$ be number of products ordered by customer. If $y$ units are stocked, what is the expected profit $Q(y)$?
-	\begin{equation*}
-		Q(y)=\begin{cases}
-			bX-(y-X)\ell, &X\leq y\\
-			yb, &X>y
-		\end{cases}
-	\end{equation*}
-\end{eg}
-
-\newpage
-\begin{thm}
-	Given two random variables $X$ and $Y$. Expectation operator $\expect$ has the following properties:
-	\begin{enumerate}
-		\item For any $a\leq b$, if $a\leq X\leq b$, then $a\leq\expect{X}\leq b$.
-		\item If $X\geq 0$, then $\expect X\geq 0$.
-		\item If $a,b\in\mathbb{R}$, then $\expect(aX+bY)=a\expect X+b\expect Y$.
-	\end{enumerate}
-\end{thm}
-\begin{proofing}
-	\begin{enumerate}
-		\item If $X$ is discrete, then:
-		\begin{align*}
-			\expect{X}&=\sum_{x}xf_{X}(x)\geq\sum_{x}af_{X}(x)=a & \expect{X}&=\sum_{x}xf_{X}(x)\leq\sum_{x}bf_{X}(x)=b
-		\end{align*}
-		If $X$ is continuous, then:
-		\begin{align*}
-			\expect{X}&=\intinfty xf_{X}(x)\geq\intinfty af_{X}(x)=a & \expect{X}&=\intinfty xf_{X}(x)\leq\intinfty bf_{X}(x)=b
-		\end{align*}
-		Therefore, we have $a\leq\expect{X}\leq b$.
-		\item If $X$ is discrete, since $f_{X}(x)\geq 0$ for all $x\geq 0$, $\expect{X}=\sum_{x}xf_{X}(x)\geq 0$ if $X\geq 0$.\\
-		If $X$ is continuous, since $f_{X}(x)\geq 0$ for all $x\geq 0$, $\expect{X}=\int_{0}^{\infty}xf_{X}(x)\,dx\geq 0$.
-		\item When $X$ and $Y$ are discrete,
-		\begin{align*}
-			\expect(aX+bY)=\sum_{x,y}(ax+by)f_{X,Y}(x,y)&=a\sum_{x}x\left(\sum_{y}f_{X,Y}(x,y)\right)+b\sum_{y}y\left(\sum_{x}f_{X,Y}(x,y)\right)\\
-			&=a\sum_{x}xf_{X}(x)+b\sum_{y}yf_{Y}(y)=a\expect{X}+b\expect{Y}
-		\end{align*}
-		When $X$ and $Y$ are continuous,
-		\begin{align*}
-			\expect(aX+bY)=\intinfty\intinfty(ax+by)f_{X,Y}(x,y)\,dy\,dx&=a\intinfty x\intinfty f_{X,Y}(x,y)\,dy\,dx+b\intinfty\intinfty yf_{X,Y}(x,y)\,dy\,dx\\
-			&=\intinfty xf_{X}(x)\,dx+b\intinfty yf_{Y}(y)\,dy=a\expect{X}+b\expect{Y}
-		\end{align*}
-	\end{enumerate}
-\end{proofing}
-By applying the part 3 of the above Theorem, we obtain the following result. 
-\begin{lem}(\textbf{Linearity of expectation}) 
-	More generally, for any sequence of random variables $\{X_{1},X_{2},\cdots,X_{n}\}$, we have
-	\begin{equation*}
-		\expect\left(\sum_{i=1}^{n}a_{i}X_{i}\right)=\sum_{i=1}^{n}a_{i}\expect X_{i}
-	\end{equation*}
-\end{lem}
-\begin{thm}(\textbf{Tail Sum Formula})
-	\label{Chapter 6 (Theorem) Tail sum formula}
-	If discrete random variable $X$ has a PMF $f_{X}$ satisfies $f_{X}(x)=0$ when $x<0$, then:
-	\begin{equation*}
-		\expect{X}=\sum_{k=0}^{\infty}\prob(X>k)
-	\end{equation*}
-	If continuous random variable $X$ has a PDF $f_{X}$ satisfies $f_{X}(x)=0$ when $x<0$, then:
-	\begin{equation*}
-		\expect{X}=\int_{0}^{\infty}\prob(X>x)\,dx
-	\end{equation*}
-\end{thm}
-\begin{proofing}
-	For discrete random variable $X$ with $f_{X}(x)$ for any $x<0$,
-	\begin{equation*}
-		\sum_{k=0}^{\infty}\prob(X>k)=\sum_{k=1}^{\infty}\prob(X\geq k)=\sum_{k=1}^{\infty}\sum_{i=k}^{\infty}\prob(X=i)=\sum_{k=1}^{\infty}k\prob(X=k)=\expect{X}
-	\end{equation*}
-	For continuous random variable $X$ with $f_{X}(x)$ for any $x<0$,
-	\begin{equation*}
-		\int_{0}^{\infty}\prob(X>x)\,dx=\int_{0}^{\infty}\int_{x}^{\infty}f_{X}(y)\,dy\,dx=\int_{0}^{\infty}\int_{0}^{y}f_{X}(y)\,dx\,dy=\int_{0}^{\infty}yf_{X}(y)\,dy=\expect{X}
-	\end{equation*}
-\end{proofing}
-The following lemma is a formula I developed just for proving the next theorem.
-\begin{lem}
-	\label{Chapter 6 (Lemma) Expectation as integral of CDF}
-	If continuous random variable $X$ has a PDF $f_{X}$ with $f_{X}(x)=0$ when $x>0$, and a CDF $F_{X}$, then
-	\begin{equation*}
-		\expect X=\intlu{-\infty}{0}-F_{X}(x)\,dx
-	\end{equation*}
-\end{lem}
-\begin{proofing}
-	\begin{equation*}
-		\intlu{-\infty}{0}-F_{X}(x)\,dx=\intlu{-\infty}{0}\intlu{-\infty}{x}-f_{X}(y)\,dy\,dx=\intlu{-\infty}{0}\intlu{y}{0}-f_{X}(y)\,dx\,dy=\intlu{-\infty}{0}yf_{X}(y)\,dy=\expect X
-	\end{equation*}
-\end{proofing}
-\begin{thm}
-	\label{Chapter 6 (Theorem) Expectation of function of random variable}
-	Given a function $g:\mathbb{R}\to\mathbb{R}$ and a random variable $X$.
-	\begin{enumerate}
-		\item If  $X$ is discrete with a PMF $f_{X}(x)$, and $g(X)$ is still a discrete random variable, then:
-		\begin{equation*}
-			\expect{g(X)}=\sum_{x}g(x)f_{X}(x)
-		\end{equation*}
-		whenever this sum is absolutely convergent.
-		\item If $X$ is continuous with a PDF $f_{X}(x)$, and $g(X)$ is still a continuous random variable, then:
-		\begin{equation*}
-			\expect{g(X)}=\intinfty g(x)f_{X}(x)\,dx
-		\end{equation*}
-		whenever this integral exists.
-	\end{enumerate}
-\end{thm}
-\begin{proofing}
-	\begin{enumerate}
-		\item We first tackle the first part. Let $Y=g(X)$. We have:
-		\begin{align*}
-			\sum_{x}g(x)f_{X}(x)=\sum_{y}\sum_{x:g(x)=y}g(x)f_{X}(x)&=\sum_{y}y\left(\sum_{x:g(x)=y}\prob(\{\omega\in\Omega:X(\omega)=x\})\right)\\
-			&=\sum_{y}y\prob(\{\omega\in\Omega:g(X(\omega))=g(y)\})\\
-			&=\sum_{y}yf_{Y}(y)=\expect Y=\expect g(X)
-		\end{align*}
-		\item We first consider that $g(x)\geq 0$ for all $x$. Let $B=\{x:g(x)>y\}$. By Lemma \ref{Chapter 6 (Theorem) Tail sum formula},
-		\begin{equation*}
-			\expect{g(X)}=\intlu{0}{\infty}\prob(g(X)>y)\,dy=\intlu{0}{\infty}\int_{B}f_{X}(x)\,dx\,dy=\intlu{0}{\infty}\intlu{0}{g(x)}f_{X}(x)\,dy\,dx=\intlu{0}{\infty}g(x)f_{X}(x)\,dx
-		\end{equation*}
-		We then consider that $g(x)\leq 0$ for all $x$. Let $C=\{x:g(x)<z\}$. By Lemma \ref{Chapter 6 (Lemma) Expectation as integral of CDF},
-		\begin{equation*}
-			\expect{g(X)}=\intlu{-\infty}{0}-F_{g(X)}(z)\,dz=\intlu{-\infty}{0}\int_{C}-f_{X}(x)\,dx\,dz=\intlu{-\infty}{0}\intlu{g(x)}{0}-f_{X}(x)\,dz\,dx=\intlu{-\infty}{0}g(x)f_{X}(x)\,dx
-		\end{equation*}
-		Now we combined both formulas into one. If $g(X)$ is a random variable, then:
-		\begin{equation*}
-			\expect{g(X)}=\int_{0}^{\infty}g(x)f_{X}(x)\,dx+\intlu{-\infty}{0}g(x)f_{X}(x)\,dx=\intinfty g(x)f_{X}(x)\,dx
-		\end{equation*}
-	\end{enumerate}
-\end{proofing}
-
-\newpage
-\begin{thm}
-	Given a function $g:\mathbb{R}^{2}\to\mathbb{R}$ and two random variables $X$ and $Y$.
-	\begin{enumerate}
-		\item If $X$ and $Y$ are jointly discrete with JPMF $f_{X,Y}(x,y)$, and $g(X,Y)$ is a discrete random variable, then:
-		\begin{equation*}
-			\expect{g(X,Y)}=\sum_{y}\sum_{x}g(x,y)f_{X,Y}(x,y)
-		\end{equation*}
-		\item If $X$ and $Y$ are jointly continuous with JPDF $f_{X,Y}(x,y)$, and $g(X,Y)$ is a continuous random variable, then:
-		\begin{equation*}
-			\expect{g(X,Y)}=\intinfty\intinfty g(x,y)f_{X,Y}(x,y)\,dx\,dy
-		\end{equation*}
-	\end{enumerate} 
-\end{thm}
-\begin{proofing}
-	\begin{enumerate}
-		\item Let $Z=g(X,Y)$. We have.
-		\begin{align*}
-			\sum_{x,y}g(x,y)f_{X,Y}(x,y)=\sum_{z}\sum_{x,y:g(x,y)=z}g(x,y)f_{X,Y}(x,y)&=\sum_{z}z\left(\sum_{x,y:g(x,y)=z}\prob((X,Y)=(x,y))\right)\\
-			&=\sum_{z}z\prob(\{\omega\in\Omega:g(X,Y)(\omega)=z\})\\
-			&=\sum_{z}zf_{Z}(z)=\expect Z=\expect g(X,Y)
-		\end{align*}
-		\item \textit{We will not prove it. Just note that it works similar to previous theorem.}
-	\end{enumerate}
-\end{proofing}
-\begin{rem}
-	We may generalize it into a random vector. 
-\end{rem}
-We have some special terms for some special expectations.
-\begin{defn}
-	Let $k\in\mathbb{N}_{+}$. We have a special term for each of the following expectations:
-	\begin{enumerate}
-		\item The \textbf{$k$-th moment} $m_{k}$ of $X$ is defined by:
-		\begin{equation*}
-			m_{k}=\expect(X^{k})
-		\end{equation*}
-		\item The \textbf{$k$-th central moment} $\alpha_{k}$ is defined by:
-		\begin{equation*}
-			\alpha_{k}=\expect(X-\expect X)^{k}=\expect(X-m_{1})^{k}
-		\end{equation*}
-	\end{enumerate}
-\end{defn}
-\begin{rem}
-	Not all random variables have $k$-th moments for all $k\in\mathbb{N}_{+}$.
-\end{rem}
-\begin{rem}
-	We cannot use finite number of moments to uniquely determine a distribution with $k$-th moments for all $k\in\mathbb{N}$.
-\end{rem}
-\begin{defn}
-	Given a random variable $X$.
-	\begin{enumerate}
-		\item \textbf{Mean} of $X$ is the $1$st moment, denoted by $\mu$, defined by:
-		\begin{equation*}
-			\mu=\expect{X}
-		\end{equation*}
-		\item \textbf{Variance} of $X$ is the $2$nd central moment, denoted by $\Var(X)$, defined by:
-		\begin{equation*}
-			\Var(X)=\expect(X-\mu)^{2}=\expect(X^{2})-\mu^{2}
-		\end{equation*}
-		\item \textbf{Standard deviation} of $X$, denoted by $\sigma$, is defined by:
-		\begin{equation*}
-			\sigma=\sqrt{\Var(X)}
-		\end{equation*}
-	\end{enumerate}
-\end{defn}
-\begin{lem}
-	If two random variables $X$ and $Y$ are independent, then $\expect(XY)=\expect{X}\expect{Y}$.
-\end{lem}
-\begin{proofing}
-	If $X$ and $Y$ are both discrete,
-	\begin{equation*}
-		\expect(XY)=\sum_{x,y}xyf_{X,Y}(x,y)=\sum_{x,y}xyf_{X}(x)f_{Y}(y)=\sum_{x}xf_{X}(x)\sum_{y}yf_{Y}(y)=\expect X\expect Y
-	\end{equation*}
-	If $X$ and $Y$ are both continuous,
-	\begin{equation*}
-		\expect(XY)=\intinfty\intinfty xyf_{X,Y}(x,y)\,dy\,dx=\intinfty\intinfty xyf_{X}(x)f_{Y}(y)\,dy\,dx=\intinfty xf_{X}(x)\,dx\intinfty yf_{Y}(y)\,dy=\expect{X}\expect{Y}
-	\end{equation*}
-\end{proofing}
-\begin{rem}
-	The converse is not generally true.
-\end{rem}
-We may generalize it into a function of $X$ and $Y$. It is very important, as it implies that two resultant random variables of function $g(X)$ and $h(Y)$ are "uncorrelated" as long as two random variables from the domain $X$ and $Y$ are independent.
-\begin{thm}
-	Given two random variables $X$ and $Y$ and two functions $g,h:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ and $h(Y)$ are still random variables. Let $X$ and $Y$ be independent. If $\expect(g(X)h(Y)),\expect{g(X)}$ and $\expect{h(Y)}$ exist, then $\expect(g(X)h(Y))=\expect g(X)\expect h(Y)$.
-\end{thm}
-\begin{proofing}
-	If $X$ and $Y$ are both discrete,
-	\begin{equation*}
-		\expect(g(X)h(Y))=\sum_{x,y}g(x)h(y)f_{X,Y}(x,y)=\sum_{x,y}g(x)h(y)f_{X}(x)f_{Y}(y)=\sum_{x}g(x)f_{X}(x)\sum_{y}h(y)f_{Y}(y)=\expect g(X)\expect h(Y)
-	\end{equation*}
-	If $X$ and $Y$ are both continuous,
-	\begin{align*}
-		\expect(g(X)h(Y))=\intinfty\intinfty g(x)h(y)f_{X,Y}(x,y)\,dy\,dx&=\intinfty\intinfty g(x)h(y)f_{X}(x)f_{Y}(y)\,dy\,dx\\
-		&=\intinfty g(x)f_{X}(x)\,dx\intinfty h(y)f_{Y}(y)\,dy=\expect{g(X)}\expect{h(Y)}
-	\end{align*}
-\end{proofing}
-We can use the properties of expectations to deduce the properties of variance.
-\begin{thm}
-	For random variables $X$ and $Y$,
-	\begin{enumerate}
-		\item $\Var(aX+b)=a^{2}\Var(X)$ for all $a,b\in\mathbb{R}$.
-		\item $\Var(X+Y)=\Var(X)+\Var(Y)$ if $X$ and $Y$ are uncorrelated.
-	\end{enumerate}
-\end{thm}
-\begin{proofing}
-	\begin{enumerate}
-		\item Using linearity of $\expect$,
-		\begin{equation*}
-			\Var(aX+b)=\expect((aX+b-\expect(aX+b))^{2})=\expect(a^{2}(X-\expect X)^{2})=a^{2}\expect((X-\expect X)^{2})=a^{2}\Var(X)
-		\end{equation*}
-		\item When $X$ and $Y$ are uncorrelated,
-		\begin{align*}
-			\Var(X+Y)=\expect((X+Y-\expect(X+Y))^{2})&=\expect((X-\expect X)^{2}+2(XY-\expect X\expect Y)+(Y-\expect Y)^{2})\\
-			&=\Var(X)+2(\expect(XY)-\expect(X)\expect(Y))+\Var(Y)\\
-			&=\Var(X)+\Var(Y)
-		\end{align*}
-	\end{enumerate}
-\end{proofing}
-
-\newpage
-\section{Conditional expectation}
-Sometimes, it is not practical to find $\expect{X}$ itself. What if we want to find the expectation of $X$ given that another result happened? Similar with conditional probability, we may also have conditional expectation too.
-\begin{defn}
-	Given two random variables $X$ and $Y$.
-	\begin{enumerate}
-		\item If $X$ and $Y$ is discrete, then the \textbf{conditional expectation} $\psi$ of $Y$ given $X=x$ for any $x$ is defined by:
-		\begin{equation*}
-			\psi(x)=\expect(Y|X=x)=\sum_{y}yf_{Y|X}(y|x)
-		\end{equation*}
-		\item If $X$ and $Y$ is continuous, then the \textbf{conditional expectation} $\psi$ of $Y$ given $X=x$ for any $x$ is defined by:
-		\begin{equation*}
-			\psi(x)=\expect(Y|X=x)=\intinfty yf_{Y|X}(y|x)\,dy
-		\end{equation*}
-	\end{enumerate}
-	\textbf{Conditional expectation} $\psi$ of $Y$ given $X$ is defined by:
-	\begin{equation*}
-		\psi(X)=\expect(Y|X)
-	\end{equation*}
-\end{defn}
-\begin{eg}
-	Assume we roll a fair dice.
-	\begin{align*}
-		\Omega&=\{1,2,\cdots,6\} & Y(\omega)&=\omega & X(\omega)&=\begin{cases}
-			1, &\omega\in\{2,4,6\}\\
-			0, &\omega\in\{1,3,5\}
-		\end{cases}
-	\end{align*}
-	We try to guess $Y$. If we do not have any information about $X$, 
-	\begin{equation*}
-		\expect Y=\argmin_{e}(\expect((Y-e)^{2}))=3.5
-	\end{equation*}
-	If we know that $X=x$, in which we have two cases: $X=1$ and $X=0$
-	\begin{align*}
-		f_{Y|X}(y|1)&=\frac{\prob(X=1,Y=y)}{\prob(X=1)}=\begin{cases}
-			\frac{1}{3}, &y=2,4,6\\
-			0, &y=1,3,5
-		\end{cases} & f_{Y|X}(y|0)&=\frac{\prob(X=0,Y=y)}{\prob(X=0)}=\begin{cases}
-			0, &y=2,4,6\\
-			\frac{1}{3}, &y=1,3,5
-		\end{cases}\\
-		\expect(Y|X=1)&=\sum_{y}yf_{Y|X}(y|1)=\frac{2+4+6}{3}=4 & \expect(Y|X=0)&=\frac{1+3+5}{3}=3
-	\end{align*}
-	Finally, if we want to guess $Y$ based on the future information of $X$,
-	\begin{equation*}
-		\psi(X)=\expect(Y|X)=4(\mathbf{1}_{X=1})+3(\mathbf{1}_{X=0})
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	If $Y=X$, then $\psi(X)=\expect(Y|X)=\expect(X|X)=X$.
-\end{eg}
-\begin{lem}
-	Given two random variables $X$ and $Y$. We have the following properties:
-	\begin{enumerate}
-		\item $\expect(aY+bZ|X)=a\expect(Y|X)+b\expect(Z|X)$
-		\item If $Y\geq 0$, then $\expect(Y|X)\geq 0$.
-		\item If $X$ and $Y$ are independent, then $\expect(Y|X)=\expect(Y)$.
-	\end{enumerate}
-\end{lem}
-\begin{proofing}
-	\begin{enumerate}
-		\item If $X$, $Y$ and $Z$ are discrete, then for all $x$,
-		\begin{align*}
-			\expect(aY+bZ|X=x)=\sum_{y,z}(ay+bz)\prob(Y=y,Z=z|X=x)&=a\sum_{y,z}y\prob(Y=y,Z=z|X=x)+b\sum_{y,z}\prob(Y=y,Z=z|X=x)\\
-			&=a\sum_{y}yf_{Y|X}(y|x)+b\sum_{z}zf_{Z|X}(z|x)\\
-			&=a\expect(Y|X=x)+b\expect(Z|X=x)
-		\end{align*}
-		If $X$, $Y$ and $Z$ are continuous, then for all $x$,
-		\begin{align*}
-			\expect(aY+bZ|X=x)&=\intinfty\intinfty(ay+bz)\frac{f_{Y,Z,X}(y,z,x)}{f_{X}(x)}\,dy\,dz\\
-			&=a\intinfty y\intinfty\frac{f_{Y,Z,X}(y,z,x)}{f_{X}(x)}\,dz\,dy+b\intinfty z\intinfty\frac{f_{Y,Z,X}(y,z,x)}{f_{X}(x)}\,dy\,dz\\
-			&=a\intinfty y\frac{f_{Y,X}(y,x)}{f_{X}(x)}\,dy+b\intinfty z\frac{f_{Z,X}(z,x)}{f_{X}(x)}\,dz=a\expect(Y|X=x)+b\expect(Z|X=x)
-		\end{align*}
-		Therefore, $\expect(aY+bZ|X)=a\expect(Y|X)+b\expect(Z|X)$.
-		\item If $X$ and $Y$ are discrete, then for all $x$,
-		\begin{equation*}
-			\expect(Y|X=x)=\sum_{y}yf_{Y|X}(y|x)\geq 0
-		\end{equation*}
-		If $X$ and $Y$ are continuous, then for all $x$,
-		\begin{equation*}
-			\expect(Y|X=x)=\intinfty yf_{Y|X}(y|x)\,dy\geq 0
-		\end{equation*}
-		Therefore, $\expect(Y|X)\geq 0$ if $Y\geq 0$.
-		\item If $X$ and $Y$ are discrete, then for all $x$,
-		\begin{equation*}
-			\expect(Y|X=x)=\sum_{y}f_{Y|X}(y|x)=\sum_{y}f_{Y}(y)=\expect{Y}
-		\end{equation*}
-		If $X$ and $Y$ are continuous, then for all $x$,
-		\begin{equation*}
-			\expect(Y|X=x)=\intinfty yf_{Y|X}(y|x)\,dy=\intinfty yf_{Y}(y)\,dy=\expect{Y}
-		\end{equation*}
-		Therefore, if $X$ and $Y$ are independent, then $\expect(Y|X)=\expect{Y}$.
-	\end{enumerate}
-\end{proofing}
-In fact, we can extend the definition of conditional expectation into $\sigma$-field.
-\begin{defn}
-	Given a random variable $Y$ and a $\sigma$-field $\mathcal{H}\subseteq\mathcal{F}$. $\expect(Y|\mathcal{H})$ is any random variable $Z$ satisfying the following properties:
-	\begin{enumerate}
-		\item $Z$ is $\mathcal{H}$-measurable. ($Z^{-1}(B)\in\mathcal{H}$ for all $B\in\mathcal{B}(\mathbb{R})$)
-		\item $\expect(Y\mathbf{1}_{A})=\expect(Z\mathbf{1}_{A})$ for all $A\in\mathcal{H}$.
-	\end{enumerate}
-\end{defn}
-\begin{rem}
-	Under this definition,
-	\begin{equation*}
-		\expect(Y|X)=\expect(Y|\sigma(X))
-	\end{equation*}
-\end{rem}
-\begin{thm}(\textbf{Law of Total Expectation})
-	\label{Chapter 6 (Theorem) Law of total expectation}
-	Given two random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
-	\begin{equation*}
-		\expect{\psi(X)}=\expect{Y}
-	\end{equation*}
-\end{thm}
-\begin{proofing}
-	We can apply Theorem \ref{Chapter 6 (Theorem) Expectation of function of random variable}. If $X$ and $Y$ are discrete, 
-	\begin{equation*}
-		\expect{\psi(X)}=\sum_{x}\psi(x)f_{X}(x)=\sum_{x,y}yf_{Y|X}(y|x)f_{X}(x)=\sum_{x,y}yf_{X,Y}(x,y)=\sum_{y}yf_{Y}(y)=\expect{Y}
-	\end{equation*}
-	If $X$ and $Y$ are continuous,
-	\begin{equation*}
-		\expect{\psi(X)}=\intinfty\psi(x)f_{X}(x)\,dx=\intinfty\intinfty yf_{Y|X}(y|x)f_{X}(x)\,dy\,dx=\intinfty\intinfty yf_{X,Y}(x,y)\,dy\,dx=\intinfty y\intinfty f_{X,Y}(x,y)\,dx\,dy=\intinfty yf_{Y}(y)\,dy=\expect{Y}
-	\end{equation*}
-	The proof is similar if one of them is discrete and another is continuous.
-\end{proofing}
-\begin{eg}
-	A miner is trapped in a mine with doors, each will lead to a tunnel.\\
-	Tunnel 1 will help the miner reach safety after 3 hours respectively.\\
-	However, tunnel 2 and 3 will send the miner back after 5 and 7 hours respectively.\\
-	What is the expected amount of time the miner need to reach safety? (Assume that the miner is memoryless)\\
-	Let $X$ be the amount of time to reach safety, $Y$ be the door number he chooses for the first time.
-	\begin{align*}
-		\expect X&=\expect(\expect(X|Y))=\sum_{k=1}^{3}\expect(X|Y=k)\prob(Y=k)=3\left(\frac{1}{3}\right)+(\expect X+5)\left(\frac{1}{3}\right)+(\expect X+7)\left(\frac{1}{3}\right)\\
-		\expect X&=15
-	\end{align*}
-	What is the expected amount of time the miner needed to reach safety after he chose the second door and sent back?\\
-	Let $\widetilde{X}$ be the time for the miner to reach safety after the first round. 
-	\begin{align*}
-		\expect(X|Y=2)&=\sum_{x}xf_{X|Y}(x|2)=\sum_{x}x\frac{\prob(X=x, Y=2)}{\prob(Y=2)}=\sum_{x}x\frac{\prob(\widetilde{X}=x-5,Y=2)}{\prob(Y=2)}=\sum_{\widetilde{x}}(\widetilde{x}+5)\prob(\widetilde{X}=\widetilde{x})=\expect X+5
-	\end{align*}
-\end{eg}
-\begin{eg}
-	We consider a sum of random number of random variables.\\
-	Let $N$ be the number of customers and $X_{i}$ be the amount of money spent by the $i$-th customers.\\
-	Assume that $N$ and $X_{i}$'s are all independent and $\expect X_{i}=\expect X$, what is the expected total amount of money spent by all $N$ customers?
-	\begin{align*}
-		\expect\left(\sum_{i=1}^{N}X_{i}\right)&=\expect\left(\expect\left(\left.\sum_{i=1}^{N}X_{i}\right| N\right)\right)\\
-		&=\sum_{n=0}^{\infty}\expect\left(\left.\sum_{i=1}^{N}X_{i}\right|N=n\right)\prob(N=n)\\
-		&=\sum_{n=0}^{\infty}\sum_{y}y\left(\frac{\prob\left(\sum_{i=1}^{N}X_{i}=y,N=n\right)}{\prob(N=n)}\right)\prob(N=n)\\
-		&=\sum_{n=0}^{\infty}\sum_{y}y\prob\left(\sum_{i=1}^{n}X_{i}=y\right)\prob(N=n)\\
-		&=\sum_{n=0}^{\infty}\expect\left(\sum_{i=1}^{n}X_{i}\right)\prob(N=n)\\
-		&=\sum_{n=0}^{\infty}n\expect X\prob(N=n)=\expect N\expect X
-	\end{align*}
-\end{eg}
-The following theorem is the generalization of Law of total expectation.
-\begin{thm}
-	\label{Chapter 6 (Theorem) Generalization of Law of Total Expectation}
-	Given two random variables $X$ and $Y$. Conditional expectation $\psi(X)=\expect(Y|X)$ satisfies:
-	\begin{equation*}
-		\expect(\psi(X)g(X))=\expect(Yg(X))
-	\end{equation*}
-	for any function $g$ for which both expectations exist.
-\end{thm}
-\begin{proofing}
-	We can apply Theorem \ref{Chapter 6 (Theorem) Expectation of function of random variable}. If $X$ and $Y$ are discrete,
-	\begin{equation*}
-		\expect(\psi(X)g(X))=\sum_{x}\psi(x)g(x)f_{X}(x)=\sum_{x,y}yf_{Y|X}(y|x)g(x)f_{X}(x)=\sum_{x,y}yf_{X,Y}(x,y)g(x)=\expect(Yg(X))
-	\end{equation*}
-	If $X$ and $Y$ are continuous,
-	\begin{align*}
-		\expect(\psi(X)g(X))&=\intinfty\psi(x)g(x)f_{X}(x)\,dx=\intinfty\intinfty yf_{Y|X}(y|x)f_{X}(x)g(x)\,dy\,dx=\intinfty\intinfty yf_{X,Y}(x,y)g(x)\,dy\,dx=\expect(Yg(X))
-	\end{align*}
-\end{proofing}
-
-\newpage
-If there is conditional expectation, there will also be conditional variance.
-\begin{defn}
-	Given two random variables $X$ and $Y$. \textbf{Conditional variance} is defined by:
-	\begin{equation*}
-		\Var(Y|X)=\expect((Y-\expect(Y|X))^{2}|X)
-	\end{equation*}
-\end{defn}
-We can obtain the variance of a random variables based on conditional variance.
-\begin{thm}(\textbf{Law of Total Variance}) 
-	Given two random variables $X$ and $Y$. We have:
-	\begin{equation*}
-		\Var(Y)=\expect(\Var(Y|X))+\Var(\expect(Y|X))
-	\end{equation*}
-\end{thm}
-\begin{proofing}
-	Using Theorem \ref{Chapter 6 (Theorem) Law of total expectation} and Theorem \ref{Chapter 6 (Theorem) Generalization of Law of Total Expectation},
-	\begin{align*}
-		\expect(\Var(Y|X))+\Var(\expect(Y|X))&=\expect(\expect((Y-\expect(Y|X))^{2}|X))+\expect(\expect(Y|X))^{2}-(\expect(\expect(Y|X)))^{2}\\
-		&=\expect(Y-\expect(Y|X))^{2}+\expect(\expect(Y|X))^{2}-(\expect{Y})^{2}\\
-		&=\expect(Y^{2})-2\expect(Y\expect(Y|X))+\expect(\expect(Y|X))^{2}+\expect(\expect(Y|X))^{2}-(\expect{Y})^{2}\\
-		&=\expect(Y^{2})-2\expect(\expect(Y|X))^{2}+2\expect(\expect(Y|X))^{2}-(\expect{Y})^{2}\\
-		&=\expect(Y^{2})-(\expect{Y})^{2}=\Var(Y)
-	\end{align*}
-\end{proofing}
-Sometimes, we want to find the tendency in the linear relationship between two random variables. We say it is called the covariance of two random variables.
-\begin{defn}
-	\textbf{Covariance} of two random variables $X$ and $Y$ is:
-	\begin{equation*}
-		\cov(X,Y)=\expect((X-\expect X)(Y-\expect Y))=\expect(XY)-\expect X\expect Y
-	\end{equation*}
-\end{defn}
-\begin{rem}
-	Magnitude of covariance is the geometric mean of the variances of two random variables. The sign represents the linear relationship between two random variables. If the sign is positive, then two random variables show similar behaviour. If the sign is negative, then two random variables show opposite behaviour.
-\end{rem}
-\begin{lem}
-	For any random variables $X$, $Y$ and $Z$, we have:
-	\begin{enumerate}
-		\item $\Var(X)=\cov(X,X)$.
-		\item $\cov(X,Y)=\cov(Y,X)$
-		\item $\cov(X,Y+Z)=\cov(X,Y)+\cov(X,Z)$
-		\item If $X$ and $Y$ are uncorrelated, then $\cov(X,Y)=0$.
-	\end{enumerate}
-\end{lem}
-\begin{proofing}
-	\begin{enumerate}
-		\item \begin{equation*}
-			\cov(X,X)=\expect((X-\expect{X})(X-\expect{X}))=\expect(X-\expect{X})^{2}=\Var(X)
-		\end{equation*}
-		\item \begin{equation*}
-			\cov(X,Y)=\expect(XY)-\expect{X}\expect{Y}=\expect{YX}-\expect{Y}\expect{X}=\cov(Y,X)
-		\end{equation*}
-		\item \begin{equation*}
-			\cov(X,Y+Z)=\expect(X(Y+Z))-\expect{X}\expect(Y+Z)=\expect(XY)-\expect{X}\expect{Y}+\expect(XZ)-\expect{X}\expect{Z}=\cov(X,Y)+\cov(X,Z)
-		\end{equation*}
-		\item If $X$ and $Y$ are independent, then
-		\begin{equation*}
-			\cov(X,Y)=\expect(XY)-\expect{X}\expect{Y}=\expect{X}\expect{Y}-\expect{X}\expect{Y}=0
-		\end{equation*}
-	\end{enumerate}
-\end{proofing}
-
-\newpage
-\begin{rem}
-	In general, for any random variables $X_{1},X_{2},\cdots,X_{n}$,
-	\begin{equation*}
-		\Var(X_{1}+X_{2}+\cdots+X_{n})=\sum_{i=1}^{n}\Var(X_{i})+2\sum_{i<j}(\expect(X_{i}X_{j})-\expect X_{i}\expect X_{j})=\sum_{i=1}^{n}\Var(X_{i})+2\sum_{i<j}\cov(X_{i},X_{j})
-	\end{equation*}
-\end{rem}
-\begin{eg}
-	If $X_{i}$ are independent and $\Var(X_{i})=1$ for all $i$, then:
-	\begin{equation*}
-		\Var\left(\sum_{i=1}^{n}X_{i}\right)=\sum_{i=1}^{n}\Var(X_{i})=n
-	\end{equation*}
-	If $X_{i}=X$ for all $i$ and $\Var(X)=1$, then:
-	\begin{equation*}
-		\Var\left(\sum_{i=1}^{n}X_{i}\right)=\Var(nX)=n^{2}
-	\end{equation*}
-\end{eg}
-We usually only care about the normalized covariance, which is called correlation coefficient.
-\begin{defn}
-	\textbf{Population correlation coefficient} between two random variables $X$ and $Y$, denoted by $\rho$, is given by:
-	\begin{equation*}
-		\rho=\frac{\cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}
-	\end{equation*}
-	We can find the relationship between $X$ and $Y$ based on their correlation coefficient.
-	\begin{enumerate}
-		\item If $\rho>0$, then $X$ and $Y$ are \textbf{positively correlated}.
-		\item If $\rho<0$, then $X$ and $Y$ are \textbf{negatively correlated}.
-		\item If $\rho=0$, then $X$ and $Y$ are \textbf{uncorrelated}.
-	\end{enumerate}
-\end{defn}
-\begin{rem}
-	Population correlation coefficient $\rho$ of random variables $X$ and $Y$ satisfies $-1<\rho<1$.
-\end{rem}
-\begin{rem}
-	If $\rho$ is near $1$ or near $-1$, then it shows a strong linear relationship between $X$ and $Y$
-\end{rem}
-\begin{rem}
-	The constant $\rho$ used in bivariate normal distribution is the population correlation coefficient.
-\end{rem}
-\begin{eg}
-	If $X\sim\N(0,1)$ and $Y\sim\N(0,1)$,
-	\begin{align*}
-		\cov(X,Y)&=\expect(XY)-\expect X\expect Y=\expect(XY)\\
-		&=\intinfty\intinfty\frac{y}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}\frac{x}{\sqrt{2\pi(1-\rho^{2})}}e^{-\frac{(x-\rho y)^{2}}{2(1-\rho^{2})}}\,dx\,dy\\
-		&=\intinfty\frac{y}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}\rho y\,dy=\rho\intinfty y^{2}\phi(y)\,dy=\rho
-	\end{align*}
-\end{eg}
-\begin{lem}
-	Two random variables are uncorrelated if $\expect(XY)=\expect{X}\expect{Y}$.
-\end{lem}
-\begin{proofing}
-	Based on the definition of the correlation coefficient, $\rho=0$ if and only if $\cov(X,Y)=0$. Therefore,
-	\begin{equation*}
-		\cov(X,Y)=\expect(XY)-\expect{X}\expect{Y}=0\iff \expect(XY)=\expect{X}\expect{Y}
-	\end{equation*}
-\end{proofing}
-
-\newpage
-\begin{rem}
-	If $X$ and $Y$ are independent, then they are uncorrelated. The converse is generally not true.
-\end{rem}
-\begin{eg}
-	Let $X$ be such that $f_{X}(0)=f_{X}(1)=f_{X}(-1)=\frac{1}{3}$ and $Y$ be such that $Y=0$ if $X\neq0$ and $Y=1$ if $X=0$.
-	\begin{align*}
-		\expect(XY)&=0 &  \expect X&=0=\expect(XY)
-	\end{align*}
-	However,
-	\begin{align*}
-		\prob(X=0,Y=0)&=0 & \prob(X=0)&\neq 0 & \prob(Y=0)&\neq 0 & \prob(X=0)\prob(Y=0)&\neq 0
-	\end{align*}
-	Therefore, $X$ and $Y$ are uncorrelated, but they are not independent.
-\end{eg}
-When would the converse be true? It turns out it is true when $X$ and $Y$ are uncorrelated and bivariate normal. 
-\begin{thm}
-	\label{Chapter 6 (Theorem) Bivariate normal and uncorrelated}
-	Random variables $X\sim\N(\mu_{X},\sigma_{X}^{2})$ and $Y\sim\N(\mu_{Y},\sigma_{Y}^{2})$ are bivariate normal and uncorrelated if and only if $X$ and $Y$ are independent normal.
-\end{thm}
-\begin{proofing}
-	Since $X$ and $Y$ are uncorrelated, $\cov(X,Y)=0$ and thus population correlation coefficient $\rho=0$.\\
-	Therefore, we have:
-	\begin{align*}
-		f_{X,Y}(x,y)&=\frac{1}{2\pi\sigma_{X}\sigma_{Y}}\exp\left(-\frac{1}{2}\left(\left(\frac{x-\mu_{X}}{\sigma_{X}}\right)^{2}+\left(\frac{y-\mu_{Y}}{\sigma_{Y}}\right)^{2}\right)\right)\\
-		&=\left(\frac{1}{\sqrt{2\pi\sigma_{X}^{2}}}\exp\left(-\frac{(x-\mu_{X})^{2}}{2\sigma_{X}^{2}}\right)\right)\left(\frac{1}{\sqrt{2\pi\sigma_{Y}^{2}}}\exp\left(-\frac{(y-\mu_{Y})^{2}}{2\sigma_{Y}^{2}}\right)\right)\\
-		&=f_{X}(x)f_{Y}(y)
-	\end{align*}
-	Therefore, $X$ and $Y$ are independent if $X$ and $Y$ are uncorrelated bivariate normal.\\
-	If $X$ and $Y$ are independent normal, then we have:
-	\begin{equation*}
-		f_{X,Y}(x,y)=f_{X}(x)f_{Y}(y)
-	\end{equation*}
-	Therefore, $X$ and $Y$ are both uncorrelated and bivariate normal with $\rho=0$.
-\end{proofing}
-\section{Expectation and Variance of distributions}
-In this section, we will primarily focus on finding the expectation and variance of distributions we have taught.
-\begin{thm}
-	Given a discrete variable $X$.
-	\begin{enumerate}
-		\item If $X\sim\Bern(p)$, then $\expect{X}=p$ and $\Var(X)=p(1-p)$.
-		\item If $X\sim\Bin(n,p)$, then $\expect{X}=np$ and $\Var(X)=np(1-p)$.
-	\end{enumerate}
-\end{thm}
-\begin{proofing}
-	\item If $X\sim\Bern(p)$,
-	\begin{align*}
-		\expect{X}&=0(1-p)+1(p)=p & \Var(X)&=\expect(X^{2})-(\expect{X})^{2}=p-p^{2}=p(1-p)
-	\end{align*}
-	\item If $X\sim\Bin(n,p)$, then by definition, $X=Y_{1}+\cdots+Y_{n}$ where $Y_{i}\sim\Bern(p)$. Therefore, by 
-\end{proofing}
-\begin{thm}
-	If $X\sim\Geom(p)$, then $\expect{X}=\frac{1}{p}$ and $\Var(X)=\frac{1-p}{p^{2}}$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{X}&=\sum_{k=1}^{\infty}kp(1-p)^{k-1}=p\sum_{k=1}^{\infty}k(1-p)^{k-1}=\frac{p}{p^{2}}=\frac{1}{p}\\
-		\Var(X)&=\expect(X(x-1))-\expect{X}+(\expect{X})^{2}=\frac{1}{p}-\frac{1}{p^{2}}+\sum_{k=2}^{\infty}k(k-1)p(1-p)^{k-1}\\
-		&=\frac{1}{p}-\frac{1}{p^{2}}+p(1-p)\sum_{k=2}^{\infty}k(k-1)(1-p)^{k-2}\\
-		&=\frac{2p(1-p)}{p^{3}}=\frac{2(1-p)}{p^{2}}
-	\end{align*}
-\end{proofing}
-\begin{eg}
-	Assume we have $N$ different types of card and each time one gets a card to be any one of the $N$ types. Each types is equally likely to be gotten. What is the expected number of types of card we can get if we get $n$ cards?\\
-	Let $X=X_{1}+X_{2}+\cdots+X_{N}$ where $X_{i}=1$ if at least one type $i$ card is among the $n$ cards and otherwise $0$.
-	\begin{align*}
-		\expect X_{i}&=\prob(X_{i}=1)=1-\left(\frac{N-1}{N}\right)^{n} & \expect X&=\sum_{i=1}^{N}\expect X_{i}=N\left(1-\left(\frac{N-1}{N}\right)^{n}\right)
-	\end{align*}
-	What is the expected number of cards one needs to collect in order to get all $N$ types?\\
-	Let $Y=Y_{0}+Y_{1}+\cdots+Y_{N-1}$ where $Y_{i}$ is the number of additional cards we need to get in order to get a new type after having $i$ distinct types.
-	\begin{align*}
-		\tag{$Y_{i}\sim\Geom\left(\frac{N-i}{N}\right)$}
-		\prob(Y_{i}=k)&=\left(\frac{i}{N}\right)^{k-1}\frac{N-i}{N}\\
-		\expect Y&=\sum_{i=0}^{N-1}\expect Y_{i}=\sum_{i=0}^{N-1}\frac{N}{N-i}=N\left(\frac{1}{N}+\frac{1}{N-1}+\cdots+1\right)
-	\end{align*}
-\end{eg}
-\begin{thm}
-	If $X\sim\NBin(r,p)$, then $\expect{X}=\frac{r}{p}$ and $\Var(X)=\frac{r(1-p)}{p^{2}}$.
-\end{thm}
-\begin{proofing}
-	Assume that $X_{i}\sim\Geom(p)$ for all $i$. Since $X$ is the sum of $r$ independent geometric random variable, we get:
-	\begin{align*}
-		\expect{X}&=\sum_{k=1}^{r}\expect{X_{k}}=\frac{r}{p} & \Var(X)&=\sum_{k=1}^{r}\Var(X_{k})=\frac{r(1-p)}{p^{2}}
-	\end{align*}
-\end{proofing}
-\begin{thm}
-	If $X\sim\Poisson(\lambda)$, then $\expect{X}=\lambda$ and $\Var(X)=\lambda$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{X}&=\sum_{k=1}^{\infty}\frac{\lambda^{k}}{(k-1)!}e^{-\lambda}=\lambda\sum_{k=1}^{\infty}\frac{\lambda^{k-1}}{(k-1)!}e^{-\lambda}=\lambda\\
-		\Var(X)=\expect(X(X-1))+\expect{X}-(\expect{X})^{2}&=\lambda-\lambda^{2}+\sum_{k=2}^{\infty}\frac{\lambda^{k}}{(k-2)!}e^{-\lambda}\\
-		&=\lambda-\lambda^{2}+\lambda^{2}\sum_{k=2}^{\infty}\frac{\lambda^{k-2}}{(k-2)!}e^{-\lambda}\\
-		&=\lambda-\lambda^{2}+\lambda^{2}=\lambda
-	\end{align*}
-\end{proofing}
-\begin{thm}
-	If $X\sim\Hypergeometric(N,m,n)$, then the expectation and variance are:
-	\begin{align*}
-		\expect{X}&=\frac{mn}{N} & \Var(X)&=\frac{mn}{N}\left(\frac{(m-1)(n-1)}{N-1}+1-\frac{mn}{N}\right)
-	\end{align*}
-\end{thm}
-
-\newpage
-We are not going to prove the variance one. In order to prove the expectation, we imagine the following scenario.
-\begin{eg}
-	Suppose that we have a set of $N$ balls, which $m$ of them are red and the rest are blue. We choose $n$ of these balls, without replacement. What is the expected number of red balls in our sample? We let $X\sim\Hypergeometric(N,m,n)$.
-	
-	How do we find $\expect{X}$? Let $X=X_{1}+X_{2}+\cdots+X_{m}$, where for all $i$,
-	\begin{equation*}
-		X_{i}=\begin{cases}
-			1, &\text{if the $i$-th red ball is selected}\\
-			0, &\text{Otherwise}
-		\end{cases}
-	\end{equation*}
-	From this, for all $i$, we have:
-	\begin{equation*}
-		\expect{X_{i}}=\frac{\binom{N-1}{n-1}}{\binom{N}{n}}=\frac{\frac{(N-1)!}{(n-1)!(N-n)!}}{\frac{N!}{n!(N-n)!}}=\frac{n}{N}
-	\end{equation*}
-	Therefore, $\expect{X}=\frac{mn}{N}$.
-\end{eg}
-\begin{thm}
-	If $X\sim\U[a,b]$, then $\expect{X}=\frac{1}{2}(a+b)$ and $\Var(X)=\frac{1}{12}(b-a)^{2}$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{X}&=\int_{a}^{b}\frac{x}{b-a}\,dx=\frac{1}{2}(a+b)\\
-		\Var(X)&=-(\expect{X})^{2}+\expect(X^{2})\\
-		&=-\frac{1}{4}(a+b)^{2}+\int_{a}^{b}\frac{x^{2}}{b-a}\,dx\\
-		&=-\frac{1}{4}(a^{2}+2ab+b^{2})+\frac{1}{3}(a^{2}+ab+b^{2})\\
-		&=\frac{1}{12}(a^{2}-2ab+b^{2})=\frac{1}{12}(b-a)^{2}
-	\end{align*}
-\end{proofing}
-\begin{thm}
-	If $X\sim\Exp(\lambda)$, then $\expect{X}=\frac{1}{\lambda}$ and $\Var(X)=\frac{1}{\lambda^{2}}$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{X}&=\int_{0}^{\infty}x\lambda e^{-\lambda x}\,dx=\left.-xe^{-\lambda x}\right|_{0}^{\infty}+\int_{0}^{\infty}e^{-\lambda x}\,dx=\left.-\frac{1}{\lambda}e^{-\lambda x}\right|_{0}^{\infty}=\frac{1}{\lambda}\\
-		\Var(X)=-(\expect{X})^{2}+\expect(X^{2})&=-\frac{1}{\lambda^{2}}+\int_{0}^{\infty}x^{2}\lambda e^{-\lambda x}\,dx\\
-		&=-\frac{1}{\lambda^{2}}-\left.x^{2}e^{-\lambda x}\right|_{0}^{\infty}+\int_{0}^{\infty}2xe^{-\lambda x}\,dx\\
-		&=-\frac{1}{\lambda^{2}}+\frac{2}{\lambda}\expect{X}\\
-		&=-\frac{1}{\lambda^{2}}+\frac{2}{\lambda^{2}}=\frac{1}{\lambda^{2}}
-	\end{align*}
-\end{proofing}
-\begin{thm}
-	\label{Chapter 6 (Theorem) Expectation and Variance of normal distribution}
-	If $X\sim\N(\mu,\sigma^{2})$, then $\expect{X}=\mu$ and $\Var(X)=\sigma^{2}$.
-\end{thm}
-\begin{proofing}
-	\item Let $x=\sigma z+\mu$.
-	\begin{equation*}
-		\expect{X}=\frac{1}{\sqrt{2\pi\sigma^{2}}}\intinfty ye^{-\frac{(y-\mu)^{2}}{2\sigma^{2}}}\,dy=\frac{1}{\sqrt{2\pi}}\left(\intinfty\sigma ze^{-\frac{z^{2}}{2}}\,dz+\intinfty\mu e^{-\frac{z^{2}}{2}}\,dz\right)=\frac{\mu}{\sqrt{2\pi}}\intinfty e^{-\frac{z^{2}}{2}}\,dz=\mu
-	\end{equation*}
-	\begin{equation*}
-		\Var(X)=\frac{1}{\sqrt{2\pi\sigma^{2}}}\intinfty(y-\mu)^{2}e^{-\frac{(y-\mu)^{2}}{2\sigma^{2}}}\,dy=\frac{\sigma^{2}}{\sqrt{2\pi}}\intinfty z^{2}e^{-\frac{z^{2}}{2}}\,dz=\frac{-\sigma^{2}}{\sqrt{2\pi}}\intinfty zd\left(e^{-\frac{z^{2}}{2}}\right)=\frac{\sigma^{2}}{\sqrt{2\pi}}\intinfty e^{-\frac{z^{2}}{2}}\,dz=\sigma^{2}
-	\end{equation*}
-\end{proofing}
-\begin{thm}
-	All Cauchy random variables $X\sim\Cauchy(\theta)$ do not have defined expectation and variance.
-\end{thm}
-\begin{proofing}
-	We check if $\expect\abs{X}$ is infinite.
-	\begin{equation*}
-		\expect\abs{X}=\intinfty\frac{\abs{x}}{\pi(1+(x-\theta)^{2})}\,dx=2\int_{0}^{\infty}\frac{x}{\pi(1+(x-\theta)^{2})}\,dx=\infty
-	\end{equation*}
-	Therefore, expectation and thus variance do not exist.
-\end{proofing}
-\begin{thm}
-	If $X\sim\chi^{2}(n)$, then $\expect{X}=n$ and $\Var(X)=2n$.
-\end{thm}
-
-Solving the following expectations are out of our scope.
-\begin{thm}
-	Given a continuous random variable $X$.
-	\begin{enumerate}
-		\item If $X\sim\Gamma(a,\lambda)$, then $\expect{X}=\frac{\alpha}{\lambda}$ and $\Var(X)=\frac{\alpha}{\lambda^{2}}$.
-		\item If $X\sim t(n)$, then:
-		\begin{align*}
-			\expect{X}&=\begin{cases}
-				0, &n>1\\
-				\text{undefined}, &\text{Otherwise}
-			\end{cases} & \Var(X)&=\begin{cases}
-				\frac{n}{n-2}, &n>2\\
-				\infty, & 2<n\leq 4\\
-				\text{undefined}, &\text{Otherwise}
-			\end{cases}
-		\end{align*}
-		\item If $X\sim\Beta(a,b)$, then $\expect{X}=\frac{a}{a+b}$ and $\Var(X)=\frac{ab}{(a+b)^{2}(a+b+1)}$.
-	\end{enumerate}
-\end{thm}
-\section{Combining expectation from discrete and continuous random variables}
-Recall that the expectations are given respectively by
-\begin{equation*}
-	\expect X=\begin{cases}
-		\sum xf_{X}(x), &X\text{ is discrete}\\
-		\int xf_{X}(x)\,dx, &X\text{ is continuous}
-	\end{cases}
-\end{equation*}
-We want a notation which incorporates both these cases. Suppose that $X$ has a CDF $F_{X}$. We can rewrite the equations as
-\begin{equation*}
-	\expect X=\begin{cases}
-		\sum x\,dF_{X}(x), &dF_{X}(x)=F_{X}(x)-\lim_{y\to x^{-}}F_{X}(y)=f_{X}(x)\\
-		\int x\,dF_{X}(x), &dF_{X}(x)=\pdv{F}{x}\,dx=f_{X}(x)\,dx
-	\end{cases}
-\end{equation*}
-Instead of using the regular Riemann integral, which cannot deal with discrete case, we can use the Riemann-Stieltjes integral, which is a generalization of the Riemann integral.
-\begin{align*}
-	\intlu{a}{b}g(x)\,dx&=\lim_{\max_{i}\abs{x_{i+1}-x_{i}}}\sum_{i}g(x_{i}^{*})(x_{i+1}-x_{i})\\
-	\intlu{a}{b}g(x)\,dF(x)&=\lim_{\max_{i}\abs{x_{i+1}-x_{i}}}\sum_{i}g(x_{i}^{*})(F(x_{i+1})-F(x_{i}))
-\end{align*}
-if the limit does not depend on the choice of $x_{i}^{*}\in[x_{i},x_{i+1})$.
-\begin{defn}
-	\textbf{Expectation} of a random variable $X$ is given by:
-	\begin{equation*}
-		\expect X=\int x\,dF_{X}
-	\end{equation*}
-\end{defn}
-\begin{lem}
-	If $g:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ is also a random variable, then
-	\begin{equation*}
-		\expect(g(X))=\int g(x)\,dF_{X}
-	\end{equation*}
-\end{lem}
-\begin{rem}
-	The notation of $\int g(x)\,dF_{X}(x)$ does not mean Riemann-Stieltjes integral.
-\end{rem}
-\begin{eg}
-	If $g$ is regular (differentiable at every point and every values in the domain maps to a value in range), then
-	\begin{equation*}
-		\sum_{i}g(x_{i}^{*})(F(x_{i+1}-F(x_{i}))\approx\sum_{i}g(x_{i}^{*})f(x_{i}^{*})(x_{i+1}-x_{i})\approx\int g(x)f(x)\,dx
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	In irregular case, assume that the function $g$ is the Dirichlet function. That is
-	\begin{align*}
-		\mathbf{1}_{\mathbb{Q}}(x)&=\begin{cases}
-			1, &x\in\mathbb{Q}\\
-			0, &x\not\in\mathbb{Q}
-		\end{cases} & \sum_{i}g(x_{i}^{*})(F(x_{i+1})-F(x_{i}))=\sum_{i}g(x_{i}^{*})(x_{i+1}-x_{i})
-	\end{align*}
-	Since the limit depends on the choice of $x_{i}^{*}$, Riemann-Stieltjes integral of $\mathbf{1}_{\mathbb{Q}}(x)$ with respect to $F(x)=x$ is not well defined.\\
-	Therefore, $\expect\mathbf{1}_{\mathbb{Q}}(X)$ cannot be defined as a Riemann-Stieltjes integral.\\
-	However, on the other hand,
-	\begin{equation*}
-		\expect\mathbf{1}_{\mathbb{Q}}(X)=\prob(\mathbf{1}_{\mathbb{Q}}(x)=1)=\prob\circ X^{-1}(\mathbb{Q}\cap[0,1])=0
-	\end{equation*}
-\end{eg}
-
-\addcontentsline{toc}{chapter}{Summary of Chapter 1-6}
+\addcontentsline{toc}{chapter}{Summary of Chapter 1-5}
 \chapter*{Summary}
 \section*{Definition}
 \begin{sdefn}
@@ -3309,7 +2978,7 @@ if the limit does not depend on the choice of $x_{i}^{*}\in[x_{i},x_{i+1})$.
 	\end{equation*}
 	In \textbf{discrete} case, \textbf{probabilty mass function} (PMF) of discrete random variable $X$ is the function $f:\mathbb{R}\to[0,1]$ given by:
 	\begin{align*}
-		f_{X}(x)&=\prob(X=x)=\prob\circ X^{-1}(\{x\}) & F_{X}(x)&=\sum_{i:x_{i}\leq x}f(x_{i}) & f_{X}(x)&=F_{X}(x)-\lim_{y\to x^{-}}F_{X}(y)
+		f_{X}(x)&=\prob(X=x)=\prob\circ X^{-1}(\{x\}) & F_{X}(x)&=\sum_{i:x_{i}\leq x}f(x_{i}) & f_{X}(x)&=F_{X}(x)-\lim_{y\uparrow x}F_{X}(y)
 	\end{align*}
 	In \textbf{continuous} case, \textbf{probability density function} (PDF) of continuous random variable $X$ is the function $f:\mathbb{R}\to[0,\infty)$ given by:
 	\begin{align*}
@@ -3684,30 +3353,264 @@ For continuous random variables,
 		f_{X}(x)&=\begin{cases}
 			\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}, &0<x<1\\
 			0, &\text{Otherwise}
-		\end{cases} & B(a,b)&=\intlu{0}{1}x^{a-1}(1-x)^{b-1}\,dx=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}\\
-		\expect{X}&=\frac{a}{a+b} & \Var(X)&=\frac{ab}{(a+b)^{2}(a+b+1)}
+		\end{cases} & B(a,b)&=\intlu{0}{1}x^{a-1}(1-x)^{b-1}\,dx=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)} & \expect{X}&=\frac{a}{a+b} & \Var(X)&=\frac{ab}{(a+b)^{2}(a+b+1)}
 	\end{align*}
 	where $B(a,b)$ is the beta function.
 \end{seg}
-\begin{seg}(F distribution) $F\sim F(r_{1},r_{2})$\\
-	Assume that $X$ and $Y$ are independent random variables with $X\sim\chi^{2}(r_{1})$ and $Y\sim\chi^{2}(r_{2})$. Let:
-	\begin{equation*}
-		F=\frac{\frac{X}{r_{1}}}{\frac{Y}{r_{2}}}
-	\end{equation*}
-	Then $F$ has a F-distribution with $r_{1}$ and $r_{2}$ degrees of freedom with:
-	\begin{equation*}
-		f_{F}(w)=\frac{\Gamma\left(\frac{r_{1}+r_{2}}{2}\right)}{\Gamma\left(\frac{r_{1}}{2}\right)\Gamma\left(\frac{r_{2}}{2}\right)}\left(\frac{r_{1}}{r_{2}}\right)^{\frac{r_{1}}{2}}w^{\frac{r_{1}}{2}-1}\left(1+\frac{r_{1}w}{r_{2}}\right)^{-\frac{r_{1}+r_{2}}{2}}
-	\end{equation*}
-	where $0<w<\infty$.
-\end{seg}
 
-\chapter{Generating function}
+\chapter{Properties of Expectation and Generating function}
+\section{Expectation of sum of random variables}
+In the previous chapters, you can find that a lot of distribution involves the sum of other distributions. It is necessary that we observe the properties involving expectations. Let's start with the most simple one.
+\begin{thm}
+	Given a random variable $X$. For any $a\leq b$, if $a\leq X\leq b$, then $a\leq\expect{X}\leq b$.
+\end{thm}
+\begin{proofing}
+	In discrete case,
+	\begin{align*}
+		\expect{X}&=\sum_{x}xf_{X}(x)\geq\sum_{x}af_{X}(x)=a & \expect{X}&=\sum_{x}xf_{X}(x)\leq\sum_{x}bf_{X}(x)=b
+	\end{align*}
+	In continuous case,
+	\begin{align*}
+		\expect{X}&=\intinfty xf_{X}(x)\geq\intinfty af_{X}(x)=a & \expect{X}&=\intinfty xf_{X}(x)\leq\intinfty bf_{X}(x)=b
+	\end{align*}
+	Therefore, we have $a\leq\expect{X}\leq b$.
+\end{proofing}
+This establish that the lower bound and upper bound of random variable $X$ are also the lower and upper bound of its expectation.\\
+We should also remind the linearity of expectation.
+\begin{thm}(\textbf{Linearity of expectation}) Let $X_{1},X_{2},\cdots,X_{n}$ be random variables. We have:
+	\begin{equation*}
+		\expect\left(\sum_{i=1}^{n}a_{i}X_{i}\right)=\sum_{i=1}^{n}a_{i}\expect X_{i}
+	\end{equation*} 
+	for all $a_{i}\in\mathbb{R}$ for all $i$.
+\end{thm}
+\begin{eg}
+	Suppose that we have a set of $N$ balls, which $m$ of them are red and the rest are blue. We choose $n$ of these balls, without replacement. What is the expected number of red balls in our sample?\\
+	We let $X\sim\Hypergeometric(N,m,n)$. How do we find $\expect{X}$? Let $X=X_{1}+X_{2}+\cdots+X_{m}$, where for all $i$,
+	\begin{equation*}
+		X_{i}=\begin{cases}
+			1, &\text{if the $i$-th red ball is selected}\\
+			0, &\text{Otherwise}
+		\end{cases}
+	\end{equation*}
+	From this, for all $i$, we have:
+	\begin{equation*}
+		\expect{X_{i}}=\frac{\binom{N-1}{n-1}}{\binom{N}{n}}=\frac{\frac{(N-1)!}{(n-1)!(N-n)!}}{\frac{N!}{n!(N-n)!}}=\frac{n}{N}
+	\end{equation*}
+	Therefore, $\expect{X}=\frac{mn}{N}$.
+\end{eg}
+
+\newpage
+We sometimes want to find the tendency in the linear relationship between two random variables. We say it is called the covariance of two random variables.
+\begin{defn}
+	\textbf{Covariance} of two random variables $X$ and $Y$ is:
+	\begin{equation*}
+		\cov(X,Y)=\expect((X-\expect X)(Y-\expect Y))=\expect(XY)-\expect X\expect Y
+	\end{equation*}
+\end{defn}
+\begin{rem}
+	Magnitude of covariance is the geometric mean of the variances of two random variables. The sign represents the linear relationship between two random variables. If the sign is positive, this means two random variables show similar behaviour. If the sign is negative, this means two random variables show opposite behaviour.
+\end{rem}
+\begin{rem}
+	\begin{equation*}
+		\Var(X)=\cov(X,X)
+	\end{equation*}
+\end{rem}
+\begin{rem}
+	In general, for any random variables $X_{1},X_{2},\cdots,X_{n}$,
+	\begin{equation*}
+		\Var(X_{1}+X_{2}+\cdots+X_{n})=\sum_{i=1}^{n}\Var(X_{i})+2\sum_{i<j}(\expect(X_{i}X_{j})-\expect X_{i}\expect X_{j})=\sum_{i=1}^{n}\Var(X_{i})+2\sum_{i<j}\cov(X_{i},X_{j})
+	\end{equation*}
+\end{rem}
+\begin{rem}
+	If $X_{i}$ are (pairwise) independent or uncorrelated, we can get that $\cov(X_{i},X_{j})=0$ for all $i\neq j$.
+\end{rem}
+\begin{eg}
+	If $X_{i}$ are independent and $\Var(X_{i})=1$ for all $i$, then:
+	\begin{equation*}
+		\Var\left(\sum_{i=1}^{n}X_{i}\right)=\sum_{i=1}^{n}\Var(X_{i})=n
+	\end{equation*}
+	If $X_{i}=X$ for all $i$ and $\Var(X)=1$, then:
+	\begin{equation*}
+		\Var\left(\sum_{i=1}^{n}X_{i}\right)=\Var(nX)=n^{2}
+	\end{equation*}
+\end{eg}
+We usually only care about the normalized covariance, which is called correlation coefficient.
+\begin{defn}
+	\textbf{Population correlation coefficient} between two random variables $X$ and $Y$, denoted by $\rho$, is given by:
+	\begin{equation*}
+		\rho=\frac{\cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}
+	\end{equation*}
+	We can find the relationship between $X$ and $Y$ based on their correlation coefficient.
+	\begin{enumerate}
+		\item If $\rho>0$, then $X$ and $Y$ are \textbf{positively correlated}.
+		\item If $\rho<0$, then $X$ and $Y$ are \textbf{negatively correlated}.
+		\item If $\rho=0$, then $X$ and $Y$ are \textbf{uncorrelated}.
+	\end{enumerate}
+\end{defn}
+\begin{rem}
+	Population correlation coefficient $\rho$ of random variables $X$ and $Y$ satisfies $-1<\rho<1$.
+\end{rem}
+\begin{rem}
+	If $\rho$ is near $1$ or near $-1$, then it shows a strong linear relationship between $X$ and $Y$
+\end{rem}
+\begin{rem}
+	The constant $\rho$ used in bivariate normal distribution is the population correlation coefficient.
+\end{rem}
+\begin{lem}
+	Two random variables are uncorrelated if $\expect(XY)=\expect{X}\expect{Y}$.
+\end{lem}
+\begin{proofing}
+	Based on the definition of the correlation coefficient, $\rho=0$ if and only if $\cov(X,Y)=0$. Therefore,
+	\begin{equation*}
+		\cov(X,Y)=\expect(XY)-\expect{X}\expect{Y}=0\iff \expect(XY)=\expect{X}\expect{Y}
+	\end{equation*}
+\end{proofing}
+\begin{rem}
+	If $X$ and $Y$ are independent, then they are uncorrelated. The converse is generally not true.
+\end{rem}
+\begin{eg}
+	Let $X$ be such that $f_{X}(0)=f_{X}(1)=f_{X}(-1)=\frac{1}{3}$ and $Y$ be such that $Y=0$ if $X\neq0$ and $Y=1$ if $X=0$.
+	\begin{align*}
+		\expect(XY)&=0 &  \expect X&=0=\expect(XY)
+	\end{align*}
+	However,
+	\begin{align*}
+		\prob(X=0,Y=0)&=0 & \prob(X=0)&\neq 0 & \prob(Y=0)&\neq 0 & \prob(X=0)\prob(Y=0)&\neq 0
+	\end{align*}
+	Therefore, $X$ and $Y$ are uncorrelated, but they are not independent.
+\end{eg}
+We can now use the properties of expectations to deduce the properties of variance.
+\begin{thm}
+	For random variables $X$ and $Y$,
+	\begin{enumerate}
+		\item $\Var(aX+b)=a^{2}\Var(X)$ for all $a,b\in\mathbb{R}$.
+		\item $\Var(X+Y)=\Var(X)+\Var(Y)$ if $X$ and $Y$ are uncorrelated.
+	\end{enumerate}
+\end{thm}
+\begin{proofing}
+	\begin{enumerate}
+		\item Using linearity of $\expect$,
+		\begin{equation*}
+			\Var(aX+b)=\expect((aX+b-\expect(aX+b))^{2})=\expect(a^{2}(X-\expect X)^{2})=a^{2}\expect((X-\expect X)^{2})=a^{2}\Var(X)
+		\end{equation*}
+		\item When $X$ and $Y$ are uncorrelated,
+		\begin{align*}
+			\Var(X+Y)=\expect((X+Y-\expect(X+Y))^{2})&=\expect((X-\expect X)^{2}+2(XY-\expect X\expect Y)+(Y-\expect Y)^{2})\\
+			&=\Var(X)+2(\expect(XY)-\expect(X)\expect(Y))+\Var(Y)\\
+			&=\Var(X)+\Var(Y)
+		\end{align*}
+	\end{enumerate}
+\end{proofing}
+\section{Sampling}
+In a lot of cases, we do not know the actual distribution of the population. We can only predict the distribution based on the samples we can get. This section is more close to statistics than probability, so we will not talk a lot about this.
+\begin{defn}
+	A set of random variables $\{X_{1},X_{2},\cdots,X_{n}\}$ are called \textbf{random sample} of a random variable $X$ with PMF or PDF $f_{X}(x)$ and CDF $F_{X}(x)$ if they are independent and identically distributed (i.i.d.).
+	\begin{enumerate}
+		\item \textbf{Sample mean} of $X$, denoted by $\overline{X}$, is defined by:
+		\begin{equation*}
+			\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}
+		\end{equation*}
+		\item \textbf{Sample variance} of $X$, denoted by $S_{n-1}^{2}$, is defined by:
+		\begin{equation*}
+			S_{n-1}^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}
+		\end{equation*}
+	\end{enumerate}
+\end{defn}
+\begin{rem}
+	Notice that the denominator is $n-1$.
+\end{rem}
+\begin{thm}
+	\label{Chapter 6 (Theorem) Expectation and variance of sample mean}
+	Given a sample mean $\overline{X}$ of a random variable $X$. We have $\expect{\overline{X}}=\mu$ and $\Var(\overline{X})=\frac{\sigma^{2}}{n}$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{\overline{X}}&=\expect\left(\frac{1}{n}\sum_{k=1}^{n}X_{k}\right)=\frac{1}{n}\sum_{k=1}^{n}\expect{X_{k}}=\frac{1}{n}\sum_{k=1}^{n}\mu=\mu\\
+		\Var(\overline{X})&=\frac{1}{n^{2}}\sum_{k=1}^{n}\Var(X_{k})=\frac{n\sigma^{2}}{n^{2}}=\frac{1}{n}\sigma^{2}
+	\end{align*}
+\end{proofing}
+\begin{thm}
+	Given a sample variance $S_{n-1}^{2}$ of a random variable $X$. We have $\expect{S_{n-1}^{2}}=\sigma^{2}$.
+\end{thm}
+\begin{proofing}
+	\begin{align*}
+		\expect{S^{2}}&=\frac{1}{n-1}\sum_{i=1}^{n}\expect(X_{i}-\overline{X})^{2}\\
+		&=\frac{1}{n-1}\sum_{i=1}^{n}(\expect(X_{i}-\mu)^{2}+\expect(\overline{X}-\mu)^{2}-2\expect((X_{i}-\mu)(\overline{X}-\mu)))\\
+		&=\frac{1}{n-1}\sum_{i=1}^{n}(\Var(X_{i})+\Var(\overline{X})-2\cov(X_{i},\overline{X}))\\
+		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2}{n-1}\sum_{i=1}^{n}\cov\left(X_{i},\frac{1}{n}\sum_{j=1}^{n}X_{j}\right)\\
+		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2}{n(n-1)}\sum_{i=1}^{n}\sum_{j=1}^{n}\cov(X_{i},X_{j})\\
+		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2\sigma^{2}}{n-1}=\sigma^{2}
+	\end{align*}
+\end{proofing}
+What happens if the random variables are normal distributions?
+\begin{thm}
+	\label{Chapter 6 (Theorem) Sampling distribution with sample mean}
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
+	\begin{equation*}
+		\overline{X}\sim\N\left(\mu_{X},\frac{\sigma_{X}^{2}}{n}\right)
+	\end{equation*}
+\end{thm}
+\begin{proofing}
+	By Theorem \ref{Chapter 5 (Theorem) Additivity of Normal Distribution} and the properties of Normal distribution,
+	\begin{equation*}
+		X_{1}+X_{2}+\cdots+X_{n}\sim\N(n\mu_{X},n\sigma_{X}^{2})
+	\end{equation*}
+	By Lemma \ref{Chapter 5 (Lemma) Properties of Normal distribution}, we have:
+	\begin{equation*}
+		\overline{X}=\frac{1}{n}(X_{1}+X_{2}+\cdots+X_{n})\sim\N\left(\mu_{X},\frac{\sigma_{X}^{2}}{n}\right)
+	\end{equation*}
+\end{proofing}
+\begin{thm}
+	\label{Chapter 6 (Theorem) Sampling distribution with sample variance}
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. Then we have:
+	\begin{enumerate}
+		\item \begin{equation*}
+			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+		\end{equation*}
+		\item $\overline{X}$ and $S_{n-1}^{2}$ are independent.
+	\end{enumerate}
+\end{thm}
+\begin{proofing}
+	\begin{enumerate}
+		\item We may find that:
+		\begin{align*}
+			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{\sigma_{X}^{2}}&=\sum_{i=1}^{n}\frac{((X_{i}-\mu_{X})+(\mu_{X}-\overline{X}))^{2}}{\sigma_{X}^{2}}\\
+			&=\sum_{i=1}^{n}\frac{(X_{i}-\mu_{X})^{2}}{\sigma_{X}^{2}}-\frac{n(\overline{X}-\mu_{X})^{2}}{\sigma_{X}^{2}}\\
+			&=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}-\left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}
+		\end{align*}
+		We know that $\frac{X_{i}-\mu_{X}}{\sigma_{X}}\sim\N(0,1)$. By definition,
+		\begin{align*}
+			\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}&\sim\chi^{2}(n) & \left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}&\sim\chi^{2}(1)
+		\end{align*} 
+		Therefore, by Theorem \ref{Chapter 5 (Lemma) Additivity of chi-squared distribution}, we get:
+		\begin{equation*}
+			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+		\end{equation*}
+	\end{enumerate}
+\end{proofing}
+\begin{thm}
+	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
+	\begin{equation*}
+		\frac{\overline{X}-\mu_{X}}{\frac{S_{n-1}}{\sqrt{n}}}\sim t(n-1)
+	\end{equation*}
+\end{thm}
+\begin{proofing}
+	By Theorem \ref{Chapter 6 (Theorem) Sampling distribution with sample mean} and \ref{Chapter 6 (Theorem) Sampling distribution with sample variance}, we let:
+	\begin{align*}
+		U&=\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\sim\N(0,1) & V&=\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
+	\end{align*}
+	By definition of $t$-distribution, we have:
+	\begin{equation*}
+		\frac{\overline{X}-\mu_{X}}{\frac{S_{n-1}}{\sqrt{n}}}=\frac{U}{\sqrt{\frac{V}{n-1}}}\sim t(n-1)
+	\end{equation*}
+\end{proofing}
 \section{Introduction of generating functions}
-A sequence of number $a=\{a_{i}:i=0,1,2,\cdots\}$ may contain a lot of information. For example, values of PMF tells us the distribution of a discrete random variables. A concise way of storing this information is to wrap up the numbers together in a generating function. 
+A sequence of number $a=\{a_{i}:i=0,1,2,\cdots\}$ may contain a lot of information. For example, values of PMF tells us the distribution of a discrete random variables.\\
+A concise way of storing this information is to wrap up the numbers together in a generating function. 
 \begin{defn}
 	For any sequence $\{a_{n}:n=0,1,2,\cdots\}$, we defined the generating function by
 	\begin{equation*}
-		G_{a}(s)=\sum_{i=0}^{\infty}a_{i}s^{i}=\lim_{N\to\infty}\sum_{i=0}^{N}a_{i}s^{i}
+		G_{a}(s)=\sum_{i=0}^{\infty}a_{i}s^{i}=\lim_{N\uparrow\infty}\sum_{i=0}^{N}a_{i}s^{i}
 	\end{equation*}
 	for $s\in\mathbb{R}$ if the limit exists. 
 \end{defn}
@@ -3722,9 +3625,9 @@ A sequence of number $a=\{a_{i}:i=0,1,2,\cdots\}$ may contain a lot of informati
 	Let $b_{n}(x)=\frac{\sin{nx}}{n}$ such that $a_{1}(x)=b_{1}(x)$ and $a_{n}(x)=b_{n}(x)-b_{n-1}(x)$.
 	\begin{align*}
 		\tag{Squeeze Theorem}
-		\sum_{n=0}^{\infty}a_{n}(x)&=\lim_{n\to\infty}\sum_{i=0}^{n}a_{n}(x)=\lim_{n\to\infty}\frac{\sin{nx}}{n}=0\\
-		\lim_{n\to\infty}\pdv*{\sum_{i=0}^{n}a_{i}(x)}{x}&=0\\
-		\lim_{n\to\infty}\sum_{i=0}^{n}\pdv*{a_{n}(x)}{x}&=\lim_{n\to\infty}\cos{nx}\quad \text{does not exist}
+		\sum_{n=0}^{\infty}a_{n}(x)&=\lim_{N\uparrow\infty}\sum_{i=0}^{\infty}a_{n}(x)=\lim_{N\uparrow\infty}\frac{\sin{Nx}}{N}=0\\
+		\lim_{N\uparrow\infty}\pdv*{\sum_{i=0}^{\infty}a_{i}(x)}{x}&=0\\
+		\lim_{N\uparrow\infty}\sum_{i=0}^{N}\pdv*{a_{n}(x)}{x}&=\lim_{N\uparrow\infty}\cos{Nx}\quad \text{does not exist}
 	\end{align*}
 \end{eg}
 Convolutions are common in probability theory, and generating functions can provide a tool for studying them.
@@ -3737,6 +3640,8 @@ Convolutions are common in probability theory, and generating functions can prov
 \begin{eg}
 	If $a_{n}=f_{X}(n)$ and $b_{n}=f_{Y}(n)$, then $c_{n}=f_{X+Y}(n)$.
 \end{eg}
+
+\newpage
 \begin{lem}
 	If sequences $a$ and $b$ have generating functions $G_{a}(s)$ and $G_{b}(s)$ respectively, then
 	\begin{equation*}
@@ -3748,7 +3653,24 @@ Convolutions are common in probability theory, and generating functions can prov
 		G_{c}(s)=\sum_{n=0}^{\infty}c_{n}s^{n}=\sum_{n=0}^{\infty}\sum_{i=0}^{n}a_{i}b_{n-i}s^{i}s^{n-i}=\sum_{i=0}^{\infty}a_{i}s^{i}\sum_{n=i}^{\infty}b_{n-i}s^{n-i}=\sum_{i=0}^{\infty}a_{i}s^{i}\sum_{j=0}^{\infty}b_{j}s^{j}=G_{a}(s)G_{b}(s)
 	\end{equation*}
 \end{proofing}
-We can see from the definition of generating function that it is a power series. We may want to know whether the series is convergent.
+\begin{eg}
+	\label{Chapter 6 (Example) Two independent poisson PGF}
+	Suppose that $X\independent Y$. Let $X\sim\Poisson(\lambda)$ and $Y\sim\Poisson(\mu)$. What is the distribution of $Z=X+Y$?\\
+	Recall that $f_{Z}=f_{X}*f_{Y}$. We let $a_{n}=f_{X}(n)$ and $b_{n}=f_{Y}(n)$.
+	\begin{align*}
+		G_{f_{X}}(s)&=\sum_{i=0}^{\infty}\frac{\lambda^{i}e^{-\lambda}}{i!}s^{i}=e^{\lambda(s-1)}\\
+		G_{f_{Y}}(s)&=e^{\mu(s-1)}\\
+		G_{f_{Z}}(s)&=e^{(\lambda+\mu)(s-1)}
+	\end{align*}
+\end{eg}
+Suppose that $X$ is a discrete random variables taking values in the non-negative integers. We can see how the generating function works in probability.
+\begin{defn}
+	\textbf{Probability generating function} (PGF) of a non-negative random variable $X$ is
+	\begin{equation*}
+		G_{X}(s)=\expect s^{X}=\sum_{i=0}^{\infty}s^{i}f_{X}(i)
+	\end{equation*}
+\end{defn}
+We can see that the definition is a power series. We may want to know whether the series is convergent.
 \begin{defn}
 	\textbf{Radius of convergence} $R$ of power series is the half size of an interval such that the power series $f(s)$ is convergent. If $s\in(-R,R)$, then $f(s)$ is convergent. If $s\in[-R,R]^{\complement}$, then $f(s)$ is divergent.\\
 	We can obtain the radius of convergence by applying root test:
@@ -3765,6 +3687,8 @@ We can see from the definition of generating function that it is a power series.
 		R=\lim_{n\to\infty}\abs{\frac{a_{n}}{a_{n+1}}}
 	\end{equation*}
 \end{rem}
+
+\newpage
 Here are some properties of power series involving radius of convergence. We will not prove them since the proof is not important.
 \begin{thm}
 	If $R$ is the radius of convergence of $G_{a}(s)=\sum_{i=0}^{\infty}a_{i}s^{i}$, then
@@ -3783,27 +3707,6 @@ Here are some properties of power series involving radius of convergence. We wil
 		a_{n}=\frac{1}{n!}G_{a}^{(n)}(0)
 	\end{equation*}
 \end{rem}
-Suppose that $X$ is a discrete random variables taking values in the non-negative integers. We can see how the generating function works in probability.
-\begin{defn}
-	\textbf{Probability generating function} (PGF) of a non-negative random variable $X$ is
-	\begin{equation*}
-		G_{X}(s)=\expect s^{X}=\sum_{i=0}^{\infty}s^{i}f_{X}(i)
-	\end{equation*}
-\end{defn}
-Using this, we can actually find what distribution a random variable has with the following theorem.
-\begin{thm}
-	Given two random variables $X$ and $Y$ with corresponding PGFs. If two PGFs are the same, then $X$ and $Y$ have the same distribution.
-\end{thm}
-This is particularly useful to find the distribution of a random variable.
-\begin{eg}
-	\label{Chapter 7 (Example) Two independent poisson PGF}
-	Suppose that $X\independent Y$. Let $X\sim\Poisson(\lambda)$ and $Y\sim\Poisson(\mu)$. What is the distribution of $Z=X+Y$?\\
-	Recall that $f_{Z}=f_{X}*f_{Y}$. We let $a_{n}=f_{X}(n)$ and $b_{n}=f_{Y}(n)$.
-	\begin{align*}
-		G_{X}(s)&=\sum_{i=0}^{\infty}\frac{\lambda^{i}e^{-\lambda}}{i!}s^{i}=e^{\lambda(s-1)} & G_{Y}(s)&=e^{\mu(s-1)} & G_{Z}(s)&=e^{(\lambda+\mu)(s-1)}
-	\end{align*}
-	We may conclude that $Z\sim\Poisson(\lambda+\mu)$.
-\end{eg}
 \begin{rem}
 	If $a_{n}=f_{X}(n)$ for some random variables $X$, then $R\geq 1$ for $G_{X}(s)=G_{a}(s)$ since
 	\begin{equation*}
@@ -3811,27 +3714,33 @@ This is particularly useful to find the distribution of a random variable.
 	\end{equation*}
 	converges when $s\in[-1,1]$.
 \end{rem}
-
-\newpage
 \begin{eg}
-	Let $X\sim\Poisson(\lambda)$ and  $a_{n}=f_{X}(n)=\frac{\lambda^{n}e^{-\lambda}}{n!}$. By ratio test, as $n\to\infty$,
+	Let $X\sim\Poisson(\lambda)$ and  $a_{n}=f_{X}(n)=\frac{\lambda^{n}e^{-\lambda}}{n!}$. By ratio test,
 	\begin{equation*}
 		\frac{a_{n}}{a_{n+1}}=\frac{n+1}{\lambda}\to\infty
 	\end{equation*}
 	Therefore, $R=\infty$.
 \end{eg}
 \begin{eg}
-	Let $X$ has a PMF $a_{n}=f_{X}(n)=\frac{c}{n^{2}}$. By ratio test, as $n\to\infty$,
+	Let $X$ has a PMF $a_{n}=f_{X}(n)=\frac{c}{n^{2}}$. By ratio test,
 	\begin{equation*}
 		\frac{a_{n}}{a_{n+1}}=\frac{(n+1)^{2}}{n}\to 1
 	\end{equation*}
 	Therefore, $R=1$.
 \end{eg}
+In fact, when $s=1$, we can find the expectation of a distribution.
+\begin{eg}
+	\label{Chapter 6 (Example) Expectation from PGF}
+	By having $s=1$,
+	\begin{equation*}
+		\left.\pdv*{G_{X}(s)}{s}\right|_{s=1}=\left.\pdv*{\sum_{i=0}^{\infty}f_{X}(i)s^{i}}{s}\right|_{s=1}=\left.\sum_{i=0}^{\infty}if_{X}(i)s^{i}\right|=\sum_{i=0}^{\infty}if_{X}(i)=\expect X
+	\end{equation*}
+\end{eg}
 There is an important theorem regarding $s=1$. Again, we are not going to prove it.
 \begin{thm}(\textbf{Abel's Theorem})
 	Suppose that $a_{n}\geq 0$ for all $n$. If $a$ has a generating function $G_{a}(s)$ and radius of convergence $R=1$, then if $\sum_{n=0}^{\infty}a_{n}$ converges in $\mathbb{R}\cup\{\infty\}$, we have
 	\begin{equation*}
-		\lim_{s\to 1^{-}}G_{a}(s)=\sum_{n=0}^{\infty}a_{n}\lim_{s\to 1^{-}}s^{n}=\sum_{n=0}^{\infty}a_{n}
+		\lim_{s\uparrow 1}G_{a}(s)=\sum_{n=0}^{\infty}a_{n}\lim_{s\uparrow 1}s^{n}=\sum_{n=0}^{\infty}a_{n}
 	\end{equation*}
 \end{thm}
 \begin{eg}
@@ -3847,17 +3756,14 @@ We already know that by computing the derivatives of $G$ at $s=0$, we can get th
 \begin{thm}
 	If random variable $X$ has a PGF $G_{X}(s)$, then
 	\begin{enumerate}
-		\item $\expect X=\lim_{s\to 1^{-}}G'(s)=G'(1)$
+		\item $\expect X=\lim_{s\uparrow 1}G'(s)=G'(1)$
 		\item $\expect(X(X-1)\cdots(X-k+1))=G^{(k)}(1)$
 		\item $\Var(X)=G''(1)+G'(1)-(G'(1))^{2}$
 	\end{enumerate}
 \end{thm}
 \begin{proofing}
 	\begin{enumerate}
-		\item By having $s=1$,
-		\begin{equation*}
-			\left.\pdv*{G_{X}(s)}{s}\right|_{s=1}=\left.\pdv*{\sum_{k=0}^{\infty}f_{X}(k)s^{k}}{s}\right|_{s=1}=\left.\sum_{k=1}^{\infty}kf_{X}(k)s^{k-1}\right|_{s=1}=\sum_{k=1}^{\infty}kf_{X}(k)=\expect X
-		\end{equation*}
+		\item This is proved in Example \ref{Chapter 6 (Example) Expectation from PGF}.
 		\item Let $s<1$.
 		\begin{equation*}
 			G^{(k)}(s)=\pdv*[order={k}]{\sum_{n}f_{X}(n)s^{n}}{s}=\sum_{n}n(n-1)\cdots(n-k+1)s^{n-k}f_{X}(n)=\expect(s^{X-k}X(X-1)\cdots(X-k+1))
@@ -3872,8 +3778,16 @@ We already know that by computing the derivatives of $G$ at $s=0$, we can get th
 		\end{equation*}
 	\end{enumerate}
 \end{proofing}
-
-\newpage
+From Example \ref{Chapter 6 (Example) Two independent poisson PGF}, we can generalize it to study the sum of many other independent discrete random variables.
+\begin{thm}
+	\label{Chapter 6 (Theorem) PGF for sum of random independent variables}
+	If $X\independent Y$, then $G_{X+Y}(s)=G_{X}(s)G_{Y}(s)$.
+\end{thm}
+\begin{proofing}
+	\begin{equation*}
+		G_{X+Y}(s)=\sum_{z=0}^{\infty}\sum_{x=0}^{z}f_{X}(x)f_{Y}(z-x)s^{z}=\sum_{x=0}^{\infty}f_{X}(x)s^{x}\sum_{z=x}^{\infty}f_{Y}(z-x)s^{z-x}=\sum_{x=0}^{\infty}f_{X}(x)\sum_{y=0}^{\infty}f_{Y}(z)s^{y}=G_{X}(s)G_{Y}(s)
+	\end{equation*}
+\end{proofing}
 Interestingly, we can also use generating function to deal with sum of random number of independent random variables.
 \begin{thm}
 	Let $X_{1},X_{2},\cdots$ be a sequence of independent identically distributed (i.i.d.) random variables with common PGF $G_{X}(s)$ and $N$ be a random variable independent of $X_{i}$ for all $i$ with PGF $G_{N}(s)$. If $T=X_{1}+X_{2}+\cdots+X_{N}$, then
@@ -3902,7 +3816,7 @@ When JPMF exists, there obviously will be a joint PGF.
 	Let random variables $X_{1},X_{2}$ be both non-negative integer-valued, jointly discrete with JPMF $f_{X_{1},X_{2}}$.\\
 	\textbf{Joint probability generating function} (JPGF) is defined by
 	\begin{equation*}
-		G_{X_{1},X_{2}}(s_{1},s_{2})=\expect(s_{1}^{X_{1}}s_{2}^{X_{2}})=\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}s_{1}^{i}s_{2}^{j}f_{X_{1},X_{2}}(i,j)
+		G_{X_{1},X_{2}}(s_{1},s_{2})=\expect s_{1}^{X_{1}}s_{2}^{X_{2}}=\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}s_{1}^{i}s_{2}^{j}f_{X_{1},X_{2}}(i,j)
 	\end{equation*}
 \end{defn}
 \begin{rem}
@@ -3912,7 +3826,7 @@ When JPMF exists, there obviously will be a joint PGF.
 	\end{equation*}
 \end{rem}
 \begin{thm}
-	Random variables $X$ and $Y$ are independent if and only if $G_{X,Y}(s,t)=G_{X}(s)G_{Y}(t)$.
+	Random variables $X,Y$ are independent if and only if $G_{X,Y}(s,t)=G_{X}(s)G_{Y}(t)$.
 \end{thm}
 \begin{proofing}
 	If $X\independent Y$,
@@ -3925,21 +3839,13 @@ When JPMF exists, there obviously will be a joint PGF.
 	\end{equation*}
 	Therefore, $X\independent Y$.
 \end{proofing}
-\begin{thm}
-	If random variables $X$ and $Y$ are independent, then $G_{X+Y}(t)=G_{X}(t)G_{Y}(t)$
-\end{thm}
-\begin{proofing}
-	\begin{equation*}
-		G_{X+Y}(t)=\expect(t^{X+Y})=\expect(t^{X})\expect(t^{Y})=G_{X}(t)G_{Y}(t)
-	\end{equation*}
-\end{proofing}
 \begin{rem}
-	The converse does not necessarily be true.
+	We know that if $X_{1}\independent X_{2}$, then $G_{X_{1}+X_{2}}(s)=\expect s^{X_{1}+X_{2}}=\expect s^{X_{1}}s^{X_{2}}=G_{X_{1}}(s)G_{X_{2}}(s)$. Converse may not be true.
 \end{rem}
 \section{Applications of generating functions}
 The following example involves simple random walk, which is discussed in Appendix \ref{Appendix A Simple random walk}. Generating functions are particularly valuable when studying random walk. So far, we have only considered random variables $X$ taking finite values only. In this application, we encounter variables that can take the value $+\infty$. For such variables $X$, $G_{X}(s)$ converges so long as $\abs{s}<1$ and
 \begin{equation*}
-	\lim_{s\to 1^{-}}G_{X}(s)=\sum_{k}\prob(X=k)=1-\prob(X=\infty)
+	\lim_{s\uparrow 1}G_{X}(s)=\sum_{k}\prob(X=k)=1-\prob(X=\infty)
 \end{equation*}
 \begin{defn}
 	A random variable $X$ is \textbf{defective} if $\prob(X=\infty)>0$.
@@ -3947,9 +3853,11 @@ The following example involves simple random walk, which is discussed in Appendi
 \begin{rem}
 	It is no surprise that expectation is infinite when random variable is defective.
 \end{rem}
+
+\newpage
 With this generalization, we can start discussing random walk.
 \begin{eg}(\textbf{Recurrence and transience of random walk})
-	\label{Chapter 7 (Example) Simple random walk recurrence and transience}
+	\label{Chapter 6 (Example) Simple random walk recurrence and transience}
 	Let $Y_{n}$ the position of the particles after $n$ moves and $X_{i}$ be independent and identically distributed random variables mentioned in Appendix \ref{Appendix A Simple random walk}. For $n\geq 0$,
 	\begin{align*}
 		Y_{n}&=\sum_{i=1}^{n}X_{i} & Y_{0}&=0 & \prob(X_{i}=1)&=p & \prob(X_{i}=-1)&=q=1-p
@@ -3965,13 +3873,13 @@ With this generalization, we can start discussing random walk.
 		p_{0}(n)&=\prob(Y_{n}=0)=\begin{cases}
 			\binom{n}{\frac{n}{2}}p^{\frac{n}{2}}q^{\frac{n}{2}}, &n\text{ is even}\\
 			0, &n\text{ is odd}
-		\end{cases} & P_{0}(s)&=\lim_{N\to\infty}\sum_{n=0}^{N}p_{0}(n)s^{n}\\
-		f_{0}(n)&=\prob(Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{n-1}\neq 0,Y_{n}=0)=\prob(T_{0}=n) & F_{0}(s)&=\lim_{N\to\infty}\sum_{n=1}^{N}f_{0}(n)s^{n}
+		\end{cases} & P_{0}(s)&=\lim_{N\uparrow\infty}\sum_{n=0}^{N}p_{0}(n)s^{n}\\
+		f_{0}(n)&=\prob(Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{n-1}\neq 0,Y_{n}=0)=\prob(T_{0}=n) & F_{0}(s)&=\lim_{N\uparrow\infty}\sum_{n=1}^{N}f_{0}(n)s^{n}
 	\end{align*}
 \end{eg}
 \begin{thm}
-	\label{Chapter 7 (Theorem) Simple random walk particle return generating function}
-	From the definitions in Example \ref{Chapter 7 (Example) Simple random walk recurrence and transience}, we have
+	\label{Chapter 6 (Theorem) Simple random walk particle return generating function}
+	From the definitions in Example \ref{Chapter 6 (Example) Simple random walk recurrence and transience}, we have
 	\begin{enumerate}
 		\item $P_{0}(s)=1+P_{0}(s)F_{0}(s)$
 		\item $P_{0}(s)=(1-4pqs^{2})^{-\frac{1}{2}}$
@@ -3980,8 +3888,10 @@ With this generalization, we can start discussing random walk.
 \end{thm}
 \begin{proofing}
 	\begin{enumerate}
-		\item By using Law of total probability, 
+		\item Let $A_{n}=\{Y_{n}=0\}$ and $B_{k}=\{Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{k-1}\neq 0,Y_{k}=0\}$. $p_{0}(n)=\prob(A_{n})$ and $f_{0}(k)=\prob(B_{k})$.\\
+		By using Law of total probability, 
 		\begin{align*}
+			\prob(A_{n})&=\sum_{i=1}^{n}\prob(A_{n}|B_{i})\prob(B_{i})\\
 			p_{0}(n)&=\sum_{i=1}^{n}\prob(Y_{n}=0|Y_{1}\neq 0,Y_{2}\neq 0,\cdots,Y_{i-1}\neq 0,Y_{i}=0)f_{0}(i)\\
 			\tag{Markov property in Lemma \ref{Appendix A (Lemma) Simple random walk properties}}
 			&=\sum_{i=1}^{n}\prob(Y_{n}=0|Y_{i}=0)f_{0}(i)\\
@@ -3995,7 +3905,7 @@ With this generalization, we can start discussing random walk.
 		We know that $Y_{n}=0$ if $n$ is even. Therefore,
 		\begin{equation*}
 			\tag{$\binom{\frac{-1}{2}}{i}$ is a generalized binomial coefficient}
-			P_{0}(s)=\lim_{N\to\infty}\sum_{n=0}^{N}p_{0}(n)s^{n}=\lim_{N\to\infty}\sum_{i=0}^{N}\binom{2i}{i}p^{i}q^{i}s^{2i}=\lim_{N\to\infty}\sum_{i=1}^{N}(-1)^{i}4^{i}\binom{\frac{-1}{2}}{i}p^{i}q^{i}s^{2i}=\frac{1}{\sqrt{1-4pqs^{2}}}
+			P_{0}(s)=\lim_{N\uparrow\infty}\sum_{n=0}^{N}p_{0}(n)s^{n}=\lim_{N\uparrow\infty}\sum_{i=0}^{N}\binom{2i}{i}p^{i}q^{i}s^{2i}=\lim_{N\uparrow\infty}\sum_{i=1}^{N}(-1)^{i}4^{i}\binom{\frac{-1}{2}}{i}p^{i}q^{i}s^{2i}=\frac{1}{\sqrt{1-4pqs^{2}}}
 		\end{equation*}
 		\item By applying (1) and (2), we can get
 		\begin{equation*}
@@ -4015,7 +3925,7 @@ From this theorem, we can get the following corollary.
 	\end{equation*}
 \end{cor}
 \begin{proofing}
-	By using Theorem \ref{Chapter 7 (Theorem) Simple random walk particle return generating function}, since $p+q=1$,
+	By using Theorem \ref{Chapter 6 (Theorem) Simple random walk particle return generating function}, since $p+q=1$,
 	\begin{equation*}
 		F_{0}(1)=1-(1-4pq)^{\frac{1}{2}}=1-(p^{2}-2pq+q^{2})^{\frac{1}{2}}=1-\abs{p-q}
 	\end{equation*}
@@ -4027,9 +3937,9 @@ From this theorem, we can get the following corollary.
 	If $p\neq q$, then $\prob(T_{0}=\infty)\neq 0$ and so the random walk is transient.
 \end{rem}
 \begin{eg}
-	We use the Example \ref{Chapter 7 (Example) Simple random walk recurrence and transience} again. How do we calculate $\expect T_{0}$ if $p=q=\frac{1}{2}$?
+	We use the Example \ref{Chapter 6 (Example) Simple random walk recurrence and transience} again. How do we calculate $\expect T_{0}$ if $p=q=\frac{1}{2}$?
 	\begin{align*}
-		F_{0}(s)&=1-\sqrt{1-s^{2}} & F_{0}'(s)&=\frac{s}{\sqrt{1-s^{2}}} & \expect T_{0}&=\lim_{s\to 1^{-}}F_{0}'(s)=\infty
+		F_{0}(s)&=1-\sqrt{1-s^{2}} & F_{0}'(s)&=\frac{s}{\sqrt{1-s^{2}}} & \expect T_{0}&=\lim_{s\uparrow 1}F_{0}'(s)=\infty
 	\end{align*}
 	This means that although we find that the particle almost certainly return to origin, the expectation for number of steps needed to return to origin is still infinite.
 \end{eg}
@@ -4055,7 +3965,7 @@ Many scientists have been interested in reproduction in a population. Accurate m
 
 \newpage
 \begin{thm}
-	\label{Chapter 7 (Theorem) Galton-Watson process PGF n-fold iterate properties}
+	\label{Chapter 6 (Theorem) Galton-Watson process PGF n-fold iterate properties}
 	Let $G_{n}(s)=\expect s^{Z_{n}}$ and $G(s)=G_{1}(s)=\expect s^{Z_{1}}=\expect s^{X_{i}^{(m)}}$ for all $i$ and $m$. Then
 	\begin{equation*}
 		G_{n}(s)=G(G(\cdots(G(s))\cdots))=G(G_{n-1}(s))=G_{n-1}(G(s))
@@ -4088,7 +3998,7 @@ The moments of $Z_{n}$ can be computed easier.
 	\end{align*}
 \end{lem}
 \begin{proofing}
-	Using Theorem \ref{Chapter 7 (Theorem) Galton-Watson process PGF n-fold iterate properties}, we can get
+	Using Theorem \ref{Chapter 6 (Theorem) Galton-Watson process PGF n-fold iterate properties}, we can get
 	\begin{align*}
 		\expect Z_{2}&=G_{2}'(1)=G'(G(1))G'(1)=G'(1)\mu=\mu^{2}\\
 		\expect Z_{n}&=G_{n}'(1)=G'(G_{n-1}(1))G_{n-1}'(1)=G'(1)\mu^{n-1}=\mu^{n}\\
@@ -4112,10 +4022,10 @@ The moments of $Z_{n}$ can be computed easier.
 	Does this process eventually lead to extinct?\\
 	Note that
 	\begin{align*}
-		\{\text{ultimate extinction}\}&=\bigcup_{n}\{Z_{n}=0\}=\lim_{n\to\infty}\{Z_{n}=0\}\\
-		\prob(\text{ultimate extinction})&=\prob\left(\lim_{n\to\infty}\{Z_{n}=0\}\right)=\lim_{n\to\infty}\prob(Z_{n}=0)=\lim_{n\to\infty}G_{n}(0)
+		\{\text{ultimate extinction}\}&=\bigcup_{n}\{Z_{n}=0\}=\lim_{n\uparrow\infty}\{Z_{n}=0\}\\
+		\prob(\text{ultimate extinction})&=\prob\left(\lim_{n\uparrow\infty}\{Z_{n}=0\}\right)=\lim_{n\uparrow\infty}\prob(Z_{n}=0)=\lim_{n\uparrow\infty}G_{n}(0)
 	\end{align*}
-	Let $\eta_{n}=G_{n}(0)$ and $\eta=\lim_{n\to\infty}\eta_{n}$.
+	Let $\eta_{n}=G_{n}(0)$ and $\eta=\lim_{n\uparrow\infty}\eta_{n}$.
 \end{eg}
 
 \newpage
@@ -4136,9 +4046,9 @@ The moments of $Z_{n}$ can be computed easier.
 	\begin{equation*}
 		\eta_{n}=G_{n}(0)=G(G_{n-1}(0))=G(\eta_{n-1})
 	\end{equation*}
-	We know that $\eta_{n}$ is bounded. Therefore, $\eta_{n}\to\eta$ for some $\eta\in[0,1]$.
+	We know that $\eta_{n}$ is bounded. Therefore, $\eta_{n}\uparrow\eta$ for some $\eta\in[0,1]$.
 	\begin{equation*}
-		\eta=\lim_{n\to\infty}\eta_{n}=\lim_{n\to\infty}G(\mu_{n-1})=G\left(\lim_{n\to\infty}\eta_{n-1}\right)=G(\eta)
+		\eta=\lim_{n\uparrow\infty}\eta_{n}=\lim_{n\uparrow\infty}G(\mu_{n-1})=G\left(\lim_{n\uparrow\infty}\eta_{n-1}\right)=G(\eta)
 	\end{equation*}
 	Suppose that there exists another non-negative root $\psi$.
 	\begin{align*}
@@ -4161,15 +4071,72 @@ The moments of $Z_{n}$ can be computed easier.
 	If $\sigma^{2}=G''(1)>0$, then $\eta=1$.\\
 	If $\sigma^{2}=G''(1)=0$, then $\eta=0$.
 \end{proofing}
-
-\section{Moment generating function and Characteristic function}
-Recall that we can unify both discrete and continuous distribution into one. We can change how we define PGF.
+\section{Expectation revisited}
+Recall that the expectations are given respectively by
+\begin{equation*}
+	\expect X=\begin{cases}
+		\sum xf_{X}(x), &X\text{ is discrete}\\
+		\int xf_{X}(x)\,dx, &X\text{ is continuous}
+	\end{cases}
+\end{equation*}
+We want a notation which incorporates both these cases. Suppose that $X$ has a CDF $F$. We can rewrite the equations as
+\begin{equation*}
+	\expect X=\begin{cases}
+		\sum x\,dF_{X}(x), &dF_{X}(x)=F_{X}(x)-\lim_{y\uparrow x}F_{X}(y)=f_{X}(x)\\
+		\int x\,dF_{X}(x), &dF_{X}(x)=\pdv{F}{x}\,dx=f_{X}(x)\,dx
+	\end{cases}
+\end{equation*}
+Instead of using the regular Riemann integral, which cannot deal with discrete case, we can use the Riemann-Stieltjes integral, which is a generalization of the Riemann integral.
+\begin{align*}
+	\intlu{a}{b}g(x)\,dx&=\lim_{\max_{i}\abs{x_{i+1}-x_{i}}}\sum_{i}g(x_{i}^{*})(x_{i+1}-x_{i})\\
+	\intlu{a}{b}g(x)\,dF(x)&=\lim_{\max_{i}\abs{x_{i+1}-x_{i}}}\sum_{i}g(x_{i}^{*})(F(x_{i+1})-F(x_{i}))
+\end{align*}
+if the limit does not depend on the choice of $x_{i}^{*}\in[x_{i},x_{i+1})$.
+\begin{defn}
+	\textbf{Expectation} of a random variable $X$ is given by:
+	\begin{equation*}
+		\expect X=\int x\,dF_{X}
+	\end{equation*}
+\end{defn}
+\begin{lem}
+	If $g:\mathbb{R}\to\mathbb{R}$ such that $g(X)$ is also a random variable, then
+	\begin{equation*}
+		\expect(g(X))=\int g(x)\,dF_{X}
+	\end{equation*}
+\end{lem}
+\begin{rem}
+	The notation of $\int g(x)\,dF_{X}(x)$ does not mean Riemann-Stieltjes integral.
+\end{rem}
+\begin{eg}
+	If $g$ is regular (differentiable at every point and every values in the domain maps to a value in range), then
+	\begin{equation*}
+		\sum_{i}g(x_{i}^{*})(F(x_{i+1}-F(x_{i}))\approx\sum_{i}g(x_{i}^{*})f(x_{i}^{*})(x_{i+1}-x_{i})\approx\int g(x)f(x)\,dx
+	\end{equation*}
+\end{eg}
+\begin{eg}
+	In irregular case, assume that the function $g$ is the Dirichlet function. That is
+	\begin{align*}
+		\mathbf{1}_{\mathbb{Q}}(x)&=\begin{cases}
+			1, &x\in\mathbb{Q}\\
+			0, &x\not\in\mathbb{Q}
+		\end{cases} & \sum_{i}g(x_{i}^{*})(F(x_{i+1})-F(x_{i}))=\sum_{i}g(x_{i}^{*})(x_{i+1}-x_{i})
+	\end{align*}
+	Since the limit depends on the choice of $x_{i}^{*}$, Riemann-Stieltjes integral of $\mathbf{1}_{\mathbb{Q}}(x)$ with respect to $F(x)=x$ is not well defined.\\
+	Therefore, $\expect\mathbf{1}_{\mathbb{Q}}(X)$ cannot be defined as a Riemann-Stieltjes integral.\\
+	However, on the other hand,
+	\begin{equation*}
+		\expect\mathbf{1}_{\mathbb{Q}}(X)=\prob(\mathbf{1}_{\mathbb{Q}}(x)=1)=\prob\circ X^{-1}(\mathbb{Q}\cap[0,1])=0
+	\end{equation*}
+\end{eg}
+With this notation, we can also change how we define PGF.
 \begin{defn}
 	\textbf{Probability generating function} of a random variable $X$ is given by:
 	\begin{equation*}
 		\expect s^{X}=\int s^{x}\,dF_{X}
 	\end{equation*}
 \end{defn}
+\section{Moment generating function and Characteristic function}
+Now that we have unified the notations, we can now properly apply the probability generating function.\\
 For a more general variables $X$, it is best if we substitute $s=e^{t}$. We get the following definition.
 \begin{defn}
 	\textbf{Moment generating function} (MGF) of a random variable $X$ is the function $M:\mathbb{R}\to[0,\infty)$ given by:
@@ -4183,23 +4150,19 @@ For a more general variables $X$, it is best if we substitute $s=e^{t}$. We get 
 \begin{rem}
 	MGFs are related to Laplace transforms.
 \end{rem}
-\begin{defn}
-	\textbf{Joint moment generating function} (JMGF) of two random variable $X$ and $Y$ is given by:
-	\begin{equation*}
-		M_{X,Y}(s,t)=\expect(e^{sX+tY})
-	\end{equation*}
-\end{defn}
-We can easily get the following lemma.
+
+\newpage
+We can easier get the following lemma.
 \begin{lem}
 	Given a MGF $M_{X}(t)$ of a random variable $X$. 
 	\begin{enumerate}
 		\item For any $k\geq 0$,
 		\begin{equation*}
-			\expect X^{k}=M_{X}^{(k)}(0)
+			\expect X^{k}=M^{(k)}(0)
 		\end{equation*}
 		\item The function $M$ can be expanded via Taylor's Theorem within its radius of convergence.
 		\begin{equation*}
-			M_{X}(t)=\sum_{i=0}^{\infty}\frac{\expect X^{k}}{k!}t^{k}
+			M(t)=\sum_{i=0}^{\infty}\frac{\expect X^{k}}{k!}t^{k}
 		\end{equation*}
 		\item If $X$ and $Y$ are independent, then
 		\begin{equation*}
@@ -4214,113 +4177,24 @@ We can easily get the following lemma.
 			M^{(k)}(0)=\left.\pdv*[order={k}]{\int e^{tx}\,dF_{X}(x)}{t}\right|_{t=0}=\left.\int x^{k}e^{tx}\,dF_{X}(x)\right|_{t=0}=\int x^{k}\,dF_{X}(x)=\expect X^{k}
 		\end{equation*}
 		\item Just using (1) and Taylor's Theorem and you get the answer.
-		\item Substitute $s=e^{t}$ into Theorem \ref{Chapter 7 (Theorem) PGF for sum of random independent variables}.
+		\item This is just Theorem \ref{Chapter 6 (Theorem) PGF for sum of random independent variables}.
 	\end{enumerate}
-\end{proofing}
-\begin{lem}
-	If $X_{1},X_{2},\cdots,X_{n}$ are independent, then:
-	\begin{equation*}
-		M_{X_{1},X_{2},\cdots,X_{n}}(t_{1},t_{2},\cdots,t_{n})=M_{X_{1}}(t_{1})M_{X_{2}}(t_{2})\cdots M_{X_{n}}(t_{n})
-	\end{equation*}
-\end{lem}
-\begin{proofing}
-	By independence,
-	\begin{equation*}
-		M_{X_{1},X_{2},\cdots,X_{n}}(t_{1},t_{2},\cdots,t_{n})=\expect(e^{t_{1}X_{1}+t_{2}X_{2}+\cdots+t_{n}X_{n}})=\expect(e^{t_{1}X_{1}})\expect(e^{t_{2}X_{2}})\cdots\expect(e^{t_{n}X_{n}})=M_{X_{1}}(t_{1})M_{X_{2}}(t_{2})\cdots M_{X_{n}}(t_{n})
-	\end{equation*}
 \end{proofing}
 \begin{rem}
 	$M_{X}(0)=1$ for all random variables $X$.
 \end{rem}
 \begin{eg}
-	Let $X\sim\Bern(p)$. We have:
-	\begin{equation*}
-		M_{X}(t)=\expect(e^{tX})=q+pe^{t}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\Bin(n,p)$. We have:
-	\begin{equation*}
-		M_{X}(t)=(q+pe^{t})^{n}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\Geom(p)$. We have:
+	Let $X\sim\Exp(1)$. For all $x>0$, if $t<1$,
 	\begin{align*}
-		f_{X}(x)&=p(1-p)^{x-1} & M_{X}(t)&=\sum_{k=1}^{\infty}e^{tk}p(1-p)^{k-1}=\frac{pe^{t}}{1-e^{t}(1-p)}\\
-		f_{X}(x)&=p(1-p)^{x} & M_{X}(t)&=\sum_{k=0}^{\infty}e^{tk}p(1-p)^{k}=\frac{p}{1-e^{t}(1-p)}
-	\end{align*}
-\end{eg}
-
-\newpage
-\begin{eg}
-	Let $X\sim\NBin(r,p)$. We have:
-	\begin{align*}
-		f_{X}(x)&=\binom{x-1}{r-1}p^{r}(1-p)^{x-r} & M_{X}(t)&=\left(\frac{pe^{t}}{1-e^{t}(1-p)}\right)^{n}\\
-		f_{X}(x)&=\binom{x+r-1}{r-1}p^{r}(1-p)^{x} & M_{X}(t)&=\left(\frac{p}{1-e^{t}(1-p)}\right)^{n}
+		f_{X}(x)&=e^{-x} & M_{X}(t)&=\intlu{0}{\infty}e^{tx}\,dF_{X}(x)=\intlu{0}{\infty}e^{(t-1)x}\,dx=\frac{1}{1-t}
 	\end{align*}
 \end{eg}
 \begin{eg}
-	Let $X\sim\Poisson(\lambda)$. We have:
-	\begin{equation*}
-		M_{X}(t)=\sum_{k=0}^{\infty}\frac{\lambda^{k}e^{tk-\lambda}}{k!}=e^{\lambda(e^{t}-1)}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\U[a,b]$ for some $a<b$. We have:
-	\begin{equation*}
-		M_{X}(t)=\begin{cases}
-			\int_{a}^{b}\frac{e^{tx}}{b-a}\,dx=\frac{e^{tb}-e^{ta}}{t(b-a)}, &t\neq 0\\
-			1, &t=0
-		\end{cases}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\Exp(\lambda)$. For $t<\lambda$, we have:
-	\begin{equation*}
-		M_{X}(t)=\int_{0}^{\infty}\lambda e^{x(t-\lambda)}\,dx=\frac{\lambda}{\lambda-t}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\N(\mu,\sigma^{2})$. We have:
-	\begin{align*}
-		M_{X}(t)&=\frac{1}{\sqrt{2\pi\sigma^{2}}}\int_{-\infty}^{\infty}e^{tx}\exp\left(-\frac{(x-\mu)^{2}}{2\sigma^{2}}\right)\,dx\\
-		&=\frac{1}{\sqrt{2\pi\sigma^{2}}}\int_{-\infty}^{\infty}\exp\left(-\frac{x^{2}-2(\mu-\sigma^{2}t)x+\mu^{2}}{2\sigma^{2}}\right)\,dx\\
-		&=\frac{1}{\sqrt{2\pi\sigma^{2}}}\exp\left(\frac{(\mu-\sigma^{2}t)^{2}-\mu^{2}}{2\sigma^{2}}\right)\int_{-\infty}^{\infty}\exp\left(-\frac{(x-(\mu-\sigma^{2}t))^{2}}{2\sigma^{2}}\right)\,dx\\
-		&=\exp\left(\frac{-2\mu\sigma^{2}t+\sigma^{4}t^{2}}{2\sigma^{2}}\right)\\
-		&=\exp\left(\frac{1}{2}\sigma^{2}t^{2}-\mu t\right)
-	\end{align*}	
-\end{eg}
-\begin{eg}
-	Let $X\sim\Cauchy(0)$.
+	Let $X\sim\Cauchy$.
 	\begin{align*}
 		f_{X}(x)&=\frac{1}{\pi(1+x^{2})} & M_{X}(t)&=\frac{1}{\pi}\intinfty\frac{e^{tx}}{1+x^{2}}\,dx
 	\end{align*}
 	$M_{X}(t)$ exists only at $t=0$. We get $M_{X}(0)=1$.
-\end{eg}
-\begin{eg}
-	Let $X\sim\Gamma(\alpha,\lambda)$. If $t<\lambda$, we have:
-	\begin{equation*}
-		M_{X}(t)=\left(1-\frac{t}{\lambda}\right)^{-\alpha}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\chi^{2}(k)$. If $t<\frac{1}{2}$, we have:
-	\begin{equation*}
-		M_{X}(t)=(1-2t)^{-\frac{k}{2}}
-	\end{equation*}
-\end{eg}
-\begin{eg}
-	Let $X\sim\Beta(\alpha,\beta)$. We have:
-	\begin{equation*}
-		M_{X}(t)=1+\sum_{k=1}^{\infty}\left(\prod_{r=0}^{k-1}\frac{\alpha+r}{\alpha+\beta+r}\right)\frac{t^{k}}{k!}
-	\end{equation*}
-\end{eg}
-\begin{rem}
-	Not all distributions have MGF.
-\end{rem}
-\begin{eg}
-	MGF of $X\sim t(n)$ is undefined.
 \end{eg}
 Moment generating functions provide a useful technique but the integrals used to define may not be finite. There is another class of functions which finiteness is guaranteed.
 \begin{defn}
@@ -4332,6 +4206,8 @@ Moment generating functions provide a useful technique but the integrals used to
 \begin{rem}
 	$\phi_{X}(t)$ is essentially a Fourier Transform.
 \end{rem}
+
+\newpage
 \begin{lem}
 	CF $\phi_{X}$ of a random variable $X$ has the following properties:
 	\begin{enumerate}
@@ -4343,13 +4219,14 @@ Moment generating functions provide a useful technique but the integrals used to
 	\begin{enumerate}
 		\item For all $t$,
 		\begin{align*}
-			\phi_{X}(0)&=\int\,dF_{X}(x)=1 & \abs{\phi_{X}(t)}&=\abs{\int(\cos(tx)+i\sin(tx))\,dF_{X}(x)}\leq\int\abs{\cos(tx)+i\sin(tx)}\,dF_{X}(x)=\int\,dF_{X}(x)=1
+			\phi_{X}(0)&=\int\,dF_{X}(x)=1\\
+			\abs{\phi_{X}(t)}&=\abs{\int(\cos(tx)+i\sin(tx))\,dF_{X}(x)}\leq\int\abs{\cos(tx)+i\sin(tx)}\,dF_{X}(x)=\int\,dF_{X}(x)=1
 		\end{align*}
 		\item
 		\begin{equation*}
 			\sup_{t}\abs{\phi_{X}(t+c)-\phi_{X}(t)}=\sup_{t}\abs{\int(e^{i(t+c)x}-e^{itx})\,dF_{X}(x)}\leq\sup_{t}\left(\int\abs{e^{itx}}\abs{e^{icx-1}}\,dF_{X}(x)\right)
 		\end{equation*}
-		When $c\to 0$, the supremum $\to 0$. Therefore, $\phi_{X}(t)$ is uniformly continuous.
+		When $c\downarrow 0$, the supremum $\to 0$. Therefore, $\phi_{X}(t)$ is uniformly continuous.
 	\end{enumerate}
 \end{proofing}
 \begin{thm}
@@ -4405,7 +4282,7 @@ Again and again, we have a joint characteristic function.
 \end{defn}
 We have another way to prove that two random variables are independent.
 \begin{thm}
-	\label{Chapter 7 (Theorem) Independence via CF}
+	\label{Chapter 6 (Theorem) Independence via CF}
 	Two random variables $X,Y$ are independent if and only if for all $s$ and $t$,
 	\begin{equation*}
 		\phi_{X,Y}(s,t)=\phi_{X}(s)\phi_{Y}(t)
@@ -4416,7 +4293,7 @@ We have another way to prove that two random variables are independent.
 	\begin{equation*}
 		\phi_{X,Y}(s,t)=\expect(e^{i(sX+tY)})=\expect(e^{isX})\expect(e^{itY})=\phi_{X}(s)\phi_{Y}(t)
 	\end{equation*}
-	Currently, it is not suffice to prove the inverse. We will need to use a theorem later. (Example \ref{Chapter 7 (Example) Proof of Independence via CF})
+	Currently, it is not suffice to prove the inverse. We will need to use a theorem later. (Example \ref{Chapter 6 (Example) Proof of Independence via CF})
 \end{proofing}
 \begin{eg}
 	Let $X\sim\Bern(p)$. We have
@@ -4476,21 +4353,23 @@ There are two major ways that characteristic functions are useful. One of them i
 		F_{X}(b)-F_{X}(a)=\frac{1}{2\pi}\intinfty\intlu{a}{b}e^{-itx}\phi_{X}(t)\,dx\,dt
 	\end{equation*}
 \end{thm}
-\begin{proofing}[Proof (Non-rigorous)]
-	Let
+\begin{proofing}
+	We give you a non-rigorous proof. Let
 	\begin{align*}
 		I(x)&=\frac{1}{2\pi}\intinfty e^{itx}\phi_{X}(t)\,dt=\frac{1}{2\pi}\intinfty e^{-itx}\intinfty e^{ity}f_{X}(y)\,dy\,dt\\
 		I_{\varepsilon}(x)&=\frac{1}{2\pi}\intinfty e^{-itx}\intinfty e^{ity}f_{X}(y)\,dy\,e^{-\frac{1}{2}\varepsilon^{2}t^{2}}\,dt
 	\end{align*}
-	We want to show that $I_{\varepsilon}(x)\to I(x)$ when $\varepsilon\to 0$.
+	We want to show that $I_{\varepsilon}(x)\to I(x)$ when $\varepsilon\downarrow 0$.
 	\begin{align*}
 		I_{\varepsilon}(x)&=\frac{1}{2\pi}\intinfty\intinfty e^{-\frac{1}{2}\varepsilon^{2}t^{2}+i(y-x)t}f_{X}(y)\,dt\,dy\\
 		&=\frac{1}{\sqrt{2\pi\varepsilon^{2}}}\left(\frac{1}{\sqrt{2\pi\frac{1}{\varepsilon^{2}}}}\right)\intinfty\exp\left(-\frac{(y-x)^{2}}{2\varepsilon^{2}}\right)f_{X}(y)\intinfty\exp\left(-\frac{-\left(t-i\frac{y-x}{\varepsilon}\right)^{2}}{2\left(\frac{1}{\varepsilon^{2}}\right)}\right)\,dt\,dy\\
 		&=\frac{1}{\sqrt{2\pi\varepsilon^{2}}}\intinfty\exp\left(-\frac{(y-x)^{2}}{2\epsilon}\right)f_{X}(y)\,dy
 	\end{align*}
-	Let $Z\sim\N(0,1)$ and $Z_{\varepsilon}=\varepsilon Z$. $I_{\varepsilon}(x)$ is the PDF of $\varepsilon Z+X$. Therefore, we can say that $f_{\varepsilon Z+X}(x)\to f_{X}(x)$ when $\varepsilon\to 0$.
+	Let $Z\sim\N(0,1)$ and $Z_{\varepsilon}=\varepsilon Z$. $I_{\varepsilon}(x)$ is the PDF of $\varepsilon Z+X$.\\
+	Therefore, we can say that $f_{\varepsilon Z+X}(x)\to f_{X}(x)$ when $\varepsilon\downarrow 0$.\\
+	Note that this proof is not rigorous.
 \end{proofing}
-\begin{thm}(\textbf{Inversion Theorem})
+\begin{thm}(Inversion Theorem)
 	If a random variable $X$ have a CDF $F_{X}$ and a CF $\phi_{X}$, we define $\overline{F}_{X}:\mathbb{R}\to[0,1]$ by
 	\begin{equation*}
 		\overline{F}_{X}(x)=\frac{1}{2}\left(F_{X}(x)+F_{X}(x^{-})\right)
@@ -4504,8 +4383,8 @@ There are two major ways that characteristic functions are useful. One of them i
 	We can say $\overline{F}_{X}$ represents the average of limit going from two directions.
 \end{rem}
 \begin{eg}
-	\label{Chapter 7 (Example) Proof of Independence via CF}
-	With the Inversion Theorem, we can now prove Theorem \ref{Chapter 7 (Theorem) Independence via CF}.\\
+	\label{Chapter 6 (Example) Proof of Independence via CF}
+	With the Inversion Theorem, we can now prove Theorem \ref{Chapter 6 (Theorem) Independence via CF}.\\
 	Given two random variables $X,Y$. We want to first extend the Fourier Inverse Transform into multivariable case.\\
 	If $\phi_{X,Y}(s,t)=\phi_{X}(s)\phi_{Y}(t)$, then for any $a\leq b$ and $c\leq d$,
 	\begin{align*}
@@ -4704,132 +4583,6 @@ This theorem is a special case of Central Limit Theorem. It is more about the su
 		\prob\left(a<\frac{\overline{X}-p}{\sqrt{\frac{p(1-p)}{n}}}\leq b\right)\to\Phi(b)-\Phi(a)
 	\end{equation*}
 \end{rem}
-\section{Sampling}
-In a lot of cases, we do not know the actual distribution of the population. We can only predict the distribution based on the samples we can get. This section is more close to statistics than probability, so we will not talk a lot about this.
-\begin{defn}
-	A set of random variables $\{X_{1},X_{2},\cdots,X_{n}\}$ are called \textbf{random sample} of a random variable $X$ with PMF or PDF $f_{X}(x)$ and CDF $F_{X}(x)$ if they are independent and identically distributed (i.i.d.).
-	\begin{enumerate}
-		\item \textbf{Sample mean} of $X$, denoted by $\overline{X}$, is defined by:
-		\begin{equation*}
-			\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}
-		\end{equation*}
-		\item \textbf{Sample variance} of $X$, denoted by $S_{n-1}^{2}$, is defined by:
-		\begin{equation*}
-			S_{n-1}^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\overline{X})^{2}
-		\end{equation*}
-	\end{enumerate}
-\end{defn}
-\begin{rem}
-	Notice that the denominator is $n-1$.
-\end{rem}
-\begin{thm}
-	\label{Chapter 7 (Theorem) Expectation and variance of sample mean}
-	Given a sample mean $\overline{X}$ of a random variable $X$. We have $\expect{\overline{X}}=\mu$ and $\Var(\overline{X})=\frac{\sigma^{2}}{n}$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{\overline{X}}&=\expect\left(\frac{1}{n}\sum_{k=1}^{n}X_{k}\right)=\frac{1}{n}\sum_{k=1}^{n}\expect{X_{k}}=\frac{1}{n}\sum_{k=1}^{n}\mu=\mu\\
-		\Var(\overline{X})&=\frac{1}{n^{2}}\sum_{k=1}^{n}\Var(X_{k})=\frac{n\sigma^{2}}{n^{2}}=\frac{1}{n}\sigma^{2}
-	\end{align*}
-\end{proofing}
-\begin{thm}
-	Given a sample variance $S_{n-1}^{2}$ of a random variable $X$. We have $\expect{S_{n-1}^{2}}=\sigma^{2}$.
-\end{thm}
-\begin{proofing}
-	\begin{align*}
-		\expect{S_{n-1}^{2}}&=\frac{1}{n-1}\sum_{i=1}^{n}\expect(X_{i}-\overline{X})^{2}\\
-		&=\frac{1}{n-1}\sum_{i=1}^{n}(\expect(X_{i}-\mu)^{2}+\expect(\overline{X}-\mu)^{2}-2\expect((X_{i}-\mu)(\overline{X}-\mu)))\\
-		&=\frac{1}{n-1}\sum_{i=1}^{n}(\Var(X_{i})+\Var(\overline{X})-2\cov(X_{i},\overline{X}))\\
-		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2}{n-1}\sum_{i=1}^{n}\cov\left(X_{i},\frac{1}{n}\sum_{j=1}^{n}X_{j}\right)\\
-		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2}{n(n-1)}\sum_{i=1}^{n}\sum_{j=1}^{n}\cov(X_{i},X_{j})\\
-		&=\frac{n\sigma^{2}}{n-1}+\frac{\sigma^{2}}{n-1}-\frac{2\sigma^{2}}{n-1}=\sigma^{2}
-	\end{align*}
-\end{proofing}
-By using CLT, we can use this theorem to find an estimation of $\mu_{X}$ if we know that value of $\sigma_{X}^{2}$.
-\begin{thm}
-	\label{Chapter 7 (Theorem) Sampling distribution with sample mean}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
-	\begin{equation*}
-		\overline{X}\sim\N\left(\mu_{X},\frac{\sigma_{X}^{2}}{n}\right)
-	\end{equation*}
-\end{thm}
-\begin{proofing}
-	By Theorem \ref{Chapter 5 (Theorem) Additivity of Normal Distribution} and the properties of Normal distribution,
-	\begin{equation*}
-		X_{1}+X_{2}+\cdots+X_{n}\sim\N(n\mu_{X},n\sigma_{X}^{2})
-	\end{equation*}
-	By Lemma \ref{Chapter 5 (Lemma) Properties of Normal distribution}, we have:
-	\begin{equation*}
-		\overline{X}=\frac{1}{n}(X_{1}+X_{2}+\cdots+X_{n})\sim\N\left(\mu_{X},\frac{\sigma_{X}^{2}}{n}\right)
-	\end{equation*}
-\end{proofing}
-What if instead we want to find an estimation of $\sigma_{X}^{2}$ using $\mu_{X}$?
-\begin{thm}
-	\label{Chapter 7 (Theorem) Sampling distribution with known mean}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{x},\sigma_{X}^{2})$. Then we have:
-	\begin{equation*}
-		\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}\sim\chi^{2}(n)
-	\end{equation*}
-\end{thm}
-\begin{proofing}
-	Using the properties of normal distribution, for any $i=1,\cdots,n$, we have:
-	\begin{equation*}
-		\frac{X_{i}-\mu_{X}}{\sigma_{X}}\sim\N(0,1)
-	\end{equation*}
-	Therefore, by definition of t-distribution,
-	\begin{equation*}
-		\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}\sim\chi^{2}(n)
-	\end{equation*}
-\end{proofing}
-Most often, we won't even know the other parameter. How do we find $\sigma_{X}$ if $\mu_{X}$ is unknown? We can use the following theorem.
-\begin{thm}
-	\label{Chapter 7 (Theorem) Sampling distribution with sample variance}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. Then we have:
-	\begin{enumerate}
-		\item $\overline{X}$ and $S_{n-1}^{2}$ are independent.
-		\item \begin{equation*}
-			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
-		\end{equation*}
-	\end{enumerate}
-\end{thm}
-\begin{proofing}
-	\begin{enumerate}
-		\item It suffices to prove that $\overline{X}$ and $X_{i}-\overline{X}$ are independent for any $i=1,2,\cdots,n$.\\
-		We know that $\overline{X}\sim\N(\mu_{X},\frac{\sigma_{X}^{2}}{n})$ and $X_{i}-\overline{X}\sim\N(0,\frac{(n+1)\sigma_{X}^{2}}{n})$.
-		\begin{equation*}
-			\cov(\overline{X},X_{i}-\overline{X})=
-		\end{equation*}
-		\item We may find that:
-		\begin{align*}
-			\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{(X_{i}-\overline{X})^{2}}{\sigma_{X}^{2}}=\sum_{i=1}^{n}\frac{((X_{i}-\mu_{X})+(\mu_{X}-\overline{X}))^{2}}{\sigma_{X}^{2}}&=\sum_{i=1}^{n}\frac{(X_{i}-\mu_{X})^{2}}{\sigma_{X}^{2}}-\frac{n(\overline{X}-\mu_{X})^{2}}{\sigma_{X}^{2}}\\
-			&=\sum_{i=1}^{n}\left(\frac{X_{i}-\mu_{X}}{\sigma_{X}}\right)^{2}-\left(\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\right)^{2}
-		\end{align*}
-		We know that $\frac{X_{i}-\mu_{X}}{\sigma_{X}}\sim\N(0,1)$. Let $U=\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}$ and $V=\left(\frac{\overline{X}-\mu_{X}}{\sigma_{X}/\sqrt{n}}\right)$. Use Theorem \ref{Chapter 7 (Theorem) Sampling distribution with known mean} and by definition, we have:
-		\begin{align*}
-			U+V&\sim\chi^{2}(n) & V&\sim\chi^{2}(1)
-		\end{align*} 
-		We can use MGF to prove the theorem. Note that for any $i=1,2,\cdots,n$, $\overline{X}$ and $X_{i}-\overline{X}$ are independent.
-		\begin{equation*}
-			M_{U}(t)=\frac{M_{U+V}(t)}{M_{V}(t)}=(1-2t)^{-\frac{n-1}{2}}\implies U=\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
-		\end{equation*}
-	\end{enumerate}
-\end{proofing}
-\begin{thm}
-	Let $X_{1},X_{2},\cdots,X_{n}$ be random sample from the population $X\sim\N(\mu_{X},\sigma_{X}^{2})$. We have:
-	\begin{equation*}
-		\frac{\overline{X}-\mu_{X}}{\frac{S_{n-1}}{\sqrt{n}}}\sim t(n-1)
-	\end{equation*}
-\end{thm}
-\begin{proofing}
-	By Theorem \ref{Chapter 7 (Theorem) Sampling distribution with sample mean} and \ref{Chapter 7 (Theorem) Sampling distribution with sample variance}, we let:
-	\begin{align*}
-		U&=\frac{\overline{X}-\mu_{X}}{\frac{\sigma_{X}}{\sqrt{n}}}\sim\N(0,1) & V&=\frac{(n-1)S_{n-1}^{2}}{\sigma_{X}^{2}}\sim\chi^{2}(n-1)
-	\end{align*}
-	By definition of $t$-distribution, we have:
-	\begin{equation*}
-		\frac{\overline{X}-\mu_{X}}{\frac{S_{n-1}}{\sqrt{n}}}=\frac{U}{\sqrt{\frac{V}{n-1}}}\sim t(n-1)
-	\end{equation*}
-\end{proofing}
 
 \chapter{Convergence of random variables}
 We have mentioned the convergence in distribution in Chapter $5$. However, this is not the only important type of convergence mode of random variables. In this chapter, we will introduce some other convergence modes.
@@ -4919,14 +4672,14 @@ Following inequality needs H\"older inequality (In Appendix $C$) in order to be 
 \end{lem}
 We also need to know how we can obtain almost sure convergence.
 \begin{lem}
-	\label{Chapter 8 (Lemma) Obtaining almost sure convergence}
+	\label{Chapter 7 (Lemma) Obtaining almost sure convergence}
 	Let
 	\begin{align*}
 		A_{n}(\varepsilon)&=\{\omega\in\Omega:\abs{X_{n}(\omega)-X(\omega)}>\varepsilon\} & B_{m}(\varepsilon)&=\bigcup_{n=m}^{\infty}A_{n}(\varepsilon)
 	\end{align*}
 	We have
 	\begin{enumerate}
-		\item $X_{n}\xrightarrow{\text{a.s.}}X$ if and only if $\lim_{m\to\infty}\prob(B_{m}(\varepsilon))=0$ for all $\varepsilon>0$
+		\item $X_{n}\xrightarrow{\text{a.s.}}X$ if and only if $\lim_{m\uparrow\infty}\prob(B_{m}(\varepsilon))=0$ for all $\varepsilon>0$
 		\item $X_{n}\xrightarrow{\text{a.s.}}X$ if $\sum_{n=1}^{\infty}\prob(A_{n}(\varepsilon))<\infty$ for all $\varepsilon>0$
 	\end{enumerate}
 \end{lem}
@@ -4948,7 +4701,7 @@ We also need to know how we can obtain almost sure convergence.
 		\begin{align*}
 			\prob\left(\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}(\varepsilon)\right)&=0 & &\implies & \prob(C^{\complement})&=\prob\left(\bigcup_{\varepsilon>0}\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}(\varepsilon)\right)=\prob\left(\bigcup_{k=1}^{\infty}\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}\left(\frac{1}{k}\right)\right)=0
 		\end{align*}
-		Therefore, $X_{n}\xrightarrow{\text{a.s.}}X$ if and only if $\lim_{m\to\infty}\prob(B_{m}(\varepsilon))=0$ for all $\varepsilon>0$
+		Therefore, $X_{n}\xrightarrow{\text{a.s.}}X$ if and only if $\lim_{m\uparrow\infty}\prob(B_{m}(\varepsilon))=0$ for all $\varepsilon>0$
 		\item From (1), for all $\varepsilon>0$,
 		\begin{equation*}
 			\sum_{n=1}^{\infty}\prob(A_{n}(\varepsilon))<\infty\implies\lim_{m\to\infty}\sum_{n=m}^{\infty}\prob(A_{n}(\varepsilon))=0\implies\lim_{m\to\infty}\prob(B_{m}(\varepsilon))=0\implies(X_{n}\xrightarrow{\text{a.s.}}X)
@@ -4956,7 +4709,7 @@ We also need to know how we can obtain almost sure convergence.
 	\end{enumerate}
 \end{proofing}
 \begin{lem}
-	\label{Chapter 8 (Lemma) Non-relationship between almost surely convergence and mean}
+	\label{Chapter 7 (Lemma) Non-relationship between almost surely convergence and mean}
 	There exist sequences that
 	\begin{enumerate}
 		\item converge almost surely but not in mean
@@ -4972,7 +4725,7 @@ We also need to know how we can obtain almost sure convergence.
 				0, &\text{Probability }=1-n^{-2}
 			\end{cases}
 		\end{equation*}
-		By applying Lemma \ref{Chapter 8 (Lemma) Obtaining almost sure convergence}, for some $\varepsilon>0$.
+		By applying Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, for some $\varepsilon>0$.
 		\begin{align*}
 			\prob(\abs{X_{n}(\omega)-X(\omega)}>\varepsilon)&=\frac{1}{n^{2}} & \sum_{n=1}^{\infty}\prob(\abs{X_{n}(\omega)-X(\omega)}>\varepsilon)&<\infty
 		\end{align*}
@@ -4992,7 +4745,7 @@ We also need to know how we can obtain almost sure convergence.
 		\begin{equation*}
 			\expect\abs{X_{n}-X}=1\left(\frac{1}{n}\right)=\frac{1}{n}\to 0
 		\end{equation*}
-		However, by applying Lemma \ref{Chapter 8 (Lemma) Obtaining almost sure convergence}, if $\varepsilon\in(0,1)$, for all $n$
+		However, by applying Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, if $\varepsilon\in(0,1)$, for all $n$
 		\begin{align*}
 			\prob(B_{m}(\varepsilon))&=1-\lim_{r\to\infty}\prob(X_{n}=0\text{ for all }n\text{ such that }m\leq n\leq r)\\
 			&=1-\lim_{r\to\infty}\prod_{i=m}^{r}\frac{i-1}{i}\\
@@ -5003,7 +4756,7 @@ We also need to know how we can obtain almost sure convergence.
 \end{proofing}
 We can now deduce the following implications. Roughly speaking, convergence in distribution is the weakest among all convergence modes, since it only cares about the distribution of $X_{n}$.
 \begin{thm}
-	\label{Chapter 8 (Theorem) implications of different convergence modes}
+	\label{Chapter 7 (Theorem) implications of different convergence modes}
 	The following implications hold:
 	\begin{enumerate}
 		\item \begin{enumerate}
@@ -5019,7 +4772,7 @@ We can now deduce the following implications. Roughly speaking, convergence in d
 \begin{proofing}
 	\begin{enumerate}
 		\item \begin{enumerate}
-			\item From Lemma \ref{Chapter 8 (Lemma) Obtaining almost sure convergence}, for all $\varepsilon>0$,
+			\item From Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, for all $\varepsilon>0$,
 			\begin{equation*}
 				\prob(A_{m}(\varepsilon))\leq\prob\left(\bigcup_{n=m}^{\infty}A_{n}(\varepsilon)\right)=\prob(B_{m}(\varepsilon))\to 0
 			\end{equation*}
@@ -5041,7 +4794,7 @@ We can now deduce the following implications. Roughly speaking, convergence in d
 			\begin{equation*}
 				\prob(X\leq x-\varepsilon)\leq\liminf_{n\to\infty}\prob(X_{n}\leq x)\leq\limsup_{n\to\infty}\prob(X_{n}\leq x)\leq\prob(X\leq x+\varepsilon)
 			\end{equation*}
-			By having $\varepsilon\to 0$,
+			By having $\varepsilon\downarrow 0$,
 			\begin{equation*}
 				\prob(X\leq x)\leq\liminf_{n\to\infty}\prob(X_{n}\leq x)\leq\limsup_{n\to\infty}\prob(X_{n}\leq x)\leq\prob(X\leq x)
 			\end{equation*}
@@ -5095,7 +4848,7 @@ We can now deduce the following implications. Roughly speaking, convergence in d
 			\expect\abs{X_{n}-X}^{s}&=n^{s}\left(n^{-\left(\frac{r+s}{2}\right)}\right)=n^{\frac{s-r}{2}}\to 0 & \expect\abs{X_{n}-X}^{r}&=n^{r}\left(n^{-\left(\frac{r+s}{2}\right)}\right)=n^{\frac{r-s}{2}}\to\infty
 		\end{align*}
 		Therefore, if $r\geq s\geq 1$, $(X_{n}\xrightarrow{s}X)\centernot\implies(X_{n}\xrightarrow{r}X)$.\\
-		We have proven that $(X_{n}\xrightarrow{\text{a.s.}}X)\centernot\implies(X_{n}\xrightarrow{r}X)$ and $(X_{n}\xrightarrow{r}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$ in Lemma \ref{Chapter 8 (Lemma) Non-relationship between almost surely convergence and mean}.
+		We have proven that $(X_{n}\xrightarrow{\text{a.s.}}X)\centernot\implies(X_{n}\xrightarrow{r}X)$ and $(X_{n}\xrightarrow{r}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$ in Lemma \ref{Chapter 7 (Lemma) Non-relationship between almost surely convergence and mean}.
 	\end{enumerate}
 \end{proofing}
 We can easily obtain this lemma.
@@ -5106,11 +4859,11 @@ We can easily obtain this lemma.
 	\end{enumerate}
 \end{lem}
 \begin{proofing}
-	Just use the Theorem \ref{Chapter 8 (Theorem) implications of different convergence modes} with $r=1$ and you get the answer.
+	Just use the Theorem \ref{Chapter 7 (Theorem) implications of different convergence modes} with $r=1$ and you get the answer.
 \end{proofing}
 Some of the implications does not hold in general but they hold if we apply some restrictions.
 \begin{thm}(Partial converse statements)
-	\label{Chapter 8 (Theorem) Partial converse statements}
+	\label{Chapter 7 (Theorem) Partial converse statements}
 	The following implications hold:
 	\begin{enumerate}
 		\item If $X_{n}\xrightarrow{D}c$, where $c$ is a constant, then $X_{n}\xrightarrow{\prob}c$.
@@ -5142,7 +4895,7 @@ Some of the implications does not hold in general but they hold if we apply some
 			&\leq\varepsilon^{r}\expect\left(\mathbf{1}_{\abs{X_{n}-X}\leq\varepsilon}\right)+(2k)^{r}\expect\left(\mathbf{1}_{\abs{X_{n}-X}>\varepsilon}\right)\\
 			&\leq\varepsilon^{r}+((2k)^{r}-\varepsilon^{r})\prob(\abs{X_{n}-X}>\varepsilon)
 		\end{align*}
-		Since $X_{n}\xrightarrow{\prob}X$, as $n\to\infty$, $\expect\abs{X_{n}-X}^{r}\to\varepsilon^{r}$. If we send $\varepsilon\to 0$, $\expect\abs{X_{n}-X}^{r}\to 0$ and therefore $X_{n}\xrightarrow{r}X$.
+		Since $X_{n}\xrightarrow{\prob}X$, as $n\to\infty$, $\expect\abs{X_{n}-X}^{r}\to\varepsilon^{r}$. If we send $\varepsilon\downarrow 0$, $\expect\abs{X_{n}-X}^{r}\to 0$ and therefore $X_{n}\xrightarrow{r}X$.
 	\end{enumerate}
 \end{proofing}
 Note that any sequence $\{X_{n}\}$ which satisfies $X_{n}\xrightarrow{\prob}X$ necessarily contains a subsequence $\{X_{n_{i}}:1\leq i<\infty\}$ which converges almost surely.
@@ -5162,7 +4915,7 @@ Note that any sequence $\{X_{n}\}$ which satisfies $X_{n}\xrightarrow{\prob}X$ n
 	\begin{equation*}
 		\sum_{i>\varepsilon^{-1}}\prob(\abs{X_{n_{i}}-X}>\varepsilon)\leq\sum_{i>\varepsilon^{-1}}\prob(\abs{X_{n_{i}}-X}>i^{-1})\leq\sum_{i}i^{-2}<\infty
 	\end{equation*}
-	By Lemma \ref{Chapter 8 (Lemma) Obtaining almost sure convergence}, we get the $X_{n_{i}}\xrightarrow{\text{a.s.}}X$ as $i\to\infty$
+	By Lemma \ref{Chapter 7 (Lemma) Obtaining almost sure convergence}, we get the $X_{n_{i}}\xrightarrow{\text{a.s.}}X$ as $i\to\infty$
 \end{proofing}
 
 \newpage
@@ -5182,14 +4935,14 @@ In all above cases, we only deal with one random variable. What can we do if it 
 			\prob(X_{n}+Y_{n}\leq x)&\leq\prob(X_{n}+Y_{n}\leq x,\abs{Y_{n}-c}\leq\delta)+\prob(\abs{Y_{n}-c}>\delta)\leq\prob(X_{n}\leq x-c+\delta)+\delta\\
 			\prob(X_{n}+Y_{n}>x)&\leq\prob(X_{n}+Y_{n}>x,\abs{Y_{n}-c}\leq\delta)+\delta\leq\prob(X_{n}>x-c-\delta)+\delta
 		\end{align*}
-		By sending $n\to\infty$ and $\delta\to 0$, we find that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c>0$.\\
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c>0$.\\
 		We can use the similar argument to prove that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c<0$.\\
 		Suppose that $c=0$. We may define an arbitrary small $\delta>0$ and a number $N$ such that $\prob(\abs{Y_{n}}>\delta)<\delta$ for $n\geq N$. For all $x$, we have:
 		\begin{align*}
 			\prob(X_{n}+Y_{n}\leq x)&\leq\prob(X_{n}+Y_{n}\leq x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(X_{n}\leq x+\delta)+\delta\\
 			\prob(X_{n}+Y_{n}>x)&\leq\prob(X_{n}+Y_{n}\leq x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(X_{n}\leq x-\delta)+\delta
 		\end{align*}
-		By sending $n\to\infty$ and $\delta\to 0$, we find that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c=0$.\\
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}+Y_{n}\leq x)\to\prob(X+c\leq x)$ when $c=0$.\\
 		Therefore, $X_{n}+Y_{n}\xrightarrow{D}X+c$.
 		\item Suppose that $c>0$ and pick $\delta$ such that $0<\delta<c$. We can find $N$ such that $\prob(\abs{Y_{n}-c}>\delta)<\delta$ for $n\geq N$.\\
 		For all $x$, we have:
@@ -5197,16 +4950,16 @@ In all above cases, we only deal with one random variable. What can we do if it 
 			\prob(X_{n}Y_{n}\leq x)&\leq\prob(X_{n}Y_{n}\leq x,\abs{Y_{n}-c}\leq\delta)+\prob(\abs{Y_{n}-c}>\delta)\leq\prob\left(X_{n}\leq \frac{x}{c-\delta}\right)+\delta\\
 			\prob(X_{n}Y_{n}>x)&\leq\prob(X_{n}Y_{n}>x,\abs{Y_{n}-c}\leq\delta)+\delta\leq\prob\left(X_{n}>\frac{x}{c+\delta}\right)+\delta
 		\end{align*}
-		By sending $n\to\infty$ and $\delta\to 0$, we find that $\prob(X_{n}Y_{n}\leq x)\to\prob(Xc\leq x)$ when $c>0$.\\
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}Y_{n}\leq x)\to\prob(Xc\leq x)$ when $c>0$.\\
 		We can use the similar argument to prove that $\prob(X_{n}Y_{n}\leq x)\to\prob(Xc\leq x)$ when $c<0$.\\
 		Suppose that $c=0$. We many choose an arbitrary small number $\delta>0$ and a number $N$ such that $\prob(\abs{Y_{n}}>\delta)<\delta$ for $n\geq N$. For all $x$, we have:
 		\begin{align*}
 			\prob(X_{n}Y_{n}\leq x)&\leq\prob(X_{n}Y_{n}\leq x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(-\delta X_{n}\leq x)+\delta\\
 			\prob(X_{n}Y_{n}> x)&\leq\prob(X_{n}Y_{n}>x,\abs{Y_{n}}\leq\delta)+\prob(\abs{Y_{n}}>\delta)\leq\prob(\delta X_{n}>x)+\delta
 		\end{align*}
-		By sending $n\to\infty$ and $\delta\to 0$, we find that $\prob(X_{n}Y_{n}\leq x)\to\prob(0\leq x)$ when $c=0$.\\
+		By sending $n\to\infty$ and $\delta\downarrow 0$, we find that $\prob(X_{n}Y_{n}\leq x)\to\prob(0\leq x)$ when $c=0$.\\
 		Therefore, $X_{n}Y_{n}\xrightarrow{D}Xc$.
-		\item It suffices to prove that $Y_{n}^{-1}\xrightarrow{\prob}c^{-1}$ if $Y_{n}\xrightarrow{\prob}c$, or equivalently by Theorem \ref{Chapter 8 (Theorem) Partial converse statements}, $Y_{n}\xrightarrow{D}c$.\\
+		\item It suffices to prove that $Y_{n}^{-1}\xrightarrow{\prob}c^{-1}$ if $Y_{n}\xrightarrow{\prob}c$, or equivalently by Theorem \ref{Chapter 7 (Theorem) Partial converse statements}, $Y_{n}\xrightarrow{D}c$.\\
 		If $Y_{n}\xrightarrow{D}c$, then $\prob(Y_{n}\leq x)\to\prob(c\leq x)$ as $n\to\infty$ for all $x$. When $x\geq 0$, as $n\to\infty$,
 		\begin{equation*}
 			\prob\left(\frac{1}{Y_{n}}\leq x\right)=\prob(Y_{n}<0)+\prob\left(Y_{n}\geq\frac{1}{x}\right)\to\prob(c<0)+\prob\left(c\geq\frac{1}{x}\right)=\prob\left(\frac{1}{c}\leq x\right)
@@ -5239,8 +4992,8 @@ In all above cases, we only deal with one random variable. What can we do if it 
 		\begin{equation*}
 			\prob(\abs{f(X_{n})-f(X)}>\varepsilon)\leq\prob(\abs{X_{n}-X}\geq\delta)+\prob(X\in D_{f})+\prob(X\in B_{\delta})
 		\end{equation*}
-		Since $X_{n}\xrightarrow{\prob}X$, $\prob(\abs{X_{n}-X}>\delta)\to 0$ as $n\to\infty$. As $\delta\to 0$, $B_{\delta}$ reduces to an empty set. By assumption, $\prob(X\in D_{f})=0$.\\
-		Therefore, as $n\to\infty$ and $\delta\to 0$,
+		Since $X_{n}\xrightarrow{\prob}X$, $\prob(\abs{X_{n}-X}>\delta)\to 0$ as $n\to\infty$. As $\delta\downarrow 0$, $B_{\delta}$ reduces to an empty set. By assumption, $\prob(X\in D_{f})=0$.\\
+		Therefore, as $n\to\infty$ and $\delta\downarrow 0$,
 		\begin{equation*}
 			\prob(\abs{f(X_{n})-f(X)}>\varepsilon)\to 0
 		\end{equation*}
@@ -5434,9 +5187,9 @@ Let $A_{1},A_{2},\cdots$ be a sequence of events in $(\Omega,\mathcal{F})$. We a
 		\end{equation*}
 		\item If $\sum_{n=1}^{\infty}\prob(A_{n})=\infty$ and $A_{n}$'s are independent, we have
 		\begin{align*}
-			\prob\left(\bigcup_{m=1}^{\infty}\bigcap_{n=m}^{\infty}A_{n}^{\complement}\right)&=\lim_{m\to\infty}\prob\left(\bigcap_{n=m}^{\infty}A_{n}^{\complement}\right)=\lim_{m\to\infty}\lim_{r\to\infty}\prob\left(\bigcap_{n=m}^{r}A_{n}^{\complement}\right)=\lim_{m\to\infty}\lim_{r\to\infty}\prod_{n=m}^{r}\prob(A_{n}^{\complement})=\lim_{m\to\infty}\prod_{n=m}^{\infty}(1-\prob(A_{n}))\\
+			\prob\left(\bigcup_{m=1}^{\infty}\bigcap_{n=m}^{\infty}A_{n}^{\complement}\right)&=\lim_{m\uparrow\infty}\prob\left(\bigcap_{n=m}^{\infty}A_{n}^{\complement}\right)=\lim_{m\uparrow\infty}\lim_{r\uparrow\infty}\prob\left(\bigcap_{n=m}^{r}A_{n}^{\complement}\right)=\lim_{m\uparrow\infty}\lim_{r\uparrow\infty}\prod_{n=m}^{r}\prob(A_{n}^{\complement})=\lim_{m\uparrow\infty}\prod_{n=m}^{\infty}(1-\prob(A_{n}))\\
 			\tag{$1-x\leq e^{-x}$ if $x\geq 0$}
-			&\leq\lim_{m\to\infty}\prod_{n=m}^{\infty}e^{-\prob(A_{n})}=\lim_{m\to\infty}\exp\left(-\sum_{n=m}^{\infty}\prob(A_{n})\right)=0\\
+			&\leq\lim_{m\uparrow\infty}\prod_{n=m}^{\infty}e^{-\prob(A_{n})}=\lim_{m\uparrow\infty}\exp\left(-\sum_{n=m}^{\infty}\prob(A_{n})\right)=0\\
 			\prob(A_{n}\text{ i.o.})&=\prob\left(\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}\right)=1-\prob\left(\bigcup_{m=1}^{\infty}\bigcap_{n=m}^{\infty}A_{n}^{\complement}\right)=1
 		\end{align*}
 	\end{enumerate}
@@ -5474,7 +5227,7 @@ We can use Borel-Cantelli Lemmas to prove a theorem that is pretty similar.
 			($\Longrightarrow$)
 		\end{subfigure}
 		\begin{subfigure}[t]{0.9\textwidth}
-			Let $\varepsilon_{k}$ be a sequence of positive numbers such that $\varepsilon_{k}\to 0$ if $k\to\infty$. For any $k$, there exists an $n(m_{k})>n(m_{k-1})$ such that
+			Let $\varepsilon_{k}$ be a sequence of positive numbers such that $\varepsilon_{k}\downarrow 0$ if $k\uparrow\infty$. For any $k$, there exists an $n(m_{k})>n(m_{k-1})$ such that
 			\begin{equation*}
 				\tag{$X_{n}\xrightarrow{\prob}X$}
 				\prob(\abs{X_{n(m_{k})}-X}>\varepsilon_{k})\leq 2^{-k}
@@ -5687,7 +5440,7 @@ Using tail function, the random variables are not necessarily identically distri
 	\begin{equation*}
 		\prob(\abs{X_{n}}^{\frac{1}{n}}>1-\varepsilon\text{ i.o.})=1\implies\prob\left(\limsup_{n\to\infty}\abs{X_{n}}^{\frac{1}{n}}\geq 1-\varepsilon\right)=1
 	\end{equation*}
-	By sending $\varepsilon\to 0$, we get
+	By sending $\varepsilon\downarrow 0$, we get
 	\begin{equation*}
 		\prob\left(\limsup_{n\to\infty}\abs{X_{n}}^{\frac{1}{n}}=1\right)=1
 	\end{equation*}
@@ -5799,7 +5552,7 @@ Why do we need SLLN? There are a lot of applications that specifically need SLLN
 	For this claim, it is not necessary that $X_{N_{m}}\xrightarrow{\text{a.s}}X_{\infty}$ or $X_{N_{m}}\xrightarrow{\prob}X_{\infty}$.
 \end{rem}
 \begin{eg}
-	Recall the example that we use in Theorem \ref{Chapter 8 (Theorem) implications of different convergence modes} to prove $(X_{n}\xrightarrow{\prob}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$. Let $\Omega=[0,1]$. Let
+	Recall the example that we use in Theorem \ref{Chapter 7 (Theorem) implications of different convergence modes} to prove $(X_{n}\xrightarrow{\prob}X)\centernot\implies(X_{n}\xrightarrow{\text{a.s.}}X)$. Let $\Omega=[0,1]$. Let
 	\begin{equation*}
 		Y_{m,k}=\mathbf{1}_{I_{m,k}}=\begin{cases}
 			1, &\omega\in\left[\frac{k-1}{m},\frac{k}{m}\right]\\
@@ -5825,7 +5578,7 @@ We move to our next examples, which is the Glivenko-Cantelli Theorem. It is also
 \end{thm}
 \begin{proofing}
 	We only proof for the case when $F(x)$ is continuous.\\
-	For each $m$, we have a partition $-\infty=x_{0}<x_{1}<\cdots<x_{m}=\infty$ such that $F(x_{i})-F(x_{i-1})=\frac{1}{m}$.\\
+	For each $m$, there exists $-\infty=x_{0}<x_{1}<\cdots<x_{m}=\infty$ such that $F(x_{i})-F(x_{i-1})=\frac{1}{m}$.\\
 	For all $x\in[x_{i-1},x_{i})$,
 	\begin{align*}
 		F_{N}(x)-F(x)&\leq F_{N}(x_{i})-F(x_{i-1})=F_{N}(x_{i})-F(x_{i})+\frac{1}{m}\\
@@ -6154,34 +5907,24 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
 \chapter*{Change Log}
 \begin{description}[style=nextline]
 	\item[1.0]
-	Create the notes
+	Create the notes\\
 	\item[1.1]
-	Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"
+	Add the definition "Parametric distribution" in Chapter 5.5 "Examples of continuous random variables"\\
 	\item[1.2]
 	Add the Student's t-distribution and the properties of chi-squared distribution\\
 	Add theorems that relate sample mean and sample variance with distributions\\
-	Create a new Chapter 7.8 "Sampling"\\
+	Create a new Chapter 6.2 "Sampling"\\
 	Add a remark in De Moivre-Laplace Limit Theorem\\
-	Fix some typos
+	Fix some typos\\
 	\item[1.3]
 	Modify the wording of some theorems\\
 	Add the definition of random sample and combine it with sample mean and sample variance\\
 	Add the definitions related to asymptotic notations\\
-	Change how Change Log is produced
+	Change how Change Log is produced\\
 	\item[1.4] Add a Lemma linking Gamma distribution and Chi-squared distribution\\
 	Add Slutsky's Theorem\\
 	Add multivariate normal distribution\\
 	Modify the appearance of random vectors
-	\item[2.0]
-	Combining all expectation related topic into a separate chapter\\
-	Greatly modify the ordering of topics\\
-	Add MGF of some of the distribution taught\\
-	Add a theorem that allows estimating population variance from population mean\\
-	Finish the proof of a theorem that allows estimating population variance from sample variance\\
-	Add a theorem that correlates uncorrelated bivariate normal and independent normal\\
-	Add a lemma regarding the properties of covariance\\
-	Add definition of conditional variance and Law of total variance\\
-	Modify notations for regular convergence
 \end{description}
 
 \end{document}
