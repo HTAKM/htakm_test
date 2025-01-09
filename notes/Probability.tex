@@ -31,7 +31,7 @@
 }
 \date{
 	Last major change: January 6, 2025\\
-	Last small update: January 9, 2025
+	Last small update: January 10, 2025
 }
 \begin{document}
 \maketitle
@@ -3069,7 +3069,7 @@ Solving the following expectations are out of our scope.
 \begin{thm}
 	Given a continuous random variable $X$.
 	\begin{enumerate}
-		\item If $X\sim\Gamma(a,\lambda)$, then $\expect{X}=\frac{\alpha}{\lambda}$ and $\Var(X)=\frac{\alpha}{\lambda^{2}}$.
+		\item If $X\sim\Gam(a,\lambda)$, then $\expect{X}=\frac{\alpha}{\lambda}$ and $\Var(X)=\frac{\alpha}{\lambda^{2}}$.
 		\item If $X\sim t(n)$, then:
 		\begin{align*}
 			\expect{X}&=\begin{cases}
@@ -3096,7 +3096,7 @@ We want a notation which incorporates both these cases. Suppose that $X$ has a C
 \begin{equation*}
 	\expect X=\begin{cases}
 		\sum x\,dF_{X}(x), &dF_{X}(x)=F_{X}(x)-\lim_{y\to x^{-}}F_{X}(y)=f_{X}(x)\\
-		\int x\,dF_{X}(x), &dF_{X}(x)=\pdv{F}{x}\,dx=f_{X}(x)\,dx
+		\int x\,dF_{X}(x), &dF_{X}(x)=\pdv{F_{X}}{x}\,dx=f_{X}(x)\,dx
 	\end{cases}
 \end{equation*}
 Instead of using the regular Riemann integral, which cannot deal with discrete case, we can use the Riemann-Stieltjes integral, which is a generalization of the Riemann integral.
@@ -3641,7 +3641,7 @@ For continuous random variables,
 \end{seg}
 
 \newpage
-\begin{seg}(Gamma distribution) $X\sim\Gamma(\alpha,\lambda)$\\
+\begin{seg}(Gamma distribution) $X\sim\Gam(\alpha,\lambda)$\\
 	Random variable $X$ has a gamma distribution with parameters $\alpha$ and $\lambda$ if:
 	\begin{align*}
 		f_{X}(x)&=\begin{cases}
@@ -4299,7 +4299,7 @@ We can easily get the following lemma.
 	$M_{X}(t)$ exists only at $t=0$. We get $M_{X}(0)=1$.
 \end{eg}
 \begin{eg}
-	Let $X\sim\Gamma(\alpha,\lambda)$. If $t<\lambda$, we have:
+	Let $X\sim\Gam(\alpha,\lambda)$. If $t<\lambda$, we have:
 	\begin{equation*}
 		M_{X}(t)=\left(1-\frac{t}{\lambda}\right)^{-\alpha}
 	\end{equation*}
