@@ -31,7 +31,7 @@
 }
 \date{
 	Last major change: January 6, 2025\\
-	Last small update: January 6, 2025
+	Last small update: January 9, 2025
 }
 \begin{document}
 \maketitle
@@ -1186,7 +1186,7 @@ This is problematic when random variable $X$ is continuous because using PMF wil
 \section{JCDF of random variables}
 How do we deal with cases when there are more than one random variables?
 \begin{defn}
-	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\mathbf{X}=(X_{1},X_{2}):\Omega^{2}\to\mathbb{R}$ with properties
+	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\mathbf{X}=(X_{1},X_{2}):\Omega^{2}\to\mathbb{R}^{2}$ with properties
 	\begin{equation*}
 		\mathbf{X}^{-1}(D)=\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\}\in\mathcal{F}
 	\end{equation*}
@@ -4848,9 +4848,9 @@ Let us recall the convergence mode of real function. Let $f,f_{1},f_{2},\cdots:[
 		\norm{f_{n}-f}\to 0\text{ as }n\to\infty
 	\end{equation*}
 	\item Convergence in Lebesgue (uniform) measure\\
-	We say $f_{n}\to f$ in uniform measure $\mu$ if for all $\epsilon>0$,
+	We say $f_{n}\to f$ in uniform measure $\mu$ if for all $\varepsilon>0$,
 	\begin{equation*}
-		\mu\left(\{x\in[0,1]:\abs{f_{n}(x)-f(x)}>\epsilon\}\right)\to 0\text{ as }n\to\infty
+		\mu\left(\{x\in[0,1]:\abs{f_{n}(x)-f(x)}>\varepsilon\}\right)\to 0\text{ as }n\to\infty
 	\end{equation*}
 \end{enumerate}
 We can use these definitions to define convergence modes of random variables.
@@ -4877,8 +4877,7 @@ We can use these definitions to define convergence modes of random variables.
 	\end{equation*}
 \end{defn}
 \begin{eg}
-	If $r=1$, we say $X_{n}\to X$ in mean or expectation.\\
-	If $r=2$, we say $X_{n}\to X$ in mean square.
+	If $r=1$, we say $X_{n}\to X$ in mean or expectation. If $r=2$, we say $X_{n}\to X$ in mean square.
 \end{eg}
 \begin{defn}(Convergence in probability)
 	We say $X_{n}\to X$ \textbf{in probability}, written as $X_{n}\xrightarrow{\prob}X$, if for all $\varepsilon>0$,
@@ -5837,7 +5836,7 @@ We move to our next examples, which is the Glivenko-Cantelli Theorem. It is also
 	\end{equation*}
 	By SLLN, when we fix $x$, we get
 	\begin{align*}
-		F_{N}(x)=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{X_{i}\leq x}&\xrightarrow{\text{a.s.}}\expect\mathbf{1}(X_{1}\leq x)=\prob(X_{1}\leq x)=F(x) & \prob(\{\omega\in\Omega:F_{N}(x;\omega)\to F(x)\text{ as }N\to\infty\})&=1
+		F_{N}(x)=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{X_{i}\leq x}&\xrightarrow{\text{a.s.}}\expect\mathbf{1}_{X_{1}\leq x}=\prob(X_{1}\leq x)=F(x) & \prob(\{\omega\in\Omega:F_{N}(x;\omega)\to F(x)\text{ as }N\to\infty\})&=1
 	\end{align*}
 	Let $C_{x}=\{\omega\in\Omega:F_{N}(x;\omega)\to F(x)\text{ as }N\to\infty\}$. Notice that if $\omega\in\bigcap_{i=1}^{\infty}C_{x_{i}}$, $\sup_{i}\abs{F_{N}(x_{i};\omega)-F(x_{i})}\to 0$.
 	\begin{equation*}
@@ -5860,12 +5859,11 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 \chapter{Random walk}
 \label{Appendix A Simple random walk}
 \begin{eg}(\textbf{Simple random walk})
-	Consider a particle moving on the real line. Every step it moves to the right by $1$ with probability $p$, and to the left by $1$ with probability $q=1-p$.\\
-	Let $Y_{n}$ be the position of the particles after $n$ moves and let $Y_{0}=a$. Then:
+	Consider a particle moving on the real line. Every step it moves to the right by $1$ with probability $p$, and to the left by $1$ with probability $q=1-p$. Let $Y_{n}$ be the position of the particles after $n$ moves and let $Y_{0}=a$. Then:
 	\begin{equation*}
 		Y_{n}=a+\sum_{i=1}^{n}X_{i}
 	\end{equation*}
-	where $X_{1},X_{2},\cdots$ is a sequence of independently random variables taking $1$ with probability $p$ and $-1$ with probability $q$.\\
+	where $\{X_{1},X_{2},\cdots\}$ is a sequence of independently random variables taking $1$ with probability $p$ and $-1$ with probability $q$.\\
 	Random walk is \textbf{symmetric} if $p=q=\frac{1}{2}$.
 \end{eg}
 \begin{lem}
@@ -5879,7 +5877,7 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 \end{lem}
 \begin{proofing}
 	\begin{enumerate}
-		\item $\prob(Y_{n}=j|Y_{0}=a)=\prob(\sum_{i=1}^{n}X_{i}=j-a)=\prob(Y_{n}=j+b|Y_{0}=a+b$
+		\item $\prob(Y_{n}=j|Y_{0}=a)=\prob(\sum_{i=1}^{n}X_{i}=j-a)=\prob(Y_{n}=j+b|Y_{0}=a+b)$
 		\item 
 		\begin{equation*}
 			\prob(Y_{n}=j|Y_{0}=a)=\prob\left(\sum_{i=1}^{n}X_{i}=j-a\right)=\prob\left(\sum_{i=m+1}^{m+n}X_{i}=j-a\right)=\prob(Y_{m+n}=j|Y_{m}=a)
@@ -5898,8 +5896,7 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 	\begin{equation*}
 		\prob(Y_{n}=b)=\sum_{r} M_{n}^{r}(a,b)p^{r}q^{n-r}
 	\end{equation*}
-	By equations $r+\ell=n$ and $r-\ell=b-a$, $r=\frac{1}{2}(n+b-a)$ and $\ell=(n-b+a)$.\\
-	If $\frac{1}{2}(n+b-a)\in\{0,1,\cdots,n\}$,
+	By $r+\ell=n$ and $r-\ell=b-a$, $r=\frac{1}{2}(n+b-a)$ and $\ell=(n-b+a)$. If $\frac{1}{2}(n+b-a)\in\{0,1,\cdots,n\}$,
 	\begin{equation*}
 		\prob(Y_{n}=b)=\binom{n}{\frac{1}{2}(n+b-a)}p^{\frac{1}{2}(n+b-a)}q^{\frac{1}{2}(n-b+a)}
 	\end{equation*}
@@ -5969,8 +5966,7 @@ We will end here. Of course, there are still a lot of examples that we haven't e
 
 \newpage
 \begin{proofing}
-	Assume that $r\geq 1$ and $b<r$. Let $N_{n}^{r}(0,b)$ be number of paths from $(0,0)$ to $(n,b)$ which include some points having height $r$ (Some point $(i,r)$ with $0<i<n$).\\
-	For a path $\pi$, let $(i_{\pi},r)$ be the earliest point.\\
+	Assume that $r\geq 1$ and $b<r$. Let $N_{n}^{r}(0,b)$ be number of paths from $(0,0)$ to $(n,b)$ which include some points having height $r$ (Some point $(i,r)$ with $0<i<n$). For a path $\pi$, let $(i_{\pi},r)$ be the earliest point.\\
 	We reflect the segment of path with $i_{\pi}\leq x\leq n$ in the line $y=r$ to obtain path $\pi'$ joining $(0,0)$ to $(n,2r-b)$.\\
 	We have $N_{n}^{r}(0,b)=N_{n}(0,2r-b)$.
 	\begin{equation*}

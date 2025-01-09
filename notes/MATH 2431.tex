@@ -25,7 +25,7 @@
 }
 \date{
 	Last major change: May 31, 2024\\
-	Last small update (fixed typo): September 14, 2024
+	Last small update (fixed typo): January 9, 2025
 }
 \begin{document}
 \maketitle
@@ -58,7 +58,9 @@ Please note that if some topics are not written properly or clearly, it may be m
             $\mathbf{1}_{A}$ & Indicator function\\
             $\mathbb{E}$ & Expectation\\
             $\psi$ & Conditional expectation\\
+			$\mathbf{u},\mathbf{v},\mathbf{w},\cdots$ & Vector\\
             $\mathbf{A},\mathbf{B},\mathbf{C},\cdots$ & Matrix\\
+            $\mathbf{X}$ & Random vector\\
             $G_{X}$ & Probability generating function of $X$\\
             $M_{X}$ & Moment generating function of $X$\\
             $\phi$ & CF / PDF of $X\sim\N(0,1)$\\
@@ -190,14 +192,14 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{rem}
         These two formulae will be very useful.
         \begin{align*}
-            (a,b)&=\bigcup_{n=1}^{\infty}\left[a+\frac{1}{n},b-\frac{1}{n}\right] &             [a,b]&=\bigcap_{n=1}^{\infty}\left[a-\frac{1}{n},b+\frac{1}{n}\right]
+		    (a,b)&=\bigcup_{n=1}^{\infty}\left[a+\frac{1}{n},b-\frac{1}{n}\right] &            [a,b]&=\bigcap_{n=1}^{\infty}\left[a-\frac{1}{n},b+\frac{1}{n}\right]
         \end{align*}
     \end{rem}
     
 \section{Probability measure}
     We wish to be able to discuss the likelihoods of the occurrences of events.\\
     Now that we define some fundamental terminologies, we can finally define probability.
-    \begin{defn} % Measurable space, measure and probability measure
+    \begin{defn}
         \textbf{Measurable space} $(\Omega,\mathcal{F})$ is a pair comprising a sample space $\Omega$ and a $\sigma$-field $\mathcal{F}$.\\
         \textbf{Measure} $\mu$ on a measurable space $(\Omega,\mathcal{F})$ is a function $\mu:\mathcal{F}\to [0,\infty]$ satisfying:
         \begin{enumerate}
@@ -206,16 +208,16 @@ Please note that if some topics are not written properly or clearly, it may be m
         \end{enumerate}
         \textbf{Probability measure} $\prob$ is a measure with $\prob(\Omega)=1$.
     \end{defn}
-    You may ask, "Isn't it just probability?" The probability that we know is indeed a probability measure. However, there are in fact other measures that satisfy the definition of probability measure. E.g. Risk-neutral measure. We will discuss it later.\\
+    You may ask, "Isn't it just probability?" The probability that we know is indeed a probability measure, which we will define soon. However, there are in fact other measures that satisfy the definition of probability measure. E.g. Risk-neutral measure.\\
     The following measures are not probability measures.
-    \begin{eg} % Lebesgue measure
+    \begin{eg}
         Lebesgue measure: $\mu((a,b))=b-a$, $\Omega=\mathbb{R}$
     \end{eg}
-    \begin{eg} % Counting measure
+    \begin{eg}
         Counting measure: $\mu(A)=\#\{A\}$, $\Omega=\mathbb{R}$
     \end{eg}
     We can combine measurable space and measure into a measure space.
-    \begin{defn} % Measure space and probability space
+    \begin{defn}
         \textbf{Measure space} is the triple $(\Omega,\mathcal{F},\mu)$, comprising:
         \begin{enumerate}
             \item A sample space $\Omega$
@@ -252,7 +254,7 @@ Please note that if some topics are not written properly or clearly, it may be m
             \item $\prob(A^{\complement})=1-\prob(A)$.
             \item If $A\subseteq B$, then $\prob(B)=\prob(A)+\prob(B\setminus A)\geq\prob(A)$.
             \item $\prob(A\cup B)=\prob(A)+\prob(B)-\prob(A\cap B)$. If $A$ and $B$ are disjoint, then $\prob(A\cup B)=\prob(A)+\prob(B)$.
-            \item Inclusion-exclusion formula
+		    \item (\textbf{Inclusion-exclusion formula}) For any set of events $\{A_{1},\cdots,A_{n}\}$,
             \begin{equation*}
                 \prob\left(\bigcup_{i=1}^{n}A_{i}\right)=\sum_{i}\prob(A_{i})-\sum_{i<j}\prob(A_{i}\cap A_{j})+\cdots+(-1)^{n+1}\prob(A_{1}\cap A_{2}\cap\cdots\cap A_{n})
             \end{equation*}
@@ -264,19 +266,19 @@ Please note that if some topics are not written properly or clearly, it may be m
             $A\cap A^{\complement}=\emptyset \Longrightarrow \prob(A\cup A^{\complement})=\prob(A)+\prob(A^{\complement})=1$
             \item $A\subseteq B\Longrightarrow B=A\cup (B\setminus A)\Longrightarrow\prob(B)=\prob(A)+\prob(B\setminus A)$
             \item $A\cup B=A\cup (B\setminus A)\Longrightarrow\prob(A\cup B)=\prob(A)+\prob(B\setminus A)=\prob(A)+\prob(B\setminus(A\cap B))=\prob(A)+\prob(B)-\prob(A\cap B)$
-            \item By induction. When $n=1$, it is obviously true.\\
-            Assume it is true for some positive integers $m$. When $n=m+1$,
+		    \item By induction. When $n=1$, it is obviously true. Assume it is true for some positive integers $m$. When $n=m+1$,
             \begin{align*}
+			    \tag{Item 3}
                 \prob\left(\bigcup_{i=1}^{m+1}A_{i}\right)&=\prob\left(\bigcup_{i=1}^{m}A_{i}\right)+\prob(A_{m+1})-\prob\left(\bigcup_{i=1}^{m}A_{i}\cap A_{m+1}\right)\\
-                &=\sum_{i=1}^{m}\prob(A_{i})-\sum_{1\leq i<j\leq m}\prob(A_{i}\cap A_{j})+\cdots+(-1)^{m+1}\prob\left(\bigcap_{i=1}^{m}A_{i}\right)\\
-                &+\prob(A_{m+1})-\sum_{i=1}^{m}\prob(A_{i}\cap A_{m+1})+\cdots+(-1)^{m+2}\prob\left(\bigcap_{i=1}^{m+1}A_{i}\right)\\
-                &=\sum_{i=1}^{m+1}\prob(A_{i})-\sum_{1\leq i<j\leq m+1}\prob(A_{i}-A_{j})+\cdots+(-1)^{m+2}\prob\left(\bigcap_{i=1}^{m+1}A_{i}\right)
+			    &=\sum_{i=1}^{m+1}\prob(A_{i})-\sum_{1\leq i<j\leq m}\prob(A_{i}\cap A_{j})+\cdots(-1)^{m+1}\prob\left(\bigcap_{i=1}^{m}A_{i}\right)-\prob\left(\bigcup_{i=1}^{m}A_{i}\cap A_{m+1}\right)\\
+			    &=\sum_{i=1}^{m+1}\prob(A_{i})-\sum_{1\leq i<j\leq m+1}\prob(A_{i}\cap A_{j})+\cdots+(-1)^{m+2}\prob\left(\bigcap_{i=1}^{m+1}A_{i}\right)
             \end{align*}
+		    Therefore, by induction, the Inclusion-exclusion formula is true for any set of events $\{A_{1},\cdots,A_{n}\}$ for any $n\in\mathbb{N}_{+}$.
         \end{enumerate}
     \end{proofing}
     We recall the continuity of function $f:\mathbb{R}\to\mathbb{R}$. $f$ is continuous at some point $x$ if for all $x_{n}$, $x_{n}\to x$ when $n\to\infty$. We have:
     \begin{equation*}
-        \lim_{n\to\infty}f(x_{n})=f\left(\lim_{n\to\infty}x_{n}\right)=f_{X}(x)
+	    \lim_{n\to\infty}f(x_{n})=f\left(\lim_{n\to\infty}x_{n}\right)=f(x)
     \end{equation*}
     Similarly, we say a set function $\mu$  is continuous if for all $A_{n}$ with $A=\lim_{n\to\infty}A_{n}$, we have:
     \begin{equation*}
@@ -285,8 +287,8 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{rem} 
     Given a sequence of sets $A_{n}$. We have two types of set limit:
         \begin{align*}
-            \limsup_{n\to\infty}A_{n}&=\lim_{m\uparrow\infty}\sup_{n\geq m}A_{n}=\bigcap_{m=1}^{\infty}\bigcup_{n=m}^{\infty}A_{n}=\{\omega\in\Omega:\omega\in A_{n}\text{ for infinitely many }n\}\\
-            \liminf_{n\to\infty}A_{n}&=\lim_{m\uparrow\infty}\inf_{n\geq m}A_{n}=\bigcup_{n=1}^{\infty}\bigcap_{n=m}^{\infty}A_{n}=\{\omega\in\Omega: \omega\in A_{n}\text{ for all but finitely many }n\}
+            \limsup_{n\to\infty}A_{n}&=\lim_{n\uparrow\infty}\sup_{m\geq n}A_{m}=\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_{m}=\{\omega\in\Omega:\omega\in A_{n}\text{ for infinitely many }n\}\\
+            \liminf_{n\to\infty}A_{n}&=\lim_{n\uparrow\infty}\inf_{m\geq n}A_{m}=\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_{m}=\{\omega\in\Omega: \omega\in A_{n}\text{ for all but finitely many }n\}
         \end{align*}
         Apparently, $\liminf_{n\to\infty}A_{n}\subseteq\limsup_{n\to\infty}A_{n}$
     \end{rem}
@@ -302,23 +304,22 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{defn}
     From the definition, we can get the following important lemma.
     \begin{lem}
-    \label{Continuous probability}
+        \label{Continuous probability}
         If $A_{1},A_{2},\cdots$ are an increasing sequence of events ($A_{1}\subseteq A_{2}\subseteq\cdots$), then:
         \begin{equation*}
-            \prob(A)=\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
+            \prob(A)=\prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\lim_{n\to\infty}\prob(A_{n})
         \end{equation*}
         Similarly, if $A_{1},A_{2},\cdots$ are a decreasing sequence of events ($A_{1}\supseteq A_{2}\supseteq\cdots)$, then:
         \begin{equation*}
-            \prob(A)=\prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=\lim_{i\to\infty}\prob(A_{i})
+            \prob(A)=\prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=\lim_{n\to\infty}\prob(A_{n})
         \end{equation*}
     \end{lem}
     \begin{proofing}
-    For $A_{1}\subseteq A_{2}\subseteq\cdots$, let $B_{n}=A_{n}\setminus A_{n-1}$
+        For $A_{1}\subseteq A_{2}\subseteq\cdots$, let $B_{n}=A_{n}\setminus A_{n-1}$
         \begin{equation*}
-            \prob\left(\bigcup_{n\to\infty}^{\infty}A_{n}\right)=\prob\left(\bigcup_{n\to\infty}^{\infty}A_{n}\right)=\sum_{i=1}^{\infty}\prob(B_{n})=\lim_{N\to\infty}\sum_{i=1}^{N}\prob(B_{n})=\lim_{N\to\infty}\prob\left(\bigcup_{n=1}^{\infty}B_{N}\right)=\lim_{N\to\infty}\prob(A_{N})
+		    \prob\left(\bigcup_{n=1}^{\infty}A_{n}\right)=\prob\left(\bigcup_{n=1}^{\infty}B_{n}\right)=\sum_{m=1}^{\infty}\prob(B_{m})=\lim_{n\to\infty}\sum_{m=1}^{n}\prob(B_{m})=\lim_{n\to\infty}\prob\left(\bigcup_{m=1}^{n}B_{m}\right)=\lim_{n\to\infty}\prob(A_{n})
         \end{equation*}
-        For $A_{1}\supseteq A_{2}\supseteq\cdots$, we get $A^{\complement}=\bigcup_{i=1}^{\infty}A_{i}^{\complement}$ and $A_{1}^{\complement}\subseteq A_{2}^{\complement}\subseteq\cdots$.\\
-        Therefore,
+	    For $A_{1}\supseteq A_{2}\supseteq\cdots$, we get $A^{\complement}=\bigcup_{i=1}^{\infty}A_{i}^{\complement}$ and $A_{1}^{\complement}\subseteq A_{2}^{\complement}\subseteq\cdots$. Therefore,
         \begin{equation*}
             \prob\left(\bigcap_{n=1}^{\infty}A_{n}\right)=1-\prob\left(\bigcup_{n=1}^{\infty}A_{n}^{\complement}\right)=1-\lim_{n\to\infty}\prob(A_{n}^{\complement})=\lim_{n\to\infty}\prob(A_{n})
         \end{equation*}
@@ -722,7 +723,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         \begin{enumerate}
             \item 
             \begin{equation*}
-                F_{X}(x)=\prob(X\leq x)=\sum_{i=-\infty}^{x}\prob(X=i)=\sum_{i\leq x}f_{X}(i)
+			    F_{X}(x)=\prob(X\leq x)=\sum_{i:x_{i}\leq x}\prob(X=x_{i})=\sum_{y\leq x}f_{X}(y)
             \end{equation*}
             \item Let $B_{n}=\{x-\frac{1}{n}<X\leq x\}$. Since $B_{1}\supseteq B_{2}\supseteq\cdots$, by Lemma \ref{Continuous probability},
             \begin{equation*}
@@ -758,12 +759,12 @@ Please note that if some topics are not written properly or clearly, it may be m
 \section{JCDF of random variables}
     How do we deal with cases when there are more than one random variables?
     \begin{defn}
-        Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\vec{X}=(X_{1},X_{2}):\Omega\to\mathbb{R}^{2}$ with properties
+	Let $X_{1},X_{2}:\Omega\to\mathbb{R}$ be random variables. We define \textbf{random vector} $\mathbf{X}=(X_{1},X_{2}):\Omega^{2}\to\mathbb{R}^{2}$ with properties
         \begin{equation*}
-            \vec{X}^{-1}(D)=\{\omega\in\Omega:\vec{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\}\in\mathcal{F}
+		    \mathbf{X}^{-1}(D)=\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\}\in\mathcal{F}
         \end{equation*}
         for all $D\in\mathcal{B}(\mathbb{R}^{2})$.\\
-        We can also say $\vec{X}=(X_{1},X_{2})$ is a random vector if both $X_{1},X_{2}:\Omega\to\mathbb{R}$ are random variables. That means:
+	    We can also say $\mathbf{X}=(X_{1},X_{2})$ is a random vector if both $X_{1},X_{2}:\Omega\to\mathbb{R}$ are random variables. That means:
         \begin{equation*}
             X_{a}^{-1}(B)\in\mathcal{F}
         \end{equation*}
@@ -773,9 +774,9 @@ Please note that if some topics are not written properly or clearly, it may be m
         Both definitions of random vectors are equivalent.
     \end{cla}
     \begin{proofing}
-        By first definition, $\vec{X}^{-1}(A_{1}\times A_{2})\in\mathcal{F}$. If we choose $A_{2}=\mathbb{R}$,
+	    By first definition, $\mathbf{X}^{-1}(A_{1}\times A_{2})\in\mathcal{F}$. If we choose $A_{2}=\mathbb{R}$,
         \begin{align*}
-            \vec{X}^{-1}(A_{1}\times \mathbb{R})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times\mathbb{R}\}\\
+		    \mathbf{X}^{-1}(A_{1}\times \mathbb{R})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times\mathbb{R}\}\\
             &=\{\omega\in\Omega:X_{1}(\omega)\in A_{1}\}\cap\{\omega\in\Omega:X_{2}(\omega)\in\mathbb{R}\}\\
             &=X_{1}^{-1}(A_{1})
         \end{align*}
@@ -783,7 +784,7 @@ Please note that if some topics are not written properly or clearly, it may be m
         Therefore, we can obtain the second definition from the first definition.\\
         By second definition, $X_{1}$ and $X_{2}$ are random variables. Therefore,
         \begin{align*}
-            \vec{X}^{-1}(A_{1}\times A_{2})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times A_{2}\}\\
+		    \mathbf{X}^{-1}(A_{1}\times A_{2})&=\{\omega\in\Omega:(X_{1}(\omega),X_{2}(\omega))\in A_{1}\times A_{2}\}\\
             &=\{\omega\in\Omega:X_{1}(\omega)\in A_{1}\}\cap\{\omega\in\Omega:X_{2}(\omega)\in A_{2}\}\\
             &=X_{1}^{-1}(A_{1})\cap X_{2}^{-1}(A_{2})\in\mathcal{F}
         \end{align*}
@@ -791,14 +792,14 @@ Please note that if some topics are not written properly or clearly, it may be m
         Therefore, two definitions are equivalent.
     \end{proofing}
     \begin{rem}
-        We can write $\prob\circ\vec{X}^{-1}(D)=\prob(\vec{X}\in D)=\prob(\{\omega\in\Omega:\vec{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\})$.
+	    We can write $\prob\circ\mathbf{X}^{-1}(D)=\prob(\mathbf{X}\in D)=\prob(\{\omega\in\Omega:\mathbf{X}(\omega)=(X_{1}(\omega),X_{2}(\omega))\in D\})$.
     \end{rem}
     \newpage
     Of course, there is a distribution function corresponding to the random vector.
     \begin{defn}
-        \textbf{Joint distribution function} (JCDF) $F_{\vec{X}}:\mathbb{R}^{2}\to [0,1]$ is defined as
+	    \textbf{Joint distribution function} (JCDF) $F_{\mathbf{X}}:\mathbb{R}^{2}\to [0,1]$ is defined as
         \begin{equation*}
-            F_{\vec{X}}(x_{1},x_{2})=F_{X_{1},X_{2}}(x_{1},x_{2})=\prob\circ\vec{X}^{-1}((-\infty,x_{1}]\times(-\infty,x_{2}])=\prob(X_{1}\leq x_{1},X_{2}\leq x_{2})
+		    F_{\mathbf{X}}(x_{1},x_{2})=F_{X_{1},X_{2}}(x_{1},x_{2})=\prob\circ\mathbf{X}^{-1}((-\infty,x_{1}]\times(-\infty,x_{2}])=\prob(X_{1}\leq x_{1},X_{2}\leq x_{2})
         \end{equation*}
     \end{defn}
     \begin{rem}
@@ -808,8 +809,8 @@ Please note that if some topics are not written properly or clearly, it may be m
     \begin{lem}
         JCDF $F_{X,Y}$ of random vector $(X,Y)$ has the following properties:
         \begin{enumerate}
-            \item $\lim_{x,y\to -\infty}F_{X,Y}(x,y)=0$ and $\lim_{x,y\to\infty}F_{X,Y}(x,y)=1$.
-            \item If $(x_{1},y_{1})\leq (x_{2}.y_{2})$, then $F_{X,Y}(x_{1},y_{1})\leq F_{X,Y}(x_{2},y_{2})$.
+            \item $\lim_{(x,y)\to (-\infty,-\infty)}F_{X,Y}(x,y)=0$ and $\lim_{(x,y)\to (\infty,\infty)}F_{X,Y}(x,y)=1$.
+		    \item If $x_{1}\leq y_{1}$ and $x_{2}\leq y_{2}$, then $F_{X,Y}(x_{1},y_{1})\leq F_{X,Y}(x_{2},y_{2})$.
             \item $F_{X,Y}$ is continuous from above, in that $F_{X,Y}(x+u,y+v)\to F_{X,Y}(x,y)$ as $u,v\downarrow 0$.
         \end{enumerate}
     \end{lem}
@@ -862,8 +863,8 @@ Please note that if some topics are not written properly or clearly, it may be m
     \end{rem}
     \begin{eg}
         Let $X$ be uniformly distributed on $[0,1]$ ($f_{X}(x)=\mathbf{1}_{[0,1]}$). This means $f_{X}(x)=1$ when $x\in[0,1]$ and $0$ otherwise.\\
-        Let $Y=X$ ($Y(\omega)=X(\omega)$ for all $\omega\in\Omega$). That means $(X,Y)=(X,X)$.\\
-        Let $B=\{(x,y):x=y\text{ and }x\in[0,1]\}\in\mathcal{B}(\mathbb{R}^{2})$. Since $y=x$ is just a line,
+	    Let $Y=X$ ($Y(\omega)=X(\omega)$ for all $\omega\in\Omega$). That means $(X,Y)=(X,X)$. Let $B=\{(x,y):x=y\text{ and }x\in[0,1]\}\in\mathcal{B}(\mathbb{R}^{2})$.\\
+	    Since $y=x$ is just a line,
         \begin{align*}
             \prob\circ(X,Y)^{-1}(B)&=1\\
             \iint_{B}f_{X,Y}(u,v)\,du\,dv&=0\neq\prob\circ(X,Y)^{-1}(B)
@@ -4436,7 +4437,7 @@ We move to our next examples, which is the Glivenko-Cantelli Theorem. It is also
     \end{equation*}
     By SLLN, when we fix $x$, we get
     \begin{align*}
-        F_{N}(x)=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{X_{i}\leq x}&\xrightarrow{\text{a.s.}}\expect\mathbf{1}(X_{1}\leq x)=\prob(X_{1}\leq x)=F(x) & \prob(\{\omega\in\Omega:F_{N}(x;\omega)\to F(x)\text{ as }N\to\infty\})&=1
+        F_{N}(x)=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{X_{i}\leq x}&\xrightarrow{\text{a.s.}}\expect\mathbf{1}_{X_{1}\leq x}=\prob(X_{1}\leq x)=F(x) & \prob(\{\omega\in\Omega:F_{N}(x;\omega)\to F(x)\text{ as }N\to\infty\})&=1
     \end{align*}
     Let $C_{x}=\{\omega\in\Omega:F_{N}(x;\omega)\to F(x)\text{ as }N\to\infty\}$. Notice that if $\omega\in\bigcap_{i=1}^{\infty}C_{x_{i}}$, $\sup_{i}\abs{F_{N}(x_{i};\omega)-F(x_{i})}\to 0$.
     \begin{equation*}
@@ -4731,7 +4732,7 @@ H\"older's inequality $\implies$ Cauchy-Schwarz inequality $\implies$ Covariance
     where $\Gamma(\alpha)$ is the gamma function. If $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.
 \end{eg}
 \begin{eg}(Chi-squared distribution) $Y\sim\chi^{2}(k)$\\
-    Assume that $X_{1},X_{2},\cdots,X_{n}$ be independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $k$ if
+    Assume that $X_{1},X_{2},\cdots,X_{n}$ are independent standard normal random variables. Let $Y=\sum_{i=1}^{n}X_{i}^{2}$. We say $Y$ has a $\chi^{2}$-distribution with parameter $k$ if
     \begin{align*}
         f(x)&=\begin{cases}
             \frac{x^{\frac{k}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{k}{2}}\Gamma\left(\frac{k}{2}\right)}, &x\geq 0\\
