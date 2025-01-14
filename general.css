@@ -45,18 +45,3 @@ img {
     max-width: 100%;
     max-height: 25rem;
 }
-.navigate_page {
-    width: 50%;
-    max-width: 25rem;
-    height: 3.125rem;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: center;
-    padding-inline-start: 0;
-    margin-block: 0;
-    height: 100%;
-}
-.navigate_page > li:hover {
-    cursor: pointer;
-}
