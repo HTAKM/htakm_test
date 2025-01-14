@@ -15,7 +15,7 @@ main {
 }
 section {
     width: 80%;
-    margin: 0 auto 0.625rem auto;
+    margin: 0.625rem auto 0.625rem auto;
     max-width: 45rem;
     border: 2px solid purple;
     border-radius: 0.625rem; 
@@ -49,8 +49,6 @@ img {
     width: 50%;
     max-width: 25rem;
     height: 3.125rem;
-}
-.navigate_page > ul {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -59,6 +57,6 @@ img {
     margin-block: 0;
     height: 100%;
 }
-.navigate_page > ul > li:hover {
+.navigate_page > li:hover {
     cursor: pointer;
 }
