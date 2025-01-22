@@ -1,25 +1,26 @@
+@charset "UTF-8";
+
 body {
     background: #ddb8ee;
-    color: #1b1b32;
     font-family: sans-serif;
     font-size-adjust: ch-width 0.5;
-    margin: 0
 }
 p {
-    text-size-adjust: auto;
     -webkit-text-size-adjust: auto;
+    text-size-adjust: auto;
+    margin: 0.2rem;
 }
 main {
-    padding-top: 3.75rem;
-    margin: 0 0.625rem 0 0.625rem;
+    padding-top: 2.5rem;
 }
 section {
-    width: 80%;
-    margin: 0.625rem auto 0.625rem auto;
+    width: 90%;
+    margin: 0.5rem auto;
+    min-width: 20rem;
     max-width: 45rem;
     border: 2px solid purple;
-    border-radius: 0.625rem; 
-    padding: 0.3125rem;
+    border-radius: 0.75rem; 
+    padding: 0.5rem;
 }
 div {
     padding: 0;
@@ -31,8 +32,14 @@ table {
 .table_title {
     background-color: #d196ec;
 }
-.table_head > th {
+.table_title > th {
     font-weight: bold;
+}
+ul {
+    margin: auto;
+}
+ul > li {
+    margin: 0.1rem auto;
 }
 tr:hover {
     background-color: #d196ec;

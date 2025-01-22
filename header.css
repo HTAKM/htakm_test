@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    align-items: center;
+    background-color: #b95fdd;
 }
 .header_list {
     padding: 0.2rem;
@@ -11,8 +11,10 @@ header {
     text-decoration: none;
     margin: 0 0.2rem;
 }
+.header_list > a:hover {
+    color: #1b1b32;
+}
 .active {
-    color: #6b6b82;
     font-weight: bold;
 }
 .header_list > a:hover {
@@ -22,4 +24,13 @@ header {
     display: block;
     padding: .5rem 1rem;
     color: #1b1b32;
+}
+.owner_name {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: inherit;
 }
