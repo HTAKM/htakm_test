@@ -21,7 +21,7 @@ function newRow(){
         '    </div>' +
         '    <div class="form_credit">' +
         '        <label for="inputCredit'+rowCount+'"></label>' +
-        '        <input type="number" id="inputCredit'+rowCount+'" name="inputCredit" placeholder="3">' +
+        '        <input type="number" id="inputCredit'+rowCount+'" name="inputCredit" placeholder="3" min="0" max="30">' +
         '    </div>' +
         '    <div class="form_grade">' +
         '        <label for="inputGrade'+rowCount+'"></label>' +
@@ -31,6 +31,7 @@ function newRow(){
     return newRow;
 }
 function calculateCGA(){
+    const validGrades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F", "AU", "CR", "DI", "DN", "IP", "P", "PP", "I", "PA", "PS", "T", "W", "HP", "LP", "U", "Y"];
     let gradedCredits = 0;
     let totalCredits = 0;
     let totalGradePoints = 0.0;
@@ -43,6 +44,9 @@ function calculateCGA(){
             continue
         }
         var credits = parseInt(creditInput)
+        if (!validGrades.some(grade => (String(grade) == String(gradeInput)))) {
+            return "Invalid grade in Row " + (i+1)
+        }
         switch(gradeInput.charAt(0)){
             case 'A':
                 gradePoint = 4.0; break;
@@ -54,13 +58,9 @@ function calculateCGA(){
                 gradePoint = 1.0; break;
             case 'F':
                 gradePoint = 0.0; break;
-            case 'T':
-            case 'P':
-            case 'W':
-            case 'I':
-                totalCredits += credits; continue;
             default:
-                return '<p>Wrong Grade Input in Row '+(i+1)+'!</p>';
+                totalCredits += credits;
+                continue;
         }
         if(gradeInput.charAt(1) == '+'){
             gradePoint += 0.3;
@@ -68,10 +68,10 @@ function calculateCGA(){
         else if(gradeInput.charAt(1) == '-'){
             gradePoint -= 0.3;
         }
-        else if(gradeInput.charAt(1) != ''){
+        totalCredits += credits;
+        if(gradeInput.charAt(1) != ''){
             continue;
         }
-        totalCredits += credits;
         gradedCredits += credits;
         totalGradePoints += gradePoint * credits;
     }
@@ -83,57 +83,3 @@ function calculateCGA(){
            '<p>Number of credits: '+totalCredits+'</p>' + 
            '<p>CGA: '+CGA+'</p>'
 }
-// function calculateCGA(){
-//     while(document.getElementById('CGAResult').hasChildNodes()){
-//         document.getElementById('CGAResult').removeChild(document.getElementById('CGAResult').firstChild);
-//     };
-//     let rowCount = document.getElementsByClassName('calCourseRows').length;
-//     let gradedCredits = 0;
-//     let totalCredits = 0;
-//     let gradePoints = 0.0;
-//     let temp = 0.0;
-//     for(let i = 0; i < rowCount; i++){
-//         var credits = parseInt(document.getElementsByName('inputCredit')[i].value);
-//         var grade = document.getElementsByName('inputGrade')[i].value;
-//         switch(grade.charAt(0)){
-//             case 'A':
-//                 temp = 4.0; break;
-//             case 'B':
-//                 temp = 3.0; break;
-//             case 'C':
-//                 temp = 2.0; break;
-//             case 'D':
-//                 temp = 1.0; break;
-//             case 'F':
-//                 temp = 0.0; break;
-//             case 'T':
-//             case 'P':
-//             case 'W':
-//             case 'I':
-//                 totalCredits += credits; continue;
-//             default:
-//                 document.getElementById('CGAResult').innerHTML = '<p>Wrong Grade Input!</p>';
-//                 return;
-//         }
-//         if(grade.charAt(1) == '+'){
-//             temp += 0.3;
-//         }
-//         else if(grade.charAt(1) == '-'){
-//             temp -= 0.3;
-//         }
-//         else if(grade.charAt(1) != ''){
-//             continue;
-//         }
-//         totalCredits += credits;
-//         gradedCredits += credits;
-//         gradePoints += temp * credits;
-//     }
-//     if(totalCredits <= 0){
-//         document.getElementById('CGAResult').innerHTML = '<p>Credit is 0!</p>';
-//         return; 
-//     }
-//     let CGA = gradePoints / gradedCredits;
-//     document.getElementById('CGAResult').innerHTML = '<p>Result:</p>' +
-//         '<p>Number of credits: '+number_of_total_credits+'</p>' + 
-//         '<p>CGA: '+CGA+'</p>';   
-// }
