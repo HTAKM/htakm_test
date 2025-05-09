@@ -1,36 +1,6 @@
 header {
-    width: 100%;
     background-color: #b95fdd;
 }
-.header_list {
-    padding: 0.2rem;
-    display: block;
-}
-.header_list > a {
-    font-size: 1.25rem;
-    text-decoration: none;
-    margin: 0 0.2rem;
-}
-.header_list > a:hover {
-    color: #1b1b32;
-}
-.active {
-    font-weight: bold;
-}
-.header_list > a:hover {
-    background-color: #ca6fee;
-}
-.header-link {
-    display: block;
-    padding: .5rem 1rem;
-    color: #1b1b32;
-}
-.owner_name {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin: inherit;
+.owner-name {
+    font-size: 2rem;
 }

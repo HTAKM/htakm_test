@@ -14,51 +14,65 @@
     </head>
     <body>
         <header>
-            <div id="header">
-                <nav class="navbar navbar-expand-lg navbar-light" aria-labelledby="top">
-                    <h1 class="owner_name">HU-HTAKM</h1>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="header_list"><a class="header-link" href="https://htakm.github.io/htakm_test/">Main</a></li>
-                            <li class="header_list"><a class="header-link" href="https://htakm.github.io/htakm_test/info">Info</a></li>
-                            <li class="header_list"><a class="header-link" href="https://htakm.github.io/htakm_test/blog">Blog</a></li>
-                            <li class="header_list"><a class="header-link" href="https://htakm.github.io/htakm_test/website">Link</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+            <nav class="navbar navbar-expand-lg navbar-light" aria-labelledby="top">
+                <a class="navbar-brand owner-name" href="#">HU-HTAKM</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto header-list">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://htakm.github.io/htakm_test/">Main</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://htakm.github.io/htakm_test/info">Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://htakm.github.io/htakm_test/blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://htakm.github.io/htakm_test/website">Link</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </header>
         <main>
-            <section>
-                <p>CGA Calculator</p>
-                <p>Please input courses, number of credits and your grade.</p>
-                <form id="courseForm" method="get">
-                    <div class="calCourseRows">
-                        <div class="form_course">
-                            <label for="inputCourse0"></label>
-                            <input type="text" id="inputCourse0" name="inputCourse" placeholder="COMP 1021">
-                        </div>
-                        <div class="form_credit">
-                            <label for="inputCredit0"></label>
-                            <input type="number" id="inputCredit0" name="inputCredit" placeholder="3" min="0" max="30">
-                        </div>
-                        <div class="form_grade">
-                            <label for="inputGrade0"></label>
-                            <input type="text" id="inputGrade0" name="inputGrade" placeholder="A+" maxlength="2">
+            <div class="main container">
+                <div class="row section mt-3">
+                    <div class="col">
+                        <p class="mb-0">CGA Calculator</p>
+                        <p class="mb-0">Please input courses, number of credits and your grade.</p>
+                        <form id="courseForm" method="get">
+                            <div class="calCourseRows">
+                                <div class="form_course">
+                                    <label for="inputCourse0"></label>
+                                    <input type="text" id="inputCourse0" name="inputCourse" placeholder="COMP 1021">
+                                </div>
+                                <div class="form_credit">
+                                    <label for="inputCredit0"></label>
+                                    <input type="number" id="inputCredit0" name="inputCredit" placeholder="3" min="0" max="30">
+                                </div>
+                                <div class="form_grade">
+                                    <label for="inputGrade0"></label>
+                                    <input type="text" id="inputGrade0" name="inputGrade" placeholder="A+" maxlength="2">
+                                </div>
+                            </div>
+                        </form>
+                        <button type="button" id="addRowBtn">Add row</button>
+                        <button type="button" id="deleteRowBtn">Delete row</button>
+                        <button type="submit" id="submitBtn">Submit</button>
+                        <noscript>Your website does not allow javescript!</noscript>
+                        <div id="CGAResult">
                         </div>
                     </div>
-                </form>
-                <button type="button" id="addRowBtn">Add row</button>
-                <button type="button" id="deleteRowBtn">Delete row</button>
-                <button type="submit" id="submitBtn">Submit</button>
-                <noscript>Your website does not allow javescript!</noscript>
-                <div id="CGAResult">
                 </div>
-            </section>
+            </div>
         </main>
+        <footer>
+            <nav class="nav justify-content-center">
+                <p>Go back to the <a href="#top">top</a></p>
+            </div>
+        </footer>
         <script src="calculate.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
