@@ -25,21 +25,20 @@ body {
     background-color: #d9b4ea;
     border-color: #c978ee;
 }
-.custom-table tbody th:hover {
+.custom-table tbody tr:hover th {
     background-color: #d4a5eb;
 }
-.custom-table tbody td:hover {
+.custom-table tbody tr:hover td{
     background-color: #d4a5eb;
 }
-/* ul {
-    margin: auto;
-}
-ul > li {
-    margin: 0.1rem auto;
-} */
 .custom-list li {
     background-color: #d9b4ea;
     border-color: #c978ee;
+    padding: 0.25rem;
+    padding-bottom: 0rem;
+}
+.custom-list li:hover {
+    background-color: #d4a5eb;
 }
 a {
     text-decoration: none;

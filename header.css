@@ -3,4 +3,5 @@ header {
 }
 .owner-name {
     font-size: 2rem;
+    padding: 0;
 }
