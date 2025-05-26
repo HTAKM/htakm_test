@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+body {
+    background: #ddb8ee;
+    font-family: sans-serif;
+    font-size-adjust: ch-width 0.5;
+}
+.section {
+    min-width: 20rem;
+    max-width: 75rem;
+    border: 2px solid purple;
+    border-radius: 0.75rem; 
+    padding: 0.5rem;
+}
+.custom-button {
+    background-color: purple;
+    border-color: purple;
+    margin: 1rem;
+}
+.custom-button:hover, .custom-button:focus {
+    background-color: #600060;
+    border-color: #600060;
+}
+.custom-button:focus, .custom-button.focus {
+    box-shadow: 0 0 0 0.2rem rgba(96, 0, 96, 0.25);
+}
+.custom-button:not(:disabled):not(.disabled):active,
+.custom-button:not(:disabled):not(.disabled).active,
+.show > .custom-button.dropdown-toggle {
+    background-color: #400040;
+    border-color: #400040;
+}
+.custom-button:not(:disabled):not(.disabled):active:focus,
+.custom-button:not(:disabled):not(.disabled).active:focus,
+.show > .custom-button.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(64, 0, 64, 0.5);
+}
+.custom-image-visual {
+    border: 2px solid purple;
+}
+.custom-tabs {
+    border-bottom: 1px solid purple;
+}
+.custom-tabs .nav-link {
+    color: black;
+}
+.custom-tabs .nav-link:hover, 
+.custom-tabs .nav-link:focus {
+    background-color: #d4a5eb;
+    border-color: purple;
+}
+.custom-tabs .nav-link.active,
+.custom-tabs .nav-item.show .nav-link {
+    color: black;
+    background-color: #d4a5eb;
+    border-color: purple;
+}
+.custom-table thead th {
+    background-color: #d196ec;
+    border-color: #c978ee;
+    border-bottom-color: #c978ee;
+    text-align: center;
+    padding: 0.25rem;
+    padding-bottom: 0rem;
+}
+.custom-table tbody th {
+    background-color: #d9b4ea;
+    border-color: #c978ee;
+    padding: 0.25rem;
+    padding-bottom: 0rem;
+}
+.custom-table tbody td {
+    background-color: #d9b4ea;
+    border-color: #c978ee;
+    padding: 0.25rem;
+    padding-bottom: 0rem;
+}
+.custom-table tbody tr:hover th {
+    background-color: #d4a5eb;
+}
+.custom-table tbody tr:hover td {
+    background-color: #d4a5eb;
+}
+.custom-list li {
+    background-color: #d9b4ea;
+    border-color: #c978ee;
+    padding: 0.25rem;
+    padding-bottom: 0rem;
+}
+.custom-list li:hover {
+    background-color: #d4a5eb;
+}
+.custom-menu {
+    color: black;
+    background-color: #d9b4ea;
+}
+.custom-menu .dropdown-item:hover, 
+.custom-menu .dropdown-item:focus {
+    color: #222222;
+    background-color: #d4a5eb;
+}
+.custom-menu .dropdown-item.active,
+.custom-menu .dropdown-item.show {
+    font-weight: bold;
+    color: black;
+    background-color: #d2a3e9;
+}
+a {
+    text-decoration: none;
+    color:#6969bb;
+}
+img {
+    max-width: 100%;
+    max-height: 25rem;
+}
