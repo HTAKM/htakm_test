@@ -76,7 +76,7 @@ function outputImage(event) {
 function loadOutput() {
     outputMemoryCtx.putImageData(outputImageData, 0, 0);
     outputCanvas.width = defaultWidth;
-    outputCanvas.height = defaultHeight;
+    outputCanvas.height = drawHeight;
     outputCtx.scale(scaledSize, scaledSize);
     outputCtx.drawImage(outputMemoryCanvas, 0, 0);
 }
