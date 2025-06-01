@@ -41,7 +41,7 @@
                     <div class="col">
                         <h5>Input Image:</h5>
                         <div class="d-flex justify-content-center">
-                            <canvas class="custom-image-visual" id="input" width="320" height="180"></canvas>
+                            <canvas class="custom-image-visual" id="input"></canvas>
                         </div>
                         <div class="form-inline d-flex justify-content-center">
                             <button id="change-input-image" class="btn btn-info btn-block custom-button align-canvas"><i class="fas fa-sync"></i> Change Input Image</button>
@@ -49,7 +49,7 @@
                         </div>
                         <h5>Output Image:</h5>
                         <div class="d-flex justify-content-center">
-                            <canvas class="custom-image-visual" id="output" width="320" height="180"></canvas>
+                            <canvas class="custom-image-visual" id="output"></canvas>
                         </div>
                         <div class="form-inline d-flex justify-content-center">
                             <button id="download-output-image" class="btn btn-info btn-block custom-button align-canvas"><i class="fas fa-sync"></i> Download Output Image</button>
@@ -65,17 +65,23 @@
                                 <ul class="dropdown-menu custom-menu">
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category active" href="#noOperation" data-toggle="tab">No operation</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#negation" data-toggle="tab">Negation</a></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#grayscale" data-toggle="tab">Grayscale</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="noOperation">
-                                <div class="container-fluid px-0">
+                                <div class="container-fluid px-2">
                                     <p>No parameters available.</p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="negation">
-                                <div class="container-fluid px-0">
+                                <div class="container-fluid px-2">
+                                    <p>No parameters available.</p>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="grayscale">
+                                <div class="container-fluid px-2">
                                     <p>No parameters available.</p>
                                 </div>
                             </div>

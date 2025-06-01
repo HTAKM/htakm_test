@@ -16,6 +16,16 @@ var effects = {
             outputData.data[i+2] = 255 - inputData.data[i+2];
             outputData.data[i+3] = inputData.data[i+3];
         }
+    },
+    grayscale: function(inputData, outputData) {
+        var avg;
+        for (var i = 0; i < inputData.data.length; i += 4) {
+            avg = inputData.data[i] + inputData.data[i+1] + inputData.data[i+2];
+            outputData.data[i] =
+            outputData.data[i+1] = 
+            outputData.data[i+2] = avg;
+            outputData.data[i+3] = outputData.data[i+3];
+        }
     }
 }
 
@@ -26,6 +36,9 @@ function applyOperation() {
             break;
         case "negation": 
             currentEffect = effects.negation; 
+            break;
+        case "greyscale":
+            currentEffect = effects.grayscale;
             break;
     }
     currentEffect(inputImageData, outputImageData);
