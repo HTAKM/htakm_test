@@ -35,6 +35,10 @@ body {
 .show > .custom-button.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(64, 0, 64, 0.5);
 }
+.align-canvas {
+    min-width: 320px;
+    max-width: 320px;
+}
 .custom-image-visual {
     border: 2px solid purple;
 }
@@ -96,11 +100,10 @@ body {
 }
 .custom-menu .dropdown-item:hover, 
 .custom-menu .dropdown-item:focus {
-    color: #222222;
     background-color: #d4a5eb;
 }
 .custom-menu .dropdown-item.active,
-.custom-menu .dropdown-item.show {
+.custom-menu .dropdown-item:active {
     font-weight: bold;
     color: black;
     background-color: #d2a3e9;
