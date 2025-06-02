@@ -108,6 +108,18 @@ body {
     color: black;
     background-color: #d2a3e9;
 }
+.custom-select {
+    color: black;
+    background-color: #d9b4ea;
+    border-color: #c978ee;
+}
+.custom-select:focus, .custom-select.focus {
+    border-color: #c978ee;
+    box-shadow: 0 0 0 0.2rem rgba(96, 0, 96, 0.25);
+}
+.custom-select option:checked {
+    background-color: #d2a3e9;
+}
 a {
     text-decoration: none;
     color:#6969bb;

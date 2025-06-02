@@ -18,9 +18,20 @@ var effects = {
         }}
     },
     grayscale: {apply: function(inputData, outputData) {
-        var avg;
+        const option = $("#contrast-type").val();
+        let avg;
         for (var i = 0; i < inputData.data.length; i += 4) {
-            avg = (inputData.data[i] + inputData.data[i+1] + inputData.data[i+2]) / 3;
+            switch (option) {
+                case "averaging":
+                    avg = (inputData.data[i] + inputData.data[i+1] + inputData.data[i+2]) / 3;
+                    break;
+                case "hsv-value":
+                    avg = Math.max(inputData.data[i], inputData.data[i+1], inputData.data[i+2]);
+                    break;
+                case "luminance":
+                    avg = 0.2126 * inputData.data[i] + 0.7152 * inputData.data[i+1] + 0.0722 * inputData.data[i+2];
+                    break;
+            }
             outputData.data[i] =
             outputData.data[i+1] = 
             outputData.data[i+2] = avg;
