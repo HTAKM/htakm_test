@@ -12,6 +12,7 @@ body {
     border-radius: 0.75rem; 
     padding: 0.5rem;
 }
+.container-fluid { margin-top: 10px; }
 .custom-button {
     background-color: purple;
     border-color: purple;
@@ -41,6 +42,17 @@ body {
 }
 .custom-image-visual {
     border: 2px solid purple;
+}
+.custom-border {
+    border: 2px solid #c978ee;
+    background-color: #d9b4ea;
+}
+.custom-range-visual {
+    width: 4em; 
+    border: 2px solid #c978ee;
+    background-color: #d9b4ea;
+    padding: 0.25rem; 
+    padding-bottom: 0rem;
 }
 .custom-tabs {
     border-bottom: 1px solid purple;

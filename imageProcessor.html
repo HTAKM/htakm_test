@@ -66,33 +66,50 @@
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category active" href="#noOperation" data-toggle="tab">No operation</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#negation" data-toggle="tab">Negation</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#grayscale" data-toggle="tab">Grayscale</a></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#brightness" data-toggle="tab">Brightness</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="noOperation">
                                 <div class="container-fluid">
-                                    <div class="row mt-3">
+                                    <div class="row">
                                         <p>No parameters available.</p>
                                     </div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="negation">
                                 <div class="container-fluid">
-                                    <div class="row mt-3">
+                                    <div class="row">
                                         <p>No parameters available.</p>
                                     </div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="grayscale">
                                 <div class="container-fluid">
-                                    <div class="row mt-3">
-                                        <label for="contrast-type">Contrast Type:</label>
+                                    <div class="row">
+                                        <label for="grayscale-type">Grayscale Type:</label>
                                         <select class="custom-select" id="contrast-type">
                                             <option value="averaging">Averaging</option>
                                             <option value="hsv-value">HSV Value</option>
                                             <option value="luminance">Luminance</option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="brightness">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="brightness-offset">Brightness offset:</label>
+                                            <div class="input-group">
+                                                <div class="row mx-0 px-2 custom-border rounded-left">
+                                                    <input class="custom-range" id="brightness-offset" type="range" value="0" min="-255" max="255" step="1"
+                                                    oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                                </div>
+                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
