@@ -9,6 +9,32 @@ var effects = {
             outputData.data[i+3] = inputData.data[i+3];
         }
     }},
+    showComponent: {apply: function(inputData, outputData) {
+        const option = $("#component-type").val();
+        let visualize;
+        for (var i = 0; i < inputData.data.length; i += 4) {
+            outputData.data[i]   =
+            outputData.data[i+1] =
+            outputData.data[i+2] = 0
+            outputData.data[i+3] = 255;
+            switch (option) {
+                case "red":
+                    outputData.data[i] = inputData.data[i];
+                    break;
+                case "green":
+                    outputData.data[i+1] = inputData.data[i+1];
+                    break;
+                case "blue":
+                    outputData.data[i+2] = inputData.data[i+2];
+                    break;
+                case "alpha":
+                    outputData.data[i]   =
+                    outputData.data[i+1] =
+                    outputData.data[i+2] = inputData.data[i+3];
+                    break;
+            }
+        }
+    }},
     negation: {apply: function(inputData, outputData) {
         for (var i = 0; i < inputData.data.length; i += 4) {
             outputData.data[i]   = 255 - inputData.data[i];
@@ -32,7 +58,7 @@ var effects = {
                     avg = 0.2126 * inputData.data[i] + 0.7152 * inputData.data[i+1] + 0.0722 * inputData.data[i+2];
                     break;
             }
-            outputData.data[i] =
+            outputData.data[i]   =
             outputData.data[i+1] = 
             outputData.data[i+2] = avg;
             outputData.data[i+3] = inputData.data[i+3];
@@ -69,6 +95,9 @@ function applyOperation() {
     switch(currentOp) {
         case "no-op": 
             currentEffect = effects.noOperation; 
+            break;
+        case "show-component":
+            currentEffect = effects.showComponent;
             break;
         case "negation": 
             currentEffect = effects.negation; 
