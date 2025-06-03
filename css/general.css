@@ -43,9 +43,10 @@ body {
 .custom-image-visual {
     border: 2px solid purple;
 }
-.custom-border {
+.custom-range-set {
     border: 2px solid #c978ee;
     background-color: #d9b4ea;
+    width: 60%;
 }
 .custom-range-visual {
     width: 4em; 
@@ -53,6 +54,9 @@ body {
     background-color: #d9b4ea;
     padding: 0.25rem; 
     padding-bottom: 0rem;
+}
+.custom-range {
+    width: 100%;
 }
 .custom-tabs {
     border-bottom: 1px solid purple;
