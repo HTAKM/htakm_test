@@ -1,3 +1,5 @@
+"use strict";
+
 var currentOp = "noOperation";
 var inputCanvas, inputCtx, inputImageData;
 var outputCanvas, outputCtx, outputImageData;

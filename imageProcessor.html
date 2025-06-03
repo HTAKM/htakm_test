@@ -70,6 +70,7 @@
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#grayscale" data-toggle="tab">Grayscale</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#brightness" data-toggle="tab">Brightness</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#posterization" data-toggle="tab">Posterization</a></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#blur" data-toggle="tab">Blur</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -176,6 +177,22 @@
                                                     oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                                 </div>
                                                 <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="blur">
+                                <div class="container-fluid">
+                                    <div class="row pt-3">
+                                        <div class="col">
+                                            <label for="blur-size">Blur size:</label>
+                                            <div class="input-group">
+                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
+                                                    <input class="custom-range" id="blur-size" type="range" value="3" min="3" max="15" step="2"
+                                                    oninput="$(this).parents('.input-group').find('.input-group-text > span').html($(this).val())">
+                                                </div>
+                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;"><span>3</span> &times; <span>3</span></div>
                                             </div>
                                         </div>
                                     </div>
