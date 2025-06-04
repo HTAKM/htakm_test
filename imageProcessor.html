@@ -118,27 +118,23 @@
                             <div role="tabpanel" class="tab-pane" id="brightness">
                                 <div class="container-fluid">
                                     <div class="row pt-3">
-                                        <div class="col">
-                                            <label for="contrast-factor">Contrast factor:</label>
-                                            <div class="input-group">
-                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
-                                                    <input class="custom-range" id="contrast-factor" type="range" value="1" min="0" max="5" step="0.1"
-                                                    oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                                </div>
-                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">1</span></div>
+                                        <label for="contrast-factor">Contrast factor:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="contrast-factor" type="range" value="1" min="0" max="5" step="0.1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                             </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">1</span></div>
                                         </div>
                                     </div>
                                     <div class="row pt-3">
-                                        <div class="col">
-                                            <label for="brightness-offset">Brightness offset:</label>
-                                            <div class="input-group">
-                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
-                                                    <input class="custom-range" id="brightness-offset" type="range" value="0" min="-255" max="255" step="1"
-                                                    oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                                </div>
-                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                        <label for="brightness-offset">Brightness offset:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="brightness-offset" type="range" value="0" min="-255" max="255" step="1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                             </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -146,39 +142,33 @@
                             <div role="tabpanel" class="tab-pane" id="posterization">
                                 <div class="container-fluid">
                                     <div class="row pt-3">
-                                        <div class="col">
-                                            <label for="red-bit-depth">Red Bit depth:</label>
-                                            <div class="input-group">
-                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
-                                                    <input class="custom-range" id="red-bit-depth" type="range" value="8" min="0" max="8" step="1"
-                                                    oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                                </div>
-                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                        <label for="red-bit-depth">Red Bit depth:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="red-bit-depth" type="range" value="8" min="0" max="8" step="1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                             </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
                                         </div>
                                     </div>
                                     <div class="row pt-3">
-                                        <div class="col">
-                                            <label for="green-bit-depth">Green Bit depth:</label>
-                                            <div class="input-group">
-                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
-                                                    <input class="custom-range" id="green-bit-depth" type="range" value="8" min="0" max="8" step="1"
-                                                    oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                                </div>
-                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                        <label for="green-bit-depth">Green Bit depth:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="green-bit-depth" type="range" value="8" min="0" max="8" step="1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                             </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
                                         </div>
                                     </div>
                                     <div class="row pt-3">
-                                        <div class="col">
-                                            <label for="blue-bit-depth">Blue Bit depth:</label>
-                                            <div class="input-group">
-                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
-                                                    <input class="custom-range" id="blue-bit-depth" type="range" value="8" min="0" max="8" step="1"
-                                                    oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                                </div>
-                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                        <label for="blue-bit-depth">Blue Bit depth:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="blue-bit-depth" type="range" value="8" min="0" max="8" step="1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                             </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -186,15 +176,13 @@
                             <div role="tabpanel" class="tab-pane" id="blur">
                                 <div class="container-fluid">
                                     <div class="row pt-3">
-                                        <div class="col">
-                                            <label for="blur-size">Blur size:</label>
-                                            <div class="input-group">
-                                                <div class="row mx-0 px-2 align-items-center custom-range-set rounded-left">
-                                                    <input class="custom-range" id="blur-size" type="range" value="3" min="1" max="7" step="2"
-                                                    oninput="$(this).parents('.input-group').find('.input-group-text > span').html($(this).val())">
-                                                </div>
-                                                <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;"><span>3</span> &times; <span>3</span></div>
+                                        <label for="blur-size">Blur size:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="blur-size" type="range" value="3" min="1" max="7" step="2"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text > span').html($(this).val())">
                                             </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;"><span>3</span> &times; <span>3</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +190,21 @@
                             <div role="tabpanel" class="tab-pane" id="sharpen">
                                 <div class="container-fluid">
                                     <div class="row pt-3">
-                                        <p>No parameters available.</p>
+                                        <label for="sharpen-type">Sharpen Type:</label>
+                                        <select class="custom-select" id="sharpen-type">
+                                            <option value="sharpen-kernel">Sharpen Kernel</option>
+                                            <option value="unsharp-mask">Unsharp Mask</option>
+                                        </select>
+                                    </div>
+                                    <div class="row pt-3">
+                                        <label for="sharpen-strength">Strength:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="sharpen-strength" type="range" value="0" min="0" max="1" step="0.1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                            </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

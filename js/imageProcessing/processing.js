@@ -2,12 +2,7 @@ var currentEffect = null;
 
 var effects = {
     noOperation: {apply: (inputData, outputData) => {
-        for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   = inputData.data[i];
-            outputData.data[i+1] = inputData.data[i+1];
-            outputData.data[i+2] = inputData.data[i+2];
-            outputData.data[i+3] = inputData.data[i+3];
-        }
+        copyImageData(inputData, outputData);
     }},
     showComponent: {apply: (inputData, outputData) => {
         const option = $("#component-type").val();
@@ -100,8 +95,21 @@ var effects = {
         applyDividingKernel(intermediateData, outputData, secondKernel);
     }},
     sharpen: {apply: (inputData, outputData) => {
-        const kernel = [[0, -1, 0], [-1, 5, -1], [0, -1, 0]];
-        applyAggregatingKernel(inputData, outputData, kernel);
+        const option = $("#sharpen-type").val();
+        switch (option) {
+            case "sharpen-kernel":
+                const sharpenKernel = [[0, -1, 0], [-1, 4, -1], [0, -1, 0]];
+                applyAggregatingKernel(inputData, outputData, sharpenKernel);
+            case "unsharp-mask":
+                effects.blur.apply(inputData, outputData);
+                for (var i = 0; i < inputData.data.length; ++i)
+                    outputData.data[i] = inputData.data[i] - outputData.data[i];
+        }
+        const strength = parseFloat($("#sharpen-strength").val());
+        for (var i = 0; i < inputData.data.length; ++i) {
+            outputData.data[i] = inputData.data[i] + outputData.data[i] * strength;
+            outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
+        }
     }}
 };
 

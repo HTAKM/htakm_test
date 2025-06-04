@@ -33,12 +33,8 @@ function getPixel(imageData, x, y) {
 }
 
 function copyImageData(inputData, outputData) {
-    for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   = inputData.data[i];
-            outputData.data[i+1] = inputData.data[i+1];
-            outputData.data[i+2] = inputData.data[i+2];
-            outputData.data[i+3] = inputData.data[i+3];
-        }
+    for (var i = 0; i < inputData.data.length; ++i)
+        outputData.data[i]   = inputData.data[i];
 }
 
 function applyDividingKernel(inputData, outputData, kernel) {
@@ -84,10 +80,10 @@ function applyAggregatingKernel(inputData, outputData, kernel) {
                 }
             }
             var i = (x + y * outputData.width) * 4;
-            outputData.data[i]   = (kernelResult.r > 255) ? 255 : (kernelResult.r < 0) ? 0 : kernelResult.r;
-            outputData.data[i+1] = (kernelResult.g > 255) ? 255 : (kernelResult.g < 0) ? 0 : kernelResult.g;
-            outputData.data[i+2] = (kernelResult.b > 255) ? 255 : (kernelResult.b < 0) ? 0 : kernelResult.b;
-            outputData.data[i+3] = (kernelResult.a > 255) ? 255 : (kernelResult.a < 0) ? 0 : kernelResult.a;
+            outputData.data[i]   = kernelResult.r;
+            outputData.data[i+1] = kernelResult.g;
+            outputData.data[i+2] = kernelResult.b;
+            outputData.data[i+3] = kernelResult.a;
         }
     }
 }
