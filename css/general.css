@@ -36,6 +36,31 @@ body {
 .show > .custom-button.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(64, 0, 64, 0.5);
 }
+.custom-toggle .toggle:not(.off) {
+    border-color: purple;
+}
+.custom-toggle .toggle:not(.off):hover, .custom-toggle .toggle:not(.off):focus {
+    border-color: #600060;
+}
+.custom-toggle .toggle:not(.off):focus, .custom-toggle .toggle:not(.off).focus {
+    box-shadow: 0 0 0 0.2rem rgba(96, 0, 96, 0.25);
+}
+.custom-toggle .toggle:not(.off):not(:disabled):not(.disabled):active,
+.custom-toggle .toggle:not(.off):not(:disabled):not(.disabled).active,
+.show > .toggle-group.dropdown-toggle {
+    border-color: #400040;
+}
+.custom-toggle .toggle-group .toggle-on {
+    background-color: purple;
+}
+.custom-toggle .toggle-group .toggle-on:hover, .custom-toggle .toggle-group .toggle-on:focus {
+    background-color: #600060;
+}
+.custom-toggle .toggle-group .toggle-on:not(:disabled):not(.disabled):active,
+.custom-toggle .toggle-group .toggle-on:not(:disabled):not(.disabled).active,
+.show > .toggle-group .toggle-on.dropdown-toggle {
+    background-color: #400040;
+}
 .align-canvas {
     min-width: 320px;
     max-width: 320px;

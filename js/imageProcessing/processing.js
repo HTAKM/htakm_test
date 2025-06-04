@@ -96,19 +96,34 @@ var effects = {
     }},
     sharpen: {apply: (inputData, outputData) => {
         const option = $("#sharpen-type").val();
+        const detailsOnly = $("#sharpen-details-only").prop("checked");
         switch (option) {
             case "sharpen-kernel":
                 const sharpenKernel = [[0, -1, 0], [-1, 4, -1], [0, -1, 0]];
                 applyAggregatingKernel(inputData, outputData, sharpenKernel);
+                break;
             case "unsharp-mask":
                 effects.blur.apply(inputData, outputData);
                 for (var i = 0; i < inputData.data.length; ++i)
                     outputData.data[i] = inputData.data[i] - outputData.data[i];
+                break;
         }
         const strength = parseFloat($("#sharpen-strength").val());
-        for (var i = 0; i < inputData.data.length; ++i) {
-            outputData.data[i] = inputData.data[i] + outputData.data[i] * strength;
-            outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
+        if (detailsOnly) {
+            for (var i = 0; i < inputData.data.length; i += 4) {
+                outputData.data[i]   *= strength;
+                outputData.data[i+1] *= strength;
+                outputData.data[i+2] *= strength;
+                outputData.data[i]   = (outputData.data[i] > 255)   ? 255 : (outputData.data[i] < 0)   ? 0 : outputData.data[i];
+                outputData.data[i+1] = (outputData.data[i+1] > 255) ? 255 : (outputData.data[i+1] < 0) ? 0 : outputData.data[i+1];
+                outputData.data[i+2] = (outputData.data[i+2] > 255) ? 255 : (outputData.data[i+2] < 0) ? 0 : outputData.data[i+2];
+                outputData.data[i+3] = 255;
+            }
+        } else {
+            for (var i = 0; i < inputData.data.length; ++i) {
+                outputData.data[i] = inputData.data[i] + outputData.data[i] * strength;
+                outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
+            }
         }
     }}
 };
