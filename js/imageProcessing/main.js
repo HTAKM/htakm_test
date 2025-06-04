@@ -67,6 +67,12 @@ function importImage(event) {
     }
 }
 
+function replaceInputImage(event) {
+    copyImageData(outputImageData, inputImageData);
+    inputMemoryCtx.putImageData(inputImageData, 0, 0);
+    inputCtx.drawImage(inputMemoryCanvas, 0, 0);
+}
+
 function outputImage(event) {
     const link = $('#output-file-select').get(0);
     const imageData = outputMemoryCanvas.toDataURL('image/png');
@@ -83,6 +89,11 @@ function loadOutput() {
     outputCtx.drawImage(outputMemoryCanvas, 0, 0);
 }
 
+function outputUpdate(event) {
+    applyOperation();
+    loadOutput();
+}
+
 function changeTabs(event) {
     var target = $(event.target);
     if (target.prop("tagName") !== "A") {
@@ -97,16 +108,12 @@ function changeTabs(event) {
     event.preventDefault();
 }
 
-function outputUpdate(event) {
-    applyOperation();
-    loadOutput();
-}
-
 $(function() {
     init("input", "output", "input-memory", "output-memory");
     $('a.basicOp-dropdown-item').on("click", changeTabs);
     $('#change-input-image').on("click", startUpload);
-    $("#output-update").on("click", outputUpdate);
+    $('#output-update').on("click", outputUpdate);
     $('#input-file-select').on("change", importImage);
     $('#download-output-image').on("click", outputImage);
+    $('#replace-input-image').on("click", replaceInputImage);
 });

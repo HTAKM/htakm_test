@@ -34,7 +34,7 @@ function getPixel(imageData, x, y) {
 
 function copyImageData(inputData, outputData) {
     for (var i = 0; i < inputData.data.length; ++i)
-        outputData.data[i]   = inputData.data[i];
+        outputData.data[i] = inputData.data[i];
 }
 
 function applyDividingKernel(inputData, outputData, kernel) {
