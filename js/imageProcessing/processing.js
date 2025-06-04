@@ -96,8 +96,12 @@ var effects = {
             secondKernel[n] = [1];
         }
         var intermediateData = new ImageData(inputData.width, inputData.height);
-        applyKernel(inputData, intermediateData, firstKernel);
-        applyKernel(intermediateData, outputData, secondKernel);
+        applyDividingKernel(inputData, intermediateData, firstKernel);
+        applyDividingKernel(intermediateData, outputData, secondKernel);
+    }},
+    sharpen: {apply: (inputData, outputData) => {
+        const kernel = [[0, -1, 0], [-1, 5, -1], [0, -1, 0]];
+        applyAggregatingKernel(inputData, outputData, kernel);
     }}
 };
 
@@ -123,6 +127,9 @@ function applyOperation() {
             break;
         case "blur":
             currentEffect = effects.blur;
+            break;
+        case "sharpen":
+            currentEffect = effects.sharpen;
             break;
     }
     currentEffect.apply(inputImageData, outputImageData);

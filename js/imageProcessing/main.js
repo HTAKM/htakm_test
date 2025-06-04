@@ -1,6 +1,6 @@
 "use strict";
 
-var currentOp = "noOperation";
+var currentOp = "no-op";
 var inputCanvas, inputCtx, inputImageData;
 var outputCanvas, outputCtx, outputImageData;
 var inputMemoryCanvas, inputMemoryCtx;
