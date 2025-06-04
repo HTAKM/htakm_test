@@ -101,6 +101,8 @@ var effects = {
             case "sharpen-kernel":
                 const sharpenKernel = [[0, -1, 0], [-1, 4, -1], [0, -1, 0]];
                 applyAggregatingKernel(inputData, outputData, sharpenKernel);
+                for (var i = 0; i < inputData.data.length; ++i)
+                    outputData.data[i] = outputData.data[i] / 4;
                 break;
             case "unsharp-mask":
                 effects.blur.apply(inputData, outputData);
