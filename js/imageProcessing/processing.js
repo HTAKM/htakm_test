@@ -117,7 +117,18 @@ var effects = {
                     outputData.data[i] = outputData.data[i] / 4;
                 break;
             case "unsharp-mask":
-                effects.blur.apply(inputData, outputData);
+                const midPoint = 1;
+                const variance = midPoint / 3;
+                var kernelValue;
+                var firstKernel = [[]], secondKernel = [];
+                for (var n = 0; n < 3; ++n) {
+                    kernelValue = Math.exp(-Math.pow(n-midPoint, 2) / (2 * variance)) / (2 * Math.PI * variance);
+                    firstKernel[0][n] = kernelValue;
+                    secondKernel[n] = [kernelValue];
+                }
+                var intermediateData = new ImageData(inputData.width, inputData.height);
+                applyDividingKernel(inputData, intermediateData, firstKernel);
+                applyDividingKernel(intermediateData, outputData, secondKernel);
                 for (var i = 0; i < inputData.data.length; ++i)
                     outputData.data[i] = inputData.data[i] - outputData.data[i];
                 break;
