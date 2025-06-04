@@ -9,6 +9,7 @@ var drawHeight;
 var defaultWidth = 320, defaultHeight = 180;
 var scaledSize;
 var fileName;
+var fileType;
 
 if (!(window.FileReader && window.Image)) {
     alert("Your browser does not support features that are crucial for this website.");
@@ -36,6 +37,8 @@ function startUpload(event) {
 }
 
 function importImage(event) {
+    $("#remark").html("");
+    const validFileType = ["image/png"];
     const files = event.target.files;
     inputCanvas.width = defaultWidth;
     inputCanvas.height = defaultHeight;
@@ -46,6 +49,11 @@ function importImage(event) {
         fileName = file.name.split('.');
         fileName.pop();
         fileName = fileName.join('.')
+        fileType = file.type;
+        if (validFileType.indexOf(fileType) == -1) {
+            $("#remark").html("This website do not support this file.");
+            return;
+        }
         const reader = new FileReader();
         reader.onload = function(event) {
             var img = new Image();
@@ -79,7 +87,9 @@ function replaceInputImage(event) {
 
 function outputImage(event) {
     const link = $('#output-file-select').get(0);
-    const imageData = outputMemoryCanvas.toDataURL('image/png');
+    let imageData = outputMemoryCanvas.toDataURL(fileType);
+    if (imageData === null)
+        imageData = outputMemoryCanvas.toDataURL('image/png');
     link.href = imageData;
     link.download = fileName + '_processed.png';
     link.click();
