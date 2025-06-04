@@ -85,10 +85,22 @@ var effects = {
     }},
     blur: {apply: (inputData, outputData) => {
         const blurSize = parseInt($("#blur-size").val());
+        const option = $("#blur-type").val();
+        const midPoint = (blurSize + 1) / 2;
+        const variance = midPoint / 3;
+        var kernelValue;
         var firstKernel = [[]], secondKernel = [];
         for (var n = 0; n < blurSize; ++n) {
-            firstKernel[0][n] = 1;
-            secondKernel[n] = [1];
+            switch (option) {
+                case "uniform-blur":
+                    kernelValue = 1;
+                    break;
+                case "gaussian-blur":
+                    kernelValue = Math.exp(-Math.pow(n-midPoint, 2) / (2 * variance)) / (2 * Math.PI * variance);
+                    break;
+            }
+            firstKernel[0][n] = kernelValue;
+            secondKernel[n] = [kernelValue];
         }
         var intermediateData = new ImageData(inputData.width, inputData.height);
         applyDividingKernel(inputData, intermediateData, firstKernel);
