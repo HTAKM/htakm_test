@@ -8,6 +8,7 @@ var outputMemoryCanvas, outputMemoryCtx;
 var drawHeight;
 var defaultWidth = 320, defaultHeight = 180;
 var scaledSize;
+var fileName;
 
 if (!(window.FileReader && window.Image)) {
     alert("Your browser does not support features that are crucial for this website.");
@@ -42,6 +43,9 @@ function importImage(event) {
     outputCanvas.height = defaultHeight;
     if (files.length >= 1) {
         var file = files[0];
+        fileName = file.name.split('.');
+        fileName.pop();
+        fileName = fileName.join('.')
         const reader = new FileReader();
         reader.onload = function(event) {
             var img = new Image();
@@ -77,7 +81,7 @@ function outputImage(event) {
     const link = $('#output-file-select').get(0);
     const imageData = outputMemoryCanvas.toDataURL('image/png');
     link.href = imageData;
-    link.download = 'processed_image.png';
+    link.download = fileName + '_processed.png';
     link.click();
 }
 
@@ -96,9 +100,8 @@ function outputUpdate(event) {
 
 function changeTabs(event) {
     var target = $(event.target);
-    if (target.prop("tagName") !== "A") {
+    if (target.prop("tagName") !== "A") 
         target = target.parents("a");
-    }
 
     target.tab("show");
     target.toggleClass("active");
