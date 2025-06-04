@@ -96,25 +96,26 @@ var effects = {
                     kernelValue = 1;
                     break;
                 case "gaussian-blur":
-                    kernelValue = Math.exp(-Math.pow(n-midPoint, 2) / (2 * variance)) / (2 * Math.PI * variance);
+                    kernelValue = gaussian2d(n, midPoint, variance);
                     break;
             }
             firstKernel[0][n] = kernelValue;
             secondKernel[n] = [kernelValue];
         }
         var intermediateData = new ImageData(inputData.width, inputData.height);
-        applyDividingKernel(inputData, intermediateData, firstKernel);
-        applyDividingKernel(intermediateData, outputData, secondKernel);
+        applyDivKernelGetImageData(inputData, intermediateData, firstKernel);
+        applyDivKernelGetImageData(intermediateData, outputData, secondKernel);
     }},
     sharpen: {apply: (inputData, outputData) => {
         const option = $("#sharpen-type").val();
         const detailsOnly = $("#sharpen-details-only").prop("checked");
+        let detailArray = [];
         switch (option) {
             case "sharpen-kernel":
                 const sharpenKernel = [[0, -1, 0], [-1, 4, -1], [0, -1, 0]];
-                applyAggregatingKernel(inputData, outputData, sharpenKernel);
-                for (var i = 0; i < inputData.data.length; ++i)
-                    outputData.data[i] = outputData.data[i] / 4;
+                applyAggKernelGetArray(inputData, detailArray, sharpenKernel);
+                for (var i = 0; i < detailArray.length; ++i)
+                    detailArray[i] = detailArray[i] / 4;
                 break;
             case "unsharp-mask":
                 const midPoint = 1;
@@ -122,30 +123,48 @@ var effects = {
                 var kernelValue;
                 var firstKernel = [[]], secondKernel = [];
                 for (var n = 0; n < 3; ++n) {
-                    kernelValue = Math.exp(-Math.pow(n-midPoint, 2) / (2 * variance)) / (2 * Math.PI * variance);
+                    kernelValue = gaussian2d(n, midPoint, variance);
                     firstKernel[0][n] = kernelValue;
                     secondKernel[n] = [kernelValue];
                 }
                 var intermediateData = new ImageData(inputData.width, inputData.height);
-                applyDividingKernel(inputData, intermediateData, firstKernel);
-                applyDividingKernel(intermediateData, outputData, secondKernel);
+                applyDivKernelGetImageData(inputData, intermediateData, firstKernel);
+                applyDivKernelGetImageData(intermediateData, outputData, secondKernel);
                 for (var i = 0; i < inputData.data.length; ++i)
-                    outputData.data[i] = inputData.data[i] - outputData.data[i];
+                    detailArray[i] = inputData.data[i] - outputData.data[i];
                 break;
         }
         const strength = parseFloat($("#sharpen-strength").val());
         if (detailsOnly) {
             for (var i = 0; i < inputData.data.length; ++i) {
-                outputData.data[i] *= strength;
+                detailArray[i] *= strength;
+                outputData.data[i] = detailArray[i] + 127.5;
                 outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
             }
             for (var a = 3; a < inputData.data.length; a += 4)
                 outputData.data[a] = 255;
         } else {
             for (var i = 0; i < inputData.data.length; ++i) {
-                outputData.data[i] = inputData.data[i] + outputData.data[i] * strength;
+                outputData.data[i] = inputData.data[i] + detailArray[i] * strength;
                 outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
             }
+        }
+    }},
+    sobel: {apply: (inputData, outputData) => {
+        const xKernel1 = [[-1, 0, 1]], xKernel2 = [[1], [2], [1]];
+        const yKernel1 = [[1, 2, 1]], yKernel2 = [[-1], [0], [1]];
+        var intermediateArray = [];
+        var xEdge = [];
+        var yEdge = [];
+        applyAggKernelGetArray(inputData, intermediateArray, xKernel1);
+        applyAggKernelToArray(intermediateArray, xEdge, xKernel2, inputData.width, inputData.height);
+        applyAggKernelGetArray(inputData, intermediateArray, yKernel1);
+        applyAggKernelToArray(intermediateArray, yEdge, yKernel2, inputData.width, inputData.height);
+        for (var i = 0; i < inputData.data.length; i += 4) {
+            outputData.data[i]   = Math.hypot(xEdge[i], yEdge[i]);
+            outputData.data[i+1] = Math.hypot(xEdge[i+1], yEdge[i+1]);
+            outputData.data[i+2] = Math.hypot(xEdge[i+2], yEdge[i+2]);
+            outputData.data[i+3] = 255;
         }
     }}
 };
@@ -175,6 +194,9 @@ function applyOperation() {
             break;
         case "sharpen":
             currentEffect = effects.sharpen;
+            break;
+        case "sobel":
+            currentEffect = effects.sobel;
             break;
     }
     currentEffect.apply(inputImageData, outputImageData);
