@@ -112,15 +112,12 @@ var effects = {
         }
         const strength = parseFloat($("#sharpen-strength").val());
         if (detailsOnly) {
-            for (var i = 0; i < inputData.data.length; i += 4) {
-                outputData.data[i]   *= strength;
-                outputData.data[i+1] *= strength;
-                outputData.data[i+2] *= strength;
-                outputData.data[i]   = (outputData.data[i] > 255)   ? 255 : (outputData.data[i] < 0)   ? 0 : outputData.data[i];
-                outputData.data[i+1] = (outputData.data[i+1] > 255) ? 255 : (outputData.data[i+1] < 0) ? 0 : outputData.data[i+1];
-                outputData.data[i+2] = (outputData.data[i+2] > 255) ? 255 : (outputData.data[i+2] < 0) ? 0 : outputData.data[i+2];
-                outputData.data[i+3] = 255;
+            for (var i = 0; i < inputData.data.length; ++i) {
+                outputData.data[i] *= strength;
+                outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
             }
+            for (var a = 3; a < inputData.data.length; a += 4)
+                outputData.data[a] = 255;
         } else {
             for (var i = 0; i < inputData.data.length; ++i) {
                 outputData.data[i] = inputData.data[i] + outputData.data[i] * strength;
