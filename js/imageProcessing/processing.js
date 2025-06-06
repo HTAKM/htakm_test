@@ -63,6 +63,18 @@ let effects = {
         }
         return input;
     }},
+    threshold: {apply: (input, w, h) => {
+        const threshold = parseInt($("#threshold-value").val());
+        let avg;
+        for (let i = 0; i < input.length; i += 4) {
+            avg = (input[i] + input[i+1] + input[i+2]) / 3;
+            input[i]   =
+            input[i+1] = 
+            input[i+2] = (avg > threshold) ? 255 : (avg == threshold) ? 128 : 0;
+            input[i+3] = 255;
+        }
+        return input;
+    }},
     brightness: {apply: (input, w, h) => {
         const offset = parseInt($("#brightness-offset").val());
         const factor = parseFloat($("#contrast-factor").val());
@@ -150,7 +162,7 @@ let effects = {
         return input;
     }},
     sobel: {apply: (input, w, h) => {
-        const threshold = parseInt($("#sobel-threshold").val());
+        const threshold = parseInt($("#sobel-threshold-value").val());
         const kernel1 = [-1, 0, 1], kernel2 = [1, 2, 1];
         let xEdge = Float64Array.from(input);
         let yEdge = Float64Array.from(input);
@@ -163,7 +175,7 @@ let effects = {
             avg = (Math.hypot(xEdge[i], yEdge[i]) + Math.hypot(xEdge[i+1], yEdge[i+1]) + Math.hypot(xEdge[i+2], yEdge[i+2])) / 3
             input[i]   = 
             input[i+1] = 
-            input[i+2] = (avg > threshold) ? 255 : 0;
+            input[i+2] = (avg > threshold) ? 255 : (avg == threshold) ? 128 : 0;
             input[i+3] = 255;
         }
         return input;
@@ -184,6 +196,9 @@ function applyOperation() {
             break;
         case "grayscale":
             currentEffect = effects.grayscale;
+            break;
+        case "threshold":
+            currentEffect = effects.threshold;
             break;
         case "brightness":
             currentEffect = effects.brightness;
