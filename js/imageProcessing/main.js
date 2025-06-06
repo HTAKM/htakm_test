@@ -1,17 +1,17 @@
 "use strict";
 
-var currentOp = "no-op";
-var inputCanvas, inputCtx, inputImageData;
-var outputCanvas, outputCtx, outputImageData;
-var inputMemoryCanvas, inputMemoryCtx;
-var outputMemoryCanvas, outputMemoryCtx;
-var drawHeight;
-var defaultWidth = 320, defaultHeight = 180;
-var scaledSize;
-var fileName;
-var fileType;
+const defaultWidth = 320, defaultHeight = 180;
+let currentOp = "no-op";
+let inputCanvas, inputCtx, inputImageData = new ImageData(defaultWidth, defaultHeight);
+let outputCanvas, outputCtx, outputImageData = new ImageData(defaultWidth, defaultHeight);
+let inputMemoryCanvas, inputMemoryCtx;
+let outputMemoryCanvas, outputMemoryCtx;
+let drawHeight;
+let scaledSize;
+let fileName = "";
+let fileType;
 
-if (!(window.FileReader && window.Image)) {
+if (!(window.FileReader && window.Image && window.ImageData)) {
     alert("Your browser does not support features that are crucial for this website.");
 }
 
@@ -45,7 +45,7 @@ function importImage(event) {
     outputCanvas.width = defaultWidth;
     outputCanvas.height = defaultHeight;
     if (files.length >= 1) {
-        var file = files[0];
+        let file = files[0];
         fileName = file.name.split('.');
         fileName.pop();
         fileName = fileName.join('.')
@@ -56,7 +56,7 @@ function importImage(event) {
         }
         const reader = new FileReader();
         reader.onload = function(event) {
-            var img = new Image();
+            let img = new Image();
             img.onload = function() {
                 scaledSize = inputCanvas.width / img.width;
                 drawHeight = scaledSize * img.height;
@@ -90,6 +90,8 @@ function outputImage(event) {
     let imageData = outputMemoryCanvas.toDataURL(fileType);
     if (imageData === null)
         imageData = outputMemoryCanvas.toDataURL('image/png');
+    if (imageData === null)
+        imageData = new ImageData(defaultWidth, defaultHeight);
     link.href = imageData;
     link.download = fileName + '_processed.png';
     link.click();
@@ -109,7 +111,7 @@ function outputUpdate(event) {
 }
 
 function changeTabs(event) {
-    var target = $(event.target);
+    let target = $(event.target);
     if (target.prop("tagName") !== "A") 
         target = target.parents("a");
 

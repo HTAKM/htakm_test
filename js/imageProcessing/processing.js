@@ -1,119 +1,122 @@
 var currentEffect = null;
+const segmentColor = [
+    [255, 0, 0, 128],
+    [0, 255, 0, 128],
+    [0, 0, 255, 128]];
 
 var effects = {
-    noOperation: {apply: (inputData, outputData) => {
-        copyImageData(inputData, outputData);
+    noOperation: {apply: (input, w, h) => {
+        return input;
     }},
-    showComponent: {apply: (inputData, outputData) => {
+    showComponent: {apply: (input, w, h) => {
         const option = $("#component-type").val();
-        for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   =
-            outputData.data[i+1] =
-            outputData.data[i+2] = 0;
-            outputData.data[i+3] = 255;
+        for (let i = 0; i < input.length; i += 4) {
             switch (option) {
                 case "red":
-                    outputData.data[i] = inputData.data[i];
+                    input[i+1] =
+                    input[i+2] = 0;
                     break;
                 case "green":
-                    outputData.data[i+1] = inputData.data[i+1];
+                    input[i]   =
+                    input[i+2] = 0;
                     break;
                 case "blue":
-                    outputData.data[i+2] = inputData.data[i+2];
+                    input[i]   =
+                    input[i+1] = 0;
                     break;
                 case "alpha":
-                    outputData.data[i]   =
-                    outputData.data[i+1] =
-                    outputData.data[i+2] = inputData.data[i+3];
+                    input[i]   =
+                    input[i+1] =
+                    input[i+2] = input[i+3];
                     break;
             }
+            input[i+3] = 255;
         }
+        return input;
     }},
-    negation: {apply: (inputData, outputData) => {
-        for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   = 255 - inputData.data[i];
-            outputData.data[i+1] = 255 - inputData.data[i+1];
-            outputData.data[i+2] = 255 - inputData.data[i+2];
-            outputData.data[i+3] = inputData.data[i+3];
+    negation: {apply: (input, w, h) => {
+        for (let i = 0; i < input.length; i += 4) {
+            input[i]   = 255 - input[i];
+            input[i+1] = 255 - input[i+1];
+            input[i+2] = 255 - input[i+2];
         }
+        return input;
     }},
-    grayscale: {apply: (inputData, outputData) => {
+    grayscale: {apply: (input, w, h) => {
         const option = $("#grayscale-type").val();
         let avg;
-        for (var i = 0; i < inputData.data.length; i += 4) {
+        for (let i = 0; i < input.length; i += 4) {
             switch (option) {
                 case "averaging":
-                    avg = (inputData.data[i] + inputData.data[i+1] + inputData.data[i+2]) / 3;
+                    avg = (input[i] + input[i+1] + input[i+2]) / 3;
                     break;
                 case "hsv-value":
-                    avg = Math.max(inputData.data[i], inputData.data[i+1], inputData.data[i+2]);
+                    avg = Math.max(input[i], input[i+1], input[i+2]);
                     break;
                 case "luminance":
-                    avg = 0.2126 * inputData.data[i] + 0.7152 * inputData.data[i+1] + 0.0722 * inputData.data[i+2];
+                    avg = 0.2126 * input[i] + 0.7152 * input[i+1] + 0.0722 * input[i+2];
                     break;
             }
-            outputData.data[i]   =
-            outputData.data[i+1] = 
-            outputData.data[i+2] = avg;
-            outputData.data[i+3] = inputData.data[i+3];
+            input[i]   =
+            input[i+1] = 
+            input[i+2] = avg;
         }
+        return input;
     }},
-    brightness: {apply: (inputData, outputData) => {
+    brightness: {apply: (input, w, h) => {
         const offset = parseInt($("#brightness-offset").val());
         const factor = parseFloat($("#contrast-factor").val());
-        for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   = inputData.data[i]   * factor + offset;
-            outputData.data[i+1] = inputData.data[i+1] * factor + offset;
-            outputData.data[i+2] = inputData.data[i+2] * factor + offset;
-            outputData.data[i+3] = inputData.data[i+3];
-            outputData.data[i]   = (outputData.data[i] > 255)   ? 255 : (outputData.data[i] < 0)   ? 0 : outputData.data[i];
-            outputData.data[i+1] = (outputData.data[i+1] > 255) ? 255 : (outputData.data[i+1] < 0) ? 0 : outputData.data[i+1];
-            outputData.data[i+2] = (outputData.data[i+2] > 255) ? 255 : (outputData.data[i+2] < 0) ? 0 : outputData.data[i+2];
+        for (let i = 0; i < input.length; i += 4) {
+            input[i]   = input[i]   * factor + offset;
+            input[i+1] = input[i+1] * factor + offset;
+            input[i+2] = input[i+2] * factor + offset;
+            input[i]   = (input[i] > 255)   ? 255 : (input[i] < 0)   ? 0 : input[i];
+            input[i+1] = (input[i+1] > 255) ? 255 : (input[i+1] < 0) ? 0 : input[i+1];
+            input[i+2] = (input[i+2] > 255) ? 255 : (input[i+2] < 0) ? 0 : input[i+2];
         }
+        return input;
     }},
-    posterization: {apply: (inputData, outputData) => {
+    posterization: {apply: (input, w, h) => {
         const redBitDepth = parseInt($("#red-bit-depth").val());
         const greenBitDepth = parseInt($("#green-bit-depth").val());
         const blueBitDepth = parseInt($("#blue-bit-depth").val());
         const redBitMask = generateMSBMask(8, redBitDepth), greenBitMask = generateMSBMask(8, greenBitDepth), blueBitMask = generateMSBMask(8, blueBitDepth);
-        for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   = inputData.data[i]   & redBitMask;
-            outputData.data[i+1] = inputData.data[i+1] & greenBitMask;
-            outputData.data[i+2] = inputData.data[i+2] & blueBitMask;
-            outputData.data[i+3] = inputData.data[i+3];
+        for (let i = 0; i < input.length; i += 4) {
+            input[i]   &= redBitMask;
+            input[i+1] &= greenBitMask;
+            input[i+2] &= blueBitMask;
         }
+        return input;
     }},
-    blur: {apply: (inputData, outputData) => {
+    blur: {apply: (input, w, h) => {
         const blurSize = parseInt($("#blur-size").val());
         const option = $("#blur-type").val();
         const midPoint = (blurSize + 1) / 2;
         const variance = midPoint / 3;
-        var kernelValue;
-        var firstKernel = [[]], secondKernel = [];
+        let kernel = new Float64Array(blurSize), value;
         for (var n = 0; n < blurSize; ++n) {
             switch (option) {
                 case "uniform-blur":
-                    kernelValue = 1;
+                    value = 1;
                     break;
                 case "gaussian-blur":
-                    kernelValue = gaussian2d(n, midPoint, variance);
+                    value = gaussian2d(n, midPoint, variance);
                     break;
             }
-            firstKernel[0][n] = kernelValue;
-            secondKernel[n] = [kernelValue];
+            kernel[n] = value;
         }
-        var intermediateData = new ImageData(inputData.width, inputData.height);
-        applyDivKernelGetImageData(inputData, intermediateData, firstKernel);
-        applyDivKernelGetImageData(intermediateData, outputData, secondKernel);
+        applyDivKernelVectorRowWise(input, kernel, w, h);
+        applyDivKernelVectorColWise(input, kernel, w, h);
+        return input;
     }},
-    sharpen: {apply: (inputData, outputData) => {
+    sharpen: {apply: (input, w, h) => {
         const option = $("#sharpen-type").val();
         const detailsOnly = $("#sharpen-details-only").prop("checked");
         let detailArray = [];
         switch (option) {
             case "sharpen-kernel":
                 const sharpenKernel = [[0, -1, 0], [-1, 4, -1], [0, -1, 0]];
-                applyAggKernelGetArray(inputData, detailArray, sharpenKernel);
+                applyAggKernelGetArray(input, detailArray, sharpenKernel);
                 for (var i = 0; i < detailArray.length; ++i)
                     detailArray[i] = detailArray[i] / 4;
                 break;
@@ -170,6 +173,7 @@ var effects = {
 };
 
 function applyOperation() {
+    $("#progress-modal").modal("show");
     switch(currentOp) {
         case "no-op": 
             currentEffect = effects.noOperation; 
@@ -198,6 +202,10 @@ function applyOperation() {
         case "sobel":
             currentEffect = effects.sobel;
             break;
+        default:
+            return;
     }
-    currentEffect.apply(inputImageData, outputImageData);
+    let inputData = Float64Array.from(inputImageData.data);
+    let outputData = currentEffect.apply(inputData, inputImageData.width, inputImageData.height);
+    arrayToImageData(outputData, outputImageData);
 }
