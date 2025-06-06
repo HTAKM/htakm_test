@@ -1,10 +1,10 @@
-var currentEffect = null;
+let currentEffect = null;
 const segmentColor = [
     [255, 0, 0, 128],
     [0, 255, 0, 128],
     [0, 0, 255, 128]];
 
-var effects = {
+let effects = {
     noOperation: {apply: (input, w, h) => {
         return input;
     }},
@@ -105,70 +105,68 @@ var effects = {
             }
             kernel[n] = value;
         }
-        applyDivKernelVectorRowWise(input, kernel, w, h);
-        applyDivKernelVectorColWise(input, kernel, w, h);
+        applyKernelVectorRowWise(input, kernel, w, h, "dividing");
+        applyKernelVectorColWise(input, kernel, w, h, "dividing");
         return input;
     }},
     sharpen: {apply: (input, w, h) => {
         const option = $("#sharpen-type").val();
         const detailsOnly = $("#sharpen-details-only").prop("checked");
-        let detailArray = [];
+        let detail = Float64Array.from(input);
         switch (option) {
             case "sharpen-kernel":
                 const sharpenKernel = [[0, -1, 0], [-1, 4, -1], [0, -1, 0]];
-                applyAggKernelGetArray(input, detailArray, sharpenKernel);
-                for (var i = 0; i < detailArray.length; ++i)
-                    detailArray[i] = detailArray[i] / 4;
+                applyKernel(detail, sharpenKernel, w, h, "aggregating");
+                for (let i = 0; i < detail.length; ++i)
+                    detail[i] /= 4;
                 break;
             case "unsharp-mask":
                 const midPoint = 1;
                 const variance = midPoint / 3;
-                var kernelValue;
-                var firstKernel = [[]], secondKernel = [];
-                for (var n = 0; n < 3; ++n) {
-                    kernelValue = gaussian2d(n, midPoint, variance);
-                    firstKernel[0][n] = kernelValue;
-                    secondKernel[n] = [kernelValue];
-                }
-                var intermediateData = new ImageData(inputData.width, inputData.height);
-                applyDivKernelGetImageData(inputData, intermediateData, firstKernel);
-                applyDivKernelGetImageData(intermediateData, outputData, secondKernel);
-                for (var i = 0; i < inputData.data.length; ++i)
-                    detailArray[i] = inputData.data[i] - outputData.data[i];
+                let kernel = new Float64Array(3);
+                for (let n = 0; n < 3; ++n) 
+                    kernel[n] = gaussian2d(n, midPoint, variance);
+                applyKernelVectorRowWise(detail, kernel, w, h, "dividing");
+                applyKernelVectorColWise(detail, kernel, w, h, "dividing");
+                for (let i = 0; i < input.length; ++i)
+                    detail[i] = input[i] - detail[i];
                 break;
         }
         const strength = parseFloat($("#sharpen-strength").val());
         if (detailsOnly) {
-            for (var i = 0; i < inputData.data.length; ++i) {
-                detailArray[i] *= strength;
-                outputData.data[i] = detailArray[i] + 127.5;
-                outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
+            for (let i = 0; i < input.length; ++i) {
+                detail[i] *= strength;
+                input[i] = detail[i] + 127.5;
+                input[i] = (input[i] > 255) ? 255 : (input[i] < 0) ? 0 : input[i];
             }
-            for (var a = 3; a < inputData.data.length; a += 4)
-                outputData.data[a] = 255;
+            for (let a = 3; a < input.length; a += 4)
+                input[a] = 255;
         } else {
-            for (var i = 0; i < inputData.data.length; ++i) {
-                outputData.data[i] = inputData.data[i] + detailArray[i] * strength;
-                outputData.data[i] = (outputData.data[i] > 255) ? 255 : (outputData.data[i] < 0) ? 0 : outputData.data[i];
+            for (let i = 0; i < input.length; ++i) {
+                input[i] += detail[i] * strength;
+                input[i] = (input[i] > 255) ? 255 : (input[i] < 0) ? 0 : input[i];
             }
         }
+        return input;
     }},
-    sobel: {apply: (inputData, outputData) => {
-        const xKernel1 = [[-1, 0, 1]], xKernel2 = [[1], [2], [1]];
-        const yKernel1 = [[1, 2, 1]], yKernel2 = [[-1], [0], [1]];
-        var intermediateArray = [];
-        var xEdge = [];
-        var yEdge = [];
-        applyAggKernelGetArray(inputData, intermediateArray, xKernel1);
-        applyAggKernelToArray(intermediateArray, xEdge, xKernel2, inputData.width, inputData.height);
-        applyAggKernelGetArray(inputData, intermediateArray, yKernel1);
-        applyAggKernelToArray(intermediateArray, yEdge, yKernel2, inputData.width, inputData.height);
-        for (var i = 0; i < inputData.data.length; i += 4) {
-            outputData.data[i]   = Math.hypot(xEdge[i], yEdge[i]);
-            outputData.data[i+1] = Math.hypot(xEdge[i+1], yEdge[i+1]);
-            outputData.data[i+2] = Math.hypot(xEdge[i+2], yEdge[i+2]);
-            outputData.data[i+3] = 255;
+    sobel: {apply: (input, w, h) => {
+        const threshold = parseInt($("#sobel-threshold").val());
+        const kernel1 = [-1, 0, 1], kernel2 = [1, 2, 1];
+        let xEdge = Float64Array.from(input);
+        let yEdge = Float64Array.from(input);
+        applyKernelVectorRowWise(xEdge, kernel1, w, h, "aggregating");
+        applyKernelVectorColWise(xEdge, kernel2, w, h, "aggregating");
+        applyKernelVectorRowWise(yEdge, kernel2, w, h, "aggregating");
+        applyKernelVectorColWise(yEdge, kernel1, w, h, "aggregating");
+        let avg;
+        for (let i = 0; i < input.length; i += 4) { 
+            avg = (Math.hypot(xEdge[i], yEdge[i]) + Math.hypot(xEdge[i+1], yEdge[i+1]) + Math.hypot(xEdge[i+2], yEdge[i+2])) / 3
+            input[i]   = 
+            input[i+1] = 
+            input[i+2] = (avg > threshold) ? 255 : 0;
+            input[i+3] = 255;
         }
+        return input;
     }}
 };
 

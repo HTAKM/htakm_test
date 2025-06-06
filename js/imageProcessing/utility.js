@@ -19,7 +19,7 @@ function fitToImage(x, y, width, height) {
 function generateMSBMask(maxBits, bits) {
     let mask = 0;
     const setMask = Math.pow(2, maxBits - 1);
-    for (var n = 0; n < bits; ++n) {
+    for (let n = 0; n < bits; ++n) {
         mask >>= 1;
         mask |= setMask;
     }
@@ -28,7 +28,7 @@ function generateMSBMask(maxBits, bits) {
 
 function generateLSBMask(maxBits, bits) {
     let mask = 0;
-    for (var n = 0; n < bits; ++n) {
+    for (let n = 0; n < bits; ++n) {
         mask <<= 1;
         mask |= 1;
     }
@@ -63,16 +63,20 @@ function copyArray(input, output) {
         output[i] = input[i];
 }
 
+function copyImageData(input, output) {
+    for (let i = 0; i < input.data.length; ++i)
+        output.data[i] = input.data[i];
+}
+
 function arrayToImageData(sourceArray, targetImageData) {
     for (let i = 0; i < Math.min(sourceArray.length, targetImageData.data.length); ++i)
         targetImageData.data[i] = sourceArray[i];
 }
 
-// For kernels with non-zero sum
 // Apply kernel vector on image array row-wise inplace
-function applyDivKernelVectorRowWise(array, kerVec, w, h) {
+function applyKernelVectorRowWise(array, kerVec, w, h, mode="dividing") {
     let r = (kerVec.length - 1) / 2;
-    let div = kerVec.reduce((a, b) => a + b, 0);
+    let div = (mode == "dividing") ? kerVec.reduce((a, b) => a + b, 0) : 1;
     let sum = new Float64Array(4 * w);
     let pixel, agg;
     for (let y = 0; y < h; ++y) {
@@ -96,11 +100,10 @@ function applyDivKernelVectorRowWise(array, kerVec, w, h) {
     }
 }
 
-// For kernels with non-zero sum
 // Apply kernel vector on image array col-wise inplace
-function applyDivKernelVectorColWise(array, kerVec, w, h) {
+function applyKernelVectorColWise(array, kerVec, w, h, mode="dividing") {
     let r = (kerVec.length - 1) / 2;
-    let div = kerVec.reduce((a, b) => a + b, 0);
+    let div = (mode == "dividing") ? kerVec.reduce((a, b) => a + b, 0) : 1;
     let sum = new Float64Array(4 * h);
     let pixel, agg;
     for (let x = 0; x < w; ++x) {
@@ -124,12 +127,11 @@ function applyDivKernelVectorColWise(array, kerVec, w, h) {
     }
 }
 
-function applyDivKernel(input, kernel, w, h) {
+function applyKernel(input, kernel, w, h, mode="dividing") {
     let kernelHeight = kernel.length,   rh = (kernelHeight - 1) / 2;
     let kernelWidth = kernel[0].length, rw = (kernelWidth - 1) / 2;
-    let div = 0;
-    let output = new Float64Array(input.length);
-    div = kernel.reduce((acc, cur) => acc + cur.reduce((acc, cur) => acc + cur, 0), 0);
+    let div = (mode == "dividing") ? kernel.reduce((acc, cur) => acc + cur.reduce((acc, cur) => acc + cur, 0), 0) : 1;
+    let output = new Float64Array(input.length)
     for (let x = 0; x < w; ++x) {
         for (let y = 0; y < h; ++y) {
             let result = {r: 0, g: 0, b: 0, a: 0}, pixel;
@@ -150,53 +152,4 @@ function applyDivKernel(input, kernel, w, h) {
         }
     }
     copyArray(output, input);
-}
-
-// Since ImageData somehow deal with clipping, we put the values to an array instead.
-function applyAggKernelGetArray(inputData, outputArray, kernel) {
-    let kernelHeight = kernel.length, radiusHeight = (kernelHeight - 1) / 2;
-    let kernelWidth = kernel[0].length, radiusWidth = (kernelWidth - 1) / 2;
-    for (let x = 0; x < inputData.width; ++x) {
-        for (let y = 0; y < inputData.height; ++y) {
-            let kernelResult = {r: 0, g: 0, b: 0, a: 0}, pixel;
-            for (let i = -radiusWidth; i <= radiusWidth; ++i) {
-                for (let j = -radiusHeight; j <= radiusHeight; ++j) {
-                    pixel = getPixelFromImageData(inputData, x + i, y + j);
-                    kernelResult.r += pixel.r * kernel[j + radiusHeight][i + radiusWidth];
-                    kernelResult.g += pixel.g * kernel[j + radiusHeight][i + radiusWidth];
-                    kernelResult.b += pixel.b * kernel[j + radiusHeight][i + radiusWidth];
-                    kernelResult.a += pixel.a * kernel[j + radiusHeight][i + radiusWidth];
-                }
-            }
-            let i = (x + y * inputData.width) * 4;
-            outputArray[i]   = kernelResult.r;
-            outputArray[i+1] = kernelResult.g;
-            outputArray[i+2] = kernelResult.b;
-            outputArray[i+3] = kernelResult.a;
-        }
-    }
-}
-
-function applyAggKernelToArray(inputArray, outputArray, kernel, width, height) {
-    var kernelHeight = kernel.length, radiusHeight = (kernelHeight - 1) / 2;
-    var kernelWidth = kernel[0].length, radiusWidth = (kernelWidth - 1) / 2;
-    for (var x = 0; x < width; ++x) {
-        for (var y = 0; y < height; ++y) {
-            var kernelResult = {r: 0, g: 0, b: 0, a: 0}, pixel;
-            for (var i = -radiusWidth; i <= radiusWidth; ++i) {
-                for (var j = -radiusHeight; j <= radiusHeight; ++j) {
-                    pixel = getPixelFromArray(inputArray, x + i, y + j, width, height);
-                    kernelResult.r += pixel.r * kernel[j + radiusHeight][i + radiusWidth];
-                    kernelResult.g += pixel.g * kernel[j + radiusHeight][i + radiusWidth];
-                    kernelResult.b += pixel.b * kernel[j + radiusHeight][i + radiusWidth];
-                    kernelResult.a += pixel.a * kernel[j + radiusHeight][i + radiusWidth];
-                }
-            }
-            var i = (x + y * width) * 4;
-            outputArray[i]   = kernelResult.r;
-            outputArray[i+1] = kernelResult.g;
-            outputArray[i+2] = kernelResult.b;
-            outputArray[i+3] = kernelResult.a;
-        }
-    }
 }
