@@ -10,7 +10,7 @@ function processCSVFile(file) {
         if (file.status == 200 || file.status == 0) {
             let contents = file.responseText;
             let csvObject = $.csv.toObjects(contents);
-            console.log(csvObject);
+            return csvObject;
         } else {
             alert('There is a problem reading the csv file. ' + httpRequest.status + httpRequest.responseText);
         }
