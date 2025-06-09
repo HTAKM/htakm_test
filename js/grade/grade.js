@@ -3,6 +3,7 @@ function loadGrade() {
     fetch("js/grade/course-and-grade.csv")
         .then((res) => res.text())
         .then((text) => {
+            console.log(text);
             content = $.csv.toObjects(text);
         })
         .catch((e) => console.error(e));
