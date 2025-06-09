@@ -3,11 +3,10 @@ function loadGrade() {
     fetch("js/grade/course-and-grade.csv")
         .then((res) => res.text())
         .then((text) => {
-            console.log(text);
             content = $.csv.toObjects(text);
         })
         .catch((e) => console.error(e));
-    console.log(content);
+    console.log(JSON.stringify(content, undefined, 2));
     const gradeTable = $("#grade-table");
     let gradeRow = $('<tr>');
     let termCol = $('<td>', {class: "course-term"});
