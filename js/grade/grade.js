@@ -1,5 +1,11 @@
 function loadGrade() {
-    let content = openCSVFile("js/grade/course-and-grade.csv");
+    let content;
+    fetch("js/grade/course-and-grade.csv")
+        .then((res) => res.text())
+        .then((text) => {
+            content = $.csv.toObjects(text);
+        })
+        .catch((e) => console.error(e));
     console.log(content);
     const gradeTable = $("#grade-table");
     let gradeRow = $('<tr>');
