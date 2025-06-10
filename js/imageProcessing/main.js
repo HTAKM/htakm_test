@@ -6,8 +6,6 @@ let inputCanvas, inputCtx, inputImageData = new ImageData(defaultWidth, defaultH
 let outputCanvas, outputCtx, outputImageData = new ImageData(defaultWidth, defaultHeight);
 let inputMemoryCanvas, inputMemoryCtx;
 let outputMemoryCanvas, outputMemoryCtx;
-let drawHeight;
-let scaledSize;
 let fileName = "";
 let fileType;
 
@@ -58,20 +56,11 @@ function importImage(event) {
         reader.onload = function(event) {
             let img = new Image();
             img.onload = function() {
-                scaledSize = inputCanvas.width / img.width;
-                drawHeight = scaledSize * img.height;
-                inputMemoryCanvas.width = img.width;
-                inputMemoryCanvas.height = img.height;
-                outputMemoryCanvas.width = img.width;
-                outputMemoryCanvas.height = img.height;
-                inputCanvas.height = drawHeight;
-                outputCanvas.height = drawHeight;
+                resizeCanvas(inputMemoryCanvas, inputCanvas, img.width, img.height);
+                resizeCanvas(outputMemoryCanvas, outputCanvas, img.width, img.height);
                 inputMemoryCtx.drawImage(img, 0, 0);
                 inputImageData = inputMemoryCtx.getImageData(0, 0, img.width, img.height);
-                inputCtx.scale(scaledSize, scaledSize);
                 inputCtx.drawImage(inputMemoryCanvas, 0, 0);
-                outputCtx.scale(scaledSize, scaledSize);
-                outputImageData = new ImageData(img.width, img.height);
             };
             img.src = event.target.result;
         };
@@ -79,8 +68,19 @@ function importImage(event) {
     }
 }
 
+function resizeCanvas(memoryCanvas, visualCanvas, w, h) {
+    const scaledSize = defaultWidth / w;
+    memoryCanvas.width = w;
+    memoryCanvas.height = h;
+    visualCanvas.width = defaultWidth;
+    visualCanvas.height = scaledSize * h;
+    visualCanvas.getContext('2d').scale(scaledSize, scaledSize);
+}
+
 function replaceInputImage(event) {
+    inputImageData = new ImageData(outputImageData.width, outputImageData.height);
     copyImageData(outputImageData, inputImageData);
+    resizeCanvas(inputMemoryCanvas, inputCanvas, inputImageData.width, inputImageData.height);
     inputMemoryCtx.putImageData(inputImageData, 0, 0);
     inputCtx.drawImage(inputMemoryCanvas, 0, 0);
 }
@@ -98,15 +98,13 @@ function outputImage(event) {
 }
 
 function loadOutput() {
+    resizeCanvas(outputMemoryCanvas, outputCanvas, outputImageData.width, outputImageData.height);
     outputMemoryCtx.putImageData(outputImageData, 0, 0);
-    outputCanvas.width = defaultWidth;
-    outputCanvas.height = drawHeight;
-    outputCtx.scale(scaledSize, scaledSize);
     outputCtx.drawImage(outputMemoryCanvas, 0, 0);
 }
 
 function outputUpdate(event) {
-    applyOperation();
+    applyBasicOperation();
     loadOutput();
 }
 

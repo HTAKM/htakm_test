@@ -74,9 +74,9 @@ function arrayToImageData(sourceArray, targetImageData) {
 }
 
 // Apply kernel vector on image array row-wise inplace
-function applyKernelVectorRowWise(array, kerVec, w, h, mode="dividing") {
+function applyKernelVectorRowWise(array, kerVec, w, h, mode="div") {
     let r = (kerVec.length - 1) / 2;
-    let div = (mode == "dividing") ? kerVec.reduce((a, b) => a + b, 0) : 1;
+    let div = (mode == "div") ? kerVec.reduce((a, b) => a + b, 0) : 1;
     let sum = new Float64Array(4 * w);
     let pixel, agg;
     for (let y = 0; y < h; ++y) {
@@ -101,9 +101,9 @@ function applyKernelVectorRowWise(array, kerVec, w, h, mode="dividing") {
 }
 
 // Apply kernel vector on image array col-wise inplace
-function applyKernelVectorColWise(array, kerVec, w, h, mode="dividing") {
+function applyKernelVectorColWise(array, kerVec, w, h, mode="div") {
     let r = (kerVec.length - 1) / 2;
-    let div = (mode == "dividing") ? kerVec.reduce((a, b) => a + b, 0) : 1;
+    let div = (mode == "div") ? kerVec.reduce((a, b) => a + b, 0) : 1;
     let sum = new Float64Array(4 * h);
     let pixel, agg;
     for (let x = 0; x < w; ++x) {
@@ -127,10 +127,10 @@ function applyKernelVectorColWise(array, kerVec, w, h, mode="dividing") {
     }
 }
 
-function applyKernel(input, kernel, w, h, mode="dividing") {
+function applyKernel(input, kernel, w, h, mode="div") {
     let kernelHeight = kernel.length,   rh = (kernelHeight - 1) / 2;
     let kernelWidth = kernel[0].length, rw = (kernelWidth - 1) / 2;
-    let div = (mode == "dividing") ? kernel.reduce((acc, cur) => acc + cur.reduce((acc, cur) => acc + cur, 0), 0) : 1;
+    let div = (mode == "div") ? kernel.reduce((acc, cur) => acc + cur.reduce((acc, cur) => acc + cur, 0), 0) : 1;
     let output = new Float64Array(input.length)
     for (let x = 0; x < w; ++x) {
         for (let y = 0; y < h; ++y) {
