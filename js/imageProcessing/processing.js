@@ -199,6 +199,22 @@ let basicEffects = {
             input[i+3] = 255;
         }
         return input;
+    }},
+    histStretch: {apply: (input, info) => {
+        const rF = freqHist(input, 'r'), gF = freqHist(input, 'g'), bF = freqHist(input, 'b');
+        const rMax = maxFreq(rF), rMin = minFreq(rF);
+        const gMax = maxFreq(gF), gMin = minFreq(gF);
+        const bMax = maxFreq(bF), bMin = minFreq(bF);
+        let p;
+        for (let i = 0; i < input.length; ++i) {
+            p = perc(input[i], rMin, rMax);
+            input[i] = lerp(0, 255, p);
+            p = perc(input[i + 1], gMin, gMax);
+            input[i + 1] = lerp(0, 255, p);
+            p = perc(input[i + 2], bMin, bMax);
+            input[i + 2] = lerp(0, 255, p);
+        }
+        return input;
     }}
 };
 
@@ -245,6 +261,9 @@ function applyBasicOperation() {
             break;
         case "edge-detection":
             currentEffect = basicEffects.edgeDetect;
+            break;
+        case "histogram-stretching":
+            currentEffect = basicEffects.histStretch;
             break;
         default:
             return;

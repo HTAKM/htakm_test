@@ -1,4 +1,5 @@
 "use strict";
+
 function cleanFloatArray(array) {
     for (let n = 0; n < array.length; ++n)
         array[n] = 0;
@@ -152,4 +153,36 @@ function applyKernel(input, kernel, w, h, mode="div") {
         }
     }
     copyArray(output, input);
+}
+
+function freqHist(input, mode='r') {
+    let freq = new Int32Array(256);
+    for (let i = 0; i < input.length; i += 4) {
+        switch (mode) {
+            case 'r':
+                ++freq[parseInt(input[i])];
+                break;
+            case 'g':
+                ++freq[parseInt(input[i+1])];
+                break;
+            case 'b':
+                ++freq[parseInt(input[i+2])];
+                break;
+            case 'g':
+                let avg = (input[i] + input[i+1] + input[i+2]) / 3;
+                ++freq[parseInt(avg)];
+                break;
+        }
+    }
+    return freq;
+}
+
+function maxFreq(freq) {
+    for (let i = freq.length - 1; i >= 0; --i)
+        if (freq[i] > 0) return i;
+}
+
+function minFreq(freq) {
+    for (let i = 0; i < freq.length; ++i)
+        if (freq[i] > 0) return i;
 }
