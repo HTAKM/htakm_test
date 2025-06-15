@@ -155,20 +155,20 @@ function applyKernel(input, kernel, w, h, mode="div") {
     copyArray(output, input);
 }
 
-function freqHist(input, mode='r') {
+function freqHist(input, mode='red') {
     let freq = new Int32Array(256);
     for (let i = 0; i < input.length; i += 4) {
         switch (mode) {
-            case 'r':
+            case 'red':
                 ++freq[parseInt(input[i])];
                 break;
-            case 'g':
+            case 'green':
                 ++freq[parseInt(input[i+1])];
                 break;
-            case 'b':
+            case 'blue':
                 ++freq[parseInt(input[i+2])];
                 break;
-            case 'g':
+            case 'gray':
                 let avg = (input[i] + input[i+1] + input[i+2]) / 3;
                 ++freq[parseInt(avg)];
                 break;

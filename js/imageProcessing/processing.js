@@ -205,11 +205,11 @@ let basicEffects = {
         let p;
         switch (option) {
             case "rgb-stretch":
-                const rF = freqHist(input, 'r'), gF = freqHist(input, 'g'), bF = freqHist(input, 'b');
+                const rF = freqHist(input, 'red'), gF = freqHist(input, 'green'), bF = freqHist(input, 'blue');
                 const rMax = maxFreq(rF), rMin = minFreq(rF);
                 const gMax = maxFreq(gF), gMin = minFreq(gF);
                 const bMax = maxFreq(bF), bMin = minFreq(bF);
-                for (let i = 0; i < input.length; ++i) {
+                for (let i = 0; i < input.length; i += 4) {
                     p = perc(input[i], rMin, rMax);
                     input[i] = lerp(0, 255, p);
                     p = perc(input[i + 1], gMin, gMax);
@@ -219,14 +219,16 @@ let basicEffects = {
                 }
                 break;
             case "gray-stretch":
-                const freq = freqList(input, 'g'), fMax = maxFreq(freq), fMin = maxFreq(freq);
+                const freq = freqHist(input, 'gray'), fMax = maxFreq(freq), fMin = minFreq(freq);
                 let avg;
-                for (let i = 0; i < input.length; ++i) {
+                for (let i = 0; i < input.length; i += 4) {
                     avg = (input[i] + input[i+1] + input[i+2]) / 3;
-                    p = perc(avg, fMin, fMax);
-                    input[i]   =
-                    input[i+1] =
-                    input[i+2] = lerp(0, 255, p);
+                    p = perc(input[i], fMin, fMax);
+                    input[i] = lerp(0, 255, p);
+                    p = perc(input[i + 1], fMin, fMax);
+                    input[i + 1] = lerp(0, 255, p);
+                    p = perc(input[i + 2], fMin, fMax);
+                    input[i + 2] = lerp(0, 255, p);
                 }
         }
         return input;
