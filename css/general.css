@@ -137,6 +137,7 @@ body {
 .custom-menu {
     color: black;
     background-color: #d9b4ea;
+    border-color: purple;
 }
 .custom-menu .dropdown-item:hover, 
 .custom-menu .dropdown-item:focus {
@@ -147,6 +148,9 @@ body {
     font-weight: bold;
     color: black;
     background-color: #d2a3e9;
+}
+.custom-divider {
+    border-color: purple;
 }
 .custom-select {
     color: black;
