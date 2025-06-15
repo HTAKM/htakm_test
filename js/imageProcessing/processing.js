@@ -163,10 +163,20 @@ let basicEffects = {
         }
         return input;
     }},
-    sobel: {apply: (input, info) => {
+    edgeDetect: {apply: (input, info) => {
         const w = info.w, h = info.h;
+        const option = $("#edge-detect-type").val();
+        const applyThreshold = $("#edge-threshold").prop("checked");
         const threshold = parseInt($("#sobel-threshold-value").val());
-        const kernel1 = [-1, 0, 1], kernel2 = [1, 2, 1];
+        let kernel1, kernel2, div;
+        switch (option) {
+            case "sobel":
+                kernel1 = [-1, 0, 1], kernel2 = [1, 2, 1], div = Math.sqrt(32);
+                break;
+            case "prewitt":
+                kernel1 = [1, 0, -1], kernel2 = [1, 1, 1], div = Math.sqrt(18);
+                break;
+        }
         let xEdge = Float64Array.from(input);
         let yEdge = Float64Array.from(input);
         applyKernelVectorRowWise(xEdge, kernel1, w, h, "agg");
@@ -175,16 +185,24 @@ let basicEffects = {
         applyKernelVectorColWise(yEdge, kernel1, w, h, "agg");
         let avg;
         for (let i = 0; i < input.length; i += 4) { 
-            avg = (Math.hypot(xEdge[i], yEdge[i]) + Math.hypot(xEdge[i+1], yEdge[i+1]) + Math.hypot(xEdge[i+2], yEdge[i+2])) / 3
-            input[i]   = 
-            input[i+1] = 
-            input[i+2] = (avg > threshold) ? 255 : (avg == threshold) ? 128 : 0;
+            avg = (Math.hypot(xEdge[i], yEdge[i]) + Math.hypot(xEdge[i+1], yEdge[i+1]) + Math.hypot(xEdge[i+2], yEdge[i+2])) / 3;
+            avg /= div;
+            if (applyThreshold) {
+                input[i]   = 
+                input[i+1] = 
+                input[i+2] = (avg > threshold) ? 255 : (avg == threshold) ? 128 : 0;
+            } else {
+                input[i] = 
+                input[i+1] = 
+                input[i+2] = avg;
+            }
             input[i+3] = 255;
         }
         return input;
     }}
 };
 
+// Not work yet
 let scaleEffects = {
     shrink: {apply: () => {
         const scale = 1.5;
@@ -225,8 +243,8 @@ function applyBasicOperation() {
         case "threshold":
             currentEffect = basicEffects.threshold;
             break;
-        case "sobel":
-            currentEffect = basicEffects.sobel;
+        case "edge-detection":
+            currentEffect = basicEffects.edgeDetect;
             break;
         default:
             return;

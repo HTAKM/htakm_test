@@ -121,9 +121,35 @@ function changeTabs(event) {
     event.preventDefault();
 }
 
+function toggleControl(event) {
+    if ($(event.target).data("toggleTarget") === undefined) return;
+
+    let UIControlsToToggle = $(event.target).data("toggleTarget").split(",");
+
+    if ($(event.target).attr("type") == "checkbox") {
+        for (let i = 0; i < UIControlsToToggle.length; ++i) {
+            let target = $("#" + UIControlsToToggle[i]);
+            target.prop("disabled", !target.prop("disabled"));
+        }
+    } else {
+        if ($(event.target).data("disableIf") == $(event.target).val()) {
+            for (let i = 0; i < UIControlsToToggle.length; ++i) {
+                let target = $("#" + UIControlsToToggle[i]);
+                target.prop("disabled", true);
+            }
+        } else {
+            for (let i = 0; i < UIControlsToToggle.length; ++i) {
+                let target = $("#" + UIControlsToToggle[i]);
+                target.prop("disabled", false);
+            }
+        }
+    }
+}
+
 $(function() {
     init("input", "output", "input-memory", "output-memory");
     $('a.basicOp-dropdown-item').on("click", changeTabs);
+    $('.toggle-control').on('change', toggleControl);
     $('#change-input-image').on("click", startUpload);
     $('#output-update').on("click", outputUpdate);
     $('#input-file-select').on("change", importImage);

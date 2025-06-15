@@ -79,7 +79,7 @@
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#sharpen" data-toggle="tab">Sharpen</a></li>
                                     <li><div class="dropdown-divider custom-divider"></div></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#threshold" data-toggle="tab">Threshold</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#sobel" data-toggle="tab">Sobel Edge</a></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#edge-detection" data-toggle="tab">Edge Detection</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -243,13 +243,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="sobel">
+                            <div role="tabpanel" class="tab-pane" id="edge-detection">
                                 <div class="container-fluid">
+                                    <div class="row pt-3">
+                                        <label for="edge-detect-type">Edge Type:</label>
+                                        <select class="custom-select" id="edge-detect-type">
+                                            <option value="sobel">Sobel Edge</option>
+                                            <option value="prewitt">Prewitt Edge</option>
+                                        </select>
+                                    </div>
+                                    <div class="row pt-3">
+                                        <label for="edge-threshold">Apply Thresholding:</label>
+                                        <div class="input-group custom-toggle">
+                                            <input class="form-control toggle-control" id="edge-threshold" type="checkbox" data-toggle="toggle" data-toggle-target="sobel-threshold-value"/>
+                                        </div>
+                                    </div>
                                     <div class="row pt-3">
                                         <label for="sobel-threshold-value">Threshold:</label>
                                         <div class="input-group">
                                             <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="sobel-threshold-value" type="range" value="0" min="0" max="1000" step="1"
+                                                <input class="custom-range" id="sobel-threshold-value" type="range" value="0" min="0" max="255" step="1"
                                                 oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
                                             </div>
                                             <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
