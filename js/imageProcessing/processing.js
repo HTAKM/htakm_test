@@ -34,14 +34,6 @@ let basicEffects = {
         }
         return input;
     }},
-    negation: {apply: (input, info) => {
-        for (let i = 0; i < input.length; i += 4) {
-            input[i]   = 255 - input[i];
-            input[i+1] = 255 - input[i+1];
-            input[i+2] = 255 - input[i+2];
-        }
-        return input;
-    }},
     grayscale: {apply: (input, info) => {
         const option = $("#grayscale-type").val();
         let avg;
@@ -63,18 +55,6 @@ let basicEffects = {
         }
         return input;
     }},
-    threshold: {apply: (input, info) => {
-        const threshold = parseInt($("#threshold-value").val());
-        let avg;
-        for (let i = 0; i < input.length; i += 4) {
-            avg = (input[i] + input[i+1] + input[i+2]) / 3;
-            input[i]   =
-            input[i+1] = 
-            input[i+2] = (avg > threshold) ? 255 : (avg == threshold) ? 128 : 0;
-            input[i+3] = 255;
-        }
-        return input;
-    }},
     brightness: {apply: (input, info) => {
         const offset = parseInt($("#brightness-offset").val());
         const factor = parseFloat($("#contrast-factor").val());
@@ -85,6 +65,14 @@ let basicEffects = {
             input[i]   = (input[i] > 255)   ? 255 : (input[i] < 0)   ? 0 : input[i];
             input[i+1] = (input[i+1] > 255) ? 255 : (input[i+1] < 0) ? 0 : input[i+1];
             input[i+2] = (input[i+2] > 255) ? 255 : (input[i+2] < 0) ? 0 : input[i+2];
+        }
+        return input;
+    }},
+    negation: {apply: (input, info) => {
+        for (let i = 0; i < input.length; i += 4) {
+            input[i]   = 255 - input[i];
+            input[i+1] = 255 - input[i+1];
+            input[i+2] = 255 - input[i+2];
         }
         return input;
     }},
@@ -163,6 +151,18 @@ let basicEffects = {
         }
         return input;
     }},
+    threshold: {apply: (input, info) => {
+        const threshold = parseInt($("#threshold-value").val());
+        let avg;
+        for (let i = 0; i < input.length; i += 4) {
+            avg = (input[i] + input[i+1] + input[i+2]) / 3;
+            input[i]   =
+            input[i+1] = 
+            input[i+2] = (avg > threshold) ? 255 : (avg == threshold) ? 128 : 0;
+            input[i+3] = 255;
+        }
+        return input;
+    }},
     sobel: {apply: (input, info) => {
         const w = info.w, h = info.h;
         const threshold = parseInt($("#sobel-threshold-value").val());
@@ -204,17 +204,14 @@ function applyBasicOperation() {
         case "show-component":
             currentEffect = basicEffects.showComponent;
             break;
-        case "negation": 
-            currentEffect = basicEffects.negation; 
-            break;
         case "grayscale":
             currentEffect = basicEffects.grayscale;
             break;
-        case "threshold":
-            currentEffect = basicEffects.threshold;
-            break;
         case "brightness":
             currentEffect = basicEffects.brightness;
+            break;
+        case "negation": 
+            currentEffect = basicEffects.negation; 
             break;
         case "posterization":
             currentEffect = basicEffects.posterization;
@@ -224,6 +221,9 @@ function applyBasicOperation() {
             break;
         case "sharpen":
             currentEffect = basicEffects.sharpen;
+            break;
+        case "threshold":
+            currentEffect = basicEffects.threshold;
             break;
         case "sobel":
             currentEffect = basicEffects.sobel;

@@ -70,13 +70,15 @@
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category active" href="#no-op" data-toggle="tab">No operation</a></li>
                                     <li><div class="dropdown-divider custom-divider"></div></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#show-component" data-toggle="tab">Show Individual Colour Component</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#negation" data-toggle="tab">Negation</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#grayscale" data-toggle="tab">Grayscale</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#threshold" data-toggle="tab">Threshold</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#brightness" data-toggle="tab">Brightness</a></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#negation" data-toggle="tab">Negation</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#posterization" data-toggle="tab">Posterization</a></li>
+                                    <li><div class="dropdown-divider custom-divider"></div></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#blur" data-toggle="tab">Blur</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#sharpen" data-toggle="tab">Sharpen</a></li>
+                                    <li><div class="dropdown-divider custom-divider"></div></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#threshold" data-toggle="tab">Threshold</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#sobel" data-toggle="tab">Sobel Edge</a></li>
                                 </ul>
                             </li>
@@ -102,13 +104,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="negation">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <p>No parameters available.</p>
-                                    </div>
-                                </div>
-                            </div>
                             <div role="tabpanel" class="tab-pane" id="grayscale">
                                 <div class="container-fluid">
                                     <div class="row pt-3">
@@ -118,20 +113,6 @@
                                             <option value="hsv-value">HSV Value</option>
                                             <option value="luminance">Luminance</option>
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="threshold">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="threshold-value">Threshold:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="threshold-value" type="range" value="0" min="0" max="255" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +137,13 @@
                                             </div>
                                             <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="negation">
+                                <div class="container-fluid">
+                                    <div class="row pt-3">
+                                        <p>No parameters available.</p>
                                     </div>
                                 </div>
                             </div>
@@ -237,6 +225,20 @@
                                         <label for="sharpen-details-only">Show only details (Do not show changes in alpha mask):</label>
                                         <div class="input-group custom-toggle">
                                             <input class="form-control toggle-control" id="sharpen-details-only" type="checkbox" data-toggle="toggle"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="threshold">
+                                <div class="container-fluid">
+                                    <div class="row pt-3">
+                                        <label for="threshold-value">Threshold:</label>
+                                        <div class="input-group">
+                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                                <input class="custom-range" id="threshold-value" type="range" value="0" min="0" max="255" step="1"
+                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                            </div>
+                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
                                         </div>
                                     </div>
                                 </div>
