@@ -200,7 +200,7 @@ let basicEffects = {
         }
         return input;
     }},
-    histStretch: {apply: (input, info) => {
+    histEqual: {apply: (input, info) => {
         const rF = freqHist(input, 'r'), gF = freqHist(input, 'g'), bF = freqHist(input, 'b');
         const rMax = maxFreq(rF), rMin = minFreq(rF);
         const gMax = maxFreq(gF), gMin = minFreq(gF);
@@ -262,8 +262,8 @@ function applyBasicOperation() {
         case "edge-detection":
             currentEffect = basicEffects.edgeDetect;
             break;
-        case "histogram-stretching":
-            currentEffect = basicEffects.histStretch;
+        case "histogram-equalization":
+            currentEffect = basicEffects.histEqual;
             break;
         default:
             return;
