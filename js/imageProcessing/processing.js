@@ -201,35 +201,71 @@ let basicEffects = {
         return input;
     }},
     histEqual: {apply: (input, info) => {
-        const option = $("#histogram-equalization-type").val();
+        const option = $("#histogram-modification-type").val();
         let p;
         switch (option) {
-            case "rgb-stretch":
+            case "rgb-stretch": {
                 const rF = freqHist(input, 'red'), gF = freqHist(input, 'green'), bF = freqHist(input, 'blue');
                 const rMax = maxFreq(rF), rMin = minFreq(rF);
                 const gMax = maxFreq(gF), gMin = minFreq(gF);
                 const bMax = maxFreq(bF), bMin = minFreq(bF);
                 for (let i = 0; i < input.length; i += 4) {
-                    p = perc(input[i], rMin, rMax);
-                    input[i] = lerp(0, 255, p);
+                    p = perc(input[i],     rMin, rMax);
+                    input[i] = Math.round(lerp(0, 255, p));
                     p = perc(input[i + 1], gMin, gMax);
-                    input[i + 1] = lerp(0, 255, p);
+                    input[i + 1] = Math.round(lerp(0, 255, p));
                     p = perc(input[i + 2], bMin, bMax);
-                    input[i + 2] = lerp(0, 255, p);
+                    input[i + 2] = Math.round(lerp(0, 255, p));
                 }
                 break;
-            case "gray-stretch":
-                const freq = freqHist(input, 'gray'), fMax = maxFreq(freq), fMin = minFreq(freq);
-                let avg;
+            }
+            case "gray-stretch": {
+                const freq = freqHist(input, 'gray'); 
+                const fMax = maxFreq(freq), fMin = minFreq(freq);
                 for (let i = 0; i < input.length; i += 4) {
-                    avg = (input[i] + input[i+1] + input[i+2]) / 3;
-                    p = perc(input[i], fMin, fMax);
-                    input[i] = lerp(0, 255, p);
+                    p = perc(input[i],     fMin, fMax);
+                    input[i] = Math.round(lerp(0, 255, p));
                     p = perc(input[i + 1], fMin, fMax);
-                    input[i + 1] = lerp(0, 255, p);
+                    input[i + 1] = Math.round(lerp(0, 255, p));
                     p = perc(input[i + 2], fMin, fMax);
-                    input[i + 2] = lerp(0, 255, p);
+                    input[i + 2] = Math.round(lerp(0, 255, p));
                 }
+                break;
+            }
+            case "rgb-cum-equal": {
+                let rF = freqHist(input, 'red'), gF = freqHist(input, 'green'), bF = freqHist(input, 'blue');
+                for (let v = 1; v < rF.length; ++v) {
+                    rF[v] += rF[v-1];
+                    gF[v] += gF[v-1];
+                    bF[v] += bF[v-1];
+                }
+                const rMax = maxFreq(rF), rMin = minFreq(rF);
+                const gMax = maxFreq(gF), gMin = minFreq(gF);
+                const bMax = maxFreq(bF), bMin = minFreq(bF);
+                for (let i = 0; i < input.length; i += 4) {
+                    p = perc(rF[input[i]],     rF[rMin], rF[rMax]);
+                    input[i] = Math.round(lerp(0, 255, p));
+                    p = perc(gF[input[i + 1]], gF[gMin], gF[gMax]);
+                    input[i + 1] = Math.round(lerp(0, 255, p));
+                    p = perc(bF[input[i + 2]], bF[bMin], bF[bMax]);
+                    input[i + 2] = Math.round(lerp(0, 255, p));
+                }
+                break;
+            }
+            case "gray-cum-equal": {
+                let freq = freqHist(input, 'gray');
+                for (let v = 1; v < freq.length; ++v) freq[v] += freq[v-1];
+                const fMax = maxFreq(freq), fMin = minFreq(freq);
+                for (let i = 0; i < input.length; i += 4) {
+                    p = perc(freq[input[i]],     freq[fMin], freq[fMax]);
+                    input[i] = Math.round(lerp(0, 255, p));
+                    p = perc(freq[input[i + 1]], freq[fMin], freq[fMax]);
+                    input[i + 1] = Math.round(lerp(0, 255, p));
+                    p = perc(freq[input[i + 2]], freq[fMin], freq[fMax]);
+                    input[i + 2] = Math.round(lerp(0, 255, p));
+                }
+                break;
+            }
         }
         return input;
     }}
@@ -279,7 +315,7 @@ function applyBasicOperation() {
         case "edge-detection":
             currentEffect = basicEffects.edgeDetect;
             break;
-        case "histogram-equalization":
+        case "histogram-modification":
             currentEffect = basicEffects.histEqual;
             break;
         default:

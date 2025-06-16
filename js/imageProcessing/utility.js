@@ -160,17 +160,17 @@ function freqHist(input, mode='red') {
     for (let i = 0; i < input.length; i += 4) {
         switch (mode) {
             case 'red':
-                ++freq[parseInt(input[i])];
+                ++freq[Math.round(input[i])];
                 break;
             case 'green':
-                ++freq[parseInt(input[i+1])];
+                ++freq[Math.round(input[i+1])];
                 break;
             case 'blue':
-                ++freq[parseInt(input[i+2])];
+                ++freq[Math.round(input[i+2])];
                 break;
             case 'gray':
                 let avg = (input[i] + input[i+1] + input[i+2]) / 3;
-                ++freq[parseInt(avg)];
+                ++freq[Math.round(avg)];
                 break;
         }
     }

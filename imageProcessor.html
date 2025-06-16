@@ -81,7 +81,7 @@
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#threshold" data-toggle="tab">Threshold</a></li>
                                     <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#edge-detection" data-toggle="tab">Edge Detection</a></li>
                                     <li><div class="dropdown-divider custom-divider"></div></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#histogram-equalization" data-toggle="tab">Histogram Equalization</a></li>
+                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#histogram-modification" data-toggle="tab">Histogram Modification</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -272,13 +272,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="histogram-equalization">
+                            <div role="tabpanel" class="tab-pane" id="histogram-modification">
                                 <div class="container-fluid">
                                     <div class="row pt-3">
-                                        <label for="histogram-equalization-type">Type:</label>
-                                        <select class="custom-select" id="histogram-equalization-type">
+                                        <label for="histogram-modification-type">Type:</label>
+                                        <select class="custom-select" id="histogram-modification-type">
                                             <option value="rgb-stretch">RGB Stretching</option>
                                             <option value="gray-stretch">Averging Stretching</option>
+                                            <option value="rgb-cum-equal">RGB Cumulative Equalization</option>
+                                            <option value="gray-cum-equal">Averging Cumulative Equalization</option>
                                         </select>
                                     </div>
                                 </div>
