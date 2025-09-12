@@ -14,7 +14,7 @@
 }
 \date{
 	Last major change: August 30, 2024\\
-	Last small update (fixed typo): August 30, 2024
+	Last small update (fixed typo): September 12, 2025
 }
 \begin{document}
 \maketitle
@@ -31,7 +31,7 @@
     \textbf{Difference} between vectors is $\mathbf{a}-\mathbf{b}=\mathbf{a}+(-\mathbf{b})$.
 \end{defn}
 \begin{lem}
-    We have the following properties.
+    The following properties hold:
     \begin{enumerate}
         \item Commutative rule: $\mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}$
         \item Associative rule: $(\mathbf{a}+\mathbf{b})+\mathbf{c}=\mathbf{a}+(\mathbf{b}+\mathbf{c})$
@@ -39,19 +39,19 @@
     \end{enumerate}
 \end{lem}
 \begin{defn}(\textbf{Dot product})
-    Let $\mathbf{a}=\left<a_{1},a_{2},a_{3}\right>$ and $\mathbf{b}=\left<b_{1},b_{2},b_{3}\right>$. Dot product between vectors $\mathbf{a}$ and $\mathbf{b}$ is
+    Let $\mathbf{a}=\left<a_{1},a_{2},a_{3}\right>$ and $\mathbf{b}=\left<b_{1},b_{2},b_{3}\right>$. The dot product between vectors $\mathbf{a}$ and $\mathbf{b}$ is defined as:
     \begin{equation*}
         \mathbf{a}\cdot\mathbf{b}=a_{1}b_{1}+a_{2}b_{2}+a_{3}b_{3}
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Length})
-    Let $\mathbf{a}=\left<a_{1},a_{2},a_{3}\right>$. Length of vector $\mathbf{a}$ is
+    Let $\mathbf{a}=\left<a_{1},a_{2},a_{3}\right>$. The length of vector $\mathbf{a}$ is given by:
     \begin{equation*}
         \abs{\mathbf{a}}=\sqrt{\mathbf{a}\cdot\mathbf{a}}=\sqrt{a_{1}^{2}+a_{2}^{2}+a_{3}^{2}}
     \end{equation*}
 \end{defn}
 \begin{lem}
-    We have the following properties.
+    The following properties hold:
     \begin{enumerate}
         \item $\mathbf{a}\cdot\mathbf{b}=\mathbf{b}\cdot\mathbf{a}$
         \item $(\mathbf{a}+\mathbf{b})\cdot\mathbf{c}=\mathbf{a}\cdot\mathbf{c}+\mathbf{b}\cdot\mathbf{c}$
@@ -60,7 +60,7 @@
     \end{enumerate}
 \end{lem}
 \begin{thm}
-    Let $\mathbf{a}=\left<a_{1},a_{2},a_{3}\right>$ and $\mathbf{b}=\left<b_{1},b_{2},b_{3}\right>$ be two vectors in $\mathbb{R}^{3}$, and $\theta$ be angle between two vectors. Then
+    Let $\mathbf{a}=\left<a_{1},a_{2},a_{3}\right>$ and $\mathbf{b}=\left<b_{1},b_{2},b_{3}\right>$ be two vectors in $\mathbb{R}^{3}$, and $\theta$ be the angle between them. Then:
     \begin{equation*}
         \mathbf{a}\cdot\mathbf{b}=\abs{\mathbf{a}}\abs{\mathbf{b}}\cos\theta
     \end{equation*}
@@ -71,25 +71,25 @@
 
 \newpage
 \begin{defn}(\textbf{Projection})
-    Let $\mathbf{a}$ and $\mathbf{b}$ be two vectors in $\mathbf{R}^{3}$. \textbf{Scalar projection} of $\mathbf{b}$ onto $\mathbf{a}$ is the signed length
+    Let $\mathbf{a}$ and $\mathbf{b}$ be two vectors in $\mathbf{R}^{3}$. The \textbf{scalar projection} of $\mathbf{b}$ onto $\mathbf{a}$ is the signed length:
     \begin{equation*}
         \comp_{\mathbf{a}}(\mathbf{b})=\frac{\mathbf{a}\cdot\mathbf{b}}{\abs{\mathbf{a}}}
     \end{equation*}
-    \textbf{Vector projection} of $\mathbf{b}$ onto $\mathbf{a}$ is a vector
+    The \textbf{vector projection} of $\mathbf{b}$ onto $\mathbf{a}$ is a vector:
     \begin{equation*}
         \proj_{\mathbf{a}}(\mathbf{b})=\comp_{\mathbf{a}}(\mathbf{b})\frac{\mathbf{a}}{\abs{\mathbf{a}}}=\frac{\mathbf{a}\cdot\mathbf{b}}{\abs{\mathbf{a}}^{2}}\mathbf{a}
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Cross product})
-    Let $\mathbf{a}=a_{1}\mathbf{i}+a_{2}\mathbf{j}+a_{3}\mathbf{k}$ and $\mathbf{b}=b_{1}\mathbf{i}+b_{2}\mathbf{j}+b_{3}\mathbf{k}$ be vectors in $\mathbb{R}^{3}$ with angle $\theta$ between them. Cross product $\mathbf{a}\times\mathbf{b}$ between $\mathbf{a}$ and $\mathbf{b}$ is defined as a vector such that
+    Let $\mathbf{a}=a_{1}\mathbf{i}+a_{2}\mathbf{j}+a_{3}\mathbf{k}$ and $\mathbf{b}=b_{1}\mathbf{i}+b_{2}\mathbf{j}+b_{3}\mathbf{k}$ be vectors in $\mathbb{R}^{3}$ with angle $\theta$ between them. The cross product $\mathbf{a}\times\mathbf{b}$ between $\mathbf{a}$ and $\mathbf{b}$ is defined as a vector such that
     \begin{enumerate}
         \item Length $\abs{\mathbf{a}\times\mathbf{b}}=\abs{\mathbf{a}}\abs{\mathbf{b}}\sin\theta$
-        \item Cross product $\mathbf{a}\times\mathbf{b}$ is orthogonal to both $\mathbf{a}$ and $\mathbf{b}$
+        \item The cross product $\mathbf{a}\times\mathbf{b}$ is orthogonal to both $\mathbf{a}$ and $\mathbf{b}$
         \item Direction is determined by the right-hand grab rule
     \end{enumerate}
 \end{defn}
 \begin{lem}
-    We have the following properties.
+    The following properties hold:
     \begin{enumerate}
         \item $\mathbf{a}\times\mathbf{b}=-\mathbf{b}\times\mathbf{a}$
         \item $(\mathbf{a}+\mathbf{b})\times\mathbf{c}=\mathbf{a}\times\mathbf{c}+\mathbf{b}\times\mathbf{c}$
@@ -108,16 +108,16 @@
     \end{equation*}
 \end{thm}
 \begin{lem}
-    We have the following properties.
+    The following properties hold:
     \begin{enumerate}
-        \item Area of parallelogram formed by $\mathbf{a}$ and $\mathbf{b}$ is $\abs{\mathbf{a}\times\mathbf{b}}$.
-        \item Area of triangle formed by $\mathbf{a}$ and $\mathbf{b}$ is $\frac{1}{2}\abs{\mathbf{a}\times\mathbf{b}}$
+        \item Area of the parallelogram formed by $\mathbf{a}$ and $\mathbf{b}$ is $\abs{\mathbf{a}\times\mathbf{b}}$.
+        \item Area of the triangle formed by $\mathbf{a}$ and $\mathbf{b}$ is $\frac{1}{2}\abs{\mathbf{a}\times\mathbf{b}}$
         \item $\mathbf{a}\times\mathbf{b}=\mathbf{0}$ if and only if $\mathbf{a}$ and $\mathbf{b}$ are parallel.
-        \item Volume of parallelepiped spanned by $\mathbf{a}$, $\mathbf{b}$ and $\mathbf{c}$ is $\abs{\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})}$.
+        \item Volume of the parallelepiped spanned by $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ is $\abs{\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})}$.
     \end{enumerate}
 \end{lem}
 \begin{defn}(Parametric equation of a line)
-    Suppose the a line $L$ passes through the point $P_{0}(x_{0},y_{0},z_{0})$ and is parallel to a vector $\mathbf{v}=\left<v_{1},v_{2},v_{3}\right>$. Parametric equation is given by
+    Suppose a line $L$ passes through the point $P_{0}(x_{0},y_{0},z_{0})$ and is parallel to a vector $\mathbf{v}=\left<v_{1},v_{2},v_{3}\right>$. The parametric equation is given by
     \begin{equation*}
         \begin{cases}
             x=x_{0}+tv_{1}\\
@@ -154,7 +154,7 @@
     \end{enumerate}
 \end{thm}
 \begin{defn}(Parametric equation of a curve)
-    Parametric equation of a curve is of form
+    A parametric equation of a curve is of the form
     \begin{align*}
         &\begin{cases}
             x=f(t)\\
@@ -164,13 +164,13 @@
     \end{align*}
 \end{defn}
 \begin{defn}(Derivatives of parametric curves)
-    Derivatives of parametric curve is given by
+    The derivative of a parametric curve is given by
     \begin{equation*}
         \mathbf{r}'(t)=f'(t)\mathbf{i}+g'(t)\mathbf{j}+h'(t)\mathbf{k}
     \end{equation*}
 \end{defn}
 \begin{lem}
-    We have the following properties.
+    The following properties hold:
     \begin{enumerate}
         \item $\odv{}{t}(f(t)\mathbf{u}(t))=f'(t)\mathbf{u}(t)+f(t)\mathbf{u}'(t))$
         \item $\odv{}{t}(\mathbf{u}(t)\cdot\mathbf{v}(t))=\mathbf{u}'(t)\cdot\mathbf{v}(t)+\mathbf{u}(t)\cdot\mathbf{v}'(t)$
@@ -212,13 +212,13 @@
     Combining multiple level curves give us a \textbf{contour map}.
 \end{defn}
 \begin{defn}(\textbf{Partial derivatives})
-    Given a function $f(x,y)$. Partial derivatives of $f(x,y)$ respect to $x$ and $y$ is
+    Given a function $f(x,y)$. The partial derivatives of $f(x,y)$ with respect to $x$ and $y$ are:
     \begin{align*}
         f_{x}(x,y)=\pdv*{f(x,y)}{x}&=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h} & f_{y}(x,y)=\pdv*{f(x,y)}{y}&=\lim_{h\to 0}\frac{f(x,y+h)-f(x,y)}{h}
     \end{align*}
 \end{defn}
 \begin{defn}(\textbf{Second partial derivatives})
-    Second partial derivatives are defined by
+    The second partial derivatives are defined as follows:
     \begin{align*}
         f_{xx}&=\pdv[order={2}]{f}{x}=\pdv*{\pdv{f}{x}}{x} & f_{xy}&=\pdv{f}{y,x}=\pdv*{\pdv{f}{x}}{y} & f_{yx}&=\pdv{f}{x,y}=\pdv*{\pdv{f}{y}}{x} & f_{yy}&=\pdv[order={2}]{f}{y}=\pdv*{\pdv{f}{y}}{y}
     \end{align*}
@@ -233,37 +233,37 @@
     \end{equation*}
 \end{lem}
 \begin{defn}(\textbf{Tangent plane})
-    Given a differentiable function $f(x,y,z)$. Assume that the function passes through $P_{0}(x_{0},y_{0},z_{0})$ Let $\nabla f=f_{x}\mathbf{i}+f_{y}\mathbf{j}+f_{z}\mathbf{k}$. Tangent plane of $f$ on $P_{0}$ is given by
+    Given a differentiable function $f(x,y,z)$. Assume that the function passes through $P_{0}(x_{0},y_{0},z_{0})$ Let $\nabla f=f_{x}\mathbf{i}+f_{y}\mathbf{j}+f_{z}\mathbf{k}$. The tangent plane of $f$ at $P_{0}$ is given by
     \begin{equation*}
         f_{x}(x_{0},y_{0},z_{0})(x-x_{0})+f_{y}(x_{0},y_{0},z_{0})(y-y_{0})+f_{z}(x_{0},y_{0},z_{0})(z-z_{0})=0
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Linear approximation})
-    Given a function $f$. Linear approximation of $f$ at $(x_{0},y_{0})$ is
+    Given a function $f$. The linear approximation of $f$ at $(x_{0},y_{0})$ is
     \begin{equation*}
         L(x,y)=f(x_{0},y_{0})+f_{x}(x_{0},y_{0})(x-x_{0})+f_{y}(x_{0},y_{0})(y-y_{0})
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Directional derivative})
-    Given a unit direction $\mathbf{u}-u_{1}\mathbf{i}+u_{2}\mathbf{j}$ and a function $f(x,y)$. Directional derivative of $f$ in the direction of $\mathbf{u}$ at point $(x,y)$ is
+    Given a unit direction $\mathbf{u}-u_{1}\mathbf{i}+u_{2}\mathbf{j}$ and a function $f(x,y)$. The directional derivative of $f$ in the direction of $\mathbf{u}$ at point $(x,y)$ is
     \begin{equation*}
         D_{\mathbf{u}}f(x,y)=\left.\odv{}{t}f(x+tu_{1},y+tu_{2})\right|_{t=0}
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Gradient vector})
-    Given a differentiable function $f(x,y)$. Gradient vector of $f$ at $(x,y)$ is
+    Given a differentiable function $f(x,y)$. The gradient vector of $f$ at $(x,y)$ is
     \begin{equation*}
         \nabla f(x,y)=\pdv*{f(x,y)}{x}\mathbf{i}+\pdv*{f(x,y)}{y}\mathbf{j}
     \end{equation*}
 \end{defn}
 \begin{thm}
-    Given a differentiable function $f(x,y)$. Directional derivatives of $f$ at $(x,y)$ in the unit direction $\mathbf{u}$ is given by
+    Given a differentiable function $f(x,y)$. The directional derivative of $f$ at $(x,y)$ in the unit direction $\mathbf{u}$ is given by
     \begin{equation*}
         D_{\mathbf{u}}f(x,y)=\nabla f(x,y)\cdot\mathbf{u}
     \end{equation*}
 \end{thm}
 \begin{thm}
-    Given a differentiable function $f(x,y)$. Let $(a,b)$ be a point on the level curve $f(x,y)=c$. Gradient vector $\nabla f(a,b)$ is orthogonal to the level curve $f(x,y)=c$ at the point $(a,b)$.
+    Given a differentiable function $f(x,y)$. Let $(a,b)$ be a point on the level curve $f(x,y)=c$. The gradient vector $\nabla f(a,b)$ is orthogonal to the level curve $f(x,y)=c$ at the point $(a,b)$.
 \end{thm}
 \begin{thm}
     Given a differentiable function $f(x,y)$. The equation of the tangent plane for the graph $z=f(x,y)$ at the point $(x_{0},y_{0},f(x_{0},y_{0}))$ is given by
@@ -272,7 +272,7 @@
     \end{equation*}
 \end{thm}
 \begin{defn}(\textbf{Critical point})
-    Given a differentiable function $f(x,y)$. A point $(a,b)$ is a critical point if tangent plane at $(a,b)$ to the graph $z=f(x,y)$ is horizontal. This means that $f_{x}(a,b)=f_{y}(a,b)=0$ ($\nabla f(a,b)=\mathbf{0}$)
+    Given a differentiable function $f(x,y)$. A point $(a,b)$ is a critical point if the tangent plane at $(a,b)$ to the graph $z=f(x,y)$ is horizontal. This means that $f_{x}(a,b)=f_{y}(a,b)=0$ ($\nabla f(a,b)=\mathbf{0}$)
 \end{defn}
 \begin{thm}(Second derivative test)
     Let $f(x,y)$ be a differentiable function and $(x_{0},y_{0})$ be a critical point of $f$. Suppose that
@@ -322,7 +322,7 @@
     \end{equation*}
 \end{thm}
 \begin{thm}
-    Given a function $f(x,y)$. Surface are with equation $z=f(x,y)$ in region $D$ is given by
+    Given a function $f(x,y)$. The surface area with equation $z=f(x,y)$ in region $D$ is given by
     \begin{equation*}
         \iint_{D}\sqrt{(f_{x}(x,y))^{2}+(f_{y}(x,y))^{2}+1}\,dA
     \end{equation*}
@@ -342,13 +342,13 @@
 
 \chapter{Vector calculus}
 \begin{defn}(\textbf{Line integral of vector fields})
-    Given a continuous vector field $\mathbf{F}(x,y,z)$ and a path $C$ which is parametrized by $\mathbf{r}(t)$ and $t\in[a,b]$. Line integral of $\mathbf{F}$ over $C$ is
+    Given a continuous vector field $\mathbf{F}(x,y,z)$ and a path $C$ which is parametrized by $\mathbf{r}(t)$ and $t\in[a,b]$. The line integral of $\mathbf{F}$ over $C$ is
     \begin{equation*}
         \int_{C}\mathbf{F}\cdot d\mathbf{r}=\int_{a}^{b}\mathbf{F}\cdot\mathbf{r}'(t)\,dt
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Conservative} vector field)
-    A vector field $\mathbf{F}$ is conservative if and only if it is in form of $\mathbf{F}=\nabla f$ where $f$ is a scalar function. Function $f$ is the \textbf{potential function} of vector field $\mathbf{F}$.
+    A vector field $\mathbf{F}$ is conservative if and only if it is in the form of $\mathbf{F}=\nabla f$ where $f$ is a scalar function. The function $f$ is the \textbf{potential function} of the vector field $\mathbf{F}$.
 \end{defn}
 \begin{thm}
     Given a conservative vector field $\mathbf{F}=\nabla f$, where $f$ is a potential function. Along any path $C$ connecting from point $P_{0}(x_{0},y_{0},z_{0})$ to point $P_{1}(x_{1},y_{1},z_{1})$, the line integral is given by
@@ -373,7 +373,7 @@
     \end{equation*}
 \end{cor}
 \begin{defn}(\textbf{Curl})
-    Given a vector field $\mathbf{F}=F_{x}\mathbf{i}+F_{y}\mathbf{j}+F_{z}\mathbf{k}$. Curl of the vector field $\mathbf{F}$ is
+    Given a vector field $\mathbf{F}=F_{x}\mathbf{i}+F_{y}\mathbf{j}+F_{z}\mathbf{k}$. The curl of the vector field $\mathbf{F}$ is given by
     \begin{align*}
         \nabla\times\mathbf{F}&=\left(\pdv*{}{x}\mathbf{i}+\pdv*{}{y}\mathbf{j}+\pdv*{}{z}\mathbf{k}\right)\times(F_{x}\mathbf{i}+F_{y}\mathbf{j}+F_{z}\mathbf{k})\\
         &=\begin{vmatrix}
@@ -397,7 +397,7 @@
     \end{enumerate}
 \end{thm}
 \begin{defn}(\textbf{Simple closed curves})
-    A curve $C$ is simple closed curve if the two endpoints coincide and it does not intersect itself at any point other than endpoints.
+    A curve $C$ is a simple closed curve if the two endpoints coincide and it does not intersect itself at any point other than the endpoints.
 \end{defn}
 \begin{thm}(Green's Theorem)
     Let $C$ be a simple closed curve in $\mathbb{R}^{2}$ which is counter-clockwise oriented. Suppose the curve $C$ encloses region $R$. Let $\mathbf{F}(x,y)$ be a vector field which is defined and differentiable at every point in $R$. Then
@@ -406,27 +406,27 @@
     \end{equation*}
 \end{thm}
 \begin{defn}(\textbf{Surface integrals})
-    Given a surface $S$ parametrized by $\mathbf{r}(u,v)$ with $u\in[a,b]$ and $v\in[c,d]$, and a continuous, scaled-valued function $f(x,y,z)$. Surface integral of $f$ over surface $S$ is
+    Given a surface $S$ parametrized by $\mathbf{r}(u,v)$ with $u\in[a,b]$ and $v\in[c,d]$, and a continuous, scaled-valued function $f(x,y,z)$. The surface integral of $f$ over the surface $S$ is
     \begin{equation*}
         \iint_{S}f\,dS=\int_{c}^{d}\int_{a}^{b}f(\mathbf{r}(u,v))\abs{\pdv{\mathbf{r}}{u}\times\pdv{\mathbf{r}}{v}}\,du\,dv
     \end{equation*}
 \end{defn}
 \begin{defn}(\textbf{Surface flux})
-    Given a vector field $\mathbf{F}$ and a surface $S$. Surface flux of $\mathbf{F}$ through $S$ is
+    Given a vector field $\mathbf{F}$ and a surface $S$. The surface flux of $\mathbf{F}$ through $S$ is
     \begin{equation*}
         \iint_{S}\mathbf{F}\cdot\mathbf{\hat{n}}\,dS
     \end{equation*}
     where $\mathbf{\hat{n}}$ is the unit normal vector to $S$ at each point.
 \end{defn}
 \begin{thm}
-    Let $\mathbf{r}(u,v)$, with $u\in[a,b]$ and $v\in[c,d]$, be a parametrization of a surface $S$. Surface flux of a vector field $\mathbf{F}$ through $S$ can be computed by
+    Let $\mathbf{r}(u,v)$, with $u\in[a,b]$ and $v\in[c,d]$, be a parametrization of a surface $S$. The surface flux of a vector field $\mathbf{F}$ through $S$ can be computed by
     \begin{equation*}
         \iint_{S}\mathbf{F}\cdot\mathbf{\hat{n}}\,dS=\pm\int_{c}^{d}\int_{a}^{b}\mathbf{F}\cdot\left(\pdv{\mathbf{r}}{u}\times\pdv{\mathbf{r}}{v}\right)\,du\,dv
     \end{equation*}
     where the sign depends on the chosen convention of $\mathbf{\hat{n}}$.
 \end{thm}
 \begin{defn}(\textbf{Divergence})
-    Given a differentiable vector field $\mathbf{F}=F_{x}\mathbf{i}+F_{y}\mathbf{j}+F_{z}\mathbf{k}$ in $\mathbb{R}^{3}$. Divergence of $\mathbf{F}$ is
+    Given a differentiable vector field $\mathbf{F}=F_{x}\mathbf{i}+F_{y}\mathbf{j}+F_{z}\mathbf{k}$ in $\mathbb{R}^{3}$. The divergence of $\mathbf{F}$ is given by
     \begin{equation*}
         \nabla\cdot\mathbf{F}=\pdv{F_{x}}{x}+\pdv{F_{y}}{y}+\pdv{F_{z}}{z}
     \end{equation*}
