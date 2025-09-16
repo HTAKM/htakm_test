@@ -1,5 +1,6 @@
 ﻿Year,Term,Prefix,Code,Name,Credit,Grade
 1,Fall,COMP,1021,Introduction to Computer Science,3,A+
+1,Fall,CORE,1402,English Language for University Studies,3,T
 1,Fall,LIFS,1901,General Biology I,3,B-
 1,Fall,MATH,1013,Calculus IB,3,A
 1,Fall,MECH,1906,Mechanical Engineering for Modern Life,3,B+
@@ -39,5 +40,12 @@
 3,Spring,COMP,4211,Machine Learning,3,B+
 3,Spring,COMP,4431,Multimedia Computing,3,B+
 3,Spring,COMP,4901Y,Large-Scale Machine Learning for Foundation Models,3,A
+3,Spring,EMIA,2020,Cross-disciplinary Design Thinking,3,T
+3,Spring,HUMA,1622,"Science, Technology and Society: Historical and Cultural Approaches",3,T
+3,Spring,LANG,1000BROAD,1000-level Course in Language,3,T
 3,Spring,MATH,3322,Matrix Computation,3,A
 3,Spring,MATH,3424,Regression Analysis,3,A-
+4,Fall,COMP,4421,Image Processing,3,
+4,Fall,COMP,4901B,Large Language Models,3,
+4,Fall,LANG,1416C,Effective Chinese Communication,3,
+4,Fall,MATH,3332,Data Analytic Tools,3,
