@@ -1,0 +1,13 @@
+/* Grouped color variables */
+:root {
+    --primary-color: purple;
+    --primary-hover-color: #600060;
+    --primary-active-color: #400040;
+    --secondary-color: #c978ee;
+    --background-color: #d9b4ea;
+    --highlight-color: #d4a5eb;
+    --header-background: #b95fdd;
+    --youtube-red: #bb0000;
+    --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --link-color: #6969bb;
+}
