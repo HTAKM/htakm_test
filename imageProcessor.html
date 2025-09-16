@@ -1,322 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta attribute="value" charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap4-toggle.min.css">
-        <link rel="stylesheet" href="css/header.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="css/specific.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>HU-HTAKM</title>
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light" aria-labelledby="top">
-                <a class="navbar-brand owner-name" href="#">HU-HTAKM</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://htakm.github.io/htakm_test/">Main</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://htakm.github.io/htakm_test/info">Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://htakm.github.io/htakm_test/blog">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://htakm.github.io/htakm_test/website">Link</a>
-                        </li>
-                    </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HU-HTAKM</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap4-toggle.min.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/specific.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light" aria-labelledby="top">
+        <a class="navbar-brand owner-name" href="#" aria-label="Homepage">HU-HTAKM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://htakm.github.io/htakm_test/" aria-label="Main page">Main</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://htakm.github.io/htakm_test/info" aria-label="Info page">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://htakm.github.io/htakm_test/blog" aria-label="Blog page">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://htakm.github.io/htakm_test/website" aria-label="Links page">Link</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container main">
+        <section class="row section mt-3" aria-labelledby="image-processing-section">
+            <div class="col">
+                <h5 id="input-image-title">Input Image:</h5>
+                <div class="d-flex justify-content-center">
+                    <canvas class="custom-image-visual" id="input" aria-label="Canvas displaying the input image"></canvas>
                 </div>
-            </nav>
-        </header>
-        <main>
-            <div class="main container">
-                <div class="row section mt-3">
-                    <div class="col">
-                        <h5>Input Image:</h5>
-                        <div class="d-flex justify-content-center">
-                            <canvas class="custom-image-visual" id="input"></canvas>
-                        </div>
-                        <div class="form-inline d-flex justify-content-center">
-                            <button id="change-input-image" class="btn btn-info btn-block custom-button align-canvas"><i class="fas fa-sync"></i> Change Input Image</button>
-                            <button id="output-update" class="btn btn-info btn-block custom-button align-canvas"><i class="fas fa-sync"></i> Update Output Image</button>
-                        </div>
-                        <h5>Output Image:</h5>
-                        <div class="d-flex justify-content-center">
-                            <canvas class="custom-image-visual" id="output"></canvas>
-                        </div>
-                        <div class="form-inline d-flex justify-content-center">
-                            <button id="replace-input-image" class="btn btn-info btn-block custom-button align-canvas"><i class="fas fa-sync"></i> Replace Input With Output Image</button>
-                            <button id="download-output-image" class="btn btn-info btn-block custom-button align-canvas"><i class="fas fa-sync"></i> Download Output Image</button>
-                        </div>
-                        <h5>Remark:</h5>
-                        <span id="remark"></span>
-                    </div>
-                    <div class="col">
-                        <ul class="nav nav-tabs nav-fill custom-tabs">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle custom-dropdown-toggle" data-toggle="dropdown" href="#">
-                                    Effect - <span class="title">No operation</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu custom-menu justify-content-center">
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category active" href="#no-op" data-toggle="tab">No operation</a></li>
-                                    <li><div class="dropdown-divider custom-divider"></div></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#show-component" data-toggle="tab">Show Individual Colour Component</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#grayscale" data-toggle="tab">Grayscale</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#brightness" data-toggle="tab">Brightness</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#negation" data-toggle="tab">Negation</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#posterization" data-toggle="tab">Posterization</a></li>
-                                    <li><div class="dropdown-divider custom-divider"></div></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#blur" data-toggle="tab">Blur</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#sharpen" data-toggle="tab">Sharpen</a></li>
-                                    <li><div class="dropdown-divider custom-divider"></div></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#threshold" data-toggle="tab">Threshold</a></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#edge-detection" data-toggle="tab">Edge Detection</a></li>
-                                    <li><div class="dropdown-divider custom-divider"></div></li>
-                                    <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#histogram-modification" data-toggle="tab">Histogram Modification</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="no-op">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <p>No parameters available.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="show-component">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="component-type">Component to see:</label>
-                                        <select class="custom-select" id="component-type">
-                                            <option value="red">Red</option>
-                                            <option value="green">Green</option>
-                                            <option value="blue">Blue</option>
-                                            <option value="alpha">Alpha</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="grayscale">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="grayscale-type">Grayscale Type:</label>
-                                        <select class="custom-select" id="grayscale-type">
-                                            <option value="averaging">Averaging</option>
-                                            <option value="hsv-value">HSV Value</option>
-                                            <option value="luminance">Luminance</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="brightness">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="contrast-factor">Contrast factor:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="contrast-factor" type="range" value="1" min="0" max="5" step="0.1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">1</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="brightness-offset">Brightness offset:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="brightness-offset" type="range" value="0" min="-255" max="255" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="negation">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <p>No parameters available.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="posterization">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="red-bit-depth">Red Bit depth:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="red-bit-depth" type="range" value="8" min="0" max="8" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="green-bit-depth">Green Bit depth:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="green-bit-depth" type="range" value="8" min="0" max="8" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="blue-bit-depth">Blue Bit depth:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="blue-bit-depth" type="range" value="8" min="0" max="8" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="blur">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="blur-size">Blur size:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="blur-size" type="range" value="3" min="1" max="7" step="2"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text > span').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;"><span>3</span> &times; <span>3</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="blur-type">Blur Type:</label>
-                                        <select class="custom-select" id="blur-type">
-                                            <option value="uniform-blur">Uniform Blur</option>
-                                            <option value="gaussian-blur">Gaussian Blur</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="sharpen">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="sharpen-type">Sharpen Type:</label>
-                                        <select class="custom-select" id="sharpen-type">
-                                            <option value="sharpen-kernel">Sharpen Kernel</option>
-                                            <option value="unsharp-mask">Unsharp Mask</option>
-                                        </select>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="sharpen-strength">Strength:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="sharpen-strength" type="range" value="0" min="0" max="5" step="0.1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="sharpen-details-only">Show only details (Do not show changes in alpha mask):</label>
-                                        <div class="input-group custom-toggle">
-                                            <input class="form-control toggle-control" id="sharpen-details-only" type="checkbox" data-toggle="toggle"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="threshold">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="threshold-value">Threshold:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="threshold-value" type="range" value="0" min="0" max="255" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="edge-detection">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="edge-detect-type">Edge Type:</label>
-                                        <select class="custom-select" id="edge-detect-type">
-                                            <option value="sobel">Sobel Edge</option>
-                                            <option value="prewitt">Prewitt Edge</option>
-                                        </select>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="edge-threshold">Apply Thresholding:</label>
-                                        <div class="input-group custom-toggle">
-                                            <input class="form-control toggle-control" id="edge-threshold" type="checkbox" data-toggle="toggle" data-toggle-target="sobel-threshold-value"/>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <label for="sobel-threshold-value">Threshold:</label>
-                                        <div class="input-group">
-                                            <div class="row mx-0 px-2 custom-range-set rounded-left">
-                                                <input class="custom-range" id="sobel-threshold-value" type="range" value="0" min="0" max="255" step="1"
-                                                oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
-                                            </div>
-                                            <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="histogram-modification">
-                                <div class="container-fluid">
-                                    <div class="row pt-3">
-                                        <label for="histogram-modification-type">Type:</label>
-                                        <select class="custom-select" id="histogram-modification-type">
-                                            <option value="rgb-stretch">RGB Stretching</option>
-                                            <option value="gray-stretch">Averging Stretching</option>
-                                            <option value="rgb-cum-equal">RGB Cumulative Equalization</option>
-                                            <option value="gray-cum-equal">Averging Cumulative Equalization</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-inline d-flex justify-content-center">
+                    <button id="change-input-image" class="btn btn-info btn-block custom-button align-canvas" aria-label="Change the input image">
+                        <i class="fas fa-sync" aria-hidden="true"></i> Change Input Image
+                    </button>
+                    <button id="output-update" class="btn btn-info btn-block custom-button align-canvas" aria-label="Update the output image">
+                        <i class="fas fa-sync" aria-hidden="true"></i> Update Output Image
+                    </button>
                 </div>
+
+                <h5 id="output-image-title">Output Image:</h5>
+                <div class="d-flex justify-content-center">
+                    <canvas class="custom-image-visual" id="output" aria-label="Canvas displaying the output image"></canvas>
+                </div>
+                <div class="form-inline d-flex justify-content-center">
+                    <button id="replace-input-image" class="btn btn-info btn-block custom-button align-canvas" aria-label="Replace input image with output image">
+                        <i class="fas fa-sync" aria-hidden="true"></i> Replace Input With Output Image
+                    </button>
+                    <button id="download-output-image" class="btn btn-info btn-block custom-button align-canvas" aria-label="Download the output image">
+                        <i class="fas fa-sync" aria-hidden="true"></i> Download Output Image
+                    </button>
+                </div>
+
+                <h5 id="remark-title">Remark:</h5>
+                <span id="remark" aria-labelledby="remark-title"></span>
             </div>
 
-            <input type="file" id="input-file-select" style="display: none">
-            <a id="output-file-select" style="display: none"></a>
-            <canvas id="input-memory" style="display: none"></canvas>
-            <canvas id="output-memory" style="display: none"></canvas>
-        </main>
-        <footer>
-            <div class="container d-flex">
-                <ul class="list-inline mx-auto justify-content-center">
-                    <li class="list-inline-item">
-                        <a title="My YouTube Channel" href="https://www.youtube.com/@huhtakm" class="fa fa-youtube-play" target="_blank"></a>HU-HTAKM (@huhtakm)
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="My Instagram" href="https://www.instagram.com/hu_htakm/" class="fa fa-instagram" target="_blank"></a>hu_htakm
+            <div class="col">
+                <ul class="nav nav-tabs nav-fill custom-tabs" role="tablist" aria-label="Image processing effects">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle custom-dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" aria-label="Select an image processing effect">
+                            Effect - <span class="title">No operation</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu custom-menu justify-content-center">
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category active" href="#no-op" data-toggle="tab" role="tab" aria-selected="true">No operation</a></li>
+                            <li><div class="dropdown-divider custom-divider"></div></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#show-component" data-toggle="tab" role="tab">Show Individual Colour Component</a></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#grayscale" data-toggle="tab" role="tab">Grayscale</a></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#brightness" data-toggle="tab" role="tab">Brightness</a></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#negation" data-toggle="tab" role="tab">Negation</a></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#posterization" data-toggle="tab" role="tab">Posterization</a></li>
+                            <li><div class="dropdown-divider custom-divider"></div></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#blur" data-toggle="tab" role="tab">Blur</a></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#sharpen" data-toggle="tab" role="tab">Sharpen</a></li>
+                            <li><div class="dropdown-divider custom-divider"></div></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#threshold" data-toggle="tab" role="tab">Threshold</a></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#edge-detection" data-toggle="tab" role="tab">Edge Detection</a></li>
+                            <li><div class="dropdown-divider custom-divider"></div></li>
+                            <li><a class="basicOp-dropdown-item dropdown-item effect-category" href="#histogram-modification" data-toggle="tab" role="tab">Histogram Modification</a></li>
+                        </ul>
                     </li>
                 </ul>
+
+                <div class="tab-content" aria-live="polite">
+                    <!-- Tab panes for each effect -->
+                    <div role="tabpanel" class="tab-pane active" id="no-op">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <p>No parameters available.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="show-component">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="component-type">Component to see:</label>
+                                <select class="custom-select" id="component-type" aria-label="Select a color component to display">
+                                    <option value="red">Red</option>
+                                    <option value="green">Green</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="alpha">Alpha</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="grayscale">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="grayscale-type">Grayscale Type:</label>
+                                <select class="custom-select" id="grayscale-type" aria-label="Select a grayscale conversion type">
+                                    <option value="averaging">Averaging</option>
+                                    <option value="hsv-value">HSV Value</option>
+                                    <option value="luminance">Luminance</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="brightness">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="contrast-factor">Contrast factor:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="contrast-factor" type="range" value="1" min="0" max="5" step="0.1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())" aria-label="Adjust contrast factor">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">1</span></div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="brightness-offset">Brightness offset:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="brightness-offset" type="range" value="0" min="-255" max="255" step="1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())" aria-label="Adjust brightness offset">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="negation">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <p>No parameters available.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="posterization">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="red-bit-depth">Red Bit depth:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="red-bit-depth" type="range" value="8" min="0" max="8" step="1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="green-bit-depth">Green Bit depth:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="green-bit-depth" type="range" value="8" min="0" max="8" step="1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="blue-bit-depth">Blue Bit depth:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="blue-bit-depth" type="range" value="8" min="0" max="8" step="1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">8</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="blur">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="blur-size">Blur size:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="blur-size" type="range" value="3" min="1" max="7" step="2"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text > span').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;"><span>3</span> &times; <span>3</span></div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="blur-type">Blur Type:</label>
+                                <select class="custom-select" id="blur-type">
+                                    <option value="uniform-blur">Uniform Blur</option>
+                                    <option value="gaussian-blur">Gaussian Blur</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="sharpen">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="sharpen-type">Sharpen Type:</label>
+                                <select class="custom-select" id="sharpen-type">
+                                    <option value="sharpen-kernel">Sharpen Kernel</option>
+                                    <option value="unsharp-mask">Unsharp Mask</option>
+                                </select>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="sharpen-strength">Strength:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="sharpen-strength" type="range" value="0" min="0" max="5" step="0.1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="sharpen-details-only">Show only details (Do not show changes in alpha mask):</label>
+                                <div class="input-group custom-toggle">
+                                    <input class="form-control toggle-control" id="sharpen-details-only" type="checkbox" data-toggle="toggle"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="threshold">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="threshold-value">Threshold:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="threshold-value" type="range" value="0" min="0" max="255" step="1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="edge-detection">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="edge-detect-type">Edge Type:</label>
+                                <select class="custom-select" id="edge-detect-type">
+                                    <option value="sobel">Sobel Edge</option>
+                                    <option value="prewitt">Prewitt Edge</option>
+                                </select>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="edge-threshold">Apply Thresholding:</label>
+                                <div class="input-group custom-toggle">
+                                    <input class="form-control toggle-control" id="edge-threshold" type="checkbox" data-toggle="toggle" data-toggle-target="sobel-threshold-value"/>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <label for="sobel-threshold-value">Threshold:</label>
+                                <div class="input-group">
+                                    <div class="row mx-0 px-2 custom-range-set rounded-left">
+                                        <input class="custom-range" id="sobel-threshold-value" type="range" value="0" min="0" max="255" step="1"
+                                        oninput="$(this).parents('.input-group').find('.input-group-text').html($(this).val())">
+                                    </div>
+                                    <div class="input-group-append"><span class="input-group-text d-block custom-range-visual" style="width: 4em; padding: 0.25rem; padding-bottom: 0rem;">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="histogram-modification">
+                        <div class="container-fluid">
+                            <div class="row pt-3">
+                                <label for="histogram-modification-type">Type:</label>
+                                <select class="custom-select" id="histogram-modification-type">
+                                    <option value="rgb-stretch">RGB Stretching</option>
+                                    <option value="gray-stretch">Averging Stretching</option>
+                                    <option value="rgb-cum-equal">RGB Cumulative Equalization</option>
+                                    <option value="gray-cum-equal">Averging Cumulative Equalization</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <nav class="nav justify-content-center">
-                <p>Go back to the <a href="#top">top</a></p>
-            </div>
-        </footer>
-        <script type="text/javascript" src="jquery/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap4-toggle.min.js"></script>
-        <script type="text/javascript" src="js/imageProcessing/main.js"></script>
-        <script type="text/javascript" src="js/imageProcessing/processing.js"></script>
-        <script type="text/javascript" src="js/imageProcessing/utility.js"></script>
-        <script type="text/javascript" src="js/imageProcessing/math.js"></script>
-    </body>
+        </section>
+    </div>
+
+    <input type="file" id="input-file-select" style="display: none" aria-label="Select an input file">
+    <a id="output-file-select" style="display: none" aria-label="Download the output file"></a>
+    <canvas id="input-memory" style="display: none" aria-hidden="true"></canvas>
+    <canvas id="output-memory" style="display: none" aria-hidden="true"></canvas>
+</main>
+
+<footer>
+    <div class="container d-flex">
+        <ul class="list-inline mx-auto justify-content-center">
+            <li class="list-inline-item">
+                <a title="My YouTube Channel" href="https://www.youtube.com/@huhtakm" class="fa fa-youtube-play"
+                   target="_blank" aria-label="YouTube Channel"></a> HU-HTAKM (@huhtakm)
+            </li>
+            <li class="list-inline-item">
+                <a title="My Instagram" href="https://www.instagram.com/hu_htakm/" class="fa fa-instagram"
+                   target="_blank" aria-label="Instagram Profile"></a> hu_htakm
+            </li>
+        </ul>
+    </div>
+    <nav class="nav justify-content-center">
+        <p>Go back to the <a href="#top" aria-label="Back to top">top</a></p>
+    </nav>
+</footer>
+
+<!-- Scripts -->
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="bootstrap/js/bootstrap4-toggle.min.js"></script>
+<script src="js/imageProcessing/main.js"></script>
+<script src="js/imageProcessing/processing.js"></script>
+<script src="js/imageProcessing/utility.js"></script>
+<script src="js/imageProcessing/math.js"></script>
+</body>
 </html>

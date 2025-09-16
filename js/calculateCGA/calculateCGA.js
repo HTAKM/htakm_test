@@ -1,52 +1,62 @@
-var rowCount = 1
+var rowCount = 1;
 $("#addRowBtn").click(function(){
     $("#courseForm").append(newRow());
     rowCount++;
-})
+});
 $("#deleteRowBtn").click(function(){
     if(rowCount > 1){
-        $("#courseForm").children().last().remove();
+        $("#row" + (rowCount - 1)).remove();
         rowCount--;
     }
-})
+});
 $("#submitBtn").click(function(){
-    $("#CGAResult").html(calculateCGA())
-})
+    const result = calculateCGA();
+    $("#CGAResult").html(result);
+});
 function newRow(){
     var newRow = 
-        '<div class="calCourseRows">' + 
-        '    <div class="form_course">' +
-        '        <label for="inputCourse'+rowCount+'"></label>' +
-        '        <input type="text" id="inputCourse'+rowCount+'" name="inputCourse" placeholder="COMP 1021">' +
+        '<div class="calCourseRows" id="row' + rowCount + '">' + 
+        '    <div class="form-group">' +
+        '        <input type="text" id="inputCourse' + rowCount + '" name="inputCourse" class="form-control" placeholder="COMP 1021" aria-label="Course Code">' +
         '    </div>' +
-        '    <div class="form_credit">' +
-        '        <label for="inputCredit'+rowCount+'"></label>' +
-        '        <input type="number" id="inputCredit'+rowCount+'" name="inputCredit" placeholder="3" min="0" max="30">' +
+        '    <div class="form-group">' +
+        '        <input type="number" id="inputCredit' + rowCount + '" name="inputCredit" class="form-control" placeholder="3" min="0" max="30" aria-label="Credits">' +
         '    </div>' +
-        '    <div class="form_grade">' +
-        '        <label for="inputGrade'+rowCount+'"></label>' +
-        '        <input type="text" id="inputGrade'+rowCount+'" name="inputGrade" placeholder="A+" maxlength="2">' +
+        '    <div class="form-group">' +
+        '        <input type="text" id="inputGrade' + rowCount + '" name="inputGrade" class="form-control" placeholder="A+" maxlength="2" aria-label="Grade">' +
         '    </div>' +
         '</div>';
     return newRow;
 }
 function calculateCGA(){
-    const validGrades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F", "AU", "CR", "DI", "DN", "IP", "P", "PP", "I", "PA", "PS", "T", "W", "HP", "LP", "U", "Y"];
+    const validGrades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F"];
+    const nonCGAGrades = ["P", "PP", "IP", "PA", "PS", "NP", "T", "W", "AU", "CR", "DI", "DN", "EX", "HP", "LP", "U", "Y"]; // Grades that do not count towards CGA
     let gradedCredits = 0;
     let totalCredits = 0;
     let totalGradePoints = 0.0;
-    let gradePoint = 0.0;
+
     for(let i = 0; i < rowCount; i++){
-        var courseInput = $('#inputCourse'+i).val()
-        var creditInput = $('#inputCredit'+i).val()
-        var gradeInput = $('#inputGrade'+i).val()
+        const courseInput = $(`#inputCourse${i}`).val();
+        const creditInput = $(`#inputCredit${i}`).val();
+        const gradeInput = $(`#inputGrade${i}`).val();
+
         if (!courseInput || !creditInput || !gradeInput){
-            continue
+            continue;
         }
-        var credits = parseInt(creditInput)
-        if (!validGrades.some(grade => (String(grade) == String(gradeInput)))) {
-            return "Invalid grade in Row " + (i+1)
+
+        const credits = parseInt(creditInput);
+
+        if (nonCGAGrades.includes(gradeInput)) {
+            // Skip grades that do not count towards CGA
+            totalCredits += credits; // Still add to total credits
+            continue;
         }
+
+        if (!validGrades.includes(gradeInput)) {
+            return `<p>Invalid grade in Row ${i + 1}</p>`;
+        }
+
+        let gradePoint = 0.0;
         switch(gradeInput.charAt(0)){
             case 'A':
                 gradePoint = 4.0; break;
@@ -58,28 +68,27 @@ function calculateCGA(){
                 gradePoint = 1.0; break;
             case 'F':
                 gradePoint = 0.0; break;
-            default:
-                totalCredits += credits;
-                continue;
         }
-        if(gradeInput.charAt(1) == '+'){
-            gradePoint += 0.3;
+
+        if(gradeInput.length > 1){
+            if(gradeInput.charAt(1) === '+'){
+                gradePoint += 0.3;
+            } else if(gradeInput.charAt(1) === '-'){
+                gradePoint -= 0.3;
+            }
         }
-        else if(gradeInput.charAt(1) == '-'){
-            gradePoint -= 0.3;
-        }
-        totalCredits += credits;
-        if(gradeInput.charAt(1) != ''){
-            continue;
-        }
+
         gradedCredits += credits;
         totalGradePoints += gradePoint * credits;
+        totalCredits += credits;
     }
-    if(totalCredits <= 0){
+
+    if(totalCredits === 0){
         return '<p>Credit is 0!</p>'; 
     }
-    let CGA = totalGradePoints / gradedCredits;
-    return '<p>Result:</p>' +
-           '<p>Number of credits: '+totalCredits+'</p>' + 
-           '<p>CGA: '+CGA+'</p>'
+
+    const CGA = (totalGradePoints / gradedCredits).toFixed(2);
+    return `<p>Result:</p>
+            <p>Number of credits: ${totalCredits}</p>
+            <p>CGA: ${CGA}</p>`;
 }
