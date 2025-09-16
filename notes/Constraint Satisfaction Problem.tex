@@ -27,11 +27,11 @@
 \begin{definition}
 	A \textbf{constraint satisfaction problem} is defined as:
 	\begin{enumerate}
-		\item $X_{1},X_{2},\cdots,X_{n}$: A set of variables
-		\item $D_{1},D_{2},\cdots,D_{n}$: A set of their corresponding domain of values ($X_{i}\in D_{i}$)
-		\item $C_{1},C_{2},\cdots,C_{m}$: A set of constraints
+		\item $X_{1},X_{2},\cdots,X_{n}$: A set of variables.
+		\item $D_{1},D_{2},\cdots,D_{n}$: A set of their corresponding domains of values ($X_{i}\in D_{i}$).
+		\item $C_{1},C_{2},\cdots,C_{m}$: A set of constraints.
 	\end{enumerate}
-	and the goal is to find a solution that satisfies all the constraints.
+	The goal is to find a solution that satisfies all the constraints.
 \end{definition}
 \begin{example}
 	\label{Map colouring problem}
@@ -39,9 +39,9 @@
 	\begin{figure}[h]
 		\begin{subfigure}[h]{0.64\textwidth}
 			\begin{description}[style=nextline]
-				\item[Variables:] $X_{1},\cdots,X_{10}$
-				\item[Domain:] $D_{i}=\{\text{Red},\text{Green},\text{Yellow},\text{Brown}\}$ for $i=1,\cdots,10$
-				\item[Constraint:] $X_{1}\neq X_{2}$, $X_{1}\neq X_{4}$, $X_{1}\neq X_{6}$, $X_{2}\neq X_{3}$, $X_{2}\neq X_{4}$, $\cdots$
+				\item[Variables:] $X_{1},\cdots,X_{10}$.
+				\item[Domain:] $D_{i}=\{\text{Red},\text{Green},\text{Yellow},\text{Brown}\}$ for $i=1,\cdots,10$.
+				\item[Constraint:] $X_{1}\neq X_{2}$, $X_{1}\neq X_{4}$, $X_{1}\neq X_{6}$, $X_{2}\neq X_{3}$, $X_{2}\neq X_{4}$, $\cdots$.
 				\item[Goal:] Assign a colour to all variables that satisfy all constraints.
 			\end{description}
 		\end{subfigure}
@@ -56,12 +56,12 @@
 	\begin{figure}[h]
 		\begin{subfigure}[h]{0.69\textwidth}
 			\begin{description}[style=nextline]
-				\item[Variables:] $G,B,A,M,S,L,E$
-				\item[Domain:] $D_{X}=\{0,1,\cdots,9\}$ for $X=G,\cdots,E$, $D_{C_{i}}=\{0,1\}$
-				\item[Constraint:] $\text{Alldiff}(G,B,A,M,S,L,E)$, $B\neq 0$, $G\neq 0$\\
-				$E+L=S+10C_{1}$, $S+L+C_{1}=E+10C_{2}$\\
+				\item[Variables:] $G,B,A,M,S,L,E$.
+				\item[Domain:] $D_{X}=\{0,1,\cdots,9\}$ for $X=G,\cdots,E$, $D_{C_{i}}=\{0,1\}$.
+				\item[Constraint:] $\text{Alldiff}(G,B,A,M,S,L,E)$, $B\neq 0$, $G\neq 0$,\\
+				$E+L=S+10C_{1}$, $S+L+C_{1}=E+10C_{2}$,\\
 				$2A+C_{2}=M+10C_{3}$, $2B+C_{3}=A+10C_{4}$, $G=C_{4}$,\\
-				where $C_{1},C_{2},C_{3},C_{4}\in\{0,1\}$
+				where $C_{1},C_{2},C_{3},C_{4}\in\{0,1\}$.
 				\item[Goal:] Assign a number to all variables that satisfy all constraints.
 			\end{description}
 		\end{subfigure}
@@ -72,16 +72,16 @@
 \end{example}
 
 \newpage
-There are varieties of CSP Constraints. These involves:
+There are various types of CSP constraints. These include:
 \begin{enumerate}
-	\item \textbf{Unary constraint}: Involves only a single variable. E.g. $B\neq 0$
-	\item \textbf{Binary constraint}: Involves pairs of variables. E.g. $X_{1}\neq X_{2}$
-	\item \textbf{High-order constraints}: Involves $3$ or more variables. E.g. $E+L=S+10C_{1}$
+	\item \textbf{Unary constraint}: Involves only a single variable, e.g., $B\neq 0$.
+	\item \textbf{Binary constraint}: Involves pairs of variables, e.g., $X_{1}\neq X_{2}$.
+	\item \textbf{High-order constraints}: Involves three or more variables, e.g., $E+L=S+10C_{1}$.
 \end{enumerate}
 We can use a constraint graph to represent all the binary constraints and high-order constraints.
 \begin{enumerate}
-	\item If the CSP only consists of binary constraints, arcs connecting nodes with variable are enough to represent constraints.
-	\item If the CSP also consists of high-order constraints, we use square nodes to represent the constraints and connect them with the involved nodes with variable using arcs.
+	\item If the CSP only consists of binary constraints, arcs connecting nodes with variables are enough to represent constraints.
+	\item If the CSP also consists of high-order constraints, we use square nodes to represent the constraints and connect them with the involved variable nodes using arcs.
 \end{enumerate}
 \begin{example}
 	Using the map colouring problem in Example \ref{Map colouring problem}, we have the following constraint graph:
@@ -100,27 +100,24 @@ We can use a constraint graph to represent all the binary constraints and high-o
 
 \newpage
 \section{Solving the Constraint Satisfaction Problem using Search}
-Using constraint graph, we can format the search formulation of CSPs.
+Using a constraint graph, we can format the search formulation of CSPs.
 \begin{description}
-	\item[State space:] Each state defined by the values assigned to the variables
-	\item[Initial state:] Empty assignment: $\{\}$
-	\item[Successor function:] Assign a value to an unassigned variable
-	\item[Goal test:] Current assignment is complete and satisfies all constraint
+	\item[State space:] Each state is defined by the values assigned to the variables.
+	\item[Initial state:] Empty assignment: $\{\}$.
+	\item[Successor function:] Assign a value to an unassigned variable.
+	\item[Goal test:] Current assignment is complete and satisfies all constraints.
 \end{description}
-We can try Depth-first search (DFS) to solve this problem.
+We can try Depth-First Search (DFS) to solve this problem.
 \begin{example}
 	We use the map colouring problem in Example \ref{Map colouring problem}. There are $10$ variables.
 	\begin{figure}[h]
 		\begin{subfigure}[h]{0.5\textwidth}
 			\begin{description}[style=nextline]
-				\item[Number of values:] $d=4$
-				\item[Number of unassigned variables at Level $i$:] $n=11-i$
-				\item[Branch factor from Level $i$ to Level $i+1$:]
-					Branch factor $b=dn=4(11-i)$
-				\item[Number of nodes at Level $i$:]
-					$4^{i-1}(11-1)\cdots(11-i+1)=\frac{4^{i-1}10!}{(11-i)!}$
-				\item[Height of the tree:]
-					Each arc down assign a variable. Height $h=11$
+				\item[Number of values:] $d=4$.
+				\item[Number of unassigned variables at Level $i$:] $n=11-i$.
+				\item[Branch factor from Level $i$ to Level $i+1$:] Branch factor $b=dn=4(11-i)$.
+				\item[Number of nodes at Level $i$:] $4^{i-1}(11-1)\cdots(11-i+1)=\frac{4^{i-1}10!}{(11-i)!}$.
+				\item[Height of the tree:] Each arc down assigns a variable. Height $h=11$.
 			\end{description}
 		\end{subfigure}
 		\begin{subfigure}[h]{0.49\textwidth}
@@ -128,22 +125,22 @@ We can try Depth-first search (DFS) to solve this problem.
 		\end{subfigure}
 	\end{figure}
 \end{example}
-As you can see, it is highly inefficient. We can find some issues regarding the search.
+As you can see, it is highly inefficient. We can identify some issues regarding the search:
 \begin{enumerate}
-	\item Variables assignments are communicate.\\
-	E.g. $\{X_{1}=\text{Red}, X_{2}=\text{Green}\}$ same as $\{X_{2}=\text{Green}, X_{1}=\text{Red}\}$\\
+	\item Variable assignments are commutative.\\
+	E.g., $\{X_{1}=\text{Red}, X_{2}=\text{Green}\}$ is the same as $\{X_{2}=\text{Green}, X_{1}=\text{Red}\}$.\\
 	Modification: Consider assignments to a single variable at each node.\\
-	Branching factor: $b=d$ \quad Number of nodes at Level $i$: $d^{i=1}$ 
-	\item Each variable can be assigned with any value\\
-	E.g. $\{X_{1}=\text{Red}, X_{2}=\text{Red}\}$\\
-	Modification: Consider only values which do not conflict with previous assignments.
+	Branching factor: $b=d$, \quad Number of nodes at Level $i$: $d^{i-1}$.
+	\item Each variable can be assigned any value.\\
+	E.g., $\{X_{1}=\text{Red}, X_{2}=\text{Red}\}$.\\
+	Modification: Consider only values that do not conflict with previous assignments.
 \end{enumerate}
-After these two modification, we have a new type of search called \textbf{backtracking search}.
+After these two modifications, we have a new type of search called \textbf{backtracking search}.
 \begin{definition}
-	\textbf{Backtracking search} is a searching algorithm that involves trying different options and undoing then if they lead to a dead end. The idea is that:
+	\textbf{Backtracking search} is a searching algorithm that involves trying different options and undoing them if they lead to a dead end. The idea is that:
 	\begin{enumerate}
-		\item One variable at a time
-		\item Check constraints as you go
+		\item Assign one variable at a time.
+		\item Check constraints as you go.
 		\item Backtrack when a variable has no legal values left to assign.
 	\end{enumerate}
 \end{definition}
@@ -175,11 +172,11 @@ RECURSIVE-BACKTRACKING(assignment, csp)
 \end{algorithm}
 The above backtracking algorithm has the following steps:
 \begin{enumerate}
-	\item Use a method to select unassigned variable. (SELECT-UNASSIGNED-VARIABLE($\cdots$))
-	\item Use a method to select value. (ORDER-DOMAIN-VALUES($\cdots$))
+	\item Use a method to select an unassigned variable (SELECT-UNASSIGNED-VARIABLE($\cdots$)).
+	\item Use a method to select a value (ORDER-DOMAIN-VALUES($\cdots$)).
 	\item Check if the variable assigned with the value is consistent with the constraints.
 	\item Assign the variable with the value and perform the algorithm again.
-	\item If a solution exists with that assignment, we return the assignment. If not, we assign the variable with the next value.
+	\item If a solution exists with that assignment, return the assignment. If not, assign the variable with the next value.
 	\item Return failure if there are no available values.
 \end{enumerate}
 However, how do we determine which variable or value we should select first?
@@ -312,7 +309,7 @@ In the above example, we check \textbf{all} the values in the domain whether it 
 			E+L=S+10C_{1}\\
 			S+L+C_{1}=E+10C_{2}\\
 			2A+C_{2}=M+10C_{3}\\
-			2B+C_{3}=A+10\\
+			2B+C_{3}=A+10
 		\end{cases}
 	\end{equation*}
 	We can now update the domain of the values using the constraints.
