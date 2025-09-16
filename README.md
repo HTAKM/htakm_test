@@ -16,5 +16,3 @@ This website serves as a demonstration of various web development techniques and
 ## Purpose
 
 This website is designed for educational purposes, showcasing web development skills and techniques. It is not intended for production use.
-
-Visit the website to explore its features and learn more about the implementation!
