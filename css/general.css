@@ -163,6 +163,7 @@ section {
     align-items: center;
     cursor: pointer;
 }
+
 .custom-list .list-group-item span,
 .custom-list .list-group-item a {
     line-height: 1.5; 
@@ -170,12 +171,13 @@ section {
 }
 
 .custom-list .list-group-item a {
-    display: flex;
-    align-items: baseline;
     text-decoration: none;
     color: inherit;
-    width: auto;
-    height: auto;
+    flex-grow: 1;
+}
+
+.custom-list .list-group-item span.link-item {
+    margin-left: auto;
 }
 
 .custom-list .list-group-item a:hover {
@@ -187,6 +189,19 @@ section {
     content: " (clickable)";
     font-size: 0.9em;
     color: var(--secondary-color);
+    margin-left: 0.25em;
+}
+
+.custom-list .list-group-item.with-photo-gallery a {
+    display: inline;
+    width: auto;
+    height: auto;
+}
+
+.custom-list .list-group-item i {
+    color: var(--primary-color);
+    font-size: 0.5em;
+    vertical-align: middle;
     margin-left: 0.25em;
 }
 
