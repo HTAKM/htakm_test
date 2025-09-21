@@ -152,10 +152,62 @@ section {
     background-color: var(--background-color);
     border-color: var(--secondary-color);
     padding: 0.25rem;
-    padding-bottom: 0rem;
 }
 .custom-list li:hover {
     background-color: var(--highlight-color);
+}
+
+.custom-list .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.custom-list .list-group-item span,
+.custom-list .list-group-item a {
+    line-height: 1.5; 
+    padding-bottom: 0; 
+}
+
+.custom-list .list-group-item a {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    color: inherit;
+    width: auto;
+    height: auto;
+}
+
+.custom-list .list-group-item a:hover {
+    text-decoration: underline;
+    color: var(--primary-color); 
+}
+
+.custom-list .list-group-item a::after {
+    content: " (clickable)";
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-left: 0.25em;
+}
+
+.custom-list .list-group-item .badge {
+    display: flex;
+    font-size: inherit; 
+    line-height: 1;  
+    margin: auto 0; 
+    padding: 0.25rem 0.5rem; 
+    padding-bottom: 0; 
+}
+
+.custom-list .list-group-item a i {
+    color: var(--primary-color);
+    font-size: 0.9em;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.custom-list .list-group-item a:hover i {
+    color: var(--primary-hover-color);
 }
 
 /* Dropdown menu styles */
