@@ -1,19 +1,6 @@
-var rowCount = 1;
-$("#addRowBtn").click(function(){
-    $("#courseForm").append(newRow());
-    rowCount++;
-});
-$("#deleteRowBtn").click(function(){
-    if(rowCount > 1){
-        $("#row" + (rowCount - 1)).remove();
-        rowCount--;
-    }
-});
-$("#submitBtn").click(function(){
-    const result = calculateCGA();
-    $("#CGAResult").html(result);
-});
-function newRow(){
+let rowCount = 1;
+
+function newRow() {
     var newRow = 
         '<div class="calCourseRows" id="row' + rowCount + '">' + 
         '    <div class="form-group">' +
@@ -28,27 +15,27 @@ function newRow(){
         '</div>';
     return newRow;
 }
-function calculateCGA(){
+
+function calculateCGA() {
     const validGrades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F"];
-    const nonCGAGrades = ["P", "PP", "IP", "PA", "PS", "NP", "T", "W", "AU", "CR", "DI", "DN", "EX", "HP", "LP", "U", "Y"]; // Grades that do not count towards CGA
+    const nonCGAGrades = ["P", "PP", "IP", "PA", "PS", "NP", "T", "W", "AU", "CR", "DI", "DN", "EX", "HP", "LP", "U", "Y"];
     let gradedCredits = 0;
     let totalCredits = 0;
     let totalGradePoints = 0.0;
 
-    for(let i = 0; i < rowCount; i++){
-        const courseInput = $(`#inputCourse${i}`).val();
-        const creditInput = $(`#inputCredit${i}`).val();
-        const gradeInput = $(`#inputGrade${i}`).val();
+    for (let i = 0; i < rowCount; i++) {
+        const courseInput = document.getElementById(`inputCourse${i}`)?.value;
+        const creditInput = document.getElementById(`inputCredit${i}`)?.value;
+        const gradeInput = document.getElementById(`inputGrade${i}`)?.value;
 
-        if (!courseInput || !creditInput || !gradeInput){
+        if (!courseInput || !creditInput || !gradeInput) {
             continue;
         }
 
         const credits = parseInt(creditInput);
 
         if (nonCGAGrades.includes(gradeInput)) {
-            // Skip grades that do not count towards CGA
-            totalCredits += credits; // Still add to total credits
+            totalCredits += credits;
             continue;
         }
 
@@ -57,7 +44,7 @@ function calculateCGA(){
         }
 
         let gradePoint = 0.0;
-        switch(gradeInput.charAt(0)){
+        switch (gradeInput.charAt(0)) {
             case 'A':
                 gradePoint = 4.0; break;
             case 'B':
@@ -70,10 +57,10 @@ function calculateCGA(){
                 gradePoint = 0.0; break;
         }
 
-        if(gradeInput.length > 1){
-            if(gradeInput.charAt(1) === '+'){
+        if (gradeInput.length > 1) {
+            if (gradeInput.charAt(1) === '+') {
                 gradePoint += 0.3;
-            } else if(gradeInput.charAt(1) === '-'){
+            } else if (gradeInput.charAt(1) === '-') {
                 gradePoint -= 0.3;
             }
         }
@@ -83,12 +70,34 @@ function calculateCGA(){
         totalCredits += credits;
     }
 
-    if(totalCredits === 0){
-        return '<p>Credit is 0!</p>'; 
+    if (totalCredits === 0) {
+        return '<p>Total credits that count towards CGA is 0!</p>'; 
     }
 
     const CGA = (totalGradePoints / gradedCredits).toFixed(2);
     return `<p>Result:</p>
             <p>Number of credits: ${totalCredits}</p>
+            <p>Number of graded credits: ${gradedCredits}</p>
+            <p>Number of ungraded credits: ${totalCredits - gradedCredits}</p>
             <p>CGA: ${CGA}</p>`;
 }
+
+document.getElementById("addRowBtn").addEventListener("click", function() {
+    document.getElementById("courseForm").insertAdjacentHTML("beforeend", newRow());
+    rowCount++;
+});
+
+document.getElementById("deleteRowBtn").addEventListener("click", function() {
+    if (rowCount > 1) {
+        const row = document.getElementById("row" + (rowCount - 1));
+        if (row) {
+            row.remove();
+            rowCount--;
+        }
+    }
+});
+
+document.getElementById("submitBtn").addEventListener("click", function() {
+    const result = calculateCGA();
+    document.getElementById("CGAResult").innerHTML = result;
+});
