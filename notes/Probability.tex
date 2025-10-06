@@ -31,7 +31,7 @@
 }
 \date{
 	Last major change: September 29, 2025\\
-	Last small update: October 1, 2025
+	Last small update: October 6, 2025
 }
 \begin{document}
 \maketitle
@@ -5276,13 +5276,13 @@
             \tag{$\frac{k}{n} \to p$}
             &\sim \frac{1}{\sqrt{2\pi npq}}\exp\left(-k\ln\left(\frac{k}{np}\right)+(k-n)\ln\left(\frac{n-k}{nq}\right)\right).
         \end{align*}
-        With $\expect{X} = np$ and $\Var(X) = np(1-p)$, for any integer $k$ chosen between $0$ and $n$, there exists an arbitrary finite point $c$ such that $k = np+c\sqrt{np(1-p)}$. Using the Taylor series expansion $\ln(1+x) = x-\frac{x^{2}}{2}+\frac{x^{3}}{3}+o(x^{3})$, we get:
+        With $\expect{X} = np$ and $\Var(X) = npq$, for any integer $k$ chosen between $0$ and $n$, there exists an arbitrary finite point $c$ such that $k = np+c\sqrt{npq}$. Using the Taylor series expansion $\ln(1+x) = x-\frac{x^{2}}{2}+o(x^{2})$, we get:
         \begin{align*}
             \binom{n}{k}p^{k}q^{n-k} &\sim \frac{1}{\sqrt{2\pi npq}}\exp\left((-np-c\sqrt{npq})\ln\left(\frac{np+c\sqrt{npq}}{np}\right)+(np+c\sqrt{npq}-n)\ln\left(\frac{n-np-c\sqrt{npq}}{nq}\right)\right)\\
             &= \frac{1}{\sqrt{2\pi npq}}\exp\left((-np-c\sqrt{npq})\ln\left(1+c\sqrt{\frac{q}{np}}\right)+(c\sqrt{npq}-nq)\ln\left(1-c\sqrt{\frac{p}{nq}}\right)\right)\\
             &= \frac{1}{\sqrt{2\pi npq}}\exp\left((-np-c\sqrt{npq})\left(c\sqrt{\frac{q}{np}}-\frac{c^{2}q}{2np}+o(n^{-1})\right)+(c\sqrt{npq}-nq)\left(-c\sqrt{\frac{p}{nq}}-\frac{c^{2}p}{2nq}+o(n^{-1})\right)\right)\\
-            &= \frac{1}{\sqrt{2\pi npq}}\exp\left((-c\sqrt{npq}-c^{2}q+\frac{1}{2}c^{2}q+o(1))+(-c^{2}p+c\sqrt{npq}-\frac{1}{2}c^{2}p+o(1))\right)\\
-            &\sim \frac{1}{\sqrt{2\pi npq}}\exp\left(\frac{1}{2}c^{2}\right) = \frac{1}{\sqrt{2\pi npq}}\exp\left(-\frac{(k-np)^{2}}{2npq}\right).
+            &= \frac{1}{\sqrt{2\pi npq}}\exp\left((-c\sqrt{npq}-c^{2}q+\frac{1}{2}c^{2}q+o(1))+(-c^{2}p+c\sqrt{npq}+\frac{1}{2}c^{2}p+o(1))\right)\\
+            &\sim \frac{1}{\sqrt{2\pi npq}}\exp\left(-\frac{1}{2}c^{2}\right) = \frac{1}{\sqrt{2\pi npq}}\exp\left(-\frac{(k-np)^{2}}{2npq}\right).
         \end{align*}
         Therefore, as $n \to \infty$, $\frac{X-np}{\sqrt{np(1-p)}} \xrightarrow{D} \N(0,1)$, and the theorem is proven.
     \end{proofing}
