@@ -1,55 +1,55 @@
 ﻿Year,Term,Prefix,Code,Name,Credit,Grade
-1,Fall,COMP,1021,Introduction to Computer Science,3,A+
-1,Fall,CORE,1402,English Language for University Studies,3,T
-1,Fall,LIFS,1901,General Biology I,3,B-
-1,Fall,MATH,1013,Calculus IB,3,A
-1,Fall,MECH,1906,Mechanical Engineering for Modern Life,3,B+
-1,Fall,PHYS,1112,General Physics I with Calculus,3,A-
-1,Spring,CENG,1500,A First Course on Materials Science and Applications,3,B+
-1,Spring,CORE,1403A,Academc English for University Studies,3,B+
-1,Spring,CORE,1631,Music of the World,3,A
-1,Spring,CORE,1901,Cognitive Foundations of University Education: Critical Thinking and Data Literacy,3,B
-1,Spring,CORE,1905B,"Behavioral Foundations of University Education: Habits, Mindsets, and Wellness",3,P
-1,Spring,LEGL,1000,"Legal Education (PRC Constitution, Basic Law, National Security Law and Legal System of HKSAR)",0,P
-1,Spring,MATH,1014,Calculus II,3,A
-1,Summer,PHYS,1114,General Physics II,3,A
-2,Fall,COMP,2011,Programming with C++,4,A
-2,Fall,COMP,2711H,Honors Discrete Mathematical Tools for Computer Science,4,A-
-2,Fall,EMIA,2010A,Cross-disciplinary Seminar: Artificial Intelligence,0,P
-2,Fall,MATH,2131,Honors in Linear and Abstract Algebra,4,B+
-2,Fall,MATH,2411,Applied Statistics,4,A+
-2,Fall,PHYS,1002,Introduction to Astrophysics and Astronomy,3,A+
-2,Winter,COMP,1029V,Excel VBA Programming Bridging Course,1,P
-2,Winter,ISOM,1700,Critical Issues in Business Operations,3,B+
-2,Spring,COMP,2012,Object-Oriented Programming and Data Structures,4,A
-2,Spring,COMP,2211,Exploring Artificial Intelligence,3,A+
-2,Spring,COMP,2611,Computer Organization,4,A
-2,Spring,COMP,3711H,Honors Design and Analysis of Algorithms,0,AU
-2,Spring,LANG,2030,Technical Communication I,3,B
-2,Spring,MATH,2023,Multivariable Calculus,4,B+
-2,Spring,MATH,2431,Honors Probability,4,A
-3,Fall,COMP,3111H,Honors Software Engineering,4,A
-3,Fall,COMP,3211,Fundamentals of Artificial Intelligence,3,A+
-3,Fall,COMP,3711,Design and Analysis of Algorithms,3,A+
-3,Fall,ENGG,2010,Engineering Seminar Series,0,P
-3,Fall,MATH,2033,Mathematical Analysis,4,A
-3,Fall,MATH,3423,Statistical Inference,3,A
-3,Fall,UROP,1100N,Undergraduate Research Opportunities Series 1,1,P
-3,Winter,COMP,1029J,Java Programming Bridging Course,1,P
-3,Spring,COMP,3511,Operating Systems,3,A-
-3,Spring,COMP,4211,Machine Learning,3,B+
-3,Spring,COMP,4431,Multimedia Computing,3,B+
-3,Spring,COMP,4901Y,Large-Scale Machine Learning for Foundation Models,3,A
-3,Spring,EMIA,2020,Cross-disciplinary Design Thinking,3,T
-3,Spring,HUMA,1622,"Science, Technology and Society: Historical and Cultural Approaches",3,T
-3,Spring,LANG,1000BROAD,1000-level Course in Language,3,T
-3,Spring,MATH,3322,Matrix Computation,3,A
-3,Spring,MATH,3424,Regression Analysis,3,A-
-4,Fall,COMP,4421,Image Processing,3,A+
-4,Fall,COMP,4901B,Large Language Models,3,B
-4,Fall,LANG,1416C,Effective Chinese Communication,3,B+
-4,Fall,MATH,3332,Data Analytic Tools,3,A
-4,Spring,COMP,1942,Exploring and Visualizing Data,3,
-4,Spring,COMP,4321,Search Engines for Web and Enterprise Data,3,
-4,Spring,COMP,4981,Final Year Project,6,
-4,Spring,ISOM,3320,Business Applications Development in Java,3,
+2022/23,Fall,COMP,1021,Introduction to Computer Science,3,A+
+2022/23,Fall,CORE,1402,English Language for University Studies,3,T
+2022/23,Fall,LIFS,1901,General Biology I,3,B-
+2022/23,Fall,MATH,1013,Calculus IB,3,A
+2022/23,Fall,MECH,1906,Mechanical Engineering for Modern Life,3,B+
+2022/23,Fall,PHYS,1112,General Physics I with Calculus,3,A-
+2022/23,Spring,CENG,1500,A First Course on Materials Science and Applications,3,B+
+2022/23,Spring,CORE,1403A,Academc English for University Studies,3,B+
+2022/23,Spring,CORE,1631,Music of the World,3,A
+2022/23,Spring,CORE,1901,Cognitive Foundations of University Education: Critical Thinking and Data Literacy,3,B
+2022/23,Spring,CORE,1905B,"Behavioral Foundations of University Education: Habits, Mindsets, and Wellness",3,P
+2022/23,Spring,LEGL,1000,"Legal Education (PRC Constitution, Basic Law, National Security Law and Legal System of HKSAR)",0,P
+2022/23,Spring,MATH,1014,Calculus II,3,A
+2022/23,Summer,PHYS,1114,General Physics II,3,A
+2023/24,Fall,COMP,2011,Programming with C++,4,A
+2023/24,Fall,COMP,2711H,Honors Discrete Mathematical Tools for Computer Science,4,A-
+2023/24,Fall,EMIA,2010A,Cross-disciplinary Seminar: Artificial Intelligence,0,P
+2023/24,Fall,MATH,2131,Honors in Linear and Abstract Algebra,4,B+
+2023/24,Fall,MATH,2411,Applied Statistics,4,A+
+2023/24,Fall,PHYS,1002,Introduction to Astrophysics and Astronomy,3,A+
+2023/24,Winter,COMP,1029V,Excel VBA Programming Bridging Course,1,P
+2023/24,Winter,ISOM,1700,Critical Issues in Business Operations,3,B+
+2023/24,Spring,COMP,2012,Object-Oriented Programming and Data Structures,4,A
+2023/24,Spring,COMP,2211,Exploring Artificial Intelligence,3,A+
+2023/24,Spring,COMP,2611,Computer Organization,4,A
+2023/24,Spring,COMP,3711H,Honors Design and Analysis of Algorithms,0,AU
+2023/24,Spring,LANG,2030,Technical Communication I,3,B
+2023/24,Spring,MATH,2023,Multivariable Calculus,4,B+
+2023/24,Spring,MATH,2431,Honors Probability,4,A
+2024/25,Fall,COMP,3111H,Honors Software Engineering,4,A
+2024/25,Fall,COMP,3211,Fundamentals of Artificial Intelligence,3,A+
+2024/25,Fall,COMP,3711,Design and Analysis of Algorithms,3,A+
+2024/25,Fall,ENGG,2010,Engineering Seminar Series,0,P
+2024/25,Fall,MATH,2033,Mathematical Analysis,4,A
+2024/25,Fall,MATH,3423,Statistical Inference,3,A
+2024/25,Fall,UROP,1100N,Undergraduate Research Opportunities Series 1,1,P
+2024/25,Winter,COMP,1029J,Java Programming Bridging Course,1,P
+2024/25,Spring,COMP,3511,Operating Systems,3,A-
+2024/25,Spring,COMP,4211,Machine Learning,3,B+
+2024/25,Spring,COMP,4431,Multimedia Computing,3,B+
+2024/25,Spring,COMP,4901Y,Large-Scale Machine Learning for Foundation Models,3,A
+2024/25,Spring,EMIA,2020,Cross-disciplinary Design Thinking,3,T
+2024/25,Spring,HUMA,1622,"Science, Technology and Society: Historical and Cultural Approaches",3,T
+2024/25,Spring,LANG,1000BROAD,1000-level Course in Language,3,T
+2024/25,Spring,MATH,3322,Matrix Computation,3,A
+2024/25,Spring,MATH,3424,Regression Analysis,3,A-
+2025/26,Fall,COMP,4421,Image Processing,3,A+
+2025/26,Fall,COMP,4901B,Large Language Models,3,B
+2025/26,Fall,LANG,1416C,Effective Chinese Communication,3,B+
+2025/26,Fall,MATH,3332,Data Analytic Tools,3,A
+2025/26,Spring,COMP,1942,Exploring and Visualizing Data,3,
+2025/26,Spring,COMP,4321,Search Engines for Web and Enterprise Data,3,
+2025/26,Spring,COMP,4981,Final Year Project,6,
+2025/26,Spring,ISOM,3320,Business Applications Development in Java,3,
