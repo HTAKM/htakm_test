@@ -9,21 +9,21 @@ async function loadGrade() {
             let term = "", termCount = 0;
             for (let i = 0; i < content.length; ++i) {
                 takenCourseInfo = content[i]
-                if (!(GPAValidGrade.includes(takebCourseInfo["Grade"]))) continue;
+                if (!(GPAValidGrade.includes(takenCourseInfo["Grade"]))) continue;
                 gradeRow = $('<tr>');
-                if ([takebCourseInfo["Year"], takebCourseInfo["Term"]].join(" ") == term) {
+                if ([takenCourseInfo["Year"], takenCourseInfo["Term"]].join(" ") == term) {
                     termCol = $('<td>', {class: "course-term", style: "display:none"}).html(term);
                     ++termCount;
                 } else {
                     $('.course-term:contains('+term+')').first().attr('rowspan', termCount);
-                    term = [takebCourseInfo["Year"], takebCourseInfo["Term"]].join(" ");
+                    term = [takenCourseInfo["Year"], takenCourseInfo["Term"]].join(" ");
                     termCount = 1;
                     termCol = $('<td>', {class: "course-term"}).html(term);
                 }
-                codeCol = $('<td>', {class: "course-code"}).html([takebCourseInfo["Prefix"], takebCourseInfo["Code"]].join(" "));
-                nameCol = $('<td>', {class: "course-name"}).html(takebCourseInfo["Name"]);
-                creditCol = $('<td>', {class: "course-credit"}).html(takebCourseInfo["Credit"]);
-                gradeCol = $('<td>', {class: "course-grade"}).html(takebCourseInfo["Grade"]);
+                codeCol = $('<td>', {class: "course-code"}).html([takenCourseInfo["Prefix"], takenCourseInfo["Code"]].join(" "));
+                nameCol = $('<td>', {class: "course-name"}).html(takenCourseInfo["Name"]);
+                creditCol = $('<td>', {class: "course-credit"}).html(takenCourseInfo["Credit"]);
+                gradeCol = $('<td>', {class: "course-grade"}).html(takenCourseInfo["Grade"]);
                 gradeRow.append(termCol);
                 gradeRow.append(codeCol);
                 gradeRow.append(nameCol);
