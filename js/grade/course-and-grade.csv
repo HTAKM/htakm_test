@@ -45,7 +45,11 @@
 3,Spring,LANG,1000BROAD,1000-level Course in Language,3,T
 3,Spring,MATH,3322,Matrix Computation,3,A
 3,Spring,MATH,3424,Regression Analysis,3,A-
-4,Fall,COMP,4421,Image Processing,3,
-4,Fall,COMP,4901B,Large Language Models,3,
-4,Fall,LANG,1416C,Effective Chinese Communication,3,
-4,Fall,MATH,3332,Data Analytic Tools,3,
+4,Fall,COMP,4421,Image Processing,3,A+
+4,Fall,COMP,4901B,Large Language Models,3,B
+4,Fall,LANG,1416C,Effective Chinese Communication,3,B+
+4,Fall,MATH,3332,Data Analytic Tools,3,A
+4,Spring,COMP,1942,Exploring and Visualizing Data,3,
+4,Spring,COMP,4321,Search Engines for Web and Enterprise Data,3,
+4,Spring,COMP,4981,Final Year Project,6,
+4,Spring,ISOM,3320,Business Applications Development in Java,3,
