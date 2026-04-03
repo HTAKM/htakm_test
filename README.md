@@ -11,7 +11,6 @@ This website serves as a demonstration of various web development techniques and
 - **CGA Calculator**: An interactive tool to calculate the Cumulative Grade Average (CGA) based on user input.
 - **Image Processing Tool**: A feature to apply basic image processing techniques directly in the browser.
 - **Notes Section**: A collection of PDF and LaTeX files covering various topics, providing valuable resources and documentation.
-- **Redirection Page**: A utility page for redirecting users to other resources or websites.
 
 ## Purpose
 
