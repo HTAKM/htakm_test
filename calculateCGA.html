@@ -42,38 +42,36 @@
     </nav>
 </header>
 
-<main>
-    <div class="container">
-        <section class="row section mt-3">
-            <div class="col">
-                <h2 class="mb-1" id="cga-calculator">CGA Calculator</h2>
-                <p class="mb-0">Please input courses, number of credits and your grade.</p>
-                <form id="courseForm" method="get" aria-labelledby="cga-calculator">
-                    <div class="calCourseRows" id="row0">
-                        <div class="form-group">
-                            <label for="inputCourse0">Course Code:</label>
-                            <input type="text" id="inputCourse0" name="inputCourse" class="form-control" placeholder="COMP 1021" aria-label="Course Code">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputCredit0">Credits:</label>
-                            <input type="number" id="inputCredit0" name="inputCredit" class="form-control" placeholder="3" min="0" max="30" aria-label="Credits">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputGrade0">Grade:</label>
-                            <input type="text" id="inputGrade0" name="inputGrade" class="form-control" placeholder="A+" maxlength="2" aria-label="Grade">
-                        </div>
+<main class="container">
+    <section class="row">
+        <div class="col">
+            <h2 class="mb-1" id="cga-calculator">CGA Calculator</h2>
+            <p class="mb-0">Please input courses, number of credits and your grade.</p>
+            <form id="courseForm" method="get" aria-labelledby="cga-calculator">
+                <div class="calCourseRows" id="row0">
+                    <div class="form-group">
+                        <label for="inputCourse0">Course Code:</label>
+                        <input type="text" id="inputCourse0" name="inputCourse" class="form-control" placeholder="COMP 1021" aria-label="Course Code">
                     </div>
-                </form>
-                <div class="d-flex justify-content-between">
-                    <button type="button" id="addRowBtn" class="btn btn-info custom-button" aria-label="Add a new row">Add row</button>
-                    <button type="button" id="deleteRowBtn" class="btn btn-info custom-button" aria-label="Delete the last row">Delete row</button>
-                    <button type="submit" id="submitBtn" class="btn btn-info custom-button" aria-label="Submit the form">Submit</button>
+                    <div class="form-group">
+                        <label for="inputCredit0">Credits:</label>
+                        <input type="number" id="inputCredit0" name="inputCredit" class="form-control" placeholder="3" min="0" max="30" aria-label="Credits">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputGrade0">Grade:</label>
+                        <input type="text" id="inputGrade0" name="inputGrade" class="form-control" placeholder="A+" maxlength="2" aria-label="Grade">
+                    </div>
                 </div>
-                <noscript>Your website does not allow JavaScript!</noscript>
-                <div id="CGAResult" class="mt-3" aria-live="polite"></div>
+            </form>
+            <div class="d-flex justify-content-between">
+                <button type="button" id="addRowBtn" class="btn btn-info custom-button" aria-label="Add a new row">Add row</button>
+                <button type="button" id="deleteRowBtn" class="btn btn-info custom-button" aria-label="Delete the last row">Delete row</button>
+                <button type="submit" id="submitBtn" class="btn btn-info custom-button" aria-label="Submit the form">Submit</button>
             </div>
-        </section>
-    </div>
+            <noscript>Your website does not allow JavaScript!</noscript>
+            <div id="CGAResult" class="mt-3" aria-live="polite"></div>
+        </div>
+    </section>
 </main>
 
 <footer>
