@@ -108,6 +108,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll(".image-gallery img");
+        images.forEach(img => {
+            img.addEventListener("mouseover", function () {
+                this.style.transform = "scale(1.05)";
+                this.style.transition = "transform 0.3s ease";
+            });
+            img.addEventListener("mouseout", function () {
+                this.style.transform = "scale(1)";
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
